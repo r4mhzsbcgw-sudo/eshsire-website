@@ -1,0 +1,288 @@
+import type { Dictionary } from "./en";
+
+export const zh: Dictionary = {
+  meta: {
+    siteTitle: "Eshsire Group | 中国 SPC 地板与墙板制造商",
+    siteDescription:
+      "Eshsire Group — 北京 30 年 SPC 地板与墙板 OEM 制造商，防水防火，出口 30+ 国家。联系 Jason 获取目录与报价。",
+    pages: {
+      home: "首页",
+      spcFlooring: "SPC 地板",
+      wallPanels: "墙板",
+      factory: "工厂",
+      oemService: "OEM 服务",
+      about: "关于我们",
+      contact: "联系我们",
+    },
+    pageDesc: {
+      spcFlooring:
+        "Eshsire Group 商用级防水 SPC 地板 OEM，锁扣安装，防火，全球出口。",
+      wallPanels:
+        "SPC 墙板、UV 大理石板及室内装饰材，中国源头工厂直供。",
+      factory:
+        "北京 6000㎡ SPC 地板工厂，生产线、质检、仓储与装柜出口经验。",
+      oemService:
+        "SPC 地板与墙板 OEM/ODM 定制，包装、品牌与贴牌生产服务。",
+      about:
+        "关于 Eshsire Group — 30 年 SPC 地板与室内装饰材制造经验。",
+      contact:
+        "联系 Eshsire Group 获取目录与报价。Jason — WhatsApp +86 15313057097。",
+    },
+  },
+  nav: {
+    home: "首页",
+    spcFlooring: "SPC 地板",
+    wallPanels: "墙板",
+    factory: "工厂",
+    oemService: "OEM 服务",
+    about: "关于我们",
+    contact: "联系我们",
+    getCatalog: "获取目录",
+    menu: "菜单",
+  },
+  common: {
+    learnMore: "了解更多",
+    whatsapp: "WhatsApp",
+    whatsappUs: "WhatsApp 咨询",
+    sendInquiry: "发送询价",
+    getCatalog: "获取目录",
+    getQuote: "获取报价",
+    requestCatalog: "索取目录",
+    getSamples: "索取样品",
+    eshsireGroup: "Eshsire Group",
+    beijingChina: "中国·北京",
+    contactPerson: "联系人",
+    email: "邮箱",
+    phone: "电话",
+    wechat: "微信",
+    address: "地址",
+    products: "产品",
+    quickLinks: "快速链接",
+    contactTitle: "联系方式",
+  },
+  gallery: {
+    expandHint: "点击图片可放大查看",
+    close: "关闭",
+    photoAlt: "图片",
+  },
+  companyIntro: {
+    tagline: "ESHSIRE GROUP | 30+ 年专业制造经验",
+    viewMore: "了解更多",
+    title: "我们的优势",
+    description:
+      "Eshsire Group 位于北京，拥有 6000㎡ 生产基地、专业 SPC 地板与墙板生产线、严格质检团队及丰富出口经验，服务全球 B2B 客户。",
+    description2:
+      "我们专注于稳定品质、OEM/ODM 灵活定制，以及面向欧洲、中东、东南亚等市场的准时交付。",
+    playVideo: "播放公司介绍视频",
+  },
+  whatsapp: {
+    defaultMessage:
+      "您好，我对贵公司的 SPC 地板/墙板感兴趣，请发送产品目录和报价，谢谢。",
+    inquiryHeader: "*来自 Eshsire 官网的询价*",
+    name: "姓名",
+    company: "公司",
+    product: "产品",
+    message: "留言",
+    chatLabel: "通过 WhatsApp 联系我们",
+    contactJason: "WhatsApp 联系 Jason",
+  },
+  home: {
+    hero: {
+      label: "Eshsire Group · 中国北京",
+      title: "中国 SPC 地板制造商",
+      subtitle: "OEM 与 ODM 服务 | 防水 | 防火 | 出口 30+ 国家",
+      yearsExperience: "年制造经验",
+      factoryArea: "工厂面积",
+      exportCountries: "出口国家",
+      oemSupport: "OEM 与 ODM",
+    },
+    products: {
+      label: "产品",
+      title: "SPC 地板与墙板专业解决方案",
+      description: "面向全球经销商，提供工程级防水耐磨装饰材料",
+      spc: {
+        title: "SPC 地板",
+        desc: "防水商用级石塑地板，适用于全球各类项目。",
+      },
+      wall: {
+        title: "墙板",
+        desc: "SPC 及装饰室内墙板，现代饰面可选。",
+      },
+      accessories: {
+        title: "配件",
+        desc: "踢脚线、收边条、地垫及安装辅材。",
+      },
+    },
+    factory: {
+      label: "工厂",
+      title: "值得信赖的制造实力",
+      description: "6000㎡ 生产基地，专业生产线、质检体系与全球出口能力。",
+      items: [
+        "生产线",
+        "质量检验",
+        "仓储",
+        "装柜发货",
+        "OEM 包装",
+        "出口经验",
+      ],
+    },
+    why: {
+      label: "优势",
+      title: "为什么选择 Eshsire Group",
+      items: [
+        { title: "工程级品质", desc: "批量订单品质稳定，适配大型项目" },
+        { title: "低 MOQ 灵活起订", desc: "支持试单 / 混批，降低库存压力" },
+        { title: "全认证合规", desc: "CE/Floorscore 等齐全，欧美市场无忧" },
+        { title: "成本优化方案", desc: "工厂直供价，帮你提升利润空间" },
+        { title: "专业技术支持", desc: "工程样品 / 施工方案，全程技术对接" },
+        { title: "全球稳定交付", desc: "成熟物流网络，准时交付不延误" },
+      ],
+    },
+    global: {
+      label: "全球出口",
+      title: "服务全球市场",
+      description: "出口欧洲、中东、非洲、东南亚等全球地板热销市场，深受经销商与承包商信赖。",
+      markets: ["欧洲", "中东", "东南亚", "非洲", "北美", "南美", "澳新", "中亚"],
+      countriesLabel: "出口国家",
+    },
+    video: {
+      label: "工厂实拍",
+      title: "走进我们的生产线",
+      description: "先进的 SPC 地板与墙板生产线，全流程严格品控。",
+    },
+    cta: {
+      title: "正在寻找可靠的 SPC 地板供应商？",
+      description: "联系 Jason 及团队获取目录、样品与 OEM 报价，24 小时内回复。",
+    },
+  },
+  spcFlooring: {
+    heroSubtitle: "为全球商业与住宅项目设计的刚性核心防水地板。",
+    productLabel: "产品",
+    productTitle: "高端石塑 SPC 地板",
+    productDesc:
+      "我们的 SPC 地板采用石塑复合核心技术与欧式耐磨层，在高人流环境中持久耐用。",
+    specs: [
+      "100% 防水石塑基材",
+      "商用与家用级",
+      "锁扣安装系统",
+      "防火等级可选",
+      "UV 耐磨层",
+      "OEM 花色与压纹",
+      "厚度定制 4mm–8mm",
+      "防滑表面处理",
+    ],
+    applicationsLabel: "应用",
+    applicationsTitle: "SPC 最佳应用场景",
+    applications: ["酒店", "办公", "零售", "住宅", "医疗", "教育"],
+    galleryLabel: "产品图库",
+    galleryTitle: "SPC 地板图册",
+    galleryDesc: "项目实拍、花色与铺装效果，可替换为贵司产品照片。",
+  },
+  wallPanels: {
+    heroSubtitle: "适用于住宅与商业项目的 SPC、UV 大理石及装饰墙板。",
+    label: "产品",
+    title: "室内墙板解决方案",
+    description: "全系列墙板系统，支持全球品牌 OEM 定制。",
+    items: [
+      { name: "SPC 墙板", desc: "防水刚性室内墙板，木纹/石纹饰面。" },
+      { name: "UV 大理石板", desc: "高光大理石效果，适用于高端商业空间。" },
+      { name: "装饰墙板", desc: "格栅、WPC 及声学板，打造现代室内。" },
+    ],
+    galleryLabel: "产品图库",
+    galleryTitle: "墙板图册",
+    galleryDesc: "室内装饰、UV 大理石效果及商业空间应用案例。",
+  },
+  factoryPage: {
+    heroSubtitle: "先进生产基地，专业产线、严格质检与丰富出口经验。",
+    stats: [
+      { value: "30+", label: "年制造经验" },
+      { value: "6000㎡", label: "工厂面积" },
+      { value: "30+", label: "出口国家" },
+      { value: "24/7", label: "产能保障" },
+    ],
+    capabilitiesLabel: "能力",
+    capabilitiesTitle: "从生产到装柜",
+    capabilitiesDesc:
+      "我们管理全供应链——生产、质检、仓储、OEM 包装与装柜出口，确保顺畅交付。",
+  },
+  oem: {
+    heroSubtitle: "与深谙全球 B2B 需求的制造商合作。",
+    servicesLabel: "服务",
+    servicesTitle: "完整 OEM 合作",
+    services: [
+      { title: "贴牌 OEM", desc: "包装、标签与产品文件使用您的品牌。" },
+      { title: "规格定制", desc: "厚度、耐磨层、压纹、颜色与尺寸按市场定制。" },
+      { title: "ODM 产品开发", desc: "新品开发，打样与模具支持。" },
+      { title: "包装设计", desc: "零售盒、外箱与托盘出口配置。" },
+      { title: "质量文件", desc: "检测报告、CE/SGS 证书与合规支持。" },
+      { title: "物流支持", desc: "FOB/CIF 条款，装柜与运输协调。" },
+    ],
+    processLabel: "流程",
+    processTitle: "OEM 合作流程",
+    process: [
+      "询价与需求",
+      "样品生产",
+      "样品确认",
+      "批量生产",
+      "质量检验",
+      "包装装柜",
+      "出口交付",
+    ],
+    startProject: "启动 OEM 项目",
+  },
+  about: {
+    heroSubtitle: "值得信赖的中国制造商，以诚信与工业品质服务全球 B2B 客户。",
+    storyLabel: "我们的故事",
+    storyTitle: "30 年制造积淀",
+    storyDesc:
+      "Eshsire Group 从本地地板工坊成长为国际 OEM 制造商，SPC 地板、墙板及装饰材料出口 30+ 国家。",
+    storyP2:
+      "工厂位于北京大兴区，占地 6000㎡，拥有专业生产线、质检团队与出口经验。合作伙伴遍布欧洲、中东、东南亚与南美。",
+    storyContact: "合作洽谈、参观工厂及长期供货协议，请联系 {name}：{email}。",
+    missionLabel: "使命",
+    missionTitle: "我们的坚持",
+    mission: [
+      { t: "质量第一", d: "稳定达标，符合国际标准。" },
+      { t: "合作共赢", d: "以信任与透明建立长期 B2B 关系。" },
+      { t: "持续创新", d: "材料、设计与生产工艺不断改进。" },
+    ],
+    galleryLabel: "公司介绍",
+    galleryTitle: "工厂、团队与设施",
+    galleryDesc: "走进 Eshsire Group — 生产、质检、仓储与出口实景。",
+  },
+  contact: {
+    heroSubtitle: "获取目录、样品与 OEM 报价，24 小时内回复。",
+    getInTouch: "取得联系",
+    sendInquiry: "提交询价",
+    formDesc: "填写表单或通过 WhatsApp 直接联系 {name}，回复更快。",
+    form: {
+      name: "您的姓名 *",
+      company: "公司名称 *",
+      email: "邮箱 *",
+      product: "产品需求 *",
+      selectProduct: "请选择产品",
+      products: {
+        spc: "SPC 地板",
+        wall: "SPC 墙板",
+        uv: "UV 大理石板",
+        oem: "OEM 定制项目",
+      },
+      message: "项目详情 *",
+      messagePlaceholder: "数量、规格、目标市场、交期...",
+      submit: "通过 WhatsApp 提交询价",
+      thanks: "感谢提交！也可发送邮件至",
+    },
+  },
+  footer: {
+    tagline:
+      "中国专业 SPC 地板与墙板制造商，30+ 年为全球 B2B 客户提供 OEM 与 ODM 服务。",
+    copyright: "版权所有",
+    seoLine: "SPC 地板制造商 | 墙板 OEM | 中国出口",
+  },
+  productList: [
+    "SPC 地板",
+    "SPC 墙板",
+    "UV 大理石板",
+    "室内装饰材",
+  ],
+};

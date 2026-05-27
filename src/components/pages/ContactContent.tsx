@@ -1,0 +1,63 @@
+"use client";
+
+import { PageHero } from "@/components/ui/PageHero";
+import { InquiryForm } from "@/components/InquiryForm";
+import { FadeIn } from "@/components/motion/FadeIn";
+import { Button } from "@/components/ui/Button";
+import { useLocale } from "@/context/LocaleContext";
+import { getWhatsAppUrl, siteConfig, getAddress } from "@/lib/config";
+
+export function ContactContent() {
+  const { locale, dict } = useLocale();
+  const d = dict.contact;
+  const formDesc = d.formDesc.replace("{name}", siteConfig.contactPerson);
+
+  return (
+    <>
+      <PageHero title={dict.meta.pages.contact} subtitle={d.heroSubtitle} image="https://images.unsplash.com/photo-1423666639041-f56000c27a93?q=80&w=2400&auto=format&fit=crop" />
+      <section className="section-padding">
+        <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2">
+          <FadeIn>
+            <p className="section-label">{d.getInTouch}</p>
+            <h2 className="section-heading">{d.sendInquiry}</h2>
+            <p className="mt-4 text-industrial-light">{formDesc}</p>
+            <div className="mt-8 space-y-4">
+              <div className="glass-card p-4">
+                <p className="text-xs uppercase tracking-wider text-industrial-mist">{dict.common.contactPerson}</p>
+                <p className="mt-1 font-semibold">{siteConfig.contactPerson}</p>
+              </div>
+              <div className="glass-card p-4">
+                <p className="text-xs uppercase tracking-wider text-industrial-mist">{dict.common.phone}</p>
+                <a href={`tel:${siteConfig.phone.replace(/\s/g, "")}`} className="mt-1 block font-semibold text-accent hover:underline">
+                  {siteConfig.phone}
+                </a>
+              </div>
+              <div className="glass-card p-4">
+                <p className="text-xs uppercase tracking-wider text-industrial-mist">{dict.common.wechat}</p>
+                <p className="mt-1 font-semibold">{siteConfig.wechat}</p>
+              </div>
+              <div className="glass-card p-4">
+                <p className="text-xs uppercase tracking-wider text-industrial-mist">WhatsApp</p>
+                <a href={getWhatsAppUrl(locale)} className="mt-1 block font-semibold text-accent hover:underline">{siteConfig.phone}</a>
+              </div>
+              <div className="glass-card p-4">
+                <p className="text-xs uppercase tracking-wider text-industrial-mist">{dict.common.email}</p>
+                <a href={`mailto:${siteConfig.email}`} className="mt-1 block font-semibold hover:text-accent">{siteConfig.email}</a>
+              </div>
+              <div className="glass-card p-4">
+                <p className="text-xs uppercase tracking-wider text-industrial-mist">{dict.common.address}</p>
+                <p className="mt-1 text-sm leading-relaxed">{getAddress(locale)}</p>
+              </div>
+            </div>
+            <Button href={getWhatsAppUrl(locale)} variant="whatsapp" external className="mt-8">
+              {dict.whatsapp.contactJason}
+            </Button>
+          </FadeIn>
+          <FadeIn delay={0.15}>
+            <InquiryForm />
+          </FadeIn>
+        </div>
+      </section>
+    </>
+  );
+}

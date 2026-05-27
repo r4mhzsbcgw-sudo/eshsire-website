@@ -317,6 +317,6 @@ export const en = {
     "UV Marble Panels",
     "Interior Decorative Materials",
   ],
-} as const;
+};
 
 export type Dictionary = typeof en;

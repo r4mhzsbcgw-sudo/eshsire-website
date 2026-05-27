@@ -97,15 +97,37 @@ const wallRemote = {
   ],
 };
 
-function pickHome<K extends keyof typeof homeLocal>(key: K): string {
+type HomeSharedKey = keyof typeof homeLocal & keyof typeof homeRemote;
+type HomeStringKey = {
+  [K in HomeSharedKey]:
+    (typeof homeLocal)[K] extends string
+      ? (typeof homeRemote)[K] extends string
+        ? K
+        : never
+      : never;
+}[HomeSharedKey];
+
+function pickHome<K extends HomeStringKey>(key: K): string {
   return USE_LOCAL_IMAGES ? homeLocal[key] : homeRemote[key];
 }
 
 /** Homepage hero carousel — files in public/images/home/carousel/ */
 export const homeCarouselSlides = [
-  { src: "/images/home/carousel/slide-01.png", altEn: "Eshsire factory — 20 years manufacturing", altZh: "壹曙科技工厂 — 20年制造经验" },
-  { src: "/images/home/carousel/slide-02.png", altEn: "20+ years in building & decor manufacturing", altZh: "20+年建材装饰制造经验" },
-  { src: "/images/home/carousel/slide-03.png", altEn: "Certifications — ISO, CE, SGS", altZh: "资质认证 — ISO、CE、SGS" },
+  {
+    src: "/images/home/carousel/slide-01.png",
+    altEn: "Eshsire factory and 20 years manufacturing strength",
+    altZh: "壹曙科技工厂与 20 年制造实力",
+  },
+  {
+    src: "/images/home/carousel/slide-02.png",
+    altEn: "20+ years in building and decor manufacturing",
+    altZh: "20+ 年建筑与装饰材料制造经验",
+  },
+  {
+    src: "/images/home/carousel/slide-03.png",
+    altEn: "Certifications including ISO, CE and SGS",
+    altZh: "ISO、CE、SGS 等资质认证",
+  },
 ] as const;
 
 export const homeImages = {

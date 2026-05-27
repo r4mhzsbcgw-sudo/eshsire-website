@@ -1,0 +1,41 @@
+
+> eshsire-b2b@1.0.0 dev
+> next dev -H 127.0.0.1 -p 3002
+
+  ▲ Next.js 14.2.35
+  - Local:        http://127.0.0.1:3002
+  - Network:      http://127.0.0.1:3002
+
+ ✓ Starting...
+ ✓ Ready in 6.3s
+ ✓ Compiled /src/middleware in 460ms (73 modules)
+ ○ Compiling /[locale] ...
+ ✓ Compiled /[locale] in 9.6s (1341 modules)
+ ✓ Compiled in 303ms (659 modules)
+ GET /zh 200 in 10341ms
+ ✓ Compiled /[locale]/about in 501ms (1318 modules)
+ GET /zh/about 200 in 992ms
+ GET /zh 200 in 93ms
+ ○ Compiling /_not-found ...
+ ✓ Compiled /_not-found in 533ms (1315 modules)
+ GET /images/about/story.jpg 404 in 657ms
+ GET /favicon.ico 404 in 111ms
+ ✓ Compiled /[locale]/spc-flooring in 382ms (1325 modules)
+ GET /images/products/spc/hero.jpg 404 in 85ms
+ ✓ Compiled /[locale]/about in 142ms (677 modules)
+ GET /images/about/hero.jpg 404 in 43ms
+ GET /images/about/story.jpg 404 in 66ms
+ GET /images/about/hero.jpg 404 in 22ms
+ GET /images/about/story.jpg 404 in 30ms
+ GET /images/about/hero.jpg 404 in 15ms
+ GET /images/about/story.jpg 404 in 18ms
+ GET /images/about/story.jpg 404 in 44ms
+ ✓ Compiled /[locale]/wall-panels in 343ms (1337 modules)
+ ○ Compiling /[locale]/contact ...
+ ✓ Compiled /[locale]/contact in 740ms (1346 modules)
+ GET /images/products/spc/hero.jpg 404 in 89ms
+ GET /images/about/story.jpg 404 in 32ms
+ GET /images/about/story.jpg 404 in 56ms
+ GET /images/about/hero.jpg 404 in 16ms
+ GET /images/about/story.jpg 404 in 18ms
+ GET /images/about/story.jpg 404 in 68ms

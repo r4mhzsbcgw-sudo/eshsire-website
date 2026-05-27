@@ -6,8 +6,8 @@ import { useLocale } from "@/context/LocaleContext";
 import { homeCarouselSlides } from "@/lib/images";
 
 const INTERVAL_MS = 6000;
-const SLIDE_WIDTH = 1024;
-const SLIDE_HEIGHT = 346;
+const SLIDE_WIDTH = 3128;
+const SLIDE_HEIGHT = 1340;
 
 export function Hero() {
   const { locale } = useLocale();

@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
 import { navHrefs } from "@/lib/config";
@@ -13,7 +12,6 @@ export function Header() {
   const { locale, dict } = useLocale();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -39,7 +37,7 @@ export function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-6 py-4 md:px-12 lg:px-16">
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-6 py-4 md:px-12 lg:px-16">
         <Link href={localizedPath(locale, "/")} className="group shrink-0">
           <span className="text-xl font-bold tracking-wide text-white">ESHSIRE</span>
           <span className="mt-0.5 block text-[10px] font-medium uppercase tracking-[0.25em] text-industrial-light group-hover:text-accent">
@@ -47,7 +45,7 @@ export function Header() {
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-1 xl:flex">
+        <nav className="flex min-w-0 flex-1 items-center justify-end gap-1 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           {navHrefs.map((link) => {
             const href = localizedPath(locale, link.href);
             const active = pathname === href || (link.href !== "/" && pathname.startsWith(href));
@@ -55,7 +53,7 @@ export function Header() {
               <Link
                 key={link.href}
                 href={href}
-                className={`px-3 py-2 text-sm font-medium transition-colors ${
+                className={`shrink-0 whitespace-nowrap px-2.5 py-2 text-xs font-medium transition-colors md:px-3 md:text-sm ${
                   active ? "text-accent" : "text-industrial-light hover:text-white"
                 }`}
               >
@@ -66,63 +64,12 @@ export function Header() {
           <LanguageSwitcher />
           <Link
             href={localizedPath(locale, "/contact")}
-            className="ml-2 border border-accent bg-accent/10 px-5 py-2 text-sm font-semibold text-accent transition-colors hover:bg-accent hover:text-industrial-dark"
+            className="ml-1 shrink-0 whitespace-nowrap border border-accent bg-accent/10 px-4 py-2 text-xs font-semibold text-accent transition-colors hover:bg-accent hover:text-industrial-dark md:ml-2 md:px-5 md:text-sm"
           >
             {dict.nav.getCatalog}
           </Link>
         </nav>
-
-        <div className="flex items-center gap-3 xl:hidden">
-          <LanguageSwitcher />
-          <button
-            type="button"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label={dict.nav.menu}
-          >
-            <div className="flex flex-col gap-1.5">
-              <span className={`block h-0.5 w-6 bg-white transition-transform ${mobileOpen ? "translate-y-2 rotate-45" : ""}`} />
-              <span className={`block h-0.5 w-6 bg-white transition-opacity ${mobileOpen ? "opacity-0" : ""}`} />
-              <span className={`block h-0.5 w-6 bg-white transition-transform ${mobileOpen ? "-translate-y-2 -rotate-45" : ""}`} />
-            </div>
-          </button>
-        </div>
       </div>
-
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.nav
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="border-t border-white/10 bg-industrial-dark/98 backdrop-blur-xl xl:hidden"
-          >
-            <div className="flex flex-col gap-1 px-6 py-6">
-              {navHrefs.map((link) => {
-                const href = localizedPath(locale, link.href);
-                return (
-                  <Link
-                    key={link.href}
-                    href={href}
-                    onClick={() => setMobileOpen(false)}
-                    className={`py-3 text-sm font-medium ${
-                      pathname === href ? "text-accent" : "text-industrial-light"
-                    }`}
-                  >
-                    {navLabels[link.key]}
-                  </Link>
-                );
-              })}
-              <Link
-                href={localizedPath(locale, "/contact")}
-                onClick={() => setMobileOpen(false)}
-                className="mt-2 border border-accent py-3 text-center text-sm font-semibold text-accent"
-              >
-                {dict.nav.getCatalog}
-              </Link>
-            </div>
-          </motion.nav>
-        )}
-      </AnimatePresence>
     </header>
   );
 }

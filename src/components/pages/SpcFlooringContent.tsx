@@ -24,10 +24,10 @@ export function SpcFlooringContent() {
     <>
       <PageHero title={dict.meta.pages.spcFlooring} subtitle={d.heroSubtitle} image={spcFlooringImages.hero} />
       <section className="section-padding">
-        <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2 lg:items-center">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 items-center gap-16">
           <FadeIn>
             <SectionHeader label={d.productLabel} title={d.productTitle} description={d.productDesc} />
-            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
+            <ul className="mt-8 grid grid-cols-2 gap-3">
               {d.specs.map((s) => (
                 <li key={s} className="flex items-center gap-2 text-sm text-industrial-light">
                   <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />

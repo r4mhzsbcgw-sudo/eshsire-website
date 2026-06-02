@@ -117,14 +117,9 @@ export const zh: Dictionary = {
       label: "工厂",
       title: "值得信赖的制造实力",
       description: "6000㎡ 生产基地，专业生产线、质检体系与全球出口能力。",
-      items: [
-        "生产线",
-        "质量检验",
-        "仓储",
-        "装柜发货",
-        "OEM 包装",
-        "出口经验",
-      ],
+      qualityTitle: "质量检验",
+      qualityTests: ["工厂检测", "耐磨抗刮测试", "耐油污测试", "阻燃测试"],
+      items: ["生产线", "质量检验", "仓储", "装柜发货", "OEM 包装", "出口经验"],
     },
     why: {
       label: "优势",
@@ -176,7 +171,7 @@ export const zh: Dictionary = {
     applications: ["酒店", "办公", "零售", "住宅", "医疗", "教育"],
     galleryLabel: "产品图库",
     galleryTitle: "SPC 地板图册",
-    galleryDesc: "项目实拍、花色与铺装效果，可替换为贵司产品照片。",
+    galleryDesc: "联系我们获得上千种可定制专属颜色",
   },
   wallPanels: {
     heroSubtitle: "适用于住宅与商业项目的 SPC、UV 大理石及装饰墙板。",

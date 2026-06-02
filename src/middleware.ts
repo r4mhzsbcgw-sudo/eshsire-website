@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { defaultLocale, isLocale, locales } from "@/i18n/locales";
+import { detectLocaleFromAcceptLanguage, isLocale, locales } from "@/i18n/locales";
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -12,6 +12,10 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
+  if (pathname === "/") {
+    return NextResponse.next();
+  }
+
   const pathnameHasLocale = locales.some(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
   );
@@ -19,11 +23,10 @@ export function middleware(request: NextRequest) {
   if (pathnameHasLocale) return NextResponse.next();
 
   const acceptLang = request.headers.get("accept-language") ?? "";
-  const prefersZh = acceptLang.toLowerCase().includes("zh");
-  const locale = prefersZh ? "zh" : defaultLocale;
+  const locale = detectLocaleFromAcceptLanguage(acceptLang);
 
   const url = request.nextUrl.clone();
-  url.pathname = `/${locale}${pathname === "/" ? "" : pathname}`;
+  url.pathname = `/${locale}${pathname}`;
   return NextResponse.redirect(url);
 }
 

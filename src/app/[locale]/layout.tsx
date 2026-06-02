@@ -6,7 +6,15 @@ import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { JsonLd } from "@/components/JsonLd";
 import { LocaleProvider } from "@/context/LocaleContext";
 import { getDictionary } from "@/i18n/get-dictionary";
-import { isLocale, type Locale } from "@/i18n/locales";
+import {
+  cjkLocales,
+  htmlLangMap,
+  isLocale,
+  isRtlLocale,
+  locales,
+  ogLocaleMap,
+  type Locale,
+} from "@/i18n/locales";
 import { siteConfig } from "@/lib/config";
 
 export async function generateMetadata({
@@ -22,12 +30,12 @@ export async function generateMetadata({
     metadataBase: new URL(siteConfig.url),
     title: {
       default: dict.meta.siteTitle,
-      template: `%s | ${siteConfig.name}`,
+      template: "%s | " + siteConfig.name,
     },
     description: dict.meta.siteDescription,
     openGraph: {
       type: "website",
-      locale: localeParam === "zh" ? "zh_CN" : "en_US",
+      locale: ogLocaleMap[localeParam],
       url: siteConfig.url,
       siteName: siteConfig.name,
       title: dict.meta.siteTitle,
@@ -35,18 +43,17 @@ export async function generateMetadata({
     },
     robots: { index: true, follow: true },
     alternates: {
-      canonical: `${siteConfig.url}/${localeParam}`,
-      languages: {
-        en: `${siteConfig.url}/en`,
-        zh: `${siteConfig.url}/zh`,
-        "x-default": `${siteConfig.url}/en`,
-      },
+      canonical: siteConfig.url + "/" + localeParam,
+      languages: Object.fromEntries([
+        ...locales.map((loc) => [loc, siteConfig.url + "/" + loc]),
+        ["x-default", siteConfig.url + "/en"],
+      ]),
     },
   };
 }
 
 export function generateStaticParams() {
-  return [{ locale: "en" }, { locale: "zh" }];
+  return locales.map((locale) => ({ locale }));
 }
 
 export default async function LocaleLayout({
@@ -61,10 +68,17 @@ export default async function LocaleLayout({
 
   const locale = localeParam as Locale;
   const dict = await getDictionary(locale);
-  const fontClass = locale === "zh" ? "font-[family-name:var(--font-noto)]" : "font-[family-name:var(--font-inter)]";
+  const rtl = isRtlLocale(locale);
+  const fontClass = cjkLocales.includes(locale)
+    ? "font-[family-name:var(--font-noto)]"
+    : "font-[family-name:var(--font-inter)]";
 
   return (
-    <div lang={locale === "zh" ? "zh-CN" : "en"} className={fontClass}>
+    <div
+      lang={htmlLangMap[locale]}
+      dir={rtl ? "rtl" : "ltr"}
+      className={fontClass + (rtl ? " text-right" : "")}
+    >
       <JsonLd locale={locale} />
       <LocaleProvider locale={locale} dict={dict}>
         <Header />

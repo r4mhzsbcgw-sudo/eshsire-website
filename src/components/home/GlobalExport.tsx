@@ -49,7 +49,7 @@ export function GlobalExport() {
                     <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-40" />
                     <span className="relative inline-flex h-3 w-3 rounded-full bg-accent md:h-4 md:w-4" />
                   </span>
-                  <span className="absolute left-4 top-1/2 hidden -translate-y-1/2 whitespace-nowrap text-[10px] font-semibold uppercase tracking-wider text-white sm:block md:left-6 md:text-xs">
+                  <span className="absolute left-6 top-1/2 -translate-y-1/2 whitespace-nowrap text-xs font-semibold uppercase tracking-wider text-white">
                     {name}
                   </span>
                 </motion.div>

@@ -34,7 +34,7 @@ export function InquiryForm() {
 
   return (
     <form onSubmit={handleSubmit} className="glass-card p-6 md:p-8">
-      <div className="grid gap-4 md:grid-cols-2">
+      <div className="grid grid-cols-2 gap-4">
         <input name="name" required placeholder={f.name} className={inputClass} />
         <input name="company" required placeholder={f.company} className={inputClass} />
         <input name="email" type="email" required placeholder={f.email} className={inputClass} />

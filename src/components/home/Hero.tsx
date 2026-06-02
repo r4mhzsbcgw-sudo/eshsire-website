@@ -32,7 +32,7 @@ export function Hero() {
   }, [next]);
 
   return (
-    <section className="relative w-full overflow-hidden bg-industrial-dark pt-16 md:pt-20">
+    <section className="relative w-full overflow-hidden bg-industrial-dark pt-20">
       <div className="relative mx-auto w-full max-w-[1024px] px-0">
         <div
           className="relative w-full"

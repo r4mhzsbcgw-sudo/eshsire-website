@@ -22,7 +22,7 @@ export function CompanyPreview() {
           description={d.galleryDesc}
           centered
         />
-        <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
+        <div className="mt-12 grid-desktop-4">
           {preview.map((src, i) => (
             <FadeIn key={src} delay={i * 0.08}>
               <div className="relative aspect-[4/3] overflow-hidden rounded-lg border border-white/10">

@@ -26,7 +26,7 @@ export function WallPanelsContent() {
       <section className="section-padding">
         <div className="mx-auto max-w-7xl">
           <SectionHeader label={d.label} title={d.title} description={d.description} centered />
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
+          <div className="mt-16 grid-desktop-3">
             {d.items.map((p, i) => (
               <FadeIn key={p.name} delay={i * 0.1}>
                 <div className="glass-card-hover overflow-hidden">

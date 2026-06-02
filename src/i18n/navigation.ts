@@ -1,4 +1,5 @@
 import type { Locale } from "./locales";
+import { locales } from "./locales";
 
 export const routePaths = [
   "/",
@@ -19,7 +20,8 @@ export function localizedPath(locale: Locale, path: string): string {
 }
 
 export function stripLocale(pathname: string): string {
-  const match = pathname.match(/^\/(en|zh)(\/.*)?$/);
+  const pattern = new RegExp(`^/(${locales.join("|")})(/.*)?$`);
+  const match = pathname.match(pattern);
   if (!match) return pathname;
   return match[2] || "/";
 }

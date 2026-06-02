@@ -31,8 +31,8 @@ export function CompanyIntroSection({ showViewMore = true }: { showViewMore?: bo
     <section className="relative overflow-hidden bg-[#1a1d21]">
       <div className="mx-auto max-w-7xl px-6 py-14 md:px-12 md:py-20 lg:px-16">
         {/* Top bar */}
-        <FadeIn className="mb-10 flex flex-col gap-4 border-b border-white/10 pb-6 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs font-medium uppercase tracking-[0.2em] text-industrial-light md:text-sm">
+        <FadeIn className="mb-10 flex flex-row items-center justify-between gap-4 border-b border-white/10 pb-6">
+          <p className="text-sm font-medium uppercase tracking-[0.2em] text-industrial-light">
             {c.tagline}
           </p>
           {showViewMore && (
@@ -45,28 +45,28 @@ export function CompanyIntroSection({ showViewMore = true }: { showViewMore?: bo
           )}
         </FadeIn>
 
-        <div className="grid gap-10 lg:grid-cols-2 lg:gap-12 lg:items-stretch">
+        <div className="grid grid-cols-2 items-stretch gap-12">
           {/* Left — copy */}
-          <FadeIn className="relative flex flex-col justify-center lg:pl-2">
+          <FadeIn className="relative flex flex-col justify-center pl-2">
             <p
-              className="pointer-events-none absolute -left-2 top-1/2 hidden -translate-y-1/2 select-none font-serif text-6xl font-bold leading-none tracking-tight text-white/[0.06] lg:block lg:text-7xl"
+              className="pointer-events-none absolute -left-2 top-1/2 -translate-y-1/2 select-none font-serif text-7xl font-bold leading-none tracking-tight text-white/[0.06]"
               aria-hidden
               style={{ writingMode: "vertical-rl", textOrientation: "mixed" }}
             >
               ESHSIRE
             </p>
-            <h2 className="relative font-serif text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl">
+            <h2 className="relative font-serif text-6xl font-bold tracking-tight text-white">
               {c.title}
             </h2>
-            <p className="relative mt-6 text-sm leading-relaxed text-industrial-light md:text-base">
+            <p className="relative mt-6 text-base leading-relaxed text-industrial-light">
               {c.description}
             </p>
             <p className="relative mt-4 text-sm leading-relaxed text-industrial-mist">{c.description2}</p>
           </FadeIn>
 
           {/* Right — video */}
-          <FadeIn delay={0.15} className="relative min-h-[240px] lg:min-h-[320px]">
-            <div className="relative h-full min-h-[240px] overflow-hidden rounded-sm bg-[#2a2d32] lg:min-h-[320px]">
+          <FadeIn delay={0.15} className="relative min-h-[320px]">
+            <div className="relative h-full min-h-[320px] overflow-hidden rounded-sm bg-[#2a2d32]">
               <video
                 ref={videoRef}
                 className="h-full w-full object-cover"

@@ -118,6 +118,13 @@ export const en = {
       title: "Manufacturing Strength You Can Trust",
       description:
         "6000㎡ facility with professional lines, QC systems and global export capability.",
+      qualityTitle: "Quality Inspection",
+      qualityTests: [
+        "Factory test",
+        "Scratch resistance test",
+        "Oil stain resistance test",
+        "Fire resistance test",
+      ],
       items: [
         "Production Line",
         "Quality Inspection",
@@ -191,7 +198,7 @@ export const en = {
     galleryLabel: "Product Gallery",
     galleryTitle: "SPC Flooring Collection",
     galleryDesc:
-      "Real project references, textures and installation scenes. Replace with your product photography.",
+      "Contact us for thousands of customizable exclusive colors.",
   },
   wallPanels: {
     heroSubtitle:

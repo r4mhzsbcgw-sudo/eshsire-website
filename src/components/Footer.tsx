@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
+import { LanguageLinks } from "@/components/LanguageSwitcher";
 import { getWhatsAppUrl, navHrefs, siteConfig, getAddress } from "@/lib/config";
 
 export function Footer() {
@@ -23,7 +24,7 @@ export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-industrial-dark">
       <div className="section-padding mx-auto max-w-7xl pb-8 pt-16">
-        <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-4 gap-12">
           <div>
             <p className="text-2xl font-bold tracking-wide">ESHSIRE</p>
             <p className="text-sm text-industrial-light">Group</p>
@@ -74,7 +75,24 @@ export function Footer() {
           </div>
         </div>
         <div className="industrial-divider mt-12" />
-        <p className="mt-8 text-center text-xs text-industrial-mist">
+        <div className="mt-8 flex flex-col items-center gap-3">
+          <p className="text-xs font-semibold uppercase tracking-wider text-industrial-mist">
+            Language
+          </p>
+          <LanguageLinks />
+        </div>
+        <p className="mt-8 text-center text-sm text-industrial-light">
+          <span className="text-white">{dict.common.whatsapp}:</span>{" "}
+          <a
+            href={getWhatsAppUrl(locale)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-[#25D366] hover:underline"
+          >
+            +86 15313057097
+          </a>
+        </p>
+        <p className="mt-4 text-center text-xs text-industrial-mist">
           © {year} {siteConfig.name}. {dict.footer.copyright} | {dict.footer.seoLine}
         </p>
       </div>

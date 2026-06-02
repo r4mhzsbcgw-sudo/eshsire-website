@@ -92,10 +92,10 @@ export function AboutContent() {
 
       <section className="section-padding bg-industrial-dark">
         <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-16">
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+          <div className="grid grid-cols-[1.05fr_0.95fr] items-start gap-10">
             <FadeIn>
               <p className="section-label">{aboutDetails.eyebrow}</p>
-              <h2 className="mt-3 max-w-3xl text-3xl font-bold tracking-tight text-white md:text-5xl">
+              <h2 className="mt-3 max-w-3xl text-5xl font-bold tracking-tight text-white">
                 {aboutDetails.title}
               </h2>
               <p className="mt-6 text-base leading-relaxed text-industrial-light">
@@ -106,7 +106,7 @@ export function AboutContent() {
               </p>
             </FadeIn>
 
-            <div className="grid gap-4 sm:grid-cols-2">
+            <div className="grid grid-cols-2 gap-4">
               {aboutDetails.stats.map((item, i) => (
                 <FadeIn key={item.label} delay={i * 0.05}>
                   <div className="border border-white/10 bg-white/[0.04] p-6">
@@ -123,7 +123,7 @@ export function AboutContent() {
       <section className="section-padding bg-industrial-slate/20">
         <div className="mx-auto max-w-7xl px-6 md:px-12 lg:px-16">
           <SectionHeader label={d.storyLabel} title={aboutDetails.strengthsTitle} centered />
-          <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-12 grid-desktop-4 gap-5">
             {aboutDetails.strengths.map((item, i) => (
               <FadeIn key={item.title} delay={i * 0.08}>
                 <div className="h-full border border-white/10 bg-industrial-dark/60 p-6">
@@ -138,9 +138,9 @@ export function AboutContent() {
           <FadeIn delay={0.2}>
             <div className="mt-12 border border-white/10 bg-white/[0.04] p-6 md:p-8">
               <h3 className="text-xl font-bold text-white">{aboutDetails.processTitle}</h3>
-              <div className="mt-6 grid gap-3 md:grid-cols-6">
+              <div className="mt-6 grid grid-cols-6 gap-3">
                 {aboutDetails.process.map((step, i) => (
-                  <div key={step} className="border-l border-accent/70 pl-4 md:border-l-0 md:border-t md:pl-0 md:pt-4">
+                  <div key={step} className="border-t border-accent/70 pt-4">
                     <p className="text-xs font-semibold text-accent">{String(i + 1).padStart(2, "0")}</p>
                     <p className="mt-1 text-sm font-medium text-industrial-light">{step}</p>
                   </div>
@@ -154,7 +154,7 @@ export function AboutContent() {
       <section className="section-padding bg-industrial-slate/30">
         <div className="mx-auto max-w-7xl">
           <SectionHeader label={d.missionLabel} title={d.missionTitle} centered />
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
+          <div className="mt-12 grid-desktop-3 gap-8">
             {d.mission.map((item, i) => (
               <FadeIn key={item.t} delay={i * 0.1}>
                 <div className="glass-card p-8 text-center">

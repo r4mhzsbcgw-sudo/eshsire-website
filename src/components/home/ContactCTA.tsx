@@ -16,9 +16,9 @@ export function ContactCTA() {
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(245,158,11,0.12)_0%,_transparent_60%)]" />
       <div className="relative mx-auto max-w-4xl px-6 text-center md:px-12">
         <FadeIn>
-          <h2 className="text-3xl font-bold tracking-tight md:text-5xl">{c.title}</h2>
+          <h2 className="text-5xl font-bold tracking-tight">{c.title}</h2>
           <p className="mx-auto mt-4 max-w-xl text-industrial-light">{c.description}</p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+          <div className="mt-10 flex flex-row items-center justify-center gap-4">
             <Button href={getWhatsAppUrl(locale)} variant="whatsapp" external>
               {dict.common.whatsapp}
             </Button>

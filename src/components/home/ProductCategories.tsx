@@ -37,7 +37,7 @@ export function ProductCategories() {
     <section className="section-padding bg-industrial-slate/30">
       <div className="mx-auto max-w-7xl">
         <SectionHeader label={p.label} title={p.title} description={p.description} centered />
-        <div className="mt-16 grid gap-8 md:grid-cols-3">
+        <div className="mt-16 grid-desktop-3">
           {categories.map((cat, i) => (
             <FadeIn key={cat.title} delay={i * 0.1}>
               <Link href={localizedPath(locale, cat.href)} className="group block glass-card-hover overflow-hidden">
@@ -47,8 +47,8 @@ export function ProductCategories() {
                     alt={cat.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                    quality={85}
+                    sizes="(max-width: 1280px) 33vw, 400px"
+                    quality={92}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-industrial-dark via-transparent to-transparent" />
                 </div>

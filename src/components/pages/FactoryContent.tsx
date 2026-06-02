@@ -17,7 +17,7 @@ export function FactoryContent() {
       <PageHero title={dict.meta.pages.factory} subtitle={d.heroSubtitle} image="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2400&auto=format&fit=crop" />
       <section className="section-padding">
         <div className="mx-auto max-w-7xl">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid grid-cols-4 gap-6">
             {d.stats.map((s, i) => (
               <FadeIn key={s.label} delay={i * 0.1}>
                 <div className="glass-card p-8 text-center">

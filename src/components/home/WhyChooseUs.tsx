@@ -21,7 +21,7 @@ export function WhyChooseUs() {
     <section className="section-padding bg-gradient-to-b from-industrial-slate/50 to-industrial-dark">
       <div className="mx-auto max-w-7xl">
         <SectionHeader label={w.label} title={w.title} centered />
-        <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-16 grid-desktop-3 gap-6">
           {w.items.map((f, i) => (
             <FadeIn key={f.title} delay={i * 0.08}>
               <div className="glass-card-hover group p-8">

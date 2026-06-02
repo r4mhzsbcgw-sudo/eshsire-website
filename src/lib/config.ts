@@ -1,6 +1,5 @@
 import type { Locale } from "@/i18n/locales";
-import { en } from "@/i18n/dictionaries/en";
-import { zh } from "@/i18n/dictionaries/zh";
+import { getDictionarySync } from "@/i18n/get-dictionary";
 
 export const siteConfig = {
   name: "Eshsire Group",
@@ -12,8 +11,8 @@ export const siteConfig = {
   address: {
     en: "Room 212, Building 1, No.20 Tianyuan Road, Panggezhuang Town, Daxing District, Beijing, China",
     zh: "中国北京市大兴区庞各庄镇天源路20号院1号楼212室",
-  },
-  url: "https://www.eshsiregroup.com",
+  } satisfies Partial<Record<Locale, string>>,
+  url: "https://www.eshsire.com",
 } as const;
 
 export const navHrefs = [
@@ -27,11 +26,14 @@ export const navHrefs = [
 ];
 
 export function getWhatsAppUrl(locale: Locale, message?: string) {
-  const dict = locale === "zh" ? zh : en;
+  const dict = getDictionarySync(locale);
   const text = encodeURIComponent(message ?? dict.whatsapp.defaultMessage);
   return `https://wa.me/${siteConfig.whatsapp}?text=${text}`;
 }
 
 export function getAddress(locale: Locale) {
-  return siteConfig.address[locale];
+  return (
+    siteConfig.address[locale as keyof typeof siteConfig.address] ??
+    siteConfig.address.en
+  );
 }

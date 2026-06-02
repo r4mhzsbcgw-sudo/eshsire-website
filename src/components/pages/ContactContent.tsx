@@ -16,7 +16,7 @@ export function ContactContent() {
     <>
       <PageHero title={dict.meta.pages.contact} subtitle={d.heroSubtitle} image="https://images.unsplash.com/photo-1423666639041-f56000c27a93?q=80&w=2400&auto=format&fit=crop" />
       <section className="section-padding">
-        <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2">
+        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-16">
           <FadeIn>
             <p className="section-label">{d.getInTouch}</p>
             <h2 className="section-heading">{d.sendInquiry}</h2>

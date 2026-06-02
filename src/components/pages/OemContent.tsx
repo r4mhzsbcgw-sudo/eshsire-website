@@ -18,7 +18,7 @@ export function OemContent() {
       <section className="section-padding">
         <div className="mx-auto max-w-7xl">
           <SectionHeader label={d.servicesLabel} title={d.servicesTitle} centered />
-          <div className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-16 grid-desktop-3 gap-6">
             {d.services.map((s, i) => (
               <FadeIn key={s.title} delay={i * 0.08}>
                 <div className="glass-card-hover h-full p-8">

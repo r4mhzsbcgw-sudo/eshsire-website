@@ -74,6 +74,14 @@ const spcRemote = {
     "https://images.unsplash.com/photo-1600047509807-ba8f99d2cd7a?q=80&w=1200&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1600210492490-0941a2f05356?q=80&w=1200&auto=format&fit=crop",
   ],
+  applications: [
+    "https://images.unsplash.com/photo-1566073771259-6a8506099945?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?q=80&w=800&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=800&auto=format&fit=crop",
+  ],
 };
 
 // ——— Wall Panels ———
@@ -195,6 +203,19 @@ export const spcFlooringImages = {
     return USE_LOCAL_IMAGES
       ? galleryLocal("products/spc/gallery", 8)
       : spcRemote.gallery;
+  },
+  get applications() {
+    if (USE_LOCAL_IMAGES) {
+      return [
+        localPath("blog", "7-mistakes", "05.jpg"),
+        localPath("blog", "7-mistakes", "03.jpg"),
+        localPath("blog", "7-mistakes", "01.jpg"),
+        localPath("blog", "7-mistakes", "02.jpg"),
+        localPath("blog", "7-mistakes", "06.jpg"),
+        localPath("blog", "7-mistakes", "04.jpg"),
+      ];
+    }
+    return spcRemote.applications;
   },
 };
 

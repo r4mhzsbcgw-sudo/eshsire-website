@@ -377,6 +377,7 @@ export const zh: Dictionary = {
   blog: {
     label: "博客",
     listSubtitle: "面向从中国采购 SPC 地板与墙板的经销商实用指南。",
+    readTimeUnit: "分钟阅读",
     ctaTitle: "联系 ESHSIRE 获取样品与报价",
     ctaDesc: "网站：eshsire.com · WhatsApp：+86 15313057097 · 邮箱：jason@eshsiregroup.com",
   },

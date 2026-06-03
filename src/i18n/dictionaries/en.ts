@@ -444,6 +444,7 @@ export const en = {
   blog: {
     label: "Blog",
     listSubtitle: "Expert guides for flooring distributors sourcing SPC and wall panels from China.",
+    readTimeUnit: "min read",
     ctaTitle: "Contact ESHSIRE for Samples & Quotation",
     ctaDesc: "Website: eshsire.com · WhatsApp: +86 15313057097 · Email: jason@eshsiregroup.com",
   },

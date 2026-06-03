@@ -51,7 +51,7 @@ export function BlogPostContent({ post }: { post: BlogPost }) {
           <p className="section-label">{dict.blog.label}</p>
           <h1 className="mt-3 text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">{post.title}</h1>
           <p className="mt-4 text-sm text-industrial-mist">
-            {post.date} · {post.readMinutes} min read
+            {post.date} · {post.readMinutes} {dict.blog.readTimeUnit}
           </p>
         </FadeIn>
 

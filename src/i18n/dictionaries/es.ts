@@ -274,6 +274,14 @@ export const es: Dictionary = {
     copyright: "Todos los derechos reservados.",
     seoLine: "Fabricante SPC | OEM paneles murales | Exportación China",
   },
+  blog: {
+    ...en.blog,
+    label: "Blog",
+    listSubtitle: "Guías prácticas para distribuidores que importan suelos SPC y paneles desde China.",
+    readTimeUnit: "min de lectura",
+    ctaTitle: "Contacte a ESHSIRE para muestras y cotización",
+    ctaDesc: "Web: eshsire.com · WhatsApp: +86 15313057097 · Email: jason@eshsiregroup.com",
+  },
   productList: [
     "Suelos SPC",
     "Paneles murales SPC",

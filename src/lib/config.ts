@@ -13,6 +13,7 @@ export const siteConfig = {
     zh: "中国北京市大兴区庞各庄镇天源路20号院1号楼212室",
   } satisfies Partial<Record<Locale, string>>,
   url: "https://www.eshsire.com",
+  gaId: "G-4QKRM3S57M",
 } as const;
 
 export const navHrefs = [

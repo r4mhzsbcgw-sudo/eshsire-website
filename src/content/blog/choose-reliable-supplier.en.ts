@@ -1,17 +1,17 @@
 import type { BlogPost } from "./types";
 
-const img = (n: number, alt: string) =>
+const img = (n: number) =>
   `/images/blog/choose-supplier/${String(n).padStart(2, "0")}.jpg` as const;
 
-export const chooseReliableSupplierPost: BlogPost = {
+export const chooseReliableSupplierPostEn: BlogPost = {
   slug: "choose-reliable-spc-flooring-supplier-china-2026",
   title: "How to Choose a Reliable SPC Flooring Supplier in China in 2026",
   description:
     "Learn how to identify a reliable SPC flooring supplier in China. Verify factory capability, quality consistency, delivery reliability, and export experience before you order.",
   date: "2026-05-22",
   readMinutes: 8,
-  heroImage: img(1, "SPC flooring production line"),
-  ogImage: img(1, "SPC flooring production line"),
+  heroImage: img(1),
+  ogImage: img(1),
   blocks: [
     {
       type: "p",
@@ -31,15 +31,15 @@ export const chooseReliableSupplierPost: BlogPost = {
       type: "p",
       text: "Many companies present themselves as factories but are actually trading companies. Before placing an order, ask for factory videos, production line videos, warehouse photos, container loading records, and daily production updates. A genuine supplier should be able to provide visual proof of ongoing production.",
     },
-    { type: "img", src: img(1, "SPC flooring production line at Eshsire factory"), alt: "SPC flooring production line" },
-    { type: "img", src: img(2, "Quality inspection on SPC flooring"), alt: "SPC flooring quality inspection" },
-    { type: "img", src: img(3, "SPC flooring warehouse storage"), alt: "SPC flooring warehouse" },
+    { type: "img", src: img(1), alt: "SPC flooring production line at Eshsire factory" },
+    { type: "img", src: img(2), alt: "Quality inspection on SPC flooring" },
+    { type: "img", src: img(3), alt: "SPC flooring warehouse storage" },
     { type: "h2", text: "2. Check Product Quality Consistency" },
     {
       type: "p",
       text: "Quality consistency is more important than simply obtaining the lowest price. Request samples and inspect click-lock system performance, wear layer thickness, surface finish, color consistency, and packaging quality. Reliable suppliers maintain strict quality control throughout production.",
     },
-    { type: "img", src: img(6, "SPC flooring laboratory quality tests"), alt: "SPC flooring quality testing" },
+    { type: "img", src: img(6), alt: "SPC flooring laboratory quality tests" },
     { type: "h2", text: "3. Evaluate Delivery Reliability" },
     {
       type: "p",
@@ -60,9 +60,9 @@ export const chooseReliableSupplierPost: BlogPost = {
       type: "p",
       text: "Export experience matters. Suppliers serving international markets understand container loading optimization, export documentation, product certifications, and international quality standards. This reduces the likelihood of customs or shipping issues.",
     },
-    { type: "img", src: img(4, "SPC flooring container loading"), alt: "Container loading SPC flooring" },
-    { type: "img", src: img(5, "Export pallet loading with air bags"), alt: "Professional export container loading" },
-    { type: "img", src: img(7, "SPC flooring export packaging"), alt: "SPC flooring export packaging" },
+    { type: "img", src: img(4), alt: "SPC flooring container loading" },
+    { type: "img", src: img(5), alt: "Export pallet loading with air bags" },
+    { type: "img", src: img(7), alt: "SPC flooring export packaging" },
     { type: "h2", text: "Why More Importers Choose ESHSIRE" },
     {
       type: "p",

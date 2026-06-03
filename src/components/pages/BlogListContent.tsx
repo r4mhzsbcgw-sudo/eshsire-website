@@ -6,11 +6,13 @@ import { FadeIn } from "@/components/motion/FadeIn";
 import { PageHero } from "@/components/ui/PageHero";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
-import { blogPosts } from "@/content/blog";
+import { getBlogPosts } from "@/content/blog";
 import { homeImages } from "@/lib/images";
 
 export function BlogListContent() {
   const { locale, dict } = useLocale();
+
+  const posts = getBlogPosts(locale);
 
   return (
     <>
@@ -21,7 +23,7 @@ export function BlogListContent() {
       />
       <section className="section-padding">
         <div className="mx-auto grid max-w-7xl gap-8 md:grid-cols-2">
-          {blogPosts.map((post, i) => (
+          {posts.map((post, i) => (
             <FadeIn key={post.slug} delay={i * 0.08}>
               <Link href={localizedPath(locale, `/blog/${post.slug}`)} className="group block overflow-hidden rounded-xl border border-white/10 bg-white/5">
                 <div className="relative aspect-[16/10]">

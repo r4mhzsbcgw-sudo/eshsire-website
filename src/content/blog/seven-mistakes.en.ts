@@ -3,7 +3,7 @@ import type { BlogPost } from "./types";
 const img = (n: number) =>
   `/images/blog/7-mistakes/${String(n).padStart(2, "0")}.jpg` as const;
 
-export const sevenMistakesPost: BlogPost = {
+export const sevenMistakesPostEn: BlogPost = {
   slug: "7-mistakes-importing-spc-flooring-from-china",
   title: "7 Mistakes Flooring Distributors Make When Importing SPC Flooring From China",
   description:

@@ -16,6 +16,7 @@ import { spcFlooringImages } from "@/lib/images";
 export function SpcFlooringContent() {
   const { locale, dict } = useLocale();
   const d = dict.spcFlooring;
+  const applicationImages = spcFlooringImages.applications;
 
   const galleryItems = spcFlooringImages.gallery.map((src, i) => ({
     src,
@@ -64,13 +65,27 @@ export function SpcFlooringContent() {
       <section className="section-padding bg-industrial-slate/30">
         <div className="mx-auto max-w-7xl">
           <SectionHeader label={d.applicationsLabel} title={d.applicationsTitle} centered />
-          <ul className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {d.applications.map((a) => (
-              <li key={a} className="glass-card px-6 py-3 text-sm font-semibold uppercase tracking-wider">
-                {a}
-              </li>
+          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {d.applications.map((title, i) => (
+              <FadeIn key={title} delay={i * 0.08}>
+                <div className="group glass-card-hover overflow-hidden">
+                  <div className="relative aspect-[4/3]">
+                    <Image
+                      src={applicationImages[i] ?? applicationImages[0]}
+                      alt={title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, 400px"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-industrial-dark via-industrial-dark/40 to-transparent" />
+                    <h3 className="absolute inset-x-0 bottom-0 p-4 text-sm font-bold uppercase tracking-wider text-white">
+                      {title}
+                    </h3>
+                  </div>
+                </div>
+              </FadeIn>
             ))}
-          </ul>
+          </div>
         </div>
       </section>
       <RelatedLinks excludePath="/spc-flooring" />

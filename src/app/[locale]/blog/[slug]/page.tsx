@@ -20,7 +20,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = params;
   if (!isLocale(locale)) return {};
-  const post = getBlogPost(slug);
+  const post = getBlogPost(slug, locale as Locale);
   if (!post) return {};
   return buildPageMetadata({
     locale,
@@ -38,10 +38,9 @@ export default async function BlogPostPage({
 }) {
   const { locale: localeParam, slug } = params;
   if (!isLocale(localeParam)) notFound();
-  const post = getBlogPost(slug);
-  if (!post) notFound();
-
   const locale = localeParam as Locale;
+  const post = getBlogPost(slug, locale);
+  if (!post) notFound();
   await getDictionary(locale);
 
   return (

@@ -1,4 +1,5 @@
 import type { Locale } from "@/i18n/locales";
+import { getAllBlogSlugs as getBlogSlugs } from "./slugs";
 import { chooseReliableSupplierPostEn } from "./choose-reliable-supplier.en";
 import { chooseReliableSupplierPostZh } from "./choose-reliable-supplier.zh";
 import { chooseReliableSupplierPostEs } from "./choose-reliable-supplier.es";
@@ -25,8 +26,10 @@ export function getBlogPost(slug: string, locale: Locale): BlogPost | undefined 
 }
 
 export function getAllBlogSlugs(): string[] {
-  return blogPostsByLocale.en.map((p) => p.slug);
+  return getBlogSlugs();
 }
+
+export { blogSlugs } from "./slugs";
 
 /** @deprecated Use getBlogPosts(locale) */
 export const blogPosts = blogPostsByLocale.en;

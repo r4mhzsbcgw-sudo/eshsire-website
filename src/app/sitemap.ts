@@ -1,6 +1,6 @@
 import type { MetadataRoute } from "next";
+import { blogSlugs } from "@/content/blog/slugs";
 import { indexableLocales } from "@/i18n/locales";
-import { getAllBlogSlugs } from "@/content/blog";
 import { SITE_URL } from "@/lib/site-url";
 
 export const dynamic = "force-static";
@@ -20,7 +20,7 @@ const routes = [
   "/blog",
 ] as const;
 
-const blogSlugs = getAllBlogSlugs();
+const blogSlugsList = [...blogSlugs];
 const LAST_MODIFIED = new Date("2026-05-22");
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -35,7 +35,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: route === "" ? 1 : route === "/blog" ? 0.7 : 0.8,
       });
     }
-    for (const slug of blogSlugs) {
+    for (const slug of blogSlugsList) {
       entries.push({
         url: `${SITE_URL}/${locale}/blog/${slug}`,
         lastModified: LAST_MODIFIED,

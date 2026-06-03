@@ -26,7 +26,7 @@ const BLOG_SLUGS = [
   "choose-reliable-spc-flooring-supplier-china-2026",
   "7-mistakes-importing-spc-flooring-from-china",
 ];
-const LAST_MOD = "2026-06-03";
+const LAST_MOD = new Date().toISOString();
 
 function escapeXml(value) {
   return value

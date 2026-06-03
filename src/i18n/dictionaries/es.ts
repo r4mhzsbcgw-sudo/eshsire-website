@@ -10,6 +10,7 @@ export const es: Dictionary = {
     siteDescription:
       "Eshsire Group — 30 años de fabricación OEM de suelos SPC y paneles murales en Pekín, China. Impermeable, resistente al fuego. Exportación a más de 30 países.",
     pages: {
+      ...en.meta.pages,
       home: "Inicio",
       spcFlooring: "Suelos SPC",
       wallPanels: "Paneles Murales",
@@ -17,30 +18,67 @@ export const es: Dictionary = {
       oemService: "Servicio OEM",
       about: "Nosotros",
       contact: "Contacto",
+      accessories: "Accesorios",
+      faq: "FAQ",
+      certifications: "Certificaciones",
+    },
+    seoTitles: {
+      ...en.meta.seoTitles,
+      spcFlooring: "Fabricante de Suelos SPC en China | OEM Mayorista | Eshsire Group",
+      wallPanels: "Proveedor de Paneles SPC China | Mármol UV | Eshsire Group",
+      factory: "Fábrica SPC Pekín 6000㎡ | Producción y QC | Eshsire Group",
+      oemService: "OEM ODM Suelos SPC | Embalaje Personalizado | Eshsire Group",
+      about: "Sobre Eshsire Group | 30 Años Fabricante SPC en China",
+      contact: "Contacto Eshsire Group | Catálogo y Cotización SPC | WhatsApp",
+      accessories: "Accesorios SPC | Zócalos y Perfiles | Eshsire Group",
+      faq: "FAQ Suelos SPC | OEM MOQ y Exportación | Eshsire Group",
+      certifications: "Certificaciones ISO CE SGS | Eshsire Group",
+    },
+    headings: {
+      ...en.meta.headings,
+      spcFlooring: "Suelos SPC Comerciales — OEM Mayorista desde China",
+      wallPanels: "Paneles Murales SPC y Decorativos para Proyectos Globales",
+      factory: "Nuestra Planta de Fabricación SPC",
+      oemService: "Servicios de Fabricación OEM y ODM",
+      about: "Sobre Eshsire Group",
+      contact: "Contáctenos para Catálogo y Cotización",
+      accessories: "Accesorios para Suelos SPC y Paneles",
+      faq: "Preguntas Frecuentes",
+      certifications: "Certificaciones y Cumplimiento",
     },
     pageDesc: {
+      ...en.meta.pageDesc,
       spcFlooring:
-        "Suelos SPC impermeables de grado comercial OEM de Eshsire Group. Click-lock, resistente al fuego, exportación mundial.",
+        "Suelos SPC impermeables mayoristas desde fábrica en Pekín. Click-lock, certificado CE, OEM bajo MOQ. Solicite catálogo por WhatsApp — respuesta en 24h.",
       wallPanels:
-        "Paneles murales SPC, mármol UV y materiales decorativos interiores de Eshsire Group China.",
+        "Paneles murales SPC, mármol UV y materiales decorativos de China. Precio directo de fábrica para distribuidores mundiales.",
       factory:
-        "Fábrica de suelos SPC de 6000㎡ en Pekín. Líneas de producción, QC, almacén y experiencia en carga de contenedores.",
+        "Visite nuestra fábrica SPC de 6000㎡ en Pekín: líneas de producción, QC, almacén y carga de contenedores. Socio exportador de confianza.",
       oemService:
-        "Fabricación OEM y ODM de suelos SPC y paneles murales. Embalaje personalizado, marca y etiqueta privada.",
+        "OEM/ODM personalizado de suelos SPC con marca privada, diseño de embalaje y branding. MOQ bajo para distribuidores globales.",
       about:
-        "Sobre Eshsire Group — 30 años fabricando suelos SPC y materiales decorativos interiores en Pekín.",
+        "Eshsire Group — 30 años fabricando suelos SPC y materiales decorativos en Pekín, China. Exportación a más de 30 países.",
       contact:
-        "Contacte a Eshsire Group para catálogo y cotización de suelos SPC. Jason — WhatsApp +86 15313057097.",
+        "Contacte a Jason para catálogo, muestras y cotización OEM de suelos SPC. WhatsApp +86 15313057097 — respuesta en 24 horas.",
+      accessories:
+        "Zócalos, perfiles de transición, base y accesorios de instalación para proyectos SPC. Colores OEM disponibles.",
+      faq:
+        "Respuestas sobre MOQ OEM, plazos, envío, certificaciones y muestras de suelos SPC desde China.",
+      certifications:
+        "Suelos SPC Eshsire cumplen ISO, CE, SGS y estándares internacionales para exportación global.",
     },
   },
   nav: {
     home: "Inicio",
     spcFlooring: "Suelos SPC",
     wallPanels: "Paneles",
+    accessories: "Accesorios",
     factory: "Fábrica",
     oemService: "OEM",
     about: "Nosotros",
     contact: "Contacto",
+    faq: "FAQ",
+    certifications: "Certificaciones",
     getCatalog: "Catálogo",
     menu: "Menú",
   },

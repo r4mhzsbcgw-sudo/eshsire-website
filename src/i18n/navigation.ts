@@ -5,10 +5,13 @@ export const routePaths = [
   "/",
   "/spc-flooring",
   "/wall-panels",
+  "/accessories",
   "/factory",
   "/oem-service",
   "/about",
   "/contact",
+  "/faq",
+  "/certifications",
 ] as const;
 
 export type RoutePath = (typeof routePaths)[number];

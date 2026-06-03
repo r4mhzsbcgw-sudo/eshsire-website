@@ -7,6 +7,8 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { useLocale } from "@/context/LocaleContext";
+import { factoryPageImages } from "@/lib/images";
+import { RelatedLinks } from "@/components/ui/RelatedLinks";
 
 export function FactoryContent() {
   const { dict } = useLocale();
@@ -14,10 +16,10 @@ export function FactoryContent() {
 
   return (
     <>
-      <PageHero title={dict.meta.pages.factory} subtitle={d.heroSubtitle} image="https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2400&auto=format&fit=crop" />
+      <PageHero title={dict.meta.headings.factory} subtitle={d.heroSubtitle} image={factoryPageImages.hero} />
       <section className="section-padding">
         <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-4 gap-6">
+          <div className="grid-desktop-4 gap-6">
             {d.stats.map((s, i) => (
               <FadeIn key={s.label} delay={i * 0.1}>
                 <div className="glass-card p-8 text-center">
@@ -34,6 +36,7 @@ export function FactoryContent() {
       </section>
       <FactoryStrength />
       <FactoryVideo />
+      <RelatedLinks excludePath="/factory" />
       <ContactCTA />
     </>
   );

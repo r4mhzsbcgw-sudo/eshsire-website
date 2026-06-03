@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/Button";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
+import { oemImages } from "@/lib/images";
+import { RelatedLinks } from "@/components/ui/RelatedLinks";
 
 export function OemContent() {
   const { locale, dict } = useLocale();
@@ -14,7 +16,7 @@ export function OemContent() {
 
   return (
     <>
-      <PageHero title={dict.meta.pages.oemService} subtitle={d.heroSubtitle} image="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2400&auto=format&fit=crop" />
+      <PageHero title={dict.meta.headings.oemService} subtitle={d.heroSubtitle} image={oemImages.hero} />
       <section className="section-padding">
         <div className="mx-auto max-w-7xl">
           <SectionHeader label={d.servicesLabel} title={d.servicesTitle} centered />
@@ -48,6 +50,7 @@ export function OemContent() {
           </div>
         </div>
       </section>
+      <RelatedLinks excludePath="/oem-service" />
       <ContactCTA />
     </>
   );

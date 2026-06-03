@@ -5,6 +5,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { CompanyIntroSection } from "@/components/CompanyIntroSection";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { useLocale } from "@/context/LocaleContext";
 import { aboutImages } from "@/lib/images";
 
@@ -86,7 +87,7 @@ export function AboutContent() {
 
   return (
     <>
-      <PageHero title={dict.meta.pages.about} subtitle={d.heroSubtitle} image={aboutImages.hero} />
+      <PageHero title={dict.meta.headings.about} subtitle={d.heroSubtitle} image={aboutImages.hero} />
 
       <CompanyIntroSection showViewMore={false} />
 
@@ -167,6 +168,7 @@ export function AboutContent() {
         </div>
       </section>
       <ContactCTA />
+      <RelatedLinks excludePath="/about" />
     </>
   );
 }

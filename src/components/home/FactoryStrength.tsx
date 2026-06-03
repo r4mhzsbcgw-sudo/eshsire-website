@@ -1,18 +1,20 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { ClickableImageCard, ImageLightbox } from "@/components/ui/ImageLightbox";
 import { useLocale } from "@/context/LocaleContext";
+import { localizedPath } from "@/i18n/navigation";
 import { homeImages } from "@/lib/images";
 
 /** Cards that open full-size preview on click */
 const PREVIEWABLE_INDICES = new Set([1, 4]);
 
 export function FactoryStrength() {
-  const { dict } = useLocale();
+  const { locale, dict } = useLocale();
   const f = dict.home.factory;
   const images = homeImages.factoryStrength;
   const [preview, setPreview] = useState<{ src: string; alt: string } | null>(null);
@@ -21,6 +23,14 @@ export function FactoryStrength() {
     <section className="section-padding bg-industrial-dark">
       <div className="mx-auto max-w-7xl">
         <SectionHeader label={f.label} title={f.title} description={f.description} centered />
+        <div className="mt-6 text-center">
+          <Link
+            href={localizedPath(locale, "/factory")}
+            className="text-sm font-semibold text-accent hover:underline"
+          >
+            {dict.related.factory} →
+          </Link>
+        </div>
         <div className="mt-16 grid-desktop-3 gap-4">
           {f.items.map((title, i) => (
             <FadeIn key={title} delay={i * 0.08}>

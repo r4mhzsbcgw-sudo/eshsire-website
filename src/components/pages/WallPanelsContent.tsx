@@ -7,6 +7,7 @@ import { ImageGallery } from "@/components/ui/ImageGallery";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Button } from "@/components/ui/Button";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
 import { wallPanelImages } from "@/lib/images";
@@ -22,7 +23,7 @@ export function WallPanelsContent() {
 
   return (
     <>
-      <PageHero title={dict.meta.pages.wallPanels} subtitle={d.heroSubtitle} image={wallPanelImages.hero} />
+      <PageHero title={dict.meta.headings.wallPanels} subtitle={d.heroSubtitle} image={wallPanelImages.hero} />
       <section className="section-padding">
         <div className="mx-auto max-w-7xl">
           <SectionHeader label={d.label} title={d.title} description={d.description} centered />
@@ -64,6 +65,7 @@ export function WallPanelsContent() {
         expandHint={dict.gallery.expandHint}
       />
 
+      <RelatedLinks excludePath="/wall-panels" />
       <ContactCTA />
     </>
   );

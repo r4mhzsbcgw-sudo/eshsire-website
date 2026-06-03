@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FactoryContent } from "@/components/pages/FactoryContent";
+import { CertificationsContent } from "@/components/pages/CertificationsContent";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { isLocale } from "@/i18n/locales";
 import { buildPageMetadata } from "@/lib/seo";
@@ -14,12 +14,12 @@ export async function generateMetadata({
   const dict = await getDictionary(locale);
   return buildPageMetadata({
     locale,
-    path: "/factory",
-    title: dict.meta.seoTitles.factory,
-    description: dict.meta.pageDesc.factory,
+    path: "/certifications",
+    title: dict.meta.seoTitles.certifications,
+    description: dict.meta.pageDesc.certifications,
   });
 }
 
-export default function FactoryPage() {
-  return <FactoryContent />;
+export default function CertificationsPage() {
+  return <CertificationsContent />;
 }

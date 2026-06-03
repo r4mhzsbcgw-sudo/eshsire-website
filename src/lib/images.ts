@@ -111,20 +111,23 @@ function pickHome<K extends HomeStringKey>(key: K): string {
   return USE_LOCAL_IMAGES ? homeLocal[key] : homeRemote[key];
 }
 
-/** Homepage hero carousel — files in public/images/home/carousel/ */
+/** Homepage hero carousel — prefer WebP; JPG fallback for older browsers via picture in Hero */
 export const homeCarouselSlides = [
   {
-    src: "/images/home/carousel/slide-01.png",
+    src: "/images/home/carousel/slide-01.webp",
+    fallback: "/images/home/hero-banner.jpg",
     altEn: "Eshsire factory and 20 years manufacturing strength",
     altZh: "壹曙科技工厂与 20 年制造实力",
   },
   {
-    src: "/images/home/carousel/slide-02.png",
+    src: "/images/home/carousel/slide-02.webp",
+    fallback: "/images/home/spc-flooring.jpg",
     altEn: "20+ years in building and decor manufacturing",
     altZh: "20+ 年建筑与装饰材料制造经验",
   },
   {
-    src: "/images/home/carousel/slide-03.png",
+    src: "/images/home/carousel/slide-03.webp",
+    fallback: "/images/home/factory/02-quality.jpg",
     altEn: "Certifications including ISO, CE and SGS",
     altZh: "ISO、CE、SGS 等资质认证",
   },
@@ -183,7 +186,7 @@ export const aboutImages = {
 
 export const spcFlooringImages = {
   get hero() {
-    return USE_LOCAL_IMAGES ? localPath("products", "spc", "hero.jpg") : spcRemote.hero;
+    return USE_LOCAL_IMAGES ? localPath("products", "spc", "featured.jpg") : spcRemote.hero;
   },
   get featured() {
     return USE_LOCAL_IMAGES ? localPath("products", "spc", "featured.jpg") : spcRemote.featured;
@@ -192,6 +195,38 @@ export const spcFlooringImages = {
     return USE_LOCAL_IMAGES
       ? galleryLocal("products/spc/gallery", 8)
       : spcRemote.gallery;
+  },
+};
+
+export const factoryPageImages = {
+  get hero() {
+    return USE_LOCAL_IMAGES
+      ? localPath("home", "factory", "01-production.jpg")
+      : "https://images.unsplash.com/photo-1581092160562-40aa08e78837?q=80&w=2400&auto=format&fit=crop";
+  },
+};
+
+export const oemImages = {
+  get hero() {
+    return USE_LOCAL_IMAGES
+      ? localPath("home", "factory", "05-oem.jpg")
+      : "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=2400&auto=format&fit=crop";
+  },
+};
+
+export const contactImages = {
+  get hero() {
+    return USE_LOCAL_IMAGES
+      ? localPath("home", "spc-flooring.jpg")
+      : "https://images.unsplash.com/photo-1423666639041-f56000c27a93?q=80&w=2400&auto=format&fit=crop";
+  },
+};
+
+export const accessoriesImages = {
+  get hero() {
+    return USE_LOCAL_IMAGES
+      ? localPath("home", "accessories.jpg")
+      : homeRemote.accessories;
   },
 };
 

@@ -7,6 +7,7 @@ import { ImageGallery } from "@/components/ui/ImageGallery";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Button } from "@/components/ui/Button";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
 import { spcFlooringImages } from "@/lib/images";
@@ -22,9 +23,9 @@ export function SpcFlooringContent() {
 
   return (
     <>
-      <PageHero title={dict.meta.pages.spcFlooring} subtitle={d.heroSubtitle} image={spcFlooringImages.hero} />
+      <PageHero title={dict.meta.headings.spcFlooring} subtitle={d.heroSubtitle} image={spcFlooringImages.hero} />
       <section className="section-padding">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 items-center gap-16">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <FadeIn>
             <SectionHeader label={d.productLabel} title={d.productTitle} description={d.productDesc} />
             <ul className="mt-8 grid grid-cols-2 gap-3">
@@ -59,15 +60,16 @@ export function SpcFlooringContent() {
       <section className="section-padding bg-industrial-slate/30">
         <div className="mx-auto max-w-7xl">
           <SectionHeader label={d.applicationsLabel} title={d.applicationsTitle} centered />
-          <div className="mt-12 flex flex-wrap justify-center gap-4">
+          <ul className="mt-12 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {d.applications.map((a) => (
-              <span key={a} className="glass-card px-6 py-3 text-sm font-semibold uppercase tracking-wider">
+              <li key={a} className="glass-card px-6 py-3 text-sm font-semibold uppercase tracking-wider">
                 {a}
-              </span>
+              </li>
             ))}
-          </div>
+          </ul>
         </div>
       </section>
+      <RelatedLinks excludePath="/spc-flooring" />
       <ContactCTA />
     </>
   );

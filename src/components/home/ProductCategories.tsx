@@ -28,7 +28,7 @@ export function ProductCategories() {
     {
       title: p.accessories.title,
       desc: p.accessories.desc,
-      href: "/contact",
+      href: "/accessories",
       image: homeImages.accessories,
     },
   ];

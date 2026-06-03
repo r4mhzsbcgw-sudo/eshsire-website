@@ -4,15 +4,16 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { JsonLd } from "@/components/JsonLd";
+import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/StructuredData";
 import { LocaleProvider } from "@/context/LocaleContext";
 import { getDictionary } from "@/i18n/get-dictionary";
 import {
   cjkLocales,
   htmlLangMap,
+  isIndexableLocale,
   isLocale,
   isRtlLocale,
   locales,
-  ogLocaleMap,
   type Locale,
 } from "@/i18n/locales";
 import { siteConfig } from "@/lib/config";
@@ -25,6 +26,7 @@ export async function generateMetadata({
   const { locale: localeParam } = params;
   if (!isLocale(localeParam)) return {};
   const dict = await getDictionary(localeParam);
+  const indexable = isIndexableLocale(localeParam);
 
   return {
     metadataBase: new URL(siteConfig.url),
@@ -33,22 +35,9 @@ export async function generateMetadata({
       template: "%s | " + siteConfig.name,
     },
     description: dict.meta.siteDescription,
-    openGraph: {
-      type: "website",
-      locale: ogLocaleMap[localeParam],
-      url: siteConfig.url,
-      siteName: siteConfig.name,
-      title: dict.meta.siteTitle,
-      description: dict.meta.siteDescription,
-    },
-    robots: { index: true, follow: true },
-    alternates: {
-      canonical: siteConfig.url + "/" + localeParam,
-      languages: Object.fromEntries([
-        ...locales.map((loc) => [loc, siteConfig.url + "/" + loc]),
-        ["x-default", siteConfig.url + "/en"],
-      ]),
-    },
+    robots: indexable
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
   };
 }
 
@@ -80,6 +69,8 @@ export default async function LocaleLayout({
       className={fontClass + (rtl ? " text-right" : "")}
     >
       <JsonLd locale={locale} />
+      <BreadcrumbJsonLd locale={locale} />
+      <FaqJsonLd locale={locale} />
       <LocaleProvider locale={locale} dict={dict}>
         <Header />
         <main>{children}</main>

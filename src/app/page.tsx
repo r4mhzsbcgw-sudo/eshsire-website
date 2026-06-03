@@ -5,8 +5,10 @@ import { siteConfig } from "@/lib/config";
 
 export const metadata: Metadata = {
   title: `${siteConfig.name} | Language`,
-  description: "Choose English, 中文 or Español — Eshsire Group B2B website.",
+  description: "Choose your language — Eshsire Group B2B SPC flooring & wall panel manufacturer.",
+  robots: { index: false, follow: true },
   alternates: {
+    canonical: `${siteConfig.url}/en`,
     languages: Object.fromEntries(
       locales.map((loc) => [loc, `${siteConfig.url}/${loc}`])
     ),

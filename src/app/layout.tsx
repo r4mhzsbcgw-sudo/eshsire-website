@@ -1,5 +1,7 @@
 import { Inter, Noto_Sans_SC } from "next/font/google";
 import type { Viewport } from "next";
+import { headers } from "next/headers";
+import { htmlLangMap, isLocale } from "@/i18n/locales";
 import "./globals.css";
 
 const inter = Inter({
@@ -15,9 +17,8 @@ const notoSansSC = Noto_Sans_SC({
   display: "swap",
 });
 
-/** Render desktop layout on phones (scaled to fit); matches PC site structure */
 export const viewport: Viewport = {
-  width: 1280,
+  width: "device-width",
   initialScale: 1,
   maximumScale: 5,
   userScalable: true,
@@ -26,8 +27,11 @@ export const viewport: Viewport = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const localeHeader = headers().get("x-locale") ?? "en";
+  const lang = isLocale(localeHeader) ? htmlLangMap[localeHeader] : "en";
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={lang} suppressHydrationWarning>
       <body className={`${inter.variable} ${notoSansSC.variable} font-sans`}>
         {children}
       </body>

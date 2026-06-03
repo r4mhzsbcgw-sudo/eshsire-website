@@ -19,6 +19,7 @@ export const navHrefs = [
   { href: "/" as const, key: "home" as const },
   { href: "/spc-flooring" as const, key: "spcFlooring" as const },
   { href: "/wall-panels" as const, key: "wallPanels" as const },
+  { href: "/accessories" as const, key: "accessories" as const },
   { href: "/factory" as const, key: "factory" as const },
   { href: "/oem-service" as const, key: "oemService" as const },
   { href: "/about" as const, key: "about" as const },

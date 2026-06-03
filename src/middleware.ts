@@ -1,5 +1,23 @@
 import { NextRequest, NextResponse } from "next/server";
-import { detectLocaleFromAcceptLanguage, isLocale, locales } from "@/i18n/locales";
+import {
+  detectLocaleFromAcceptLanguage,
+  isLocale,
+  locales,
+  type Locale,
+} from "@/i18n/locales";
+
+function localeFromPathname(pathname: string): Locale | null {
+  const segment = pathname.split("/")[1];
+  return segment && isLocale(segment) ? segment : null;
+}
+
+function withSeoHeaders(request: NextRequest, response: NextResponse) {
+  const { pathname } = request.nextUrl;
+  const locale = localeFromPathname(pathname) ?? "en";
+  response.headers.set("x-locale", locale);
+  response.headers.set("x-pathname", pathname);
+  return response;
+}
 
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -9,25 +27,27 @@ export function middleware(request: NextRequest) {
     pathname.startsWith("/api") ||
     pathname.includes(".")
   ) {
-    return NextResponse.next();
+    return withSeoHeaders(request, NextResponse.next());
   }
 
   if (pathname === "/") {
-    return NextResponse.next();
+    return withSeoHeaders(request, NextResponse.next());
   }
 
   const pathnameHasLocale = locales.some(
     (locale) => pathname === `/${locale}` || pathname.startsWith(`/${locale}/`)
   );
 
-  if (pathnameHasLocale) return NextResponse.next();
+  if (pathnameHasLocale) {
+    return withSeoHeaders(request, NextResponse.next());
+  }
 
   const acceptLang = request.headers.get("accept-language") ?? "";
   const locale = detectLocaleFromAcceptLanguage(acceptLang);
 
   const url = request.nextUrl.clone();
   url.pathname = `/${locale}${pathname}`;
-  return NextResponse.redirect(url);
+  return withSeoHeaders(request, NextResponse.redirect(url));
 }
 
 export const config = {

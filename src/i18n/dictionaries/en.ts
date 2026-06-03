@@ -11,20 +11,51 @@ export const en = {
       oemService: "OEM Service",
       about: "About Us",
       contact: "Contact",
+      accessories: "Accessories",
+      faq: "FAQ",
+      certifications: "Certifications",
+    },
+    seoTitles: {
+      spcFlooring: "SPC Flooring Manufacturer China | OEM Wholesale | Eshsire Group",
+      wallPanels: "SPC Wall Panel Supplier China | UV Marble Panels | Eshsire Group",
+      factory: "SPC Flooring Factory Beijing 6000㎡ | Production & QC | Eshsire Group",
+      oemService: "SPC Flooring OEM ODM | Custom Packaging & Private Label | Eshsire Group",
+      about: "About Eshsire Group | 30 Years SPC Flooring Manufacturer China",
+      contact: "Contact Eshsire Group | SPC Flooring Catalog & Quote | WhatsApp",
+      accessories: "SPC Flooring Accessories | Skirting & Profiles | Eshsire Group",
+      faq: "SPC Flooring FAQ | OEM MOQ, Shipping & Certifications | Eshsire Group",
+      certifications: "ISO CE SGS Certifications | SPC Flooring Manufacturer | Eshsire Group",
+    },
+    headings: {
+      spcFlooring: "Commercial SPC Flooring — OEM Wholesale from China",
+      wallPanels: "SPC & Decorative Wall Panels for Global Projects",
+      factory: "Our SPC Flooring Manufacturing Facility",
+      oemService: "OEM & ODM Manufacturing Services",
+      about: "About Eshsire Group",
+      contact: "Contact Us for Catalog & Quotation",
+      accessories: "SPC Flooring & Wall Panel Accessories",
+      faq: "Frequently Asked Questions",
+      certifications: "Quality Certifications & Compliance",
     },
     pageDesc: {
       spcFlooring:
-        "Commercial-grade waterproof SPC flooring OEM from Eshsire Group. Click-lock, fire resistant, export worldwide.",
+        "Wholesale waterproof SPC flooring from Beijing factory. Click-lock, CE certified, low MOQ OEM. Request catalog via WhatsApp — reply within 24 hours.",
       wallPanels:
-        "SPC wall panels, UV marble panels and decorative interior materials from Eshsire Group China.",
+        "SPC wall panels, UV marble panels and decorative interior materials from China. Factory direct pricing for distributors worldwide.",
       factory:
-        "6000㎡ SPC flooring factory in Beijing. Production lines, QC, warehouse and container loading experience.",
+        "Tour our 6000㎡ Beijing SPC flooring factory — production lines, QC lab, warehouse and container loading. Trusted export partner since 30+ years.",
       oemService:
-        "OEM & ODM SPC flooring and wall panel manufacturing. Custom packaging, branding and private label.",
+        "Custom SPC flooring OEM/ODM with private label, packaging design and branding. Low MOQ, flexible orders for global distributors.",
       about:
-        "About Eshsire Group — 30 years manufacturing SPC flooring and interior decorative materials from Beijing.",
+        "Eshsire Group — 30 years manufacturing SPC flooring and interior decorative materials in Beijing, China. Serving 30+ export markets.",
       contact:
-        "Contact Eshsire Group for SPC flooring catalog and quotation. Jason — WhatsApp +86 15313057097.",
+        "Contact Jason for SPC flooring catalog, samples and OEM quotation. WhatsApp +86 15313057097 — response within 24 hours.",
+      accessories:
+        "Skirting boards, transition profiles, underlayment and installation accessories for SPC flooring projects. OEM matching colors available.",
+      faq:
+        "Answers about SPC flooring OEM MOQ, lead time, shipping terms, certifications and samples from Eshsire Group China manufacturer.",
+      certifications:
+        "Eshsire Group SPC flooring meets ISO, CE, SGS and international quality standards. Documentation support for global import and projects.",
     },
   },
   nav: {
@@ -35,6 +66,9 @@ export const en = {
     oemService: "OEM Service",
     about: "About Us",
     contact: "Contact",
+    accessories: "Accessories",
+    faq: "FAQ",
+    certifications: "Certifications",
     getCatalog: "Get Catalog",
     menu: "Menu",
   },
@@ -57,6 +91,20 @@ export const en = {
     products: "Products",
     quickLinks: "Quick Links",
     contactTitle: "Contact",
+    resources: "Resources",
+    notFoundTitle: "Page Not Found",
+    notFoundDesc: "The page you are looking for does not exist or has been moved.",
+    backHome: "Back to Home",
+    relatedPages: "Related Pages",
+  },
+  related: {
+    spcFlooring: "Explore SPC Flooring",
+    wallPanels: "View Wall Panels",
+    factory: "Tour Our Factory",
+    oemService: "OEM & ODM Services",
+    accessories: "Flooring Accessories",
+    certifications: "Certifications",
+    contact: "Request a Quote",
   },
   gallery: {
     expandHint: "Click any image to enlarge",
@@ -324,6 +372,64 @@ export const en = {
     "UV Marble Panels",
     "Interior Decorative Materials",
   ],
+  accessories: {
+    heroSubtitle:
+      "Complete your SPC flooring and wall panel projects with matching skirting, profiles and installation accessories.",
+    label: "Accessories",
+    title: "Installation & Finishing Accessories",
+    description:
+      "We supply skirting boards, transition profiles, underlayment, stair noses and matching accessories for global flooring projects.",
+    items: [
+      { title: "Skirting Boards", desc: "PVC and MDF skirting matched to SPC flooring colors and textures." },
+      { title: "Transition Profiles", desc: "T-molding, reducers and end caps for doorways and level changes." },
+      { title: "Underlayment", desc: "IXPE and EVA underlay for sound reduction and moisture protection." },
+      { title: "Stair Noses & Profiles", desc: "Stair treads and edge profiles for commercial installations." },
+    ],
+  },
+  faq: {
+    heroSubtitle: "Common questions from distributors and project buyers about SPC flooring OEM from China.",
+    label: "FAQ",
+    title: "SPC Flooring & OEM Questions",
+    items: [
+      {
+        q: "What is your MOQ for SPC flooring OEM orders?",
+        a: "MOQ varies by design — typically one container (about 2,000–3,000 sqm) for custom color OEM. Mixed trial orders are available for new partners.",
+      },
+      {
+        q: "How long is production lead time?",
+        a: "Standard production is 15–25 days after sample approval. Peak season may require additional time — we confirm schedule before order confirmation.",
+      },
+      {
+        q: "Do you provide CE, ISO or SGS certificates?",
+        a: "Yes. We support CE, ISO and SGS test reports for SPC flooring and can provide documentation for import clearance and project tenders.",
+      },
+      {
+        q: "Can I get samples before placing a bulk order?",
+        a: "Yes. We ship physical samples globally. Contact Jason via WhatsApp for sample selection and shipping cost.",
+      },
+      {
+        q: "What shipping terms do you offer?",
+        a: "We support FOB, CIF and other Incoterms from Beijing/Tianjin ports. Our export team handles container loading and export documentation.",
+      },
+      {
+        q: "Do you offer custom packaging and private label?",
+        a: "Yes. OEM packaging, barcodes, insert cards and private label are available. See our OEM Service page for the full workflow.",
+      },
+    ],
+  },
+  certifications: {
+    heroSubtitle: "International quality standards and test documentation for global SPC flooring export.",
+    label: "Certifications",
+    title: "Quality Standards & Compliance",
+    description:
+      "Eshsire Group maintains quality systems and third-party testing to support export to Europe, Middle East, Southeast Asia and other markets.",
+    items: [
+      { title: "ISO Quality Management", desc: "Standardized production and QC procedures across all flooring lines." },
+      { title: "CE Compliance", desc: "SPC flooring tested for European market requirements and documentation support." },
+      { title: "SGS Testing", desc: "Third-party test reports for wear layer, fire resistance and formaldehyde emissions." },
+      { title: "Floorscore / Indoor Air", desc: "Low VOC options available for commercial and residential projects." },
+    ],
+  },
 };
 
 export type Dictionary = typeof en;

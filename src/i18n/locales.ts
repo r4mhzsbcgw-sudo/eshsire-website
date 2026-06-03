@@ -20,6 +20,13 @@ export const locales = [
 export type Locale = (typeof locales)[number];
 export const defaultLocale: Locale = "en";
 
+/** Locales with complete copy — indexed in Google */
+export const indexableLocales = ["en", "zh", "es"] as const satisfies readonly Locale[];
+
+export function isIndexableLocale(locale: Locale): boolean {
+  return (indexableLocales as readonly Locale[]).includes(locale);
+}
+
 export const rtlLocales: Locale[] = ["ar", "he"];
 
 export const cjkLocales: Locale[] = ["zh", "ja", "ko"];

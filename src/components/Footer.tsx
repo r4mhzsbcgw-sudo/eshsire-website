@@ -11,10 +11,25 @@ export function Footer() {
   const year = new Date().getFullYear();
   const quickLinks = navHrefs.filter((l) => l.href !== "/");
 
+  const productLinks = [
+    { href: "/spc-flooring" as const, label: dict.productList[0] },
+    { href: "/wall-panels" as const, label: dict.productList[1] },
+    { href: "/wall-panels" as const, label: dict.productList[2] },
+    { href: "/accessories" as const, label: dict.productList[3] },
+  ];
+
+  const resourceLinks = [
+    { href: "/faq" as const, label: dict.nav.faq },
+    { href: "/certifications" as const, label: dict.nav.certifications },
+    { href: "/factory" as const, label: dict.nav.factory },
+    { href: "/oem-service" as const, label: dict.nav.oemService },
+  ];
+
   const navLabels: Record<(typeof navHrefs)[number]["key"], string> = {
     home: dict.nav.home,
     spcFlooring: dict.nav.spcFlooring,
     wallPanels: dict.nav.wallPanels,
+    accessories: dict.nav.accessories,
     factory: dict.nav.factory,
     oemService: dict.nav.oemService,
     about: dict.nav.about,
@@ -24,7 +39,7 @@ export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-industrial-dark">
       <div className="section-padding mx-auto max-w-7xl pb-8 pt-16">
-        <div className="grid grid-cols-4 gap-12">
+        <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 lg:gap-8">
           <div>
             <p className="text-2xl font-bold tracking-wide">ESHSIRE</p>
             <p className="text-sm text-industrial-light">Group</p>
@@ -53,8 +68,27 @@ export function Footer() {
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-white">{dict.common.products}</h3>
             <ul className="mt-4 space-y-2 text-sm text-industrial-light">
-              {dict.productList.map((p) => (
-                <li key={p}>{p}</li>
+              {productLinks.map((item) => (
+                <li key={item.label}>
+                  <Link
+                    href={localizedPath(locale, item.href)}
+                    className="transition-colors hover:text-accent"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">{dict.common.resources}</h3>
+            <ul className="mt-4 space-y-2">
+              {resourceLinks.map((link) => (
+                <li key={link.href + link.label}>
+                  <Link href={localizedPath(locale, link.href)} className="text-sm text-industrial-light transition-colors hover:text-accent">
+                    {link.label}
+                  </Link>
+                </li>
               ))}
             </ul>
           </div>

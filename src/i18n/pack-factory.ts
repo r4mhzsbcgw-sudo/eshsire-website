@@ -1,24 +1,16 @@
 import { en } from "./dictionaries/en";
 import type { LocalePack } from "./build-locale-dict";
 
-type Pages = {
-  home: string;
-  spcFlooring: string;
-  wallPanels: string;
-  factory: string;
-  oemService: string;
-  about: string;
-  contact: string;
-};
-
+type Pages = typeof en.meta.pages;
+type PageDesc = typeof en.meta.pageDesc;
 type WhyItem = { title: string; desc: string };
 
 export function createLocalePack(input: {
   siteTitle: string;
   siteDescription: string;
-  pages: Pages;
-  pageDesc: Pages;
-  nav: typeof en.nav;
+  pages?: Partial<Pages>;
+  pageDesc?: Partial<PageDesc>;
+  nav: Partial<typeof en.nav> & Pick<typeof en.nav, "home" | "spcFlooring" | "wallPanels" | "factory" | "oemService" | "about" | "contact" | "getCatalog">;
   common: Partial<typeof en.common>;
   gallery: typeof en.gallery;
   companyIntro: typeof en.companyIntro;
@@ -66,10 +58,10 @@ export function createLocalePack(input: {
       ...en.meta,
       siteTitle: input.siteTitle,
       siteDescription: input.siteDescription,
-      pages: input.pages,
-      pageDesc: input.pageDesc,
+      pages: { ...en.meta.pages, ...input.pages },
+      pageDesc: { ...en.meta.pageDesc, ...input.pageDesc },
     },
-    nav: input.nav,
+    nav: { ...en.nav, ...input.nav },
     common: { ...en.common, ...input.common },
     gallery: input.gallery,
     companyIntro: input.companyIntro,

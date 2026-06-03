@@ -23,6 +23,7 @@ export function Header() {
     home: dict.nav.home,
     spcFlooring: dict.nav.spcFlooring,
     wallPanels: dict.nav.wallPanels,
+    accessories: dict.nav.accessories,
     factory: dict.nav.factory,
     oemService: dict.nav.oemService,
     about: dict.nav.about,

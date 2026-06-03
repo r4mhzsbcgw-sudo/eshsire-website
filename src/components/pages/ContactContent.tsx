@@ -6,6 +6,7 @@ import { FadeIn } from "@/components/motion/FadeIn";
 import { Button } from "@/components/ui/Button";
 import { useLocale } from "@/context/LocaleContext";
 import { getWhatsAppUrl, siteConfig, getAddress } from "@/lib/config";
+import { contactImages } from "@/lib/images";
 
 export function ContactContent() {
   const { locale, dict } = useLocale();
@@ -14,9 +15,9 @@ export function ContactContent() {
 
   return (
     <>
-      <PageHero title={dict.meta.pages.contact} subtitle={d.heroSubtitle} image="https://images.unsplash.com/photo-1423666639041-f56000c27a93?q=80&w=2400&auto=format&fit=crop" />
+      <PageHero title={dict.meta.headings.contact} subtitle={d.heroSubtitle} image={contactImages.hero} />
       <section className="section-padding">
-        <div className="mx-auto grid max-w-7xl grid-cols-2 gap-16">
+        <div className="mx-auto grid max-w-7xl grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16">
           <FadeIn>
             <p className="section-label">{d.getInTouch}</p>
             <h2 className="section-heading">{d.sendInquiry}</h2>

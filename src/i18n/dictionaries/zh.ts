@@ -13,20 +13,51 @@ export const zh: Dictionary = {
       oemService: "OEM 服务",
       about: "关于我们",
       contact: "联系我们",
+      accessories: "配件",
+      faq: "常见问题",
+      certifications: "资质认证",
+    },
+    seoTitles: {
+      spcFlooring: "中国 SPC 地板制造商 | OEM 批发出口 | Eshsire Group",
+      wallPanels: "中国 SPC 墙板供应商 | UV 大理石板 | Eshsire Group",
+      factory: "北京 SPC 地板工厂 6000㎡ | 生产线与质检 | Eshsire Group",
+      oemService: "SPC 地板 OEM/ODM 定制 | 专属包装贴牌 | Eshsire Group",
+      about: "关于 Eshsire Group | 30 年 SPC 地板制造经验",
+      contact: "联系 Eshsire Group | SPC 地板目录与报价 | WhatsApp",
+      accessories: "SPC 地板配件 | 踢脚线收边条 | Eshsire Group",
+      faq: "SPC 地板常见问题 | OEM 起订量与出口 | Eshsire Group",
+      certifications: "ISO CE SGS 认证 | SPC 地板制造商 | Eshsire Group",
+    },
+    headings: {
+      spcFlooring: "商用 SPC 地板 — 中国 OEM 批发出口",
+      wallPanels: "SPC 与装饰墙板 — 全球工程项目",
+      factory: "SPC 地板生产制造基地",
+      oemService: "OEM / ODM 定制制造服务",
+      about: "关于 Eshsire Group",
+      contact: "联系我们获取目录与报价",
+      accessories: "SPC 地板与墙板安装配件",
+      faq: "常见问题解答",
+      certifications: "质量认证与合规",
     },
     pageDesc: {
       spcFlooring:
-        "Eshsire Group 商用级防水 SPC 地板 OEM，锁扣安装，防火，全球出口。",
+        "北京源头工厂防水 SPC 地板批发，锁扣安装，CE 认证，低 MOQ OEM。WhatsApp 索取目录，24 小时内回复。",
       wallPanels:
-        "SPC 墙板、UV 大理石板及室内装饰材，中国源头工厂直供。",
+        "SPC 墙板、UV 大理石板及室内装饰材，中国工厂直供，面向全球经销商与工程项目。",
       factory:
-        "北京 6000㎡ SPC 地板工厂，生产线、质检、仓储与装柜出口经验。",
+        "参观北京 6000㎡ SPC 地板工厂：生产线、质检实验室、仓储与装柜出口，30 年出口经验。",
       oemService:
-        "SPC 地板与墙板 OEM/ODM 定制，包装、品牌与贴牌生产服务。",
+        "SPC 地板 OEM/ODM 定制，专属包装、品牌设计与贴牌生产，低起订量，灵活订单。",
       about:
-        "关于 Eshsire Group — 30 年 SPC 地板与室内装饰材制造经验。",
+        "Eshsire Group — 北京 30 年 SPC 地板与室内装饰材制造商，产品出口 30+ 国家。",
       contact:
-        "联系 Eshsire Group 获取目录与报价。Jason — WhatsApp +86 15313057097。",
+        "联系 Jason 获取 SPC 地板目录、样品与 OEM 报价。WhatsApp +86 15313057097，24 小时内回复。",
+      accessories:
+        "踢脚线、收边条、地垫与安装配件，颜色可与 SPC 地板配套定制，服务全球工程项目。",
+      faq:
+        "关于 SPC 地板 OEM 起订量、交期、运输条款、认证与样品的常见问题解答。",
+      certifications:
+        "Eshsire Group SPC 地板符合 ISO、CE、SGS 等国际标准，提供全球进口与投标所需文件。",
     },
   },
   nav: {
@@ -37,6 +68,9 @@ export const zh: Dictionary = {
     oemService: "OEM 服务",
     about: "关于我们",
     contact: "联系我们",
+    accessories: "配件",
+    faq: "常见问题",
+    certifications: "资质认证",
     getCatalog: "获取目录",
     menu: "菜单",
   },
@@ -59,6 +93,20 @@ export const zh: Dictionary = {
     products: "产品",
     quickLinks: "快速链接",
     contactTitle: "联系方式",
+    resources: "资源",
+    notFoundTitle: "页面未找到",
+    notFoundDesc: "您访问的页面不存在或已被移动。",
+    backHome: "返回首页",
+    relatedPages: "相关页面",
+  },
+  related: {
+    spcFlooring: "了解 SPC 地板",
+    wallPanels: "查看墙板产品",
+    factory: "参观工厂",
+    oemService: "OEM / ODM 服务",
+    accessories: "地板配件",
+    certifications: "资质认证",
+    contact: "索取报价",
   },
   gallery: {
     expandHint: "点击图片可放大查看",
@@ -280,4 +328,41 @@ export const zh: Dictionary = {
     "UV 大理石板",
     "室内装饰材",
   ],
+  accessories: {
+    heroSubtitle: "为 SPC 地板与墙板项目提供配套踢脚线、收边条及安装辅材。",
+    label: "配件",
+    title: "安装与收口配件",
+    description: "提供踢脚线、收边条、地垫、楼梯口条等，颜色可与 SPC 地板配套定制。",
+    items: [
+      { title: "踢脚线", desc: "PVC / MDF 踢脚线，可与 SPC 地板花色配套。" },
+      { title: "收边条", desc: "T 型条、高低差收边、门口收边等过渡型材。" },
+      { title: "地垫", desc: "IXPE / EVA 静音防潮垫，提升脚感与防潮性能。" },
+      { title: "楼梯口条", desc: "商用工程楼梯收边与踏步型材。" },
+    ],
+  },
+  faq: {
+    heroSubtitle: "经销商与工程客户关于中国 SPC 地板 OEM 的常见问题。",
+    label: "常见问题",
+    title: "SPC 地板与 OEM 问答",
+    items: [
+      { q: "SPC 地板 OEM 起订量是多少？", a: "因花色而异，定制颜色通常为一柜（约 2000–3000 ㎡）。新合作伙伴可申请混色试单。" },
+      { q: "生产交期多长？", a: "样品确认后标准生产约 15–25 天，旺季会提前告知排期。" },
+      { q: "能否提供 CE、ISO 或 SGS 证书？", a: "可以，我们支持 CE、ISO、SGS 等检测报告，便于清关与投标。" },
+      { q: "大货前能否寄样？", a: "可以，全球寄样。请通过 WhatsApp 联系 Jason 选样并确认运费。" },
+      { q: "支持哪些贸易条款？", a: "支持 FOB、CIF 等，从北京/天津港出运，出口团队负责装柜与单证。" },
+      { q: "是否支持定制包装与贴牌？", a: "支持 OEM 包装、条码、说明书及自有品牌，详见 OEM 服务页。" },
+    ],
+  },
+  certifications: {
+    heroSubtitle: "面向全球出口的 SPC 地板国际质量标准与检测文件。",
+    label: "资质认证",
+    title: "质量标准与合规",
+    description: "Eshsire Group 建立质量管理体系与第三方检测，支持出口欧洲、中东、东南亚等市场。",
+    items: [
+      { title: "ISO 质量管理", desc: "标准化生产与全流程质检体系。" },
+      { title: "CE 合规", desc: "SPC 地板符合欧洲市场要求，可提供合规文件。" },
+      { title: "SGS 检测", desc: "耐磨层、防火、甲醛等第三方检测报告。" },
+      { title: "Floorscore / 室内环保", desc: "低 VOC 选项，适用于商用与住宅项目。" },
+    ],
+  },
 };

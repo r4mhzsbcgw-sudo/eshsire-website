@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { AboutContent } from "@/components/pages/AboutContent";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { isLocale } from "@/i18n/locales";
+import { buildPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
   params,
@@ -11,10 +12,12 @@ export async function generateMetadata({
   const { locale } = params;
   if (!isLocale(locale)) return {};
   const dict = await getDictionary(locale);
-  return {
-    title: dict.meta.pages.about,
+  return buildPageMetadata({
+    locale,
+    path: "/about",
+    title: dict.meta.seoTitles.about,
     description: dict.meta.pageDesc.about,
-  };
+  });
 }
 
 export default function AboutPage() {

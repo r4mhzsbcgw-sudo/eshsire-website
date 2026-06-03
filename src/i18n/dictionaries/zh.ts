@@ -16,6 +16,8 @@ export const zh: Dictionary = {
       accessories: "配件",
       faq: "常见问题",
       certifications: "资质认证",
+      blog: "博客",
+      spcSpecs: "SPC 规格",
     },
     seoTitles: {
       spcFlooring: "中国 SPC 地板制造商 | OEM 批发出口 | Eshsire Group",
@@ -27,6 +29,8 @@ export const zh: Dictionary = {
       accessories: "SPC 地板配件 | 踢脚线收边条 | Eshsire Group",
       faq: "SPC 地板常见问题 | OEM 起订量与出口 | Eshsire Group",
       certifications: "ISO CE SGS 认证 | SPC 地板制造商 | Eshsire Group",
+      blog: "SPC 地板博客 | 进口指南与供应商选择 | Eshsire Group",
+      spcSpecs: "SPC 地板规格参数 | 厚度与尺寸 | Eshsire Group",
     },
     headings: {
       spcFlooring: "商用 SPC 地板 — 中国 OEM 批发出口",
@@ -38,6 +42,8 @@ export const zh: Dictionary = {
       accessories: "SPC 地板与墙板安装配件",
       faq: "常见问题解答",
       certifications: "质量认证与合规",
+      blog: "行业洞察与进口指南",
+      spcSpecs: "SPC 地板技术规格",
     },
     pageDesc: {
       spcFlooring:
@@ -58,6 +64,8 @@ export const zh: Dictionary = {
         "关于 SPC 地板 OEM 起订量、交期、运输条款、认证与样品的常见问题解答。",
       certifications:
         "Eshsire Group SPC 地板符合 ISO、CE、SGS 等国际标准，提供全球进口与投标所需文件。",
+      blog: "面向地板经销商的中国 SPC 进口实用指南：选厂、质控与常见误区。",
+      spcSpecs: "SPC 地板厚度 3.5–10mm，耐磨层 0.2–0.7mm，多种尺寸，锁扣防水，CE/ISO/SGS，MOQ 约一柜 3600㎡。",
     },
   },
   nav: {
@@ -71,6 +79,7 @@ export const zh: Dictionary = {
     accessories: "配件",
     faq: "常见问题",
     certifications: "资质认证",
+    blog: "博客",
     getCatalog: "获取目录",
     menu: "菜单",
   },
@@ -363,6 +372,32 @@ export const zh: Dictionary = {
       { title: "CE 合规", desc: "SPC 地板符合欧洲市场要求，可提供合规文件。" },
       { title: "SGS 检测", desc: "耐磨层、防火、甲醛等第三方检测报告。" },
       { title: "Floorscore / 室内环保", desc: "低 VOC 选项，适用于商用与住宅项目。" },
+    ],
+  },
+  blog: {
+    label: "博客",
+    listSubtitle: "面向从中国采购 SPC 地板与墙板的经销商实用指南。",
+    ctaTitle: "联系 ESHSIRE 获取样品与报价",
+    ctaDesc: "网站：eshsire.com · WhatsApp：+86 15313057097 · 邮箱：jason@eshsiregroup.com",
+  },
+  spcSpecs: {
+    heroSubtitle: "Eshsire Group SPC 石塑地板 OEM 与批发出口标准规格参考。",
+    label: "规格参数",
+    title: "SPC 地板技术参数",
+    description: "以下为 Eshsire Group SPC 地板参考规格，厚度、耐磨层、尺寸与包装均可 OEM 定制。",
+    rows: [
+      { label: "厚度", value: "3.5mm / 4mm / 5mm / 6mm / 8mm / 10mm" },
+      { label: "耐磨层", value: "0.2mm / 0.3mm / 0.5mm / 0.7mm" },
+      {
+        label: "尺寸",
+        value: "1220×180mm、1220×183mm、1220×184mm、1530×228mm、310×930mm、640×128mm、1525×230mm",
+      },
+      { label: "锁扣", value: "Click-lock 锁扣（其他系统可定制）" },
+      { label: "防水", value: "100% 防水石塑基材" },
+      { label: "防火", value: "B1（其他等级可定制）" },
+      { label: "认证", value: "CE / ISO / SGS / Floorscore（视市场要求）" },
+      { label: "MOQ", value: "一柜约 3,600㎡（试单可议）" },
+      { label: "交期", value: "样品：3 天 · 大货：15 天（样品确认后）" },
     ],
   },
 };

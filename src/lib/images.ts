@@ -175,12 +175,12 @@ export const aboutImages = {
     return USE_LOCAL_IMAGES ? localPath("about", "hero.jpg") : aboutRemote.hero;
   },
   get story() {
-    return USE_LOCAL_IMAGES ? localPath("about", "story.jpg") : aboutRemote.story;
+    return USE_LOCAL_IMAGES ? localPath("about", "gallery", "02.jpg") : aboutRemote.story;
   },
   get gallery() {
     return USE_LOCAL_IMAGES
-      ? galleryLocal("about/gallery", 8)
-      : aboutRemote.gallery;
+      ? galleryLocal("about/gallery", 6)
+      : aboutRemote.gallery.slice(0, 6);
   },
 };
 

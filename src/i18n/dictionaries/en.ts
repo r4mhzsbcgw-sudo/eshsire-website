@@ -14,6 +14,8 @@ export const en = {
       accessories: "Accessories",
       faq: "FAQ",
       certifications: "Certifications",
+      blog: "Blog",
+      spcSpecs: "SPC Specifications",
     },
     seoTitles: {
       spcFlooring: "SPC Flooring Manufacturer China | OEM Wholesale | Eshsire Group",
@@ -25,6 +27,8 @@ export const en = {
       accessories: "SPC Flooring Accessories | Skirting & Profiles | Eshsire Group",
       faq: "SPC Flooring FAQ | OEM MOQ, Shipping & Certifications | Eshsire Group",
       certifications: "ISO CE SGS Certifications | SPC Flooring Manufacturer | Eshsire Group",
+      blog: "SPC Flooring Blog | Import Guides & Supplier Tips | Eshsire Group",
+      spcSpecs: "SPC Flooring Specifications | Thickness & Sizes | Eshsire Group",
     },
     headings: {
       spcFlooring: "Commercial SPC Flooring — OEM Wholesale from China",
@@ -36,6 +40,8 @@ export const en = {
       accessories: "SPC Flooring & Wall Panel Accessories",
       faq: "Frequently Asked Questions",
       certifications: "Quality Certifications & Compliance",
+      blog: "Industry Insights & Import Guides",
+      spcSpecs: "SPC Flooring Technical Specifications",
     },
     pageDesc: {
       spcFlooring:
@@ -56,6 +62,10 @@ export const en = {
         "Answers about SPC flooring OEM MOQ, lead time, shipping terms, certifications and samples from Eshsire Group China manufacturer.",
       certifications:
         "Eshsire Group SPC flooring meets ISO, CE, SGS and international quality standards. Documentation support for global import and projects.",
+      blog:
+        "Practical guides for flooring distributors importing SPC from China — supplier selection, quality control, and common mistakes to avoid.",
+      spcSpecs:
+        "SPC flooring thickness 3.5–10mm, wear layer 0.2–0.7mm, multiple plank sizes, click-lock, waterproof, CE/ISO/SGS. MOQ one container ~3600 sqm.",
     },
   },
   nav: {
@@ -69,6 +79,7 @@ export const en = {
     accessories: "Accessories",
     faq: "FAQ",
     certifications: "Certifications",
+    blog: "Blog",
     getCatalog: "Get Catalog",
     menu: "Menu",
   },
@@ -428,6 +439,32 @@ export const en = {
       { title: "CE Compliance", desc: "SPC flooring tested for European market requirements and documentation support." },
       { title: "SGS Testing", desc: "Third-party test reports for wear layer, fire resistance and formaldehyde emissions." },
       { title: "Floorscore / Indoor Air", desc: "Low VOC options available for commercial and residential projects." },
+    ],
+  },
+  blog: {
+    label: "Blog",
+    listSubtitle: "Expert guides for flooring distributors sourcing SPC and wall panels from China.",
+    ctaTitle: "Contact ESHSIRE for Samples & Quotation",
+    ctaDesc: "Website: eshsire.com · WhatsApp: +86 15313057097 · Email: jason@eshsiregroup.com",
+  },
+  spcSpecs: {
+    heroSubtitle: "Standard SPC rigid core flooring specifications for OEM and wholesale export orders.",
+    label: "Specifications",
+    title: "SPC Flooring Technical Data",
+    description: "Reference specifications for Eshsire Group SPC flooring. Custom thickness, wear layer, size and packaging available for OEM orders.",
+    rows: [
+      { label: "Thickness", value: "3.5mm / 4mm / 5mm / 6mm / 8mm / 10mm" },
+      { label: "Wear Layer", value: "0.2mm / 0.3mm / 0.5mm / 0.7mm" },
+      {
+        label: "Plank Sizes",
+        value: "1220×180mm, 1220×183mm, 1220×184mm, 1530×228mm, 310×930mm, 640×128mm, 1525×230mm",
+      },
+      { label: "Lock System", value: "Click-lock (other systems available on request)" },
+      { label: "Waterproof", value: "100% waterproof rigid core" },
+      { label: "Fire Rating", value: "B1 (other ratings available on request)" },
+      { label: "Certifications", value: "CE / ISO / SGS / Floorscore (market dependent)" },
+      { label: "MOQ", value: "One container ≈ 3,600 sqm (negotiable for trial orders)" },
+      { label: "Lead Time", value: "Samples: 3 days · Bulk production: 15 days (after sample approval)" },
     ],
   },
 };

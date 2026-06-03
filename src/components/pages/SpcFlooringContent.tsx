@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import Image from "next/image";
 import { PageHero } from "@/components/ui/PageHero";
 import { SectionHeader } from "@/components/ui/SectionHeader";
@@ -39,6 +40,9 @@ export function SpcFlooringContent() {
             <Button href={localizedPath(locale, "/contact")} variant="primary" className="mt-8">
               {dict.common.requestCatalog}
             </Button>
+            <Link href={localizedPath(locale, "/spc-flooring/specs")} className="mt-4 inline-block text-sm font-semibold text-accent hover:underline">
+              {dict.meta.pages.spcSpecs} →
+            </Link>
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="relative aspect-square overflow-hidden rounded-2xl border border-white/10">

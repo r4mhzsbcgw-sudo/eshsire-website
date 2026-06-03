@@ -21,6 +21,8 @@ export const es: Dictionary = {
       accessories: "Accesorios",
       faq: "FAQ",
       certifications: "Certificaciones",
+      blog: "Blog",
+      spcSpecs: "Especificaciones SPC",
     },
     seoTitles: {
       ...en.meta.seoTitles,
@@ -69,6 +71,7 @@ export const es: Dictionary = {
     },
   },
   nav: {
+    ...en.nav,
     home: "Inicio",
     spcFlooring: "Suelos SPC",
     wallPanels: "Paneles",
@@ -79,6 +82,7 @@ export const es: Dictionary = {
     contact: "Contacto",
     faq: "FAQ",
     certifications: "Certificaciones",
+    blog: "Blog",
     getCatalog: "Catálogo",
     menu: "Menú",
   },

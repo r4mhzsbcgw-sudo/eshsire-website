@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { indexableLocales } from "@/i18n/locales";
+import { getAllBlogSlugs } from "@/content/blog";
 import { SITE_URL } from "@/lib/site-url";
 
 export const dynamic = "force-static";
@@ -7,6 +8,7 @@ export const dynamic = "force-static";
 const routes = [
   "",
   "/spc-flooring",
+  "/spc-flooring/specs",
   "/wall-panels",
   "/accessories",
   "/factory",
@@ -15,8 +17,10 @@ const routes = [
   "/contact",
   "/faq",
   "/certifications",
+  "/blog",
 ] as const;
 
+const blogSlugs = getAllBlogSlugs();
 const LAST_MODIFIED = new Date("2026-05-22");
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -27,8 +31,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
       entries.push({
         url: `${SITE_URL}/${locale}${route}`,
         lastModified: LAST_MODIFIED,
-        changeFrequency: route === "" ? "weekly" : "monthly",
-        priority: route === "" ? 1 : route === "/faq" || route === "/certifications" ? 0.6 : 0.8,
+        changeFrequency: route === "" || route === "/blog" ? "weekly" : "monthly",
+        priority: route === "" ? 1 : route === "/blog" ? 0.7 : 0.8,
+      });
+    }
+    for (const slug of blogSlugs) {
+      entries.push({
+        url: `${SITE_URL}/${locale}/blog/${slug}`,
+        lastModified: LAST_MODIFIED,
+        changeFrequency: "monthly",
+        priority: 0.7,
       });
     }
   }

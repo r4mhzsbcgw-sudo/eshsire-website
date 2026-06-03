@@ -36,6 +36,8 @@ export const PAGE_OG_IMAGES: Record<string, string> = {
   "/contact": "/images/home/spc-flooring.jpg",
   "/faq": "/images/home/factory/02-quality.jpg",
   "/certifications": "/images/home/factory/02-quality.jpg",
+  "/blog": "/images/blog/choose-supplier/01.jpg",
+  "/spc-flooring/specs": "/images/products/spc/featured.jpg",
 };
 
 function absoluteImageUrl(imagePath: string): string {

@@ -16,6 +16,8 @@ const PATH_LABEL_KEYS: Record<string, keyof typeof import("@/i18n/dictionaries/e
   "/accessories": "accessories",
   "/faq": "faq",
   "/certifications": "certifications",
+  "/blog": "blog",
+  "/spc-flooring/specs": "spcSpecs",
 };
 
 export function Breadcrumbs() {

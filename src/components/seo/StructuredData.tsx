@@ -5,12 +5,14 @@ import { htmlLangMap } from "@/i18n/locales";
 import { stripLocale } from "@/i18n/navigation";
 import { pageUrl } from "@/lib/seo";
 import { siteConfig } from "@/lib/config";
+import type { BlogPost } from "@/content/blog/types";
 
 const PATH_LABEL_KEYS: Record<
   string,
   keyof Awaited<ReturnType<typeof getDictionary>>["meta"]["pages"]
 > = {
   "/spc-flooring": "spcFlooring",
+  "/spc-flooring/specs": "spcSpecs",
   "/wall-panels": "wallPanels",
   "/factory": "factory",
   "/oem-service": "oemService",
@@ -19,6 +21,7 @@ const PATH_LABEL_KEYS: Record<
   "/accessories": "accessories",
   "/faq": "faq",
   "/certifications": "certifications",
+  "/blog": "blog",
 };
 
 export async function BreadcrumbJsonLd({ locale }: { locale: Locale }) {
@@ -113,6 +116,37 @@ export function ProductJsonLd({
       url: siteConfig.url,
     },
     url: pageUrl(locale, path),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export function ArticleJsonLd({ locale, post }: { locale: Locale; post: BlogPost }) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: post.title,
+    description: post.description,
+    image: `${siteConfig.url}${post.heroImage}`,
+    datePublished: post.date,
+    dateModified: post.date,
+    inLanguage: htmlLangMap[locale],
+    author: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    mainEntityOfPage: pageUrl(locale, `/blog/${post.slug}`),
   };
 
   return (

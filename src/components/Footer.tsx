@@ -19,8 +19,10 @@ export function Footer() {
   ];
 
   const resourceLinks = [
+    { href: "/blog" as const, label: dict.nav.blog },
     { href: "/faq" as const, label: dict.nav.faq },
     { href: "/certifications" as const, label: dict.nav.certifications },
+    { href: "/spc-flooring/specs" as const, label: dict.meta.pages.spcSpecs },
     { href: "/factory" as const, label: dict.nav.factory },
     { href: "/oem-service" as const, label: dict.nav.oemService },
   ];

@@ -100,12 +100,16 @@ export function ProductJsonLd({
   image: string;
   path: string;
 }) {
+  const page = pageUrl(locale, path);
+  const imageUrl = image.startsWith("http") ? image : `${siteConfig.url}${image}`;
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "Product",
     name,
     description,
-    image: image.startsWith("http") ? image : `${siteConfig.url}${image}`,
+    image: imageUrl,
+    inLanguage: htmlLangMap[locale],
     brand: {
       "@type": "Brand",
       name: siteConfig.name,
@@ -115,7 +119,21 @@ export function ProductJsonLd({
       name: siteConfig.name,
       url: siteConfig.url,
     },
-    url: pageUrl(locale, path),
+    url: page,
+    offers: {
+      "@type": "AggregateOffer",
+      url: pageUrl(locale, "/contact"),
+      priceCurrency: "USD",
+      lowPrice: "3.00",
+      highPrice: "15.00",
+      offerCount: "1",
+      availability: "https://schema.org/InStock",
+      seller: {
+        "@type": "Organization",
+        name: siteConfig.name,
+        url: siteConfig.url,
+      },
+    },
   };
 
   return (

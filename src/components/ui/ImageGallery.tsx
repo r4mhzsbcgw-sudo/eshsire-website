@@ -61,18 +61,20 @@ export function ImageGallery({
         <div className="mx-auto max-w-7xl">
           <SectionHeader label={label} title={title} description={description} centered />
           <p className="mx-auto mt-2 max-w-xl text-center text-xs text-industrial-mist">{expandHint}</p>
-          <div className="mt-12 grid grid-cols-4 gap-4">
+          <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-4 sm:gap-4">
             {images.map((img, i) => (
               <FadeIn key={img.src + i} delay={i * 0.05}>
                 <button
                   type="button"
                   onClick={() => setActiveIndex(i)}
-                  className="group relative aspect-[4/3] w-full overflow-hidden rounded-lg border border-white/10 bg-industrial-slate/30 text-left transition-colors hover:border-accent/50 focus:outline-none focus:ring-2 focus:ring-accent"
+                  className="group relative aspect-video w-full overflow-hidden rounded-lg border border-white/10 bg-industrial-slate/30 text-left transition-colors hover:border-accent/50 focus:outline-none focus:ring-2 focus:ring-accent"
                 >
                   <Image
                     src={img.src}
                     alt={img.alt}
                     fill
+                    loading="lazy"
+                    unoptimized={img.src.includes("source.unsplash.com")}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 50vw, 25vw"
                   />

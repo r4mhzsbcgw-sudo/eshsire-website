@@ -25,7 +25,7 @@ export async function generateMetadata({
   return buildPageMetadata({
     locale,
     path: `/blog/${slug}`,
-    title: `${post.title} | Eshsire Group`,
+    title: post.metaTitle ?? `${post.title} | Eshsire Group`,
     description: post.description,
     ogImage: post.ogImage,
   });

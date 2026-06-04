@@ -23,8 +23,19 @@ const ROUTES = [
   "/blog",
 ];
 const BLOG_SLUGS = [
+  "spc-flooring-supplier-manufacturer-china",
   "choose-reliable-spc-flooring-supplier-china-2026",
   "7-mistakes-importing-spc-flooring-from-china",
+];
+const PROJECT_SLUGS = [
+  "africa-distributor",
+  "middle-east-hotel",
+  "school-flooring",
+  "europe-apartment",
+  "commercial-office",
+  "southeast-asia-distributor",
+  "hospital-flooring",
+  "villa-wpc-wall-panel",
 ];
 const LAST_MOD = new Date().toISOString();
 
@@ -57,6 +68,11 @@ for (const locale of LOCALES) {
   for (const slug of BLOG_SLUGS) {
     entries.push(
       urlEntry(`${SITE_URL}/${locale}/blog/${slug}`, "monthly", "0.7")
+    );
+  }
+  for (const slug of PROJECT_SLUGS) {
+    entries.push(
+      urlEntry(`${SITE_URL}/${locale}/projects/${slug}`, "monthly", "0.7")
     );
   }
 }

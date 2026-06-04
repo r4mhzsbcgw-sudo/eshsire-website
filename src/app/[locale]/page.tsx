@@ -1,14 +1,16 @@
 import type { Metadata } from "next";
 import { Hero } from "@/components/home/Hero";
 import { ProductCategories } from "@/components/home/ProductCategories";
+import { GlobalProjects } from "@/components/home/GlobalProjects";
 import { FactoryStrength } from "@/components/home/FactoryStrength";
 import { WhyChooseUs } from "@/components/home/WhyChooseUs";
 import { GlobalExport } from "@/components/home/GlobalExport";
 import { FactoryVideo } from "@/components/home/FactoryVideo";
 import { CompanyIntroSection } from "@/components/CompanyIntroSection";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import { ProjectsSectionJsonLd } from "@/components/seo/StructuredData";
 import { getDictionary } from "@/i18n/get-dictionary";
-import { isLocale } from "@/i18n/locales";
+import { isLocale, type Locale } from "@/i18n/locales";
 import { buildPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -27,11 +29,15 @@ export async function generateMetadata({
   });
 }
 
-export default function HomePage() {
+export default function HomePage({ params }: { params: { locale: string } }) {
+  const locale = isLocale(params.locale) ? (params.locale as Locale) : "en";
+
   return (
     <>
+      <ProjectsSectionJsonLd locale={locale} />
       <Hero />
       <ProductCategories />
+      <GlobalProjects />
       <CompanyIntroSection />
       <FactoryStrength />
       <WhyChooseUs />

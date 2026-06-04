@@ -90,8 +90,11 @@ export const en = {
     sendInquiry: "Send Inquiry",
     getCatalog: "Get Catalog",
     getQuote: "Get Quote",
+    requestQuote: "Request Quote",
+    viewProject: "View Project",
     requestCatalog: "Request Catalog",
     getSamples: "Get Samples",
+    getFreeSamples: "Get Free Samples",
     eshsireGroup: "Eshsire Group",
     beijingChina: "Beijing, China",
     contactPerson: "Contact Person",
@@ -153,6 +156,57 @@ export const en = {
       factoryArea: "Factory Area",
       exportCountries: "Export Countries",
       oemSupport: "& ODM Support",
+      carousel: {
+        prev: "Previous slide",
+        next: "Next slide",
+        slide: "Slide",
+        slides: [
+          {
+            years: "30 Years",
+            title: "Higher demands on oneself are responsible for customers",
+            subtitle:
+              "Continuous innovation, stable quality, do our best to meet customer needs",
+          },
+          {
+            titleLine1: "SPC FLOORING & WPC WALL PANEL",
+            titleAccent: "MANUFACTURER",
+            subtitle: "Helping Global Distributors & Contractors Grow Faster",
+            features: [
+              "Exported to 30+ Countries",
+              "OEM & Private Label Service",
+              "Daily Production Updates",
+              "Strict Quality Inspection",
+            ],
+            ctaSamples: "Get Free Samples",
+            ctaQuote: "Request a Quote",
+            stats: [
+              { value: "30+", label: "Years Experience" },
+              { value: "6000m²", label: "Production Facility" },
+              { value: "30+", label: "Export Countries" },
+              { value: "100,000+", label: "Customers Served" },
+            ],
+          },
+          {
+            title: "Strong Manufacturing Capability",
+            subtitle: "Your Reliable Partner for Long-term Success",
+            stats: [
+              { value: "30+", label: "Years Experience", desc: "Focused on flooring & wall panel manufacturing for over 30 years." },
+              { value: "6000m²", label: "Production Facility", desc: "Modern factory with advanced production lines and equipment." },
+              { value: "30+", label: "Export Countries", desc: "Products exported to more than 30 countries and regions worldwide." },
+              { value: "100,000+", label: "Customers Served", desc: "Trusted by global distributors, contractors and project buyers." },
+            ],
+            whyTitle: "Why Global Buyers Choose Us",
+            whySubtitle:
+              "We provide professional manufacturing, strict quality control and reliable services to help you grow your business.",
+            whyItems: [
+              { title: "Production Progress Updates", desc: "Real-time photos and videos during the entire production." },
+              { title: "Strict Quality Inspection", desc: "Multiple inspections from raw materials to finished products." },
+              { title: "OEM & Private Label Service", desc: "Custom designs, branding, packaging and labels." },
+              { title: "Reliable Delivery", desc: "On-time delivery with container loading and shipment tracking." },
+            ],
+          },
+        ],
+      },
     },
     products: {
       label: "Products",
@@ -171,6 +225,125 @@ export const en = {
         title: "Accessories",
         desc: "Skirting, profiles, underlayment & installation accessories.",
       },
+    },
+    projects: {
+      label: "Global Projects",
+      title: "Global Projects & Success Stories",
+      description: "Trusted by Distributors, Contractors and Developers Worldwide",
+      detailLabel: "Project Overview",
+      galleryLabel: "Project Gallery",
+      galleryTitle: "Project Photos & Installation",
+      galleryDesc: "Browse all project images from our global flooring and wall panel case studies.",
+      relatedTitle: "More Success Stories",
+      productLinksLabel: "Explore our flooring & wall panel solutions",
+      ctaTitle: "Need a Reliable Flooring Supplier?",
+      ctaSubtitle: "Get free samples, OEM pricing and project support from our Beijing factory.",
+      items: [
+        {
+          slug: "africa-distributor",
+          title: "Africa Distributor Project",
+          tag: "Africa",
+          desc: "Supported flooring distributors with SPC flooring, OEM packaging and stable supply solutions.",
+          overview:
+            "Eshsire Group partnered with regional flooring distributors across Africa to deliver consistent SPC flooring supply, custom OEM packaging and long-term replenishment support for growing retail networks.",
+          highlights: [
+            "Custom OEM cartons and private-label branding for local markets",
+            "Stable monthly supply for mixed container orders",
+            "Waterproof SPC collections suited to tropical climates",
+          ],
+        },
+        {
+          slug: "middle-east-hotel",
+          title: "Middle East Hotel Project",
+          tag: "Middle East",
+          desc: "Supplied premium SPC flooring for hotel renovation projects with luxury appearance and durability.",
+          overview:
+            "We supplied premium rigid-core SPC flooring for hotel lobby, corridor and guest room renovations across the Middle East, balancing luxury visual appeal with heavy daily foot traffic performance.",
+          highlights: [
+            "Stone and wood-look finishes for upscale hospitality interiors",
+            "Commercial wear layer for high-traffic public areas",
+            "Fast-install click-lock system to reduce renovation downtime",
+          ],
+        },
+        {
+          slug: "school-flooring",
+          title: "School Flooring Project",
+          tag: "Education",
+          desc: "Delivered durable flooring for schools and educational facilities with high traffic resistance.",
+          overview:
+            "This education sector project required scratch-resistant, easy-to-maintain SPC flooring for classrooms, hallways and activity areas with continuous daily use by students and staff.",
+          highlights: [
+            "Anti-slip surface options for safety-critical areas",
+            "Low-maintenance waterproof flooring for easy cleaning",
+            "Durable rigid core for desks, chairs and rolling equipment",
+          ],
+        },
+        {
+          slug: "europe-apartment",
+          title: "Europe Apartment Project",
+          tag: "Residential",
+          desc: "Provided waterproof SPC flooring for apartment renovation projects with modern design.",
+          overview:
+            "We supported apartment renovation contractors in Europe with waterproof SPC flooring collections designed for kitchens, living areas and bedrooms in multi-unit residential buildings.",
+          highlights: [
+            "100% waterproof core for kitchens and wet areas",
+            "European-style colors and textures for modern apartments",
+            "Underlay-compatible systems for sound reduction",
+          ],
+        },
+        {
+          slug: "commercial-office",
+          title: "Commercial Office Project",
+          tag: "Office",
+          desc: "Installed commercial SPC flooring for modern office environments with heavy foot traffic.",
+          overview:
+            "Commercial-grade SPC flooring was supplied for open-plan offices, meeting rooms and reception areas where professional appearance and long-term durability are essential.",
+          highlights: [
+            "Commercial wear layer rated for office foot traffic",
+            "Modern wood and stone visuals for corporate interiors",
+            "Quick installation to minimize business disruption",
+          ],
+        },
+        {
+          slug: "southeast-asia-distributor",
+          title: "Southeast Asia Distributor Project",
+          tag: "Wholesale",
+          desc: "Supported distributors with OEM packaging and stable flooring supply solutions.",
+          overview:
+            "Regional distributors in Southeast Asia partnered with Eshsire for customized flooring collections, localized packaging and flexible OEM orders tailored to wholesale channel requirements.",
+          highlights: [
+            "Market-specific color collections and embossing options",
+            "OEM packaging, labels and marketing insert support",
+            "Flexible MOQ for trial and repeat container orders",
+          ],
+        },
+        {
+          slug: "hospital-flooring",
+          title: "Hospital Flooring Project",
+          tag: "Healthcare",
+          desc: "Supplied hygienic and waterproof SPC flooring for hospitals and medical facilities.",
+          overview:
+            "Healthcare facilities require hygienic, waterproof and easy-to-sanitize flooring. We supplied SPC solutions for corridors, waiting areas and administrative zones in hospital renovation projects.",
+          highlights: [
+            "Waterproof rigid core for spill and moisture resistance",
+            "Smooth surface for routine cleaning and maintenance",
+            "Stable performance in high-traffic medical environments",
+          ],
+        },
+        {
+          slug: "villa-wpc-wall-panel",
+          title: "Villa WPC Wall Panel Project",
+          tag: "Villa",
+          desc: "Delivered decorative WPC wall panels for luxury villa interior decoration projects.",
+          overview:
+            "For luxury villa interiors, Eshsire delivered decorative WPC wall panels combining modern aesthetics with moisture resistance for living rooms, feature walls and premium residential spaces.",
+          highlights: [
+            "Wood-grain and stone-effect WPC panel finishes",
+            "Lightweight decorative panels for fast interior upgrades",
+            "Moisture-resistant materials suited to villa environments",
+          ],
+        },
+      ],
     },
     factory: {
       label: "Factory",
@@ -447,6 +620,9 @@ export const en = {
     readTimeUnit: "min read",
     ctaTitle: "Contact ESHSIRE for Samples & Quotation",
     ctaDesc: "Website: eshsire.com · WhatsApp: +86 15313057097 · Email: jason@eshsiregroup.com",
+    whatsappInquiry: "WhatsApp Inquiry",
+    emailUs: "Email Us",
+    getFreeQuote: "Get Free Quote",
   },
   spcSpecs: {
     heroSubtitle: "Standard SPC rigid core flooring specifications for OEM and wholesale export orders.",

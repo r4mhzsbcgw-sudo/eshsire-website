@@ -94,8 +94,11 @@ export const es: Dictionary = {
     sendInquiry: "Enviar consulta",
     getCatalog: "Obtener catálogo",
     getQuote: "Cotización",
+    requestQuote: "Solicitar cotización",
+    viewProject: "Ver proyecto",
     requestCatalog: "Solicitar catálogo",
     getSamples: "Muestras",
+    getFreeSamples: "Muestras gratis",
     contactPerson: "Contacto",
     email: "Correo",
     phone: "Teléfono",
@@ -133,6 +136,60 @@ export const es: Dictionary = {
   },
   home: {
     ...en.home,
+    hero: {
+      ...en.home.hero,
+      carousel: {
+        prev: "Anterior",
+        next: "Siguiente",
+        slide: "Diapositiva",
+        slides: [
+          {
+            years: "30 Años",
+            title: "Exigencias más altas hacia uno mismo son responsabilidad hacia el cliente",
+            subtitle:
+              "Innovación continua, calidad estable, hacemos lo mejor para satisfacer las necesidades del cliente",
+          },
+          {
+            titleLine1: "SUELOS SPC Y PANELES MURALES WPC",
+            titleAccent: "FABRICANTE",
+            subtitle: "Ayudamos a distribuidores y contratistas globales a crecer más rápido",
+            features: [
+              "Exportación a más de 30 países",
+              "Servicio OEM y marca privada",
+              "Actualizaciones diarias de producción",
+              "Inspección estricta de calidad",
+            ],
+            ctaSamples: "Muestras gratis",
+            ctaQuote: "Solicitar cotización",
+            stats: [
+              { value: "30+", label: "Años de experiencia" },
+              { value: "6000m²", label: "Planta de producción" },
+              { value: "30+", label: "Países de exportación" },
+              { value: "100,000+", label: "Clientes atendidos" },
+            ],
+          },
+          {
+            title: "Fuerte capacidad manufacturera",
+            subtitle: "Su socio confiable para el éxito a largo plazo",
+            stats: [
+              { value: "30+", label: "Años de experiencia", desc: "Enfocados en suelos y paneles murales por más de 30 años." },
+              { value: "6000m²", label: "Planta de producción", desc: "Fábrica moderna con líneas avanzadas y equipos." },
+              { value: "30+", label: "Países de exportación", desc: "Productos exportados a más de 30 países y regiones." },
+              { value: "100,000+", label: "Clientes atendidos", desc: "Con la confianza de distribuidores y contratistas globales." },
+            ],
+            whyTitle: "Por qué nos eligen compradores globales",
+            whySubtitle:
+              "Fabricación profesional, control de calidad estricto y servicios confiables para hacer crecer su negocio.",
+            whyItems: [
+              { title: "Actualizaciones de producción", desc: "Fotos y videos en tiempo real durante toda la producción." },
+              { title: "Inspección estricta de calidad", desc: "Múltiples inspecciones desde materias primas hasta producto terminado." },
+              { title: "Servicio OEM y marca privada", desc: "Diseños, branding, embalaje y etiquetas personalizados." },
+              { title: "Entrega confiable", desc: "Entrega puntual con carga de contenedores y seguimiento." },
+            ],
+          },
+        ],
+      },
+    },
     products: {
       label: "Productos",
       title: "Soluciones profesionales de suelos SPC y paneles murales",
@@ -150,6 +207,125 @@ export const es: Dictionary = {
         title: "Accesorios",
         desc: "Rodapiés, perfiles, base y accesorios de instalación.",
       },
+    },
+    projects: {
+      label: "Proyectos globales",
+      title: "Proyectos globales y casos de éxito",
+      description: "Con la confianza de distribuidores, contratistas y desarrolladores en todo el mundo",
+      detailLabel: "Resumen del proyecto",
+      galleryLabel: "Galería del proyecto",
+      galleryTitle: "Fotos e instalación del proyecto",
+      galleryDesc: "Explore todas las imágenes de nuestros casos globales de suelos y paneles murales.",
+      relatedTitle: "Más casos de éxito",
+      productLinksLabel: "Explore nuestras soluciones de suelos y paneles murales",
+      ctaTitle: "¿Necesita un proveedor de suelos confiable?",
+      ctaSubtitle: "Muestras gratis, precios OEM y soporte de proyecto desde nuestra fábrica en Pekín.",
+      items: [
+        {
+          slug: "africa-distributor",
+          title: "Proyecto distribuidor África",
+          tag: "África",
+          desc: "Apoyo a distribuidores de suelos con SPC, embalaje OEM y suministro estable.",
+          overview:
+            "Eshsire Group colaboró con distribuidores de suelos en África para ofrecer suministro estable de SPC, embalaje OEM personalizado y soporte de reposición a largo plazo.",
+          highlights: [
+            "Embalaje OEM y marca privada para mercados locales",
+            "Suministro mensual estable para pedidos mixtos",
+            "Colecciones SPC impermeables adaptadas a climas tropicales",
+          ],
+        },
+        {
+          slug: "middle-east-hotel",
+          title: "Proyecto hotel Oriente Medio",
+          tag: "Oriente Medio",
+          desc: "Suministro de suelos SPC premium para renovaciones hoteleras con aspecto de lujo y durabilidad.",
+          overview:
+            "Suministramos suelos SPC de núcleo rígido premium para vestíbulos, pasillos y habitaciones de hoteles en Oriente Medio, combinando estética de lujo y alto tráfico.",
+          highlights: [
+            "Acabados piedra y madera para interiores hoteleros",
+            "Capa de desgaste comercial para zonas públicas",
+            "Sistema click-lock para reducir tiempos de obra",
+          ],
+        },
+        {
+          slug: "school-flooring",
+          title: "Proyecto suelo escolar",
+          tag: "Educación",
+          desc: "Suelos duraderos para escuelas y centros educativos con alta resistencia al tráfico.",
+          overview:
+            "Este proyecto educativo requirió suelos SPC resistentes a rayones y fáciles de mantener para aulas, pasillos y áreas de actividad con uso continuo.",
+          highlights: [
+            "Opciones antideslizantes para zonas de seguridad",
+            "Suelo impermeable de bajo mantenimiento",
+            "Núcleo rígido resistente a mobiliario y equipos",
+          ],
+        },
+        {
+          slug: "europe-apartment",
+          title: "Proyecto apartamentos Europa",
+          tag: "Residencial",
+          desc: "Suelos SPC impermeables para renovación de apartamentos con diseño moderno.",
+          overview:
+            "Apoyamos a contratistas de renovación en Europa con colecciones SPC impermeables para cocinas, salones y dormitorios en edificios residenciales.",
+          highlights: [
+            "Núcleo 100% impermeable para cocinas y zonas húmedas",
+            "Colores y texturas de estilo europeo",
+            "Compatible con base acústica para reducción de ruido",
+          ],
+        },
+        {
+          slug: "commercial-office",
+          title: "Proyecto oficina comercial",
+          tag: "Oficina",
+          desc: "Instalación de suelos SPC comerciales para oficinas modernas con alto tráfico.",
+          overview:
+            "Suelos SPC de grado comercial para oficinas abiertas, salas de reuniones y recepciones donde la imagen profesional y la durabilidad son esenciales.",
+          highlights: [
+            "Capa de desgaste comercial para tráfico de oficina",
+            "Visuales madera y piedra para interiores corporativos",
+            "Instalación rápida con mínima interrupción",
+          ],
+        },
+        {
+          slug: "southeast-asia-distributor",
+          title: "Proyecto distribuidor Sudeste Asiático",
+          tag: "Mayorista",
+          desc: "Apoyo a distribuidores con embalaje OEM y suministro estable de suelos.",
+          overview:
+            "Distribuidores regionales en el Sudeste Asiático trabajan con Eshsire para colecciones personalizadas, embalaje localizado y pedidos OEM flexibles.",
+          highlights: [
+            "Colecciones y relieve adaptados al mercado",
+            "Embalaje OEM, etiquetas y material de venta",
+            "MOQ flexible para pedidos de prueba y repetición",
+          ],
+        },
+        {
+          slug: "hospital-flooring",
+          title: "Proyecto suelo hospital",
+          tag: "Sanidad",
+          desc: "Suelos SPC higiénicos e impermeables para hospitales y centros médicos.",
+          overview:
+            "Los centros sanitarios requieren suelos higiénicos, impermeables y fáciles de desinfectar. Suministramos SPC para pasillos, salas de espera y zonas administrativas.",
+          highlights: [
+            "Núcleo rígido impermeable ante derrames",
+            "Superficie lisa para limpieza rutinaria",
+            "Rendimiento estable en entornos médicos de alto tráfico",
+          ],
+        },
+        {
+          slug: "villa-wpc-wall-panel",
+          title: "Proyecto paneles WPC villa",
+          tag: "Villa",
+          desc: "Paneles murales WPC decorativos para proyectos de decoración interior de villas de lujo.",
+          overview:
+            "Para interiores de villas de lujo, Eshsire entregó paneles murales WPC decorativos con estética moderna y resistencia a la humedad.",
+          highlights: [
+            "Acabados WPC madera y piedra",
+            "Paneles ligeros para renovación rápida",
+            "Materiales resistentes a la humedad para villas",
+          ],
+        },
+      ],
     },
     factory: {
       ...en.home.factory,
@@ -281,6 +457,9 @@ export const es: Dictionary = {
     readTimeUnit: "min de lectura",
     ctaTitle: "Contacte a ESHSIRE para muestras y cotización",
     ctaDesc: "Web: eshsire.com · WhatsApp: +86 15313057097 · Email: jason@eshsiregroup.com",
+    whatsappInquiry: "Consulta por WhatsApp",
+    emailUs: "Enviar email",
+    getFreeQuote: "Cotización gratis",
   },
   productList: [
     "Suelos SPC",

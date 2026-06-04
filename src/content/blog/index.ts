@@ -6,12 +6,15 @@ import { chooseReliableSupplierPostEs } from "./choose-reliable-supplier.es";
 import { sevenMistakesPostEn } from "./seven-mistakes.en";
 import { sevenMistakesPostZh } from "./seven-mistakes.zh";
 import { sevenMistakesPostEs } from "./seven-mistakes.es";
+import { spcSupplierManufacturerPostEn } from "./spc-supplier-manufacturer.en";
+import { spcSupplierManufacturerPostZh } from "./spc-supplier-manufacturer.zh";
+import { spcSupplierManufacturerPostEs } from "./spc-supplier-manufacturer.es";
 import type { BlogPost } from "./types";
 
 const blogPostsByLocale = {
-  en: [chooseReliableSupplierPostEn, sevenMistakesPostEn],
-  zh: [chooseReliableSupplierPostZh, sevenMistakesPostZh],
-  es: [chooseReliableSupplierPostEs, sevenMistakesPostEs],
+  en: [spcSupplierManufacturerPostEn, chooseReliableSupplierPostEn, sevenMistakesPostEn],
+  zh: [spcSupplierManufacturerPostZh, chooseReliableSupplierPostZh, sevenMistakesPostZh],
+  es: [spcSupplierManufacturerPostEs, chooseReliableSupplierPostEs, sevenMistakesPostEs],
 } as const satisfies Record<"en" | "zh" | "es", BlogPost[]>;
 
 export function getBlogPosts(locale: Locale): BlogPost[] {

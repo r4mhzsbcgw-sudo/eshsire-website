@@ -119,25 +119,22 @@ function pickHome<K extends HomeStringKey>(key: K): string {
   return USE_LOCAL_IMAGES ? homeLocal[key] : homeRemote[key];
 }
 
-/** Homepage hero carousel — prefer WebP; JPG fallback for older browsers via picture in Hero */
+/** Homepage hero carousel */
 export const homeCarouselSlides = [
   {
-    src: "/images/home/carousel/slide-01.webp",
-    fallback: "/images/home/hero-banner.jpg",
-    altEn: "Eshsire factory and 20 years manufacturing strength",
-    altZh: "壹曙科技工厂与 20 年制造实力",
+    image: "/images/home/carousel/slide-01.jpg",
+    altEn: "Eshsire factory building and 30 years manufacturing",
+    altZh: "壹曙科技工厂与 30 年制造实力",
   },
   {
-    src: "/images/home/carousel/slide-02.webp",
-    fallback: "/images/home/spc-flooring.jpg",
-    altEn: "20+ years in building and decor manufacturing",
-    altZh: "20+ 年建筑与装饰材料制造经验",
+    image: "/images/home/carousel/slide-02.jpg",
+    altEn: "SPC flooring and WPC wall panel manufacturer",
+    altZh: "SPC 地板与 WPC 墙板制造商",
   },
   {
-    src: "/images/home/carousel/slide-03.webp",
-    fallback: "/images/home/factory/02-quality.jpg",
-    altEn: "Certifications including ISO, CE and SGS",
-    altZh: "ISO、CE、SGS 等资质认证",
+    image: "/images/home/carousel/slide-03.jpg",
+    altEn: "Manufacturing capability and global buyer services",
+    altZh: "制造实力与全球买家服务",
   },
 ] as const;
 
@@ -177,6 +174,9 @@ export const homeImages = {
   },
   localPaths: homeLocal,
 };
+
+/** @deprecated Import from @/lib/unsplash-source */
+export { projectImages } from "./unsplash-source";
 
 export const aboutImages = {
   get hero() {

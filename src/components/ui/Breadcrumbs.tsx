@@ -20,7 +20,13 @@ const PATH_LABEL_KEYS: Record<string, keyof typeof import("@/i18n/dictionaries/e
   "/spc-flooring/specs": "spcSpecs",
 };
 
-export function Breadcrumbs() {
+export function Breadcrumbs({
+  parent,
+  currentLabel,
+}: {
+  parent?: { label: string; href: string };
+  currentLabel?: string;
+}) {
   const { locale, dict } = useLocale();
   const pathname = usePathname();
   const path = stripLocale(pathname);
@@ -28,7 +34,7 @@ export function Breadcrumbs() {
   if (path === "/") return null;
 
   const labelKey = PATH_LABEL_KEYS[path];
-  const currentLabel = labelKey ? dict.meta.pages[labelKey] : path;
+  const resolvedLabel = currentLabel ?? (labelKey ? dict.meta.pages[labelKey] : path);
 
   return (
     <nav aria-label="Breadcrumb" className="mb-4 text-sm text-industrial-light">
@@ -38,11 +44,23 @@ export function Breadcrumbs() {
             {dict.meta.pages.home}
           </Link>
         </li>
+        {parent && (
+          <>
+            <li aria-hidden="true" className="text-industrial-mist">
+              /
+            </li>
+            <li>
+              <Link href={parent.href} className="hover:text-accent">
+                {parent.label}
+              </Link>
+            </li>
+          </>
+        )}
         <li aria-hidden="true" className="text-industrial-mist">
           /
         </li>
         <li className="font-medium text-white" aria-current="page">
-          {currentLabel}
+          {resolvedLabel}
         </li>
       </ol>
     </nav>

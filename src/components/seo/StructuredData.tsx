@@ -6,6 +6,8 @@ import { stripLocale } from "@/i18n/navigation";
 import { pageUrl } from "@/lib/seo";
 import { siteConfig } from "@/lib/config";
 import type { BlogPost } from "@/content/blog/types";
+import { PROJECT_SLUGS } from "@/content/projects";
+import { projectImages } from "@/lib/images";
 
 const PATH_LABEL_KEYS: Record<
   string,
@@ -145,12 +147,16 @@ export function ProductJsonLd({
 }
 
 export function ArticleJsonLd({ locale, post }: { locale: Locale; post: BlogPost }) {
+  const imageUrl = post.heroImage.startsWith("http")
+    ? post.heroImage
+    : `${siteConfig.url}${post.heroImage}`;
+
   const schema = {
     "@context": "https://schema.org",
     "@type": "Article",
     headline: post.title,
     description: post.description,
-    image: `${siteConfig.url}${post.heroImage}`,
+    image: imageUrl,
     datePublished: post.date,
     dateModified: post.date,
     inLanguage: htmlLangMap[locale],
@@ -165,6 +171,101 @@ export function ArticleJsonLd({ locale, post }: { locale: Locale; post: BlogPost
       url: siteConfig.url,
     },
     mainEntityOfPage: pageUrl(locale, `/blog/${post.slug}`),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export async function ProjectsSectionJsonLd({ locale }: { locale: Locale }) {
+  const pathname = headers().get("x-pathname") ?? "";
+  const path = stripLocale(pathname);
+  if (path !== "/") return null;
+
+  const dict = await getDictionary(locale);
+  const items = dict.home.projects.items;
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: dict.home.projects.title,
+    description: dict.home.projects.description,
+    inLanguage: htmlLangMap[locale],
+    numberOfItems: items.length,
+    itemListElement: items.map((project, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      item: {
+        "@type": "CreativeWork",
+        "@id": pageUrl(locale, `/projects/${project.slug}`),
+        name: project.title,
+        description: project.desc,
+        image: projectImages[i],
+        url: pageUrl(locale, `/projects/${project.slug}`),
+        about: project.tag,
+        provider: {
+          "@type": "Organization",
+          name: siteConfig.name,
+          url: siteConfig.url,
+        },
+      },
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export function ProjectJsonLd({
+  locale,
+  slug,
+  title,
+  description,
+  image,
+  tag,
+  gallery,
+}: {
+  locale: Locale;
+  slug: string;
+  title: string;
+  description: string;
+  image: string;
+  tag: string;
+  gallery: readonly string[];
+}) {
+  if (!PROJECT_SLUGS.includes(slug as (typeof PROJECT_SLUGS)[number])) return null;
+
+  const page = pageUrl(locale, `/projects/${slug}`);
+  const images = gallery.length > 0 ? gallery : [image];
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "@id": page,
+    name: title,
+    description,
+    image: images,
+    url: page,
+    inLanguage: htmlLangMap[locale],
+    about: tag,
+    creator: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
+    provider: {
+      "@type": "Organization",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
   };
 
   return (

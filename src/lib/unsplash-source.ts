@@ -14,7 +14,7 @@ const PROJECT_COVER_KEYWORDS = [
   "school,building",
   "modern,apartment",
   "office,interior",
-  "showroom",
+  "distribution,center",
   "hospital,corridor",
   "luxury,villa",
 ] as const;
@@ -25,7 +25,8 @@ const KEYWORD_PHOTOS: Record<string, string> = {
   "school,building": "photo-1580582932707-520aed937b7b",
   "modern,apartment": "photo-1505693416388-ac5ce068fe85",
   "office,interior": "photo-1497366754035-f200968a6e72",
-  showroom: "photo-1581090700227-1e37b190418e",
+  "distribution,center": "photo-1553413077-190dd305871c",
+  showroom: "photo-1615529328331-f8917597711f",
   "hospital,corridor": "photo-1519494026892-80bbd2d6fd0d",
   "luxury,villa": "photo-1600607687939-ce8a6c25118c",
 };

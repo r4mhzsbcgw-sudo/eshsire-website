@@ -7,6 +7,7 @@ import { useLocale } from "@/context/LocaleContext";
 import type { Locale } from "@/i18n/locales";
 import { localizedPath } from "@/i18n/navigation";
 import { getWhatsAppUrl, siteConfig } from "@/lib/config";
+import { getBlogProcurementLabels } from "@/content/blog/b2b-blocks";
 import type { BlogBlock, BlogPost } from "@/content/blog/types";
 
 function resolveHref(locale: Locale, href: string) {
@@ -113,6 +114,7 @@ function ArticleCta({
   const text = block.text ?? dict.blog.ctaDesc;
 
   if (block.variant === "b2b-procurement") {
+    const labels = getBlogProcurementLabels(locale);
     return (
       <div className="mt-12 rounded-xl border border-accent/30 bg-accent/5 p-8 text-center">
         <h2 className="text-xl font-bold text-white md:text-2xl">{title}</h2>
@@ -122,7 +124,7 @@ function ArticleCta({
             href={localizedPath(locale, "/contact")}
             className="inline-block border border-accent bg-accent px-6 py-3 text-sm font-semibold text-industrial-dark hover:bg-white"
           >
-            {dict.blog.requestPriceList}
+            {labels.requestPriceList}
           </Link>
           <a
             href={getWhatsAppUrl(locale, "Hello, I need a 40HQ container quotation for SPC flooring.")}
@@ -130,13 +132,13 @@ function ArticleCta({
             rel="noopener noreferrer"
             className="inline-block border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:border-accent hover:text-accent"
           >
-            {dict.blog.containerQuotation}
+            {labels.containerQuotation}
           </a>
           <Link
             href={localizedPath(locale, "/contact")}
             className="inline-block border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:border-accent hover:text-accent"
           >
-            {dict.blog.bulkOrderPricing}
+            {labels.bulkOrderPricing}
           </Link>
         </div>
       </div>

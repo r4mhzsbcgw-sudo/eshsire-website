@@ -1,4 +1,4 @@
-import type { Locale } from "@/i18n/locales";
+import { locales, type Locale } from "@/i18n/locales";
 import { getAllBlogSlugs as getBlogSlugs } from "./slugs";
 import { chooseReliableSupplierPostEn } from "./choose-reliable-supplier.en";
 import { chooseReliableSupplierPostZh } from "./choose-reliable-supplier.zh";
@@ -14,38 +14,105 @@ import {
   generatedPostsEs,
   generatedPostsZh,
 } from "./generated/registry";
-import type { BlogPost } from "./types";
+import { localizeGeneratedPost } from "./generated/resolve-locale";
+import { localizeManualPost } from "./localize-manual-post";
+import type { BlogBlock, BlogPost } from "./types";
+import {
+  getArticleTranslation,
+  getTemplateTranslation,
+  translatedLocales,
+} from "../../../scripts/seo/article-translations.mjs";
+import { blogFactoryImages as img } from "@/lib/blog-images";
+
+const PACK_LOCALES = translatedLocales as readonly Locale[];
+
+const manualNative = {
+  en: [spcSupplierManufacturerPostEn, chooseReliableSupplierPostEn, sevenMistakesPostEn],
+  zh: [spcSupplierManufacturerPostZh, chooseReliableSupplierPostZh, sevenMistakesPostZh],
+  es: [spcSupplierManufacturerPostEs, chooseReliableSupplierPostEs, sevenMistakesPostEs],
+} as const;
 
 function sortByDateDesc(posts: BlogPost[]): BlogPost[] {
   return [...posts].sort((a, b) => b.date.localeCompare(a.date));
 }
 
-const blogPostsByLocale = {
-  en: sortByDateDesc([
-    ...generatedPostsEn,
-    spcSupplierManufacturerPostEn,
-    chooseReliableSupplierPostEn,
-    sevenMistakesPostEn,
-  ]),
-  zh: sortByDateDesc([
-    ...generatedPostsZh,
-    spcSupplierManufacturerPostZh,
-    chooseReliableSupplierPostZh,
-    sevenMistakesPostZh,
-  ]),
-  es: sortByDateDesc([
-    ...generatedPostsEs,
-    spcSupplierManufacturerPostEs,
-    chooseReliableSupplierPostEs,
-    sevenMistakesPostEs,
-  ]),
-} as const satisfies Record<"en" | "zh" | "es", BlogPost[]>;
+function buildTemplateBlocks(slot: NonNullable<BlogPost["slot"]>, locale: Locale, title: string): BlogBlock[] {
+  const t = getTemplateTranslation(slot, locale, title);
+  if (!t) return [];
+
+  const heroImg =
+    slot === "afternoon" ? img.production : slot === "evening" ? img.quality : img.production;
+  const loadImg = img.loading;
+
+  const blocks: BlogBlock[] = [
+    { type: "p", text: t.introText },
+    { type: "h2", text: t.h2Supply },
+    { type: "p", text: t.pSupply },
+    { type: "img", src: heroImg, alt: t.captionProduction, caption: t.captionProduction },
+    { type: "h2", text: t.h2Pricing },
+    { type: "p", text: t.pPricing },
+    { type: "img", src: loadImg, alt: t.captionLoading, caption: t.captionLoading },
+  ];
+
+  if (slot === "afternoon" && t.h3Cost && t.costItems?.length) {
+    blocks.push({ type: "h3", text: t.h3Cost });
+    blocks.push({ type: "ul", items: t.costItems });
+  }
+  if (slot === "evening" && t.captionQc) {
+    blocks.push({ type: "img", src: img.quality, alt: t.captionQc, caption: t.captionQc });
+  }
+
+  return blocks;
+}
+
+function resolveGeneratedForLocale(locale: Locale): BlogPost[] {
+  if (locale === "zh") return generatedPostsZh;
+  if (locale === "es") return generatedPostsEs;
+  if (locale === "en") return generatedPostsEn;
+
+  return generatedPostsEn.map((enPost) => {
+    let translation = getArticleTranslation(enPost.slug, locale) as
+      | Pick<BlogPost, "title" | "metaTitle" | "description" | "blocks">
+      | null;
+
+    if (!translation && enPost.slot) {
+      const template = getTemplateTranslation(enPost.slot, locale, enPost.title);
+      if (template) {
+        translation = {
+          title: enPost.title,
+          metaTitle: enPost.metaTitle ?? enPost.title,
+          description: enPost.description,
+          blocks: buildTemplateBlocks(enPost.slot, locale, enPost.title),
+        };
+      }
+    }
+
+    if (!translation) return enPost;
+    const template =
+      enPost.slot && !getArticleTranslation(enPost.slug, locale)
+        ? getTemplateTranslation(enPost.slot, locale, enPost.title)
+        : null;
+    return localizeGeneratedPost(enPost, locale, translation, template?.ctaDefault);
+  });
+}
+
+function resolveManualForLocale(locale: Locale): BlogPost[] {
+  if (locale === "en" || locale === "zh" || locale === "es") {
+    return [...manualNative[locale]];
+  }
+  return manualNative.en.map((post) => localizeManualPost(post, locale));
+}
+
+function buildPostsForLocale(locale: Locale): BlogPost[] {
+  return sortByDateDesc([...resolveGeneratedForLocale(locale), ...resolveManualForLocale(locale)]);
+}
+
+const blogPostsByLocale = Object.fromEntries(
+  locales.map((locale) => [locale, buildPostsForLocale(locale)])
+) as Record<Locale, BlogPost[]>;
 
 export function getBlogPosts(locale: Locale): BlogPost[] {
-  if (locale in blogPostsByLocale) {
-    return blogPostsByLocale[locale as keyof typeof blogPostsByLocale];
-  }
-  return blogPostsByLocale.en;
+  return blogPostsByLocale[locale] ?? blogPostsByLocale.en;
 }
 
 export function getBlogPost(slug: string, locale: Locale): BlogPost | undefined {

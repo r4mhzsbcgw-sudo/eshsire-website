@@ -63,13 +63,14 @@ export const post: BlogPost = {
       type: "p",
       text: "An SPC flooring factory controls extrusion, lamination, profiling and packaging in one facility. Distributors buying direct avoid trader margins and gain clearer MOQ rules for container orders. Reference pricing is usually quoted FOB China per sqm based on thickness, wear layer and order volume — not a single retail price.",
     },
-    internalLinksBlock(),
+    internalLinksBlock("en"),
     imgBlock(
       img.warehouse,
       "SPC flooring factory warehouse stock bulk order",
       "Warehouse staging for wholesale SPC flooring orders"
     ),
     b2bCtaBlock(
+      "en",
       "Need SPC specs and factory pricing for your next commercial project? Request our price list or container quotation."
     ),
   ],

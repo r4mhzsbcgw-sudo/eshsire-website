@@ -9,28 +9,32 @@ import { sevenMistakesPostEs } from "./seven-mistakes.es";
 import { spcSupplierManufacturerPostEn } from "./spc-supplier-manufacturer.en";
 import { spcSupplierManufacturerPostZh } from "./spc-supplier-manufacturer.zh";
 import { spcSupplierManufacturerPostEs } from "./spc-supplier-manufacturer.es";
-import { generatedPostsEn } from "./generated/registry";
+import {
+  generatedPostsEn,
+  generatedPostsEs,
+  generatedPostsZh,
+} from "./generated/registry";
 import type { BlogPost } from "./types";
-
-const manualPostsEn = [
-  ...generatedPostsEn,
-  spcSupplierManufacturerPostEn,
-  chooseReliableSupplierPostEn,
-  sevenMistakesPostEn,
-];
 
 function sortByDateDesc(posts: BlogPost[]): BlogPost[] {
   return [...posts].sort((a, b) => b.date.localeCompare(a.date));
 }
 
 const blogPostsByLocale = {
-  en: sortByDateDesc(manualPostsEn),
+  en: sortByDateDesc([
+    ...generatedPostsEn,
+    spcSupplierManufacturerPostEn,
+    chooseReliableSupplierPostEn,
+    sevenMistakesPostEn,
+  ]),
   zh: sortByDateDesc([
+    ...generatedPostsZh,
     spcSupplierManufacturerPostZh,
     chooseReliableSupplierPostZh,
     sevenMistakesPostZh,
   ]),
   es: sortByDateDesc([
+    ...generatedPostsEs,
     spcSupplierManufacturerPostEs,
     chooseReliableSupplierPostEs,
     sevenMistakesPostEs,

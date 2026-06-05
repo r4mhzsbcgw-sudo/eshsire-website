@@ -13,12 +13,14 @@
 import { writeFileSync, readFileSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
 import { contentCalendar } from "./seo/content-calendar.mjs";
+import { resolveMeta, templateBlocks } from "./seo/article-i18n-templates.mjs";
 
 const ROOT = process.cwd();
 const GENERATED_DIR = join(ROOT, "src/content/blog/generated");
 const REGISTRY_PATH = join(GENERATED_DIR, "registry.ts");
 const SLUGS_PATH = join(ROOT, "src/content/blog/slugs.ts");
 const SITEMAP_SCRIPT = join(ROOT, "scripts/generate-sitemap.mjs");
+const LOCALES = ["en", "zh", "es"];
 
 const IMG = {
   production: "/images/home/factory/01-production.jpg",
@@ -69,15 +71,16 @@ function blockToTs(block, indent = "    ") {
       .join(", ");
     return `${indent}{ type: "rich-p", segments: [${segs}] },`;
   }
-  if (block.type === "cta")
-    return `${indent}b2bCtaBlock("${escapeStr(block.text || "")}"),`;
   return "";
 }
 
-function buildArticleFile(meta, slot, blocks, date) {
+function buildArticleFile(meta, slot, blocks, date, locale, ctaText) {
   const hero =
     slot === "afternoon" ? IMG.warehouse : slot === "evening" ? IMG.loading : IMG.spcFeatured;
+  const heroKey =
+    slot === "afternoon" ? "warehouse" : slot === "evening" ? "loading" : "spcFeatured";
   const blockLines = blocks.map((b) => blockToTs(b)).join("\n");
+  const ctaArg = ctaText ? `, "${escapeStr(ctaText)}"` : "";
 
   return `import type { BlogPost } from "../types";
 import { b2bCtaBlock, imgBlock, internalLinksBlock } from "../b2b-blocks";
@@ -91,157 +94,122 @@ export const post: BlogPost = {
   description: "${escapeStr(meta.description)}",
   date: "${date}",
   readMinutes: ${meta.readMinutes},
-  heroImage: img.${slot === "afternoon" ? "warehouse" : slot === "evening" ? "loading" : "spcFeatured"},
+  heroImage: img.${heroKey},
   ogImage: "${hero}",
   blocks: [
 ${blockLines}
-    internalLinksBlock(),
-    b2bCtaBlock(),
+    internalLinksBlock("${locale}"),
+    b2bCtaBlock("${locale}"${ctaArg}),
   ],
 };
 `;
 }
 
-/** Template bodies for calendar days without hand-written TS files */
-function templateBlocks(slot, meta) {
-  const intro = {
-    type: "p",
-    text: `${meta.title}. This guide is for flooring distributors, contractors and building material importers sourcing from a China SPC flooring factory. We focus on factory pricing, container efficiency and stable bulk supply — not decoration trends.`,
-  };
-  const sections = [
-    { type: "h2", text: "Factory supply chain overview" },
-    {
-      type: "p",
-      text: "Direct factory procurement removes trader margin and improves batch consistency. Bulk spc flooring orders packed for 40HQ containers reduce landed cost per sqm compared with LCL shipments.",
-    },
-    {
-      type: "img",
-      src: IMG.production,
-      alt: "SPC flooring factory production line China",
-      caption: "SPC flooring production line",
-    },
-    { type: "h2", text: "Pricing and procurement logic" },
-    {
-      type: "p",
-      text: "Wholesale flooring price depends on thickness, wear layer, volume and packaging. Request factory price list with target sqm and port for accurate container flooring price quotation.",
-    },
-    {
-      type: "img",
-      src: IMG.loading,
-      alt: "SPC flooring container loading 40HQ",
-      caption: "Container loading for export orders",
-    },
-  ];
-  if (slot === "afternoon") {
-    sections.push({
-      type: "h3",
-      text: "Cost breakdown for importers",
-    });
-    sections.push({
-      type: "ul",
-      items: [
-        "FOB factory price per sqm",
-        "OEM carton and label costs",
-        "Local trucking to port",
-        "Ocean freight and destination charges",
-      ],
-    });
-  }
-  if (slot === "evening") {
-    sections.push({
-      type: "img",
-      src: IMG.quality,
-      alt: "SPC flooring QC inspection China factory",
-      caption: "QC before shipment",
-    });
-  }
-  return [intro, ...sections];
-}
-
 function writeArticle(meta, slot, date) {
-  const filePath = join(GENERATED_DIR, `${meta.slug}.en.ts`);
-  if (existsSync(filePath)) {
-    console.log(`Skip (exists): ${meta.slug}`);
-    return meta.slug;
+  let created = false;
+  for (const locale of LOCALES) {
+    const filePath = join(GENERATED_DIR, `${meta.slug}.${locale}.ts`);
+    if (existsSync(filePath)) {
+      console.log(`Skip (exists): ${meta.slug}.${locale}.ts`);
+      continue;
+    }
+    const localized = resolveMeta(meta, locale);
+    const { blocks, ctaText } = templateBlocks(slot, localized, locale, IMG);
+    writeFileSync(
+      filePath,
+      buildArticleFile(localized, slot, blocks, date, locale, ctaText),
+      "utf8"
+    );
+    console.log(`Created: ${meta.slug}.${locale}.ts`);
+    created = true;
   }
-  const blocks = templateBlocks(slot, meta);
-  writeFileSync(filePath, buildArticleFile(meta, slot, blocks, date), "utf8");
-  console.log(`Created: ${meta.slug}.en.ts`);
+  if (!created && existsSync(join(GENERATED_DIR, `${meta.slug}.en.ts`))) {
+    console.log(`Skip (exists): ${meta.slug}`);
+  }
   return meta.slug;
 }
 
+function slugBase(filename) {
+  return filename.replace(/\.(en|zh|es)\.ts$/, "");
+}
+
 function regenerateRegistry() {
-  const files = readdirSync(GENERATED_DIR)
-    .filter((f) => f.endsWith(".en.ts"))
-    .sort();
-  const imports = files
-    .map((f, i) => {
-      const varName = `generatedPost${i}`;
-      const mod = f.replace(".en.ts", "");
-      return `import { post as ${varName} } from "./${mod}.en";`;
-    })
-    .join("\n");
-  const arr = files.map((_, i) => `generatedPost${i}`).join(", ");
-  const content = `/** AUTO-GENERATED — run: node scripts/generate-daily-seo-articles.mjs */\nimport type { BlogPost } from "../types";\n${imports}\n\nexport const generatedPostsEn: BlogPost[] = [${arr}];\n`;
+  const bases = [
+    ...new Set(
+      readdirSync(GENERATED_DIR)
+        .filter((f) => /\.(en|zh|es)\.ts$/.test(f))
+        .map(slugBase)
+    ),
+  ].sort();
+
+  const sections = LOCALES.map((locale) => {
+    const imports = bases
+      .map((base) => {
+        const safe = base.replace(/[^a-z0-9]/gi, "_");
+        return `import { post as ${safe}_${locale} } from "./${base}.${locale}";`;
+      })
+      .join("\n");
+    const arr = bases.map((base) => `${base.replace(/[^a-z0-9]/gi, "_")}_${locale}`).join(", ");
+    return { locale, imports, arr };
+  });
+
+  const content = `/** AUTO-GENERATED — run: node scripts/generate-daily-seo-articles.mjs */
+import type { BlogPost } from "../types";
+${sections.map((s) => s.imports).join("\n")}
+
+export const generatedPostsEn: BlogPost[] = [${sections.find((s) => s.locale === "en").arr}];
+export const generatedPostsZh: BlogPost[] = [${sections.find((s) => s.locale === "zh").arr}];
+export const generatedPostsEs: BlogPost[] = [${sections.find((s) => s.locale === "es").arr}];
+`;
   writeFileSync(REGISTRY_PATH, content, "utf8");
-  console.log(`Registry: ${files.length} posts`);
+  console.log(`Registry: ${bases.length} posts × ${LOCALES.length} locales`);
 }
 
 function regenerateSlugs() {
-  const generated = readdirSync(GENERATED_DIR)
-    .filter((f) => f.endsWith(".en.ts"))
-    .map((f) => f.replace(".en.ts", ""));
+  const generated = [
+    ...new Set(
+      readdirSync(GENERATED_DIR)
+        .filter((f) => f.endsWith(".en.ts"))
+        .map((f) => f.replace(".en.ts", ""))
+    ),
+  ].sort();
   const manual = [
     "spc-flooring-supplier-manufacturer-china",
     "choose-reliable-spc-flooring-supplier-china-2026",
     "7-mistakes-importing-spc-flooring-from-china",
   ];
+  const all = [...generated, ...manual];
   const content = `/** Lightweight slug list for sitemap/SSG — updated by generate-daily-seo-articles.mjs */
-
-/** English-only auto-generated SEO articles */
-export const blogSlugsEnOnly = ${JSON.stringify(generated, null, 2)} as const;
-
-/** Manual articles with en/zh/es translations */
-export const blogSlugsI18n = ${JSON.stringify(manual, null, 2)} as const;
-
-export const blogSlugs = [...blogSlugsEnOnly, ...blogSlugsI18n] as const;
+export const blogSlugs = ${JSON.stringify(all, null, 2)} as const;
 
 export function getAllBlogSlugs(): string[] {
   return [...blogSlugs];
 }
-
-export function getBlogSlugsForLocale(locale: string): string[] {
-  if (locale === "en") return [...blogSlugs];
-  return [...blogSlugsI18n];
-}
 `;
   writeFileSync(SLUGS_PATH, content, "utf8");
-  console.log(`Slugs: ${generated.length} EN-only + ${manual.length} i18n`);
+  console.log(`Slugs: ${all.length} total`);
 }
 
 function updateSitemapBlogSlugs() {
-  const generated = readdirSync(GENERATED_DIR)
-    .filter((f) => f.endsWith(".en.ts"))
-    .map((f) => f.replace(".en.ts", ""));
+  const generated = [
+    ...new Set(
+      readdirSync(GENERATED_DIR)
+        .filter((f) => f.endsWith(".en.ts"))
+        .map((f) => f.replace(".en.ts", ""))
+    ),
+  ].sort();
   const manual = [
     "spc-flooring-supplier-manufacturer-china",
     "choose-reliable-spc-flooring-supplier-china-2026",
     "7-mistakes-importing-spc-flooring-from-china",
   ];
+  const all = [...generated, ...manual];
   let sitemap = readFileSync(SITEMAP_SCRIPT, "utf8");
-  const enRe = /const BLOG_SLUGS_EN_ONLY = \[[\s\S]*?\];/;
-  const i18nRe = /const BLOG_SLUGS_I18N = \[[\s\S]*?\];/;
-  if (enRe.test(sitemap) && i18nRe.test(sitemap)) {
-    sitemap = sitemap.replace(
-      enRe,
-      `const BLOG_SLUGS_EN_ONLY = ${JSON.stringify(generated, null, 2)};`
-    );
-    sitemap = sitemap.replace(
-      i18nRe,
-      `const BLOG_SLUGS_I18N = ${JSON.stringify(manual, null, 2)};`
-    );
+  const re = /const BLOG_SLUGS = \[[\s\S]*?\];/;
+  if (re.test(sitemap)) {
+    sitemap = sitemap.replace(re, `const BLOG_SLUGS = ${JSON.stringify(all, null, 2)};`);
     writeFileSync(SITEMAP_SCRIPT, sitemap, "utf8");
-    console.log("Updated generate-sitemap.mjs blog slug lists");
+    console.log("Updated generate-sitemap.mjs BLOG_SLUGS");
   }
 }
 

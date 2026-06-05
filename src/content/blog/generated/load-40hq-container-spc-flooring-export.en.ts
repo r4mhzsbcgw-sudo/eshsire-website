@@ -89,8 +89,9 @@ export const post: BlogPost = {
       "SPC flooring export shipment from China flooring factory",
       "Export dispatch after container sealing and documentation"
     ),
-    internalLinksBlock(),
+    internalLinksBlock("en"),
     b2bCtaBlock(
+      "en",
       "Planning a 40HQ SPC flooring shipment? Get container quotation, loading schedule and factory price list from our export team."
     ),
   ],

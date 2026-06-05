@@ -80,8 +80,9 @@ export const post: BlogPost = {
       "SPC flooring OEM packaging wholesale order China factory",
       "OEM carton packaging for distributor private-label orders"
     ),
-    internalLinksBlock(),
+    internalLinksBlock("en"),
     b2bCtaBlock(
+      "en",
       "Share your target thickness, wear layer and container volume. We reply with factory price list and 40HQ quotation within 24 hours."
     ),
   ],

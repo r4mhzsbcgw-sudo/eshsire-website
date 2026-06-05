@@ -623,6 +623,9 @@ export const en = {
     whatsappInquiry: "WhatsApp Inquiry",
     emailUs: "Email Us",
     getFreeQuote: "Get Free Quote",
+    requestPriceList: "Request Factory Price List",
+    containerQuotation: "Get Container Quotation",
+    bulkOrderPricing: "Get Bulk Order Pricing",
   },
   spcSpecs: {
     heroSubtitle: "Standard SPC rigid core flooring specifications for OEM and wholesale export orders.",

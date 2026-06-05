@@ -2,15 +2,16 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogPostContent } from "@/components/pages/BlogPostContent";
 import { ArticleJsonLd } from "@/components/seo/StructuredData";
-import { getBlogPost, getAllBlogSlugs } from "@/content/blog";
+import { getBlogPost, getBlogPosts } from "@/content/blog";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { isLocale, type Locale } from "@/i18n/locales";
 import { buildPageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
-  const slugs = getAllBlogSlugs();
   const locales = ["en", "zh", "es"] as const;
-  return locales.flatMap((locale) => slugs.map((slug) => ({ locale, slug })));
+  return locales.flatMap((locale) =>
+    getBlogPosts(locale).map((post) => ({ locale, slug: post.slug }))
+  );
 }
 
 export async function generateMetadata({

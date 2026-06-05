@@ -22,10 +22,15 @@ const ROUTES = [
   "/certifications",
   "/blog",
 ];
-const BLOG_SLUGS = [
+const BLOG_SLUGS_EN_ONLY = [
+  "what-is-spc-flooring-commercial-projects",
+  "spc-flooring-factory-price-bulk-container-orders",
+  "load-40hq-container-spc-flooring-export",
+];
+const BLOG_SLUGS_I18N = [
   "spc-flooring-supplier-manufacturer-china",
   "choose-reliable-spc-flooring-supplier-china-2026",
-  "7-mistakes-importing-spc-flooring-from-china",
+  "7-mistakes-importing-spc-flooring-from-china"
 ];
 const PROJECT_SLUGS = [
   "africa-distributor",
@@ -65,7 +70,11 @@ for (const locale of LOCALES) {
     const priority = route === "" ? "1" : route === "/blog" ? "0.7" : "0.8";
     entries.push(urlEntry(`${SITE_URL}/${locale}${route}`, changeFreq, priority));
   }
-  for (const slug of BLOG_SLUGS) {
+  const blogSlugs =
+    locale === "en"
+      ? [...BLOG_SLUGS_EN_ONLY, ...BLOG_SLUGS_I18N]
+      : BLOG_SLUGS_I18N;
+  for (const slug of blogSlugs) {
     entries.push(
       urlEntry(`${SITE_URL}/${locale}/blog/${slug}`, "monthly", "0.7")
     );

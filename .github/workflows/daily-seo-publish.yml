@@ -1,0 +1,68 @@
+name: Daily SEO Articles
+
+on:
+  schedule:
+    # China Standard Time (UTC+8): 09:00, 14:00, 20:00
+    - cron: "0 1 * * *"
+    - cron: "0 6 * * *"
+    - cron: "0 12 * * *"
+  workflow_dispatch:
+    inputs:
+      slot:
+        description: "Article slot (morning, afternoon, evening, or all)"
+        required: false
+        default: "all"
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Determine slot from cron
+        id: slot
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            INPUT="${{ github.event.inputs.slot }}"
+            if [ "$INPUT" = "all" ] || [ -z "$INPUT" ]; then
+              echo "mode=all" >> $GITHUB_OUTPUT
+            else
+              echo "mode=$INPUT" >> $GITHUB_OUTPUT
+            fi
+          elif [ "${{ github.event.schedule }}" = "0 1 * * *" ]; then
+            echo "mode=morning" >> $GITHUB_OUTPUT
+          elif [ "${{ github.event.schedule }}" = "0 6 * * *" ]; then
+            echo "mode=afternoon" >> $GITHUB_OUTPUT
+          else
+            echo "mode=evening" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate SEO article(s)
+        run: |
+          MODE="${{ steps.slot.outputs.mode }}"
+          if [ "$MODE" = "all" ]; then
+            node scripts/generate-daily-seo-articles.mjs
+          else
+            node scripts/generate-daily-seo-articles.mjs "$MODE"
+          fi
+
+      - name: Regenerate sitemap
+        run: node scripts/generate-sitemap.mjs
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add src/content/blog/generated/ src/content/blog/slugs.ts src/content/blog/generated/registry.ts scripts/generate-sitemap.mjs public/sitemap.xml
+          if git diff --staged --quiet; then
+            echo "No new articles to publish"
+            exit 0
+          fi
+          git commit -m "Publish daily SEO blog articles ($(date +%Y-%m-%d))"
+          git push

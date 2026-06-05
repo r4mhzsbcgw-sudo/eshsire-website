@@ -460,6 +460,9 @@ export const es: Dictionary = {
     whatsappInquiry: "Consulta por WhatsApp",
     emailUs: "Enviar email",
     getFreeQuote: "Cotización gratis",
+    requestPriceList: "Solicitar lista de precios de fábrica",
+    containerQuotation: "Cotización de contenedor",
+    bulkOrderPricing: "Precio por pedido al por mayor",
   },
   productList: [
     "Suelos SPC",

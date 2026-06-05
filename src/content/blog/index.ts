@@ -9,12 +9,32 @@ import { sevenMistakesPostEs } from "./seven-mistakes.es";
 import { spcSupplierManufacturerPostEn } from "./spc-supplier-manufacturer.en";
 import { spcSupplierManufacturerPostZh } from "./spc-supplier-manufacturer.zh";
 import { spcSupplierManufacturerPostEs } from "./spc-supplier-manufacturer.es";
+import { generatedPostsEn } from "./generated/registry";
 import type { BlogPost } from "./types";
 
+const manualPostsEn = [
+  ...generatedPostsEn,
+  spcSupplierManufacturerPostEn,
+  chooseReliableSupplierPostEn,
+  sevenMistakesPostEn,
+];
+
+function sortByDateDesc(posts: BlogPost[]): BlogPost[] {
+  return [...posts].sort((a, b) => b.date.localeCompare(a.date));
+}
+
 const blogPostsByLocale = {
-  en: [spcSupplierManufacturerPostEn, chooseReliableSupplierPostEn, sevenMistakesPostEn],
-  zh: [spcSupplierManufacturerPostZh, chooseReliableSupplierPostZh, sevenMistakesPostZh],
-  es: [spcSupplierManufacturerPostEs, chooseReliableSupplierPostEs, sevenMistakesPostEs],
+  en: sortByDateDesc(manualPostsEn),
+  zh: sortByDateDesc([
+    spcSupplierManufacturerPostZh,
+    chooseReliableSupplierPostZh,
+    sevenMistakesPostZh,
+  ]),
+  es: sortByDateDesc([
+    spcSupplierManufacturerPostEs,
+    chooseReliableSupplierPostEs,
+    sevenMistakesPostEs,
+  ]),
 } as const satisfies Record<"en" | "zh" | "es", BlogPost[]>;
 
 export function getBlogPosts(locale: Locale): BlogPost[] {

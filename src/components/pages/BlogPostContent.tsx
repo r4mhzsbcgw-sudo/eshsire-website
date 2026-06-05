@@ -5,7 +5,8 @@ import Link from "next/link";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { useLocale } from "@/context/LocaleContext";
 import type { Locale } from "@/i18n/locales";
-import { localizedPath } from "@/i18n/navigation";import { getWhatsAppUrl, siteConfig } from "@/lib/config";
+import { localizedPath } from "@/i18n/navigation";
+import { getWhatsAppUrl, siteConfig } from "@/lib/config";
 import type { BlogBlock, BlogPost } from "@/content/blog/types";
 
 function resolveHref(locale: Locale, href: string) {
@@ -110,6 +111,37 @@ function ArticleCta({
 }) {
   const title = block.title ?? dict.blog.ctaTitle;
   const text = block.text ?? dict.blog.ctaDesc;
+
+  if (block.variant === "b2b-procurement") {
+    return (
+      <div className="mt-12 rounded-xl border border-accent/30 bg-accent/5 p-8 text-center">
+        <h2 className="text-xl font-bold text-white md:text-2xl">{title}</h2>
+        <p className="mx-auto mt-3 max-w-xl text-sm text-industrial-light md:text-base">{text}</p>
+        <div className="mt-6 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center sm:gap-4">
+          <Link
+            href={localizedPath(locale, "/contact")}
+            className="inline-block border border-accent bg-accent px-6 py-3 text-sm font-semibold text-industrial-dark hover:bg-white"
+          >
+            {dict.blog.requestPriceList}
+          </Link>
+          <a
+            href={getWhatsAppUrl(locale, "Hello, I need a 40HQ container quotation for SPC flooring.")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:border-accent hover:text-accent"
+          >
+            {dict.blog.containerQuotation}
+          </a>
+          <Link
+            href={localizedPath(locale, "/contact")}
+            className="inline-block border border-white/20 px-6 py-3 text-sm font-semibold text-white hover:border-accent hover:text-accent"
+          >
+            {dict.blog.bulkOrderPricing}
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   if (block.variant === "factory-quote") {
     return (

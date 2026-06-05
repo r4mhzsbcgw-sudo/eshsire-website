@@ -5,7 +5,9 @@ export type BlogBlock =
   | { type: "h3"; text: string }
   | { type: "ul"; items: string[] }
   | { type: "img"; src: string; alt: string; caption?: string }
-  | { type: "cta"; title?: string; text?: string; variant?: "default" | "factory-quote" };
+  | { type: "cta"; title?: string; text?: string; variant?: "default" | "factory-quote" | "b2b-procurement" };
+
+export type ArticleSlot = "morning" | "afternoon" | "evening";
 
 export type BlogPost = {
   slug: string;
@@ -17,5 +19,6 @@ export type BlogPost = {
   heroImage: string;
   ogImage: string;
   hideTopHero?: boolean;
+  slot?: ArticleSlot;
   blocks: BlogBlock[];
 };

@@ -554,6 +554,9 @@ export const zh: Dictionary = {
     whatsappInquiry: "WhatsApp 咨询",
     emailUs: "邮件联系",
     getFreeQuote: "免费获取报价",
+    requestPriceList: "索取工厂价目表",
+    containerQuotation: "获取整柜报价",
+    bulkOrderPricing: "获取大货批量价",
   },
   spcSpecs: {
     heroSubtitle: "Eshsire Group SPC 石塑地板 OEM 与批发出口标准规格参考。",

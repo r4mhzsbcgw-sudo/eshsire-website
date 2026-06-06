@@ -10,6 +10,8 @@
     "seo:publish:evening": "node scripts/generate-daily-seo-articles.mjs evening",
     "seo:rebuild": "node scripts/seo/rebuild-published-blogs.mjs",
     "seo:rebuild:manual-i18n": "node scripts/seo/rebuild-manual-i18n.mjs",
+    "seo:test:v2": "node scripts/seo/test-v2.mjs",
+    "seo:backfill:i18n": "node scripts/seo/backfill-generated-i18n.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

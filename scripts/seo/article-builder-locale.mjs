@@ -228,6 +228,7 @@ export function buildLocalizedSections(meta, locale) {
   const pk = meta.primaryKeyword;
   const sk = meta.secondaryKeywords;
   const t = meta.title;
+  const topicType = meta.topicType;
   const slug = meta.slug;
 
   const sections = [
@@ -244,19 +245,19 @@ export function buildLocalizedSections(meta, locale) {
     ul(C.docItems(pk, sk[3])),
   ];
 
-  if (slug.includes("mistake") || slug.includes("7-mistakes")) {
+  if (topicType === "risk" || slug.includes("mistake") || slug.includes("7-mistakes")) {
     sections.push(...sectionBlocks(C.mistakeH2, C.mistakeItems));
   }
 
-  if (slug.includes("choose-reliable")) {
+  if (topicType === "supplier" || slug.includes("choose-reliable")) {
     sections.push(...sectionBlocks(C.chooseH2, C.chooseItems));
   }
 
-  if (slug.includes("supplier-manufacturer")) {
+  if (topicType === "factory" || slug.includes("supplier-manufacturer")) {
     sections.push(...sectionBlocks(C.factoryPriceH2, C.factoryPriceItems(pk, sk[2])));
   }
 
-  if (slug.includes("mistake") || slug.includes("7-mistakes")) {
+  if (topicType === "risk" || slug.includes("mistake") || slug.includes("7-mistakes")) {
     sections.push(...sectionBlocks(C.riskH2, C.riskItems));
   }
 
@@ -282,13 +283,17 @@ export function localizedPaddingParagraph(locale, n, kw, pk) {
 }
 
 export function countCjkWords(text) {
-  const cjk = (text.match(/[\u4e00-\u9fff]/g) || []).length;
-  const latin = text.replace(/[\u4e00-\u9fff]/g, " ").split(/\s+/).filter(Boolean).length;
+  const cjk = (text.match(/[\u4e00-\u9fff\u3040-\u309f\u30a0-\u30ff\uac00-\ud7af]/g) || []).length;
+  const latin = text.replace(/[\u4e00-\u9fff\u3040-\u309f\u30a0-\u30ff\uac00-\ud7af]/g, " ").split(/\s+/).filter(Boolean).length;
   return cjk + latin;
 }
 
 export function countBlocksWordsLocalized(blocks, locale) {
-  const countText = (text) => (locale === "zh" ? countCjkWords(text) : text.split(/\s+/).filter(Boolean).length);
+  const countText = (text) => {
+    if (locale === "zh" || locale === "ja" || locale === "ko") return countCjkWords(text);
+    if (locale === "ar" || locale === "he") return Math.ceil(text.replace(/\s/g, "").length / 4);
+    return text.split(/\s+/).filter(Boolean).length;
+  };
   return blocks.reduce((sum, b) => {
     if (b.type === "p") return sum + countText(b.text);
     if (b.type === "ul") return sum + countText(b.items.join(" "));
@@ -327,7 +332,7 @@ export function buildLocalizedLongFormBlocks(meta, images, locale) {
 
   let wc = countBlocksWordsLocalized(blocks, locale);
   let pad = 0;
-  while (wc < 1800 && pad < 20) {
+  while (wc < 1800 && pad < 40) {
     const kw = meta.secondaryKeywords[pad % meta.secondaryKeywords.length];
     blocks.splice(
       blocks.length - 1,

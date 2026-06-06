@@ -100,3 +100,5 @@ export function getDayIndexFromDate(date = new Date()) {
 
 /** Legacy export for content-calendar.mjs */
 export const contentCalendar = loadCalendar();
+
+export { primaryKeyword, secondaryKeywords, buildDescription, buildMetaTitle };

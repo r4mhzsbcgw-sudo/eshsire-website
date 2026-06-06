@@ -53,10 +53,10 @@ function expandParagraph(base, extra) {
   return `${base} ${extra}`;
 }
 
-function sectionBlocks(heading, paragraphs, keyword) {
+function sectionBlocks(heading, paragraphs) {
   const blocks = [h2(heading)];
   for (const para of paragraphs) {
-    blocks.push(p(para.includes(keyword) ? para : `${para} This directly affects ${keyword} decisions for distributors planning container orders.`));
+    blocks.push(p(para));
   }
   return blocks;
 }
@@ -75,6 +75,17 @@ function buildSections(meta) {
 
   const sections = [
     intro,
+    h2("BJFLOOR factory advantage: why importers switch to direct supply"),
+    p(
+      `BJFLOOR partner Eshsire Group operates a 6000㎡ integrated SPC flooring and wall panel factory in Beijing with in-house extrusion, lamination, QC and export documentation teams. ` +
+        `Distributors choose us when they need ${pk} with visible production — not broker repackaging — plus container programs to 30+ countries across Africa, Middle East, Europe and Southeast Asia.`
+    ),
+    richLink("Review ", "China flooring factory capability and production lines", "/factory"),
+    p(
+      `Factory-direct ${sk[0]} removes trader margin typically worth 8–15% on FOB quotes, while locked BOM references keep color stable for retail and project channels. ` +
+        `Weekly production photos, loading records and sqm-per-SKU packing lists are standard for repeat ${sk[2] || "bulk orders"} — the supply chain transparency professional importers require.`
+    ),
+    richLink("Explore ", "wholesale wall panel supply for mixed container programs", "/wall-panels"),
     h2(`Why ${tag === "wall" ? "Wall Panel" : tag === "vinyl" ? "Vinyl Flooring" : "SPC Flooring"} Buyers Focus on Profit and Supply Chain`),
     p(
       expandParagraph(
@@ -94,6 +105,65 @@ function buildSections(meta) {
       `Payment terms, production timeline and weekly status update format`,
     ]),
   ];
+
+  if (t.toLowerCase().includes("what is") || t.toLowerCase().includes("commercial")) {
+    sections.push(
+      ...sectionBlocks(
+        "SPC flooring for commercial projects — buyer economics, not decoration",
+        [
+          `Contractors and distributors select SPC for waterproof rigid core, fast click-lock installation and stable factory pricing — not because a showroom looks trendy. Commercial buyers model cost per sqm installed, callback risk and container replenishment cadence.`,
+          `Hotels, schools, offices and retail fit-outs need wear layer specs tied to traffic class. Quote ${pk} per thickness and mil rating; avoid single-price brochures that hide MOQ and carton efficiency differences.`,
+          `Project importers align SKU lists with container CBM before production — mixing too many colors in one PO increases changeover cost and delays loading.`,
+        ],
+        pk
+      )
+    );
+  }
+
+  if (t.toLowerCase().includes("mistake") || t.toLowerCase().includes("avoid")) {
+    sections.push(
+      ...sectionBlocks(
+        "Costly procurement mistakes distributors must eliminate",
+        [
+          `Chasing lowest FOB without landed cost math — freight, claims and stock-outs erase savings within two quarters.`,
+          `Skipping factory verification visits or video audits — brokers disappear when color batches fail on the retail floor.`,
+          `Placing large first orders without pre-production sample lock on color, wear layer and carton marking.`,
+          `Ignoring production visibility between deposit and loading — silence usually means queue jumps, not smooth progress.`,
+        ],
+        pk
+      )
+    );
+  }
+
+  if (t.toLowerCase().includes("choose") || t.toLowerCase().includes("reliable") || t.toLowerCase().includes("evaluate")) {
+    sections.push(
+      ...sectionBlocks(
+        "How to evaluate a China SPC flooring supplier before first container",
+        [
+          `Confirm manufacturing address matches export documentation and loading photos — not a trading office downtown.`,
+          `Request three references in your destination region with repeat order history and claim rates.`,
+          `Review QC checklist: dimensional tolerance, click-lock fit, wear layer spot test and carton drop standard.`,
+          `Compare response quality on container CBM planning — serious factories calculate sqm per 40HQ before quoting FOB.`,
+        ],
+        pk
+      )
+    );
+  }
+
+  if (t.toLowerCase().includes("hotel") || t.toLowerCase().includes("africa") || t.toLowerCase().includes("case study")) {
+    sections.push(
+      ...sectionBlocks(
+        "Hotel and Africa project supply — container discipline",
+        [
+          `Hotel corridors and guest rooms need consistent wear layer and slip rating — specify before color selection to avoid rework at site.`,
+          `Africa-bound containers benefit from moisture-resistant cartons, corner protection and SKU labels in English/French when required by customs.`,
+          `OEM guestroom quantities often mix 3–5 colors in one 40HQ — factory staging by floor level speeds hotel installation.`,
+          `Document loading photos and sqm per SKU for project sign-off; hotel operators penalize suppliers who cannot prove batch consistency.`,
+        ],
+        pk
+      )
+    );
+  }
 
   if (t.toLowerCase().includes("container") || t.toLowerCase().includes("loading") || t.toLowerCase().includes("logistics")) {
     sections.push(
@@ -284,6 +354,7 @@ function buildSections(meta) {
       "SPC flooring supplier and China flooring factory",
       "/spc-flooring"
     ),
+    richLink("Request ", "factory quotation and container pricing", "/contact"),
     p(
       `Contact our export team for factory price list, 40HQ container quotation and ${sk[2] || "bulk spc flooring order"} pricing. We support distributors who need stable supply chain control — not marketing stories.`
     )

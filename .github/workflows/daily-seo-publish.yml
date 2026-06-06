@@ -2,16 +2,20 @@ name: Daily SEO Articles
 
 on:
   schedule:
-    # China Standard Time (UTC+8): 09:00, 14:00, 20:00
+    # China Standard Time (UTC+8): 09:00, 14:00, 19:00
     - cron: "0 1 * * *"
     - cron: "0 6 * * *"
-    - cron: "0 12 * * *"
+    - cron: "0 11 * * *"
   workflow_dispatch:
     inputs:
       slot:
         description: "Article slot (morning, afternoon, evening, or all)"
         required: false
         default: "all"
+      day:
+        description: "Force calendar day 1-90 (optional)"
+        required: false
+        default: ""
 
 jobs:
   publish:
@@ -35,6 +39,10 @@ jobs:
             else
               echo "mode=$INPUT" >> $GITHUB_OUTPUT
             fi
+            DAY="${{ github.event.inputs.day }}"
+            if [ -n "$DAY" ]; then
+              echo "day=$DAY" >> $GITHUB_OUTPUT
+            fi
           elif [ "${{ github.event.schedule }}" = "0 1 * * *" ]; then
             echo "mode=morning" >> $GITHUB_OUTPUT
           elif [ "${{ github.event.schedule }}" = "0 6 * * *" ]; then
@@ -46,10 +54,13 @@ jobs:
       - name: Generate SEO article(s)
         run: |
           MODE="${{ steps.slot.outputs.mode }}"
+          DAY="${{ steps.slot.outputs.day }}"
+          EXTRA=""
+          if [ -n "$DAY" ]; then EXTRA="--day $DAY"; fi
           if [ "$MODE" = "all" ]; then
-            node scripts/generate-daily-seo-articles.mjs
+            node scripts/generate-daily-seo-articles.mjs $EXTRA
           else
-            node scripts/generate-daily-seo-articles.mjs "$MODE"
+            node scripts/generate-daily-seo-articles.mjs "$MODE" $EXTRA
           fi
 
       - name: Regenerate sitemap
@@ -59,10 +70,10 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add src/content/blog/generated/ src/content/blog/slugs.ts src/content/blog/generated/registry.ts scripts/generate-sitemap.mjs public/sitemap.xml
+          git add content/image-library.json content/bjfloor-90-day-calendar.json src/content/blog/generated/ src/content/blog/slugs.ts src/content/blog/generated/registry.ts scripts/generate-sitemap.mjs public/sitemap.xml
           if git diff --staged --quiet; then
             echo "No new articles to publish"
             exit 0
           fi
-          git commit -m "Publish daily SEO blog articles ($(date +%Y-%m-%d))"
+          git commit -m "BJFLOOR daily SEO publish ($(date +%Y-%m-%d))"
           git push

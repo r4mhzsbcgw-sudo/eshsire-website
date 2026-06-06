@@ -66,11 +66,23 @@ function buildTemplateBlocks(slot: NonNullable<BlogPost["slot"]>, locale: Locale
 }
 
 function resolveGeneratedForLocale(locale: Locale): BlogPost[] {
-  if (locale === "zh") return generatedPostsZh;
-  if (locale === "es") return generatedPostsEs;
   if (locale === "en") return generatedPostsEn;
 
-  return generatedPostsEn.map((enPost) => {
+  const dedicatedZhEs =
+    locale === "zh" && generatedPostsZh.length > 0
+      ? generatedPostsZh
+      : locale === "es" && generatedPostsEs.length > 0
+        ? generatedPostsEs
+        : null;
+
+  const sourceEn = generatedPostsEn;
+
+  const resolveOne = (enPost: BlogPost): BlogPost => {
+    if (dedicatedZhEs) {
+      const hit = dedicatedZhEs.find((p) => p.slug === enPost.slug);
+      if (hit) return hit;
+    }
+
     let translation = getArticleTranslation(enPost.slug, locale) as
       | Pick<BlogPost, "title" | "metaTitle" | "description" | "blocks">
       | null;
@@ -93,7 +105,13 @@ function resolveGeneratedForLocale(locale: Locale): BlogPost[] {
         ? getTemplateTranslation(enPost.slot, locale, enPost.title)
         : null;
     return localizeGeneratedPost(enPost, locale, translation, template?.ctaDefault);
-  });
+  };
+
+  if (dedicatedZhEs && dedicatedZhEs.length === sourceEn.length) {
+    return dedicatedZhEs;
+  }
+
+  return sourceEn.map(resolveOne);
 }
 
 function resolveManualForLocale(locale: Locale): BlogPost[] {

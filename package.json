@@ -8,6 +8,7 @@
     "seo:publish:morning": "node scripts/generate-daily-seo-articles.mjs morning",
     "seo:publish:afternoon": "node scripts/generate-daily-seo-articles.mjs afternoon",
     "seo:publish:evening": "node scripts/generate-daily-seo-articles.mjs evening",
+    "seo:calendar:day": "node scripts/generate-daily-seo-articles.mjs",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",

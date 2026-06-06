@@ -1,0 +1,11 @@
+﻿count 27
+out C:\Users\11491\Projects\eshsire-b2b\product-list.json
+1 7" Plastic Set Square ABS material thickness:4.  2MM Inch 0.75
+2 6"/150mm   Vernier  Caliper Materials：ABS 0.85
+3 Drill gauge1 -13mm 0.35
+4 ptfe tape 19mm   0,075mm  20 m for water None
+5 ptfe tape 12mm   0,075 mm  8 m for water None
+...
+25 A-shaped clip 0.15
+26 pet bed 1
+27 pet bed 1

@@ -313,11 +313,12 @@ export function buildLocalizedLongFormBlocks(meta, images, locale) {
   for (const block of sections) {
     blocks.push(block);
     if (block.type === "h2" && sectionCount < 3 && sectionImgs[sectionCount]) {
+      const capIdx = sectionCount + 1;
       blocks.push({
         type: "img",
         src: sectionImgs[sectionCount],
-        alt: `${meta.primaryKeyword} ${meta.title.slice(0, 30)} ${sectionCount + 1}`,
-        caption: L.imgCaption,
+        alt: images.alts?.[capIdx] ?? `${meta.primaryKeyword} ${meta.title.slice(0, 30)} ${sectionCount + 1}`,
+        caption: images.captions?.[capIdx] ?? L.imgCaption,
       });
       sectionCount++;
     }
@@ -326,8 +327,8 @@ export function buildLocalizedLongFormBlocks(meta, images, locale) {
   blocks.push({
     type: "img",
     src: images.ending,
-    alt: `${meta.primaryKeyword} export China`,
-    caption: L.imgEnding,
+    alt: images.alts?.[4] ?? `${meta.primaryKeyword} export China`,
+    caption: images.captions?.[4] ?? L.imgEnding,
   });
 
   let wc = countBlocksWordsLocalized(blocks, locale);

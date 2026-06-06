@@ -18,6 +18,6 @@ const t = {
 };
 
 for (const locale of ["en", "de", "zh", "ar"]) {
-  const a = generateArticle(locale, t, { publishedSlugs: [] });
+  const a = generateArticle(locale, t, { publishedSlugs: [], dryRun: true });
   console.log(locale, a.wordCount, a.validation.pass, a.validation.errors.join("|") || "ok");
 }

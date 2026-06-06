@@ -1,7 +1,8 @@
 /**
  * V2 article validation — fail triggers rewrite in generateArticle
  */
-import { isImageUsed } from "./image-selector.mjs";
+import { isBlockedImageUrl, isRemoteImageUrl } from "./verified-image-ids.mjs";
+import { isAllowedBlogImageUrl } from "./blog-image-catalog.mjs";
 
 const FORBIDDEN = /\b(cheap|lowest price|best price|super cheap|cheapest)\b/i;
 const EN_RESIDUE =
@@ -118,7 +119,9 @@ export function validateArticle(article, locale = "en") {
   if (hasDuplicateImages(imgs)) errors.push("duplicate images in article");
 
   for (const url of imgs) {
-    // allow reuse within same article; cross-article dup checked at selection time
+    if (isBlockedImageUrl(url)) errors.push(`blocked or broken image URL: ${url.slice(0, 80)}`);
+    if (url.startsWith("http")) errors.push(`remote image URL not allowed (use local assets): ${url.slice(0, 60)}`);
+    if (!isAllowedBlogImageUrl(url)) errors.push(`blog image must use ${"/images/blog/editorial/"} — got: ${url}`);
   }
 
   if (!hasCta(blocks)) warnings.push("no CTA block — appended at publish time");

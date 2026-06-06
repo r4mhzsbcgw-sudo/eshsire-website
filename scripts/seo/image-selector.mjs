@@ -1,10 +1,10 @@
 /**
- * V2 image selection — topic-aware, deduplicated, logs to image-used.json
+ * V2 image selection — local BJFLOOR assets, theme-matched to article slug.
  */
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import { classifyTopic, topicImageCategory } from "./topic-classifier.mjs";
-import { IMAGE_POOLS, fallbackImage, SECTION_IMAGE_THEMES } from "./image-pools.mjs";
+import { selectImagesForArticle, isRemoteImageUrl, isAllowedBlogImageUrl } from "./blog-image-catalog.mjs";
 
 const USED_PATH = join(process.cwd(), "content/image-used.json");
 const LIB_PATH = join(process.cwd(), "content/image-library.json");
@@ -34,79 +34,70 @@ function globalUsedSet() {
   return used;
 }
 
-function pickFromPool(pool, used, seed) {
-  for (let i = 0; i < pool.length; i++) {
-    const url = pool[(seed + i) % pool.length];
-    if (!used.has(url)) return url;
-  }
-  return null;
-}
-
 /**
  * @param {object} topic - calendar meta with title, slug, slot, topicType
  * @param {string} locale
+ * @param {{ dryRun?: boolean }} opts
  */
-export function imageSelector(topic, locale) {
-  const used = globalUsedSet();
-  const slot = topic.slot ?? "morning";
-  const topicType = topic.topicType ?? classifyTopic(topic.title);
-  const primaryCat = topicImageCategory(topicType, slot);
-  const themes = SECTION_IMAGE_THEMES[slot] ?? SECTION_IMAGE_THEMES.morning;
-  const seed = `${topic.slug}-${locale}`.split("").reduce((a, c) => a + c.charCodeAt(0), 0);
-  const categories = [primaryCat, themes[1] ?? "warehouse", themes[2] ?? "factory", themes[3] ?? "qc", themes[4] ?? "logistics"];
+export function imageSelector(topic, locale, opts = {}) {
+  const pk = topic.primaryKeyword ?? "SPC flooring";
+  const imgs = selectImagesForArticle(topic.slug, locale, pk);
   const timestamp = new Date().toISOString();
-  const urls = [];
-  const records = [];
+  const topicType = topic.topicType ?? classifyTopic(topic.title);
+  const primaryCat = topicImageCategory(topicType, topic.slot ?? "morning");
 
-  for (let i = 0; i < 5; i++) {
-    const cat = categories[i];
-    const pool = IMAGE_POOLS[cat] ?? IMAGE_POOLS.factory;
-    let url = pickFromPool(pool, used, seed + i * 17);
-    if (!url) {
-      url = fallbackImage(cat, `${topic.slug}-${locale}-${i}`);
-      let attempt = 0;
-      while (used.has(url) && attempt < 20) {
-        url = fallbackImage(cat, `${topic.slug}-${locale}-${i}-${attempt++}`);
-      }
+  const urls = [imgs.banner, ...imgs.sections, imgs.ending];
+  const roles = ["banner", "section-1", "section-2", "section-3", "ending"];
+  const themes = imgs.meta.themes;
+
+  const records = urls.map((url, i) => ({
+    imageUrl: url,
+    articleSlug: topic.slug,
+    topic: topic.title,
+    locale,
+    category: primaryCat,
+    theme: themes[i],
+    role: roles[i],
+    timestamp,
+  }));
+
+  if (!opts.dryRun) {
+    const usedFile = loadUsed();
+    usedFile.records.push(...records);
+    saveUsed(usedFile);
+
+    const lib = loadLib();
+    for (const r of records) {
+      lib.usedImages.push({
+        articleTitle: topic.title,
+        imageUrl: r.imageUrl,
+        imageKeywords: r.theme,
+        role: r.role,
+        publishedAt: timestamp.slice(0, 10),
+        locale,
+      });
     }
-    used.add(url);
-    urls.push(url);
-    records.push({
-      imageUrl: url,
-      articleSlug: topic.slug,
-      topic: topic.title,
-      locale,
-      category: cat,
-      role: i === 0 ? "banner" : i === 4 ? "ending" : `section-${i}`,
-      timestamp,
-    });
+    saveLib(lib);
   }
-
-  const usedFile = loadUsed();
-  usedFile.records.push(...records);
-  saveUsed(usedFile);
-
-  const lib = loadLib();
-  for (const r of records) {
-    lib.usedImages.push({
-      articleTitle: topic.title,
-      imageUrl: r.imageUrl,
-      imageKeywords: r.category,
-      role: r.role,
-      publishedAt: timestamp.slice(0, 10),
-      locale,
-    });
-  }
-  saveLib(lib);
 
   return {
-    banner: urls[0],
-    sections: [urls[1], urls[2], urls[3]],
-    ending: urls[4],
+    banner: imgs.banner,
+    sections: imgs.sections,
+    ending: imgs.ending,
+    themes: imgs.meta.themes,
+    captions: imgs.meta.captions,
+    alts: imgs.meta.alts,
     records,
   };
 }
 
 export function isImageUsed(url) {
   return globalUsedSet().has(url);
+}
+
+export function assertLocalImages(urls) {
+  for (const u of urls) {
+    if (isRemoteImageUrl(u)) throw new Error(`Remote image not allowed: ${u}`);
+    if (!isAllowedBlogImageUrl(u)) throw new Error(`Blog image must be under /images/blog/editorial/: ${u}`);
+  }
 }

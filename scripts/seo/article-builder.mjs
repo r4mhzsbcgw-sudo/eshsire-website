@@ -374,11 +374,12 @@ export function buildLongFormBlocks(meta, images) {
     blocks.push(block);
     if (block.type === "h2" && sectionCount < 3 && sectionImgs[sectionCount]) {
       const url = sectionImgs[sectionCount];
+      const capIdx = sectionCount + 1;
       blocks.push(
         img(
           url,
-          `${meta.primaryKeyword} ${meta.title.slice(0, 40)} image ${sectionCount + 1}`,
-          `Factory and supply chain reference — ${meta.productTag} B2B import`
+          images.alts?.[capIdx] ?? `${meta.primaryKeyword} ${meta.title.slice(0, 40)} image ${sectionCount + 1}`,
+          images.captions?.[capIdx] ?? `BJFLOOR factory reference — ${meta.productTag} B2B supply`
         )
       );
       sectionCount++;
@@ -388,8 +389,8 @@ export function buildLongFormBlocks(meta, images) {
   blocks.push(
     img(
       images.ending,
-      `${meta.primaryKeyword} container export flooring China`,
-      "Export shipment and container loading — flooring distributor supply"
+      images.alts?.[4] ?? `${meta.primaryKeyword} container export flooring China`,
+      images.captions?.[4] ?? "Export container loading — SPC flooring secured for ocean freight"
     )
   );
 

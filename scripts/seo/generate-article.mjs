@@ -24,11 +24,12 @@ function assembleBlocksFromSections(sections, meta, images, locale, copy) {
   for (const block of sections) {
     blocks.push(block);
     if (block.type === "h2" && sectionCount < 3 && images.sections[sectionCount]) {
+      const capIdx = sectionCount + 1;
       blocks.push({
         type: "img",
         src: images.sections[sectionCount],
-        alt: `${meta.primaryKeyword} ${meta.title.slice(0, 30)} ${sectionCount + 1}`,
-        caption: L?.imgCaption ?? "B2B reference",
+        alt: images.alts?.[capIdx] ?? `${meta.primaryKeyword} ${meta.title.slice(0, 30)} ${sectionCount + 1}`,
+        caption: images.captions?.[capIdx] ?? L?.imgCaption ?? "BJFLOOR factory reference",
       });
       sectionCount++;
     }
@@ -36,8 +37,8 @@ function assembleBlocksFromSections(sections, meta, images, locale, copy) {
   blocks.push({
     type: "img",
     src: images.ending,
-    alt: `${meta.primaryKeyword} export`,
-    caption: L?.imgEnding ?? "Export loading",
+    alt: images.alts?.[4] ?? `${meta.primaryKeyword} export`,
+    caption: images.captions?.[4] ?? L?.imgEnding ?? "Export container loading",
   });
 
   let wc = countBlocksWordsLocalized(blocks, locale);
@@ -94,7 +95,7 @@ export function generateArticle(locale, topic, opts = {}) {
   localizedMeta.topicType = topicType;
   localizedMeta.locale = locale;
 
-  const images = opts.images ?? imageSelector(localizedMeta, locale);
+  const images = opts.images ?? imageSelector(localizedMeta, locale, { dryRun: opts.dryRun });
   localizedMeta.heroImage = images.banner;
   localizedMeta.ogImage = images.banner;
 

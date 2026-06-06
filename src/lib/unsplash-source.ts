@@ -32,8 +32,8 @@ const KEYWORD_PHOTOS: Record<string, string> = {
 };
 
 function coverImage(keyword: string): string {
-  const id = KEYWORD_PHOTOS[keyword];
-  return id ? photo(id) : `https://source.unsplash.com/1600x900/?${encodeURIComponent(keyword)}`;
+  const id = KEYWORD_PHOTOS[keyword] ?? KEYWORD_PHOTOS.warehouse;
+  return photo(id);
 }
 
 export const projectImages = PROJECT_COVER_KEYWORDS.map(coverImage) as readonly string[];

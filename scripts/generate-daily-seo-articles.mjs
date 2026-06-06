@@ -39,7 +39,10 @@ function dayIndex() {
     return Math.min(Math.max(1, forceDay), 90) - 1;
   }
   const idx = getDayIndexFromDate(new Date());
-  if (idx < 0) return 0;
+  if (idx < 0) {
+    console.log(`Before calendar start (${getCalendarStartDate()}). No publish.`);
+    return -1;
+  }
   if (idx >= contentCalendar.length) {
     console.warn(`Calendar ended (day ${idx + 1} > 90). No publish.`);
     return -1;

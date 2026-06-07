@@ -1,6 +1,6 @@
 # BJFLOOR Daily Content Report
 
-Generated: 2026-06-07T10:18:15.038Z
+Generated: 2026-06-07T12:07:59.918Z
 Date: 2026-06-07
 
 ## Summary
@@ -11,11 +11,11 @@ Date: 2026-06-07
 | Total locale files generated | 16 |
 | Images assigned | 5 |
 | Internal links (body total) | 80 |
-| Validation failures | 1 |
+| Validation failures | 0 |
 
 ## Slugs published
 
-- how-flooring-distributors-can-increase-profit-margins-without-raising-prices
+- spc-flooring-container-loading-strategies-that-reduce-import-costs
 
 ## Language distribution
 
@@ -40,26 +40,26 @@ Date: 2026-06-07
 
 ## SEO keyword coverage
 
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [en]: PK "spc flooring supplier china" ×21, SK avg 5
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [zh]: PK "SPC地板工厂" ×8, SK avg 5
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [ar]: PK "مصنع أرضيات SPC" ×25, SK avg 5
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [de]: PK "SPC-Boden Fabrik" ×43, SK avg 5
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [es]: PK "fábrica de suelos SPC" ×16, SK avg 5
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [fr]: PK "usine sols SPC" ×24, SK avg 5
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [he]: PK "מפעל רצפות SPC" ×17, SK avg 5
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [id]: PK "pabrik lantai SPC" ×25, SK avg 5
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [it]: PK "fabbrica pavimenti SPC" ×25, SK avg 5
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [ja]: PK "SPC床材工場" ×22, SK avg 5
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [ko]: PK "SPC 바닥재 공장" ×22, SK avg 5
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [pt]: PK "fábrica pavimentos SPC" ×25, SK avg 5
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [ru]: PK "фабрика SPC напольных покрытий" ×30, SK avg 5
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [th]: PK "โรงงานพื้น SPC" ×25, SK avg 5
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [tr]: PK "SPC zemin fabrikası" ×25, SK avg 5
-- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices** [vi]: PK "nhà máy sàn SPC" ×23, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [en]: PK "container flooring price" ×15, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [zh]: PK "SPC地板工厂" ×8, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [ar]: PK "مصنع أرضيات SPC" ×25, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [de]: PK "SPC-Boden Fabrik" ×43, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [es]: PK "fábrica de suelos SPC" ×16, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [fr]: PK "usine sols SPC" ×24, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [he]: PK "מפעל רצפות SPC" ×17, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [id]: PK "pabrik lantai SPC" ×24, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [it]: PK "fabbrica pavimenti SPC" ×24, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [ja]: PK "SPC床材工場" ×22, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [ko]: PK "SPC 바닥재 공장" ×21, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [pt]: PK "fábrica pavimentos SPC" ×24, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [ru]: PK "фабрика SPC напольных покрытий" ×29, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [th]: PK "โรงงานพื้น SPC" ×25, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [tr]: PK "SPC zemin fabrikası" ×24, SK avg 5
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [vi]: PK "nhà máy sàn SPC" ×23, SK avg 5
 
 ## CTA type distribution
 
-- profit: 16
+- logistics: 16
 
 ## Image usage
 
@@ -67,7 +67,7 @@ Date: 2026-06-07
 
 ## Validation results
 
-- `how-flooring-distributors-can-increase-profit-margins-without-raising-prices` [en]: forbidden price hype keywords
+None — all articles passed validation.
 
 ## System
 

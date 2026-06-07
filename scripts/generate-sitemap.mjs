@@ -25,6 +25,7 @@ const ROUTES = [
 const BLOG_SLUGS = [
   "how-flooring-distributors-can-increase-profit-margins-without-raising-prices",
   "load-40hq-container-spc-flooring-export",
+  "spc-flooring-container-loading-strategies-that-reduce-import-costs",
   "spc-flooring-factory-price-bulk-container-orders",
   "spc-flooring-supply-hotel-project-africa",
   "what-is-spc-flooring-commercial-projects",

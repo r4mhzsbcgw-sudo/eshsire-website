@@ -1,5 +1,6 @@
-/** Lightweight slug list for sitemap/SSG — updated by generate-daily-seo-articles.mjs */
+/** AUTO-GENERATED — BJFLOOR V2 calendar + manual posts */
 export const blogSlugs = [
+  "how-flooring-distributors-can-increase-profit-margins-without-raising-prices",
   "load-40hq-container-spc-flooring-export",
   "spc-flooring-factory-price-bulk-container-orders",
   "spc-flooring-supply-hotel-project-africa",

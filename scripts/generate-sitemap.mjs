@@ -23,6 +23,7 @@ const ROUTES = [
   "/blog",
 ];
 const BLOG_SLUGS = [
+  "how-flooring-distributors-can-increase-profit-margins-without-raising-prices",
   "load-40hq-container-spc-flooring-export",
   "spc-flooring-factory-price-bulk-container-orders",
   "spc-flooring-supply-hotel-project-africa",

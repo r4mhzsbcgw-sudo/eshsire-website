@@ -460,6 +460,46 @@
       "role": "section-1",
       "publishedAt": "2026-06-06",
       "locale": "ar"
+    },
+    {
+      "articleTitle": "How Flooring Distributors Can Increase Profit Margins Without Raising Prices",
+      "imageUrl": "/images/blog/editorial/12-interior-design-showroom.jpg",
+      "imageKeywords": "brandOverview",
+      "role": "banner",
+      "publishedAt": "2026-06-07",
+      "locale": "all"
+    },
+    {
+      "articleTitle": "How Flooring Distributors Can Increase Profit Margins Without Raising Prices",
+      "imageUrl": "/images/blog/editorial/01-industrial-factory-floor.jpg",
+      "imageKeywords": "factoryProduction",
+      "role": "section-1",
+      "publishedAt": "2026-06-07",
+      "locale": "all"
+    },
+    {
+      "articleTitle": "How Flooring Distributors Can Increase Profit Margins Without Raising Prices",
+      "imageUrl": "/images/blog/editorial/03-production-quality-station.jpg",
+      "imageKeywords": "qcInline",
+      "role": "section-2",
+      "publishedAt": "2026-06-07",
+      "locale": "all"
+    },
+    {
+      "articleTitle": "How Flooring Distributors Can Increase Profit Margins Without Raising Prices",
+      "imageUrl": "/images/blog/editorial/04-warehouse-pallet-racks.jpg",
+      "imageKeywords": "warehouseStock",
+      "role": "section-3",
+      "publishedAt": "2026-06-07",
+      "locale": "all"
+    },
+    {
+      "articleTitle": "How Flooring Distributors Can Increase Profit Margins Without Raising Prices",
+      "imageUrl": "/images/blog/editorial/06-container-port-logistics.jpg",
+      "imageKeywords": "containerExport",
+      "role": "ending",
+      "publishedAt": "2026-06-07",
+      "locale": "all"
     }
   ],
   "poolCursor": {},

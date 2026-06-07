@@ -1,6 +1,6 @@
 # BJFLOOR Daily Content Report
 
-Generated: 2026-06-07T12:07:59.918Z
+Generated: 2026-06-07T15:53:04.513Z
 Date: 2026-06-07
 
 ## Summary
@@ -15,7 +15,7 @@ Date: 2026-06-07
 
 ## Slugs published
 
-- spc-flooring-container-loading-strategies-that-reduce-import-costs
+- factory-pricing-vs-trading-company-pricing-what-importers-need-to-know
 
 ## Language distribution
 
@@ -40,26 +40,26 @@ Date: 2026-06-07
 
 ## SEO keyword coverage
 
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [en]: PK "container flooring price" ×15, SK avg 5
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [zh]: PK "SPC地板工厂" ×8, SK avg 5
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [ar]: PK "مصنع أرضيات SPC" ×25, SK avg 5
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [de]: PK "SPC-Boden Fabrik" ×43, SK avg 5
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [es]: PK "fábrica de suelos SPC" ×16, SK avg 5
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [fr]: PK "usine sols SPC" ×24, SK avg 5
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [he]: PK "מפעל רצפות SPC" ×17, SK avg 5
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [id]: PK "pabrik lantai SPC" ×24, SK avg 5
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [it]: PK "fabbrica pavimenti SPC" ×24, SK avg 5
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [ja]: PK "SPC床材工場" ×22, SK avg 5
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [ko]: PK "SPC 바닥재 공장" ×21, SK avg 5
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [pt]: PK "fábrica pavimentos SPC" ×24, SK avg 5
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [ru]: PK "фабрика SPC напольных покрытий" ×29, SK avg 5
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [th]: PK "โรงงานพื้น SPC" ×25, SK avg 5
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [tr]: PK "SPC zemin fabrikası" ×24, SK avg 5
-- **spc-flooring-container-loading-strategies-that-reduce-import-costs** [vi]: PK "nhà máy sàn SPC" ×23, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [en]: PK "spc flooring factory" ×16, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [zh]: PK "SPC地板工厂" ×8, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [ar]: PK "مصنع أرضيات SPC" ×26, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [de]: PK "SPC-Boden Fabrik" ×43, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [es]: PK "fábrica de suelos SPC" ×16, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [fr]: PK "usine sols SPC" ×25, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [he]: PK "מפעל רצפות SPC" ×18, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [id]: PK "pabrik lantai SPC" ×25, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [it]: PK "fabbrica pavimenti SPC" ×25, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [ja]: PK "SPC床材工場" ×23, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [ko]: PK "SPC 바닥재 공장" ×22, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [pt]: PK "fábrica pavimentos SPC" ×25, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [ru]: PK "фабрика SPC напольных покрытий" ×30, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [th]: PK "โรงงานพื้น SPC" ×26, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [tr]: PK "SPC zemin fabrikası" ×25, SK avg 5
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [vi]: PK "nhà máy sàn SPC" ×24, SK avg 5
 
 ## CTA type distribution
 
-- logistics: 16
+- supplier: 16
 
 ## Image usage
 

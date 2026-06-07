@@ -23,6 +23,7 @@ const ROUTES = [
   "/blog",
 ];
 const BLOG_SLUGS = [
+  "factory-pricing-vs-trading-company-pricing-what-importers-need-to-know",
   "how-flooring-distributors-can-increase-profit-margins-without-raising-prices",
   "load-40hq-container-spc-flooring-export",
   "spc-flooring-container-loading-strategies-that-reduce-import-costs",

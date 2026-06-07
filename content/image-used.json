@@ -99,6 +99,56 @@
       "theme": "containerExport",
       "role": "ending",
       "timestamp": "2026-06-07T12:07:59.870Z"
+    },
+    {
+      "imageUrl": "/images/blog/editorial/12-interior-design-showroom.jpg",
+      "articleSlug": "factory-pricing-vs-trading-company-pricing-what-importers-need-to-know",
+      "topic": "Factory Pricing vs Trading Company Pricing: What Importers Need to Know",
+      "locale": "all",
+      "category": "factory",
+      "theme": "brandOverview",
+      "role": "banner",
+      "timestamp": "2026-06-07T15:53:04.463Z"
+    },
+    {
+      "imageUrl": "/images/blog/editorial/01-industrial-factory-floor.jpg",
+      "articleSlug": "factory-pricing-vs-trading-company-pricing-what-importers-need-to-know",
+      "topic": "Factory Pricing vs Trading Company Pricing: What Importers Need to Know",
+      "locale": "all",
+      "category": "factory",
+      "theme": "factoryProduction",
+      "role": "section-1",
+      "timestamp": "2026-06-07T15:53:04.463Z"
+    },
+    {
+      "imageUrl": "/images/blog/editorial/03-production-quality-station.jpg",
+      "articleSlug": "factory-pricing-vs-trading-company-pricing-what-importers-need-to-know",
+      "topic": "Factory Pricing vs Trading Company Pricing: What Importers Need to Know",
+      "locale": "all",
+      "category": "factory",
+      "theme": "qcInline",
+      "role": "section-2",
+      "timestamp": "2026-06-07T15:53:04.463Z"
+    },
+    {
+      "imageUrl": "/images/blog/editorial/04-warehouse-pallet-racks.jpg",
+      "articleSlug": "factory-pricing-vs-trading-company-pricing-what-importers-need-to-know",
+      "topic": "Factory Pricing vs Trading Company Pricing: What Importers Need to Know",
+      "locale": "all",
+      "category": "factory",
+      "theme": "warehouseStock",
+      "role": "section-3",
+      "timestamp": "2026-06-07T15:53:04.463Z"
+    },
+    {
+      "imageUrl": "/images/blog/editorial/06-container-port-logistics.jpg",
+      "articleSlug": "factory-pricing-vs-trading-company-pricing-what-importers-need-to-know",
+      "topic": "Factory Pricing vs Trading Company Pricing: What Importers Need to Know",
+      "locale": "all",
+      "category": "factory",
+      "theme": "containerExport",
+      "role": "ending",
+      "timestamp": "2026-06-07T15:53:04.463Z"
     }
   ],
   "notes": "BJFLOOR V2 — tracks imageUrl, articleSlug, topic, locale, timestamp"

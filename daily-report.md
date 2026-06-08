@@ -1,6 +1,6 @@
 # BJFLOOR Daily Content Report
 
-Generated: 2026-06-08T17:36:58.940Z
+Generated: 2026-06-08T19:37:14.303Z
 Date: 2026-06-08
 
 ## Summary
@@ -15,7 +15,7 @@ Date: 2026-06-08
 
 ## Slugs published
 
-- the-real-cost-of-delayed-flooring-shipments
+- spc-flooring-factory-audit-checklist-for-importers
 
 ## Language distribution
 
@@ -40,26 +40,26 @@ Date: 2026-06-08
 
 ## SEO keyword coverage
 
-- **the-real-cost-of-delayed-flooring-shipments** [en]: PK "spc flooring supplier china" ×16, SK avg 5
-- **the-real-cost-of-delayed-flooring-shipments** [zh]: PK "SPC地板工厂" ×8, SK avg 5
-- **the-real-cost-of-delayed-flooring-shipments** [ar]: PK "مصنع أرضيات SPC" ×25, SK avg 5
-- **the-real-cost-of-delayed-flooring-shipments** [de]: PK "SPC-Boden Fabrik" ×43, SK avg 5
-- **the-real-cost-of-delayed-flooring-shipments** [es]: PK "fábrica de suelos SPC" ×16, SK avg 5
-- **the-real-cost-of-delayed-flooring-shipments** [fr]: PK "usine sols SPC" ×24, SK avg 5
-- **the-real-cost-of-delayed-flooring-shipments** [he]: PK "מפעל רצפות SPC" ×17, SK avg 5
-- **the-real-cost-of-delayed-flooring-shipments** [id]: PK "pabrik lantai SPC" ×24, SK avg 5
-- **the-real-cost-of-delayed-flooring-shipments** [it]: PK "fabbrica pavimenti SPC" ×24, SK avg 5
-- **the-real-cost-of-delayed-flooring-shipments** [ja]: PK "SPC床材工場" ×22, SK avg 5
-- **the-real-cost-of-delayed-flooring-shipments** [ko]: PK "SPC 바닥재 공장" ×21, SK avg 5
-- **the-real-cost-of-delayed-flooring-shipments** [pt]: PK "fábrica pavimentos SPC" ×24, SK avg 5
-- **the-real-cost-of-delayed-flooring-shipments** [ru]: PK "фабрика SPC напольных покрытий" ×30, SK avg 5
-- **the-real-cost-of-delayed-flooring-shipments** [th]: PK "โรงงานพื้น SPC" ×25, SK avg 5
-- **the-real-cost-of-delayed-flooring-shipments** [tr]: PK "SPC zemin fabrikası" ×24, SK avg 5
-- **the-real-cost-of-delayed-flooring-shipments** [vi]: PK "nhà máy sàn SPC" ×23, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [en]: PK "spc flooring factory" ×17, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [zh]: PK "SPC地板工厂" ×8, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [ar]: PK "مصنع أرضيات SPC" ×25, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [de]: PK "SPC-Boden Fabrik" ×44, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [es]: PK "fábrica de suelos SPC" ×16, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [fr]: PK "usine sols SPC" ×24, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [he]: PK "מפעל רצפות SPC" ×17, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [id]: PK "pabrik lantai SPC" ×25, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [it]: PK "fabbrica pavimenti SPC" ×25, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [ja]: PK "SPC床材工場" ×22, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [ko]: PK "SPC 바닥재 공장" ×22, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [pt]: PK "fábrica pavimentos SPC" ×25, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [ru]: PK "фабрика SPC напольных покрытий" ×30, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [th]: PK "โรงงานพื้น SPC" ×25, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [tr]: PK "SPC zemin fabrikası" ×25, SK avg 5
+- **spc-flooring-factory-audit-checklist-for-importers** [vi]: PK "nhà máy sàn SPC" ×23, SK avg 5
 
 ## CTA type distribution
 
-- logistics: 16
+- supplier: 16
 
 ## Image usage
 

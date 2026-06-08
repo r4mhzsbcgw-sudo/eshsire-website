@@ -660,6 +660,46 @@
       "role": "ending",
       "publishedAt": "2026-06-08",
       "locale": "all"
+    },
+    {
+      "articleTitle": "SPC Flooring Factory Audit Checklist for Importers",
+      "imageUrl": "/images/blog/editorial/12-interior-design-showroom.jpg",
+      "imageKeywords": "brandOverview",
+      "role": "banner",
+      "publishedAt": "2026-06-08",
+      "locale": "all"
+    },
+    {
+      "articleTitle": "SPC Flooring Factory Audit Checklist for Importers",
+      "imageUrl": "/images/blog/editorial/01-industrial-factory-floor.jpg",
+      "imageKeywords": "factoryProduction",
+      "role": "section-1",
+      "publishedAt": "2026-06-08",
+      "locale": "all"
+    },
+    {
+      "articleTitle": "SPC Flooring Factory Audit Checklist for Importers",
+      "imageUrl": "/images/blog/editorial/03-production-quality-station.jpg",
+      "imageKeywords": "qcInline",
+      "role": "section-2",
+      "publishedAt": "2026-06-08",
+      "locale": "all"
+    },
+    {
+      "articleTitle": "SPC Flooring Factory Audit Checklist for Importers",
+      "imageUrl": "/images/blog/editorial/04-warehouse-pallet-racks.jpg",
+      "imageKeywords": "warehouseStock",
+      "role": "section-3",
+      "publishedAt": "2026-06-08",
+      "locale": "all"
+    },
+    {
+      "articleTitle": "SPC Flooring Factory Audit Checklist for Importers",
+      "imageUrl": "/images/blog/editorial/06-container-port-logistics.jpg",
+      "imageKeywords": "containerExport",
+      "role": "ending",
+      "publishedAt": "2026-06-08",
+      "locale": "all"
     }
   ],
   "poolCursor": {},

@@ -5,6 +5,7 @@ export const blogSlugs = [
   "how-to-evaluate-an-spc-flooring-supplier-before-your-first-order",
   "load-40hq-container-spc-flooring-export",
   "spc-flooring-container-loading-strategies-that-reduce-import-costs",
+  "spc-flooring-factory-audit-checklist-for-importers",
   "spc-flooring-factory-price-bulk-container-orders",
   "spc-flooring-supply-hotel-project-africa",
   "the-real-cost-of-delayed-flooring-shipments",

@@ -1,7 +1,7 @@
 # BJFLOOR Daily Content Report
 
-Generated: 2026-06-07T15:53:04.513Z
-Date: 2026-06-07
+Generated: 2026-06-08T14:53:38.640Z
+Date: 2026-06-08
 
 ## Summary
 
@@ -15,7 +15,7 @@ Date: 2026-06-07
 
 ## Slugs published
 
-- factory-pricing-vs-trading-company-pricing-what-importers-need-to-know
+- how-to-evaluate-an-spc-flooring-supplier-before-your-first-order
 
 ## Language distribution
 
@@ -40,22 +40,22 @@ Date: 2026-06-07
 
 ## SEO keyword coverage
 
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [en]: PK "spc flooring factory" ×16, SK avg 5
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [zh]: PK "SPC地板工厂" ×8, SK avg 5
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [ar]: PK "مصنع أرضيات SPC" ×26, SK avg 5
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [de]: PK "SPC-Boden Fabrik" ×43, SK avg 5
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [es]: PK "fábrica de suelos SPC" ×16, SK avg 5
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [fr]: PK "usine sols SPC" ×25, SK avg 5
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [he]: PK "מפעל רצפות SPC" ×18, SK avg 5
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [id]: PK "pabrik lantai SPC" ×25, SK avg 5
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [it]: PK "fabbrica pavimenti SPC" ×25, SK avg 5
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [ja]: PK "SPC床材工場" ×23, SK avg 5
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [ko]: PK "SPC 바닥재 공장" ×22, SK avg 5
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [pt]: PK "fábrica pavimentos SPC" ×25, SK avg 5
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [ru]: PK "фабрика SPC напольных покрытий" ×30, SK avg 5
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [th]: PK "โรงงานพื้น SPC" ×26, SK avg 5
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [tr]: PK "SPC zemin fabrikası" ×25, SK avg 5
-- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know** [vi]: PK "nhà máy sàn SPC" ×24, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [en]: PK "spc flooring supplier china" ×15, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [zh]: PK "SPC地板工厂" ×8, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [ar]: PK "مصنع أرضيات SPC" ×26, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [de]: PK "SPC-Boden Fabrik" ×43, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [es]: PK "fábrica de suelos SPC" ×15, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [fr]: PK "usine sols SPC" ×25, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [he]: PK "מפעל רצפות SPC" ×18, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [id]: PK "pabrik lantai SPC" ×25, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [it]: PK "fabbrica pavimenti SPC" ×25, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [ja]: PK "SPC床材工場" ×22, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [ko]: PK "SPC 바닥재 공장" ×22, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [pt]: PK "fábrica pavimentos SPC" ×25, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [ru]: PK "фабрика SPC напольных покрытий" ×30, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [th]: PK "โรงงานพื้น SPC" ×26, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [tr]: PK "SPC zemin fabrikası" ×25, SK avg 5
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [vi]: PK "nhà máy sàn SPC" ×24, SK avg 5
 
 ## CTA type distribution
 

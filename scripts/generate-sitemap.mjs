@@ -30,6 +30,7 @@ const BLOG_SLUGS = [
   "spc-flooring-container-loading-strategies-that-reduce-import-costs",
   "spc-flooring-factory-price-bulk-container-orders",
   "spc-flooring-supply-hotel-project-africa",
+  "the-real-cost-of-delayed-flooring-shipments",
   "what-is-spc-flooring-commercial-projects",
   "spc-flooring-supplier-manufacturer-china",
   "choose-reliable-spc-flooring-supplier-china-2026",

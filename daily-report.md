@@ -1,6 +1,6 @@
 # BJFLOOR Daily Content Report
 
-Generated: 2026-06-08T14:53:38.640Z
+Generated: 2026-06-08T17:36:58.940Z
 Date: 2026-06-08
 
 ## Summary
@@ -15,7 +15,7 @@ Date: 2026-06-08
 
 ## Slugs published
 
-- how-to-evaluate-an-spc-flooring-supplier-before-your-first-order
+- the-real-cost-of-delayed-flooring-shipments
 
 ## Language distribution
 
@@ -40,26 +40,26 @@ Date: 2026-06-08
 
 ## SEO keyword coverage
 
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [en]: PK "spc flooring supplier china" ×15, SK avg 5
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [zh]: PK "SPC地板工厂" ×8, SK avg 5
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [ar]: PK "مصنع أرضيات SPC" ×26, SK avg 5
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [de]: PK "SPC-Boden Fabrik" ×43, SK avg 5
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [es]: PK "fábrica de suelos SPC" ×15, SK avg 5
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [fr]: PK "usine sols SPC" ×25, SK avg 5
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [he]: PK "מפעל רצפות SPC" ×18, SK avg 5
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [id]: PK "pabrik lantai SPC" ×25, SK avg 5
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [it]: PK "fabbrica pavimenti SPC" ×25, SK avg 5
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [ja]: PK "SPC床材工場" ×22, SK avg 5
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [ko]: PK "SPC 바닥재 공장" ×22, SK avg 5
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [pt]: PK "fábrica pavimentos SPC" ×25, SK avg 5
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [ru]: PK "фабрика SPC напольных покрытий" ×30, SK avg 5
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [th]: PK "โรงงานพื้น SPC" ×26, SK avg 5
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [tr]: PK "SPC zemin fabrikası" ×25, SK avg 5
-- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order** [vi]: PK "nhà máy sàn SPC" ×24, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [en]: PK "spc flooring supplier china" ×16, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [zh]: PK "SPC地板工厂" ×8, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [ar]: PK "مصنع أرضيات SPC" ×25, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [de]: PK "SPC-Boden Fabrik" ×43, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [es]: PK "fábrica de suelos SPC" ×16, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [fr]: PK "usine sols SPC" ×24, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [he]: PK "מפעל רצפות SPC" ×17, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [id]: PK "pabrik lantai SPC" ×24, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [it]: PK "fabbrica pavimenti SPC" ×24, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [ja]: PK "SPC床材工場" ×22, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [ko]: PK "SPC 바닥재 공장" ×21, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [pt]: PK "fábrica pavimentos SPC" ×24, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [ru]: PK "фабрика SPC напольных покрытий" ×30, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [th]: PK "โรงงานพื้น SPC" ×25, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [tr]: PK "SPC zemin fabrikası" ×24, SK avg 5
+- **the-real-cost-of-delayed-flooring-shipments** [vi]: PK "nhà máy sàn SPC" ×23, SK avg 5
 
 ## CTA type distribution
 
-- supplier: 16
+- logistics: 16
 
 ## Image usage
 

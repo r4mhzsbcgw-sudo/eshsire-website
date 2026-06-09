@@ -1,7 +1,7 @@
 # BJFLOOR Daily Content Report
 
-Generated: 2026-06-08T19:37:14.303Z
-Date: 2026-06-08
+Generated: 2026-06-09T12:19:23.913Z
+Date: 2026-06-09
 
 ## Summary
 
@@ -15,7 +15,7 @@ Date: 2026-06-08
 
 ## Slugs published
 
-- spc-flooring-factory-audit-checklist-for-importers
+- how-successful-flooring-importers-reduce-sourcing-risks
 
 ## Language distribution
 
@@ -40,22 +40,22 @@ Date: 2026-06-08
 
 ## SEO keyword coverage
 
-- **spc-flooring-factory-audit-checklist-for-importers** [en]: PK "spc flooring factory" ×17, SK avg 5
-- **spc-flooring-factory-audit-checklist-for-importers** [zh]: PK "SPC地板工厂" ×8, SK avg 5
-- **spc-flooring-factory-audit-checklist-for-importers** [ar]: PK "مصنع أرضيات SPC" ×25, SK avg 5
-- **spc-flooring-factory-audit-checklist-for-importers** [de]: PK "SPC-Boden Fabrik" ×44, SK avg 5
-- **spc-flooring-factory-audit-checklist-for-importers** [es]: PK "fábrica de suelos SPC" ×16, SK avg 5
-- **spc-flooring-factory-audit-checklist-for-importers** [fr]: PK "usine sols SPC" ×24, SK avg 5
-- **spc-flooring-factory-audit-checklist-for-importers** [he]: PK "מפעל רצפות SPC" ×17, SK avg 5
-- **spc-flooring-factory-audit-checklist-for-importers** [id]: PK "pabrik lantai SPC" ×25, SK avg 5
-- **spc-flooring-factory-audit-checklist-for-importers** [it]: PK "fabbrica pavimenti SPC" ×25, SK avg 5
-- **spc-flooring-factory-audit-checklist-for-importers** [ja]: PK "SPC床材工場" ×22, SK avg 5
-- **spc-flooring-factory-audit-checklist-for-importers** [ko]: PK "SPC 바닥재 공장" ×22, SK avg 5
-- **spc-flooring-factory-audit-checklist-for-importers** [pt]: PK "fábrica pavimentos SPC" ×25, SK avg 5
-- **spc-flooring-factory-audit-checklist-for-importers** [ru]: PK "фабрика SPC напольных покрытий" ×30, SK avg 5
-- **spc-flooring-factory-audit-checklist-for-importers** [th]: PK "โรงงานพื้น SPC" ×25, SK avg 5
-- **spc-flooring-factory-audit-checklist-for-importers** [tr]: PK "SPC zemin fabrikası" ×25, SK avg 5
-- **spc-flooring-factory-audit-checklist-for-importers** [vi]: PK "nhà máy sàn SPC" ×23, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [en]: PK "spc flooring supplier china" ×15, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [zh]: PK "SPC地板工厂" ×7, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [ar]: PK "مصنع أرضيات SPC" ×25, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [de]: PK "SPC-Boden Fabrik" ×42, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [es]: PK "fábrica de suelos SPC" ×14, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [fr]: PK "usine sols SPC" ×24, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [he]: PK "מפעל רצפות SPC" ×17, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [id]: PK "pabrik lantai SPC" ×24, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [it]: PK "fabbrica pavimenti SPC" ×24, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [ja]: PK "SPC床材工場" ×21, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [ko]: PK "SPC 바닥재 공장" ×21, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [pt]: PK "fábrica pavimentos SPC" ×24, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [ru]: PK "фабрика SPC напольных покрытий" ×29, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [th]: PK "โรงงานพื้น SPC" ×25, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [tr]: PK "SPC zemin fabrikası" ×24, SK avg 5
+- **how-successful-flooring-importers-reduce-sourcing-risks** [vi]: PK "nhà máy sàn SPC" ×23, SK avg 5
 
 ## CTA type distribution
 

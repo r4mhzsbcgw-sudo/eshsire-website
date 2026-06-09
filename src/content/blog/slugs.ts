@@ -2,6 +2,7 @@
 export const blogSlugs = [
   "factory-pricing-vs-trading-company-pricing-what-importers-need-to-know",
   "how-flooring-distributors-can-increase-profit-margins-without-raising-prices",
+  "how-successful-flooring-importers-reduce-sourcing-risks",
   "how-to-evaluate-an-spc-flooring-supplier-before-your-first-order",
   "load-40hq-container-spc-flooring-export",
   "spc-flooring-container-loading-strategies-that-reduce-import-costs",

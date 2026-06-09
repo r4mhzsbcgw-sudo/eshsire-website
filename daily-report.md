@@ -1,6 +1,6 @@
 # BJFLOOR Daily Content Report
 
-Generated: 2026-06-09T16:19:55.528Z
+Generated: 2026-06-09T18:33:01.225Z
 Date: 2026-06-09
 
 ## Summary
@@ -15,7 +15,7 @@ Date: 2026-06-09
 
 ## Slugs published
 
-- spc-flooring-quality-control-before-shipment
+- what-makes-a-reliable-spc-flooring-manufacturer
 
 ## Language distribution
 
@@ -40,26 +40,26 @@ Date: 2026-06-09
 
 ## SEO keyword coverage
 
-- **spc-flooring-quality-control-before-shipment** [en]: PK "spc flooring supplier china" ×15, SK avg 5
-- **spc-flooring-quality-control-before-shipment** [zh]: PK "SPC地板工厂" ×8, SK avg 5
-- **spc-flooring-quality-control-before-shipment** [ar]: PK "مصنع أرضيات SPC" ×25, SK avg 5
-- **spc-flooring-quality-control-before-shipment** [de]: PK "SPC-Boden Fabrik" ×43, SK avg 5
-- **spc-flooring-quality-control-before-shipment** [es]: PK "fábrica de suelos SPC" ×16, SK avg 5
-- **spc-flooring-quality-control-before-shipment** [fr]: PK "usine sols SPC" ×24, SK avg 5
-- **spc-flooring-quality-control-before-shipment** [he]: PK "מפעל רצפות SPC" ×17, SK avg 5
-- **spc-flooring-quality-control-before-shipment** [id]: PK "pabrik lantai SPC" ×24, SK avg 5
-- **spc-flooring-quality-control-before-shipment** [it]: PK "fabbrica pavimenti SPC" ×24, SK avg 5
-- **spc-flooring-quality-control-before-shipment** [ja]: PK "SPC床材工場" ×22, SK avg 5
-- **spc-flooring-quality-control-before-shipment** [ko]: PK "SPC 바닥재 공장" ×21, SK avg 5
-- **spc-flooring-quality-control-before-shipment** [pt]: PK "fábrica pavimentos SPC" ×24, SK avg 5
-- **spc-flooring-quality-control-before-shipment** [ru]: PK "фабрика SPC напольных покрытий" ×30, SK avg 5
-- **spc-flooring-quality-control-before-shipment** [th]: PK "โรงงานพื้น SPC" ×25, SK avg 5
-- **spc-flooring-quality-control-before-shipment** [tr]: PK "SPC zemin fabrikası" ×24, SK avg 5
-- **spc-flooring-quality-control-before-shipment** [vi]: PK "nhà máy sàn SPC" ×23, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [en]: PK "spc flooring supplier china" ×15, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [zh]: PK "SPC地板工厂" ×8, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [ar]: PK "مصنع أرضيات SPC" ×26, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [de]: PK "SPC-Boden Fabrik" ×43, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [es]: PK "fábrica de suelos SPC" ×16, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [fr]: PK "usine sols SPC" ×25, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [he]: PK "מפעל רצפות SPC" ×18, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [id]: PK "pabrik lantai SPC" ×25, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [it]: PK "fabbrica pavimenti SPC" ×25, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [ja]: PK "SPC床材工場" ×23, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [ko]: PK "SPC 바닥재 공장" ×22, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [pt]: PK "fábrica pavimentos SPC" ×25, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [ru]: PK "фабрика SPC напольных покрытий" ×30, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [th]: PK "โรงงานพื้น SPC" ×26, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [tr]: PK "SPC zemin fabrikası" ×25, SK avg 5
+- **what-makes-a-reliable-spc-flooring-manufacturer** [vi]: PK "nhà máy sàn SPC" ×24, SK avg 5
 
 ## CTA type distribution
 
-- logistics: 16
+- supplier: 16
 
 ## Image usage
 

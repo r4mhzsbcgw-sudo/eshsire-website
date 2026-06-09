@@ -35,6 +35,7 @@ const BLOG_SLUGS = [
   "spc-flooring-supply-hotel-project-africa",
   "the-real-cost-of-delayed-flooring-shipments",
   "what-is-spc-flooring-commercial-projects",
+  "what-makes-a-reliable-spc-flooring-manufacturer",
   "spc-flooring-supplier-manufacturer-china",
   "choose-reliable-spc-flooring-supplier-china-2026",
   "7-mistakes-importing-spc-flooring-from-china"

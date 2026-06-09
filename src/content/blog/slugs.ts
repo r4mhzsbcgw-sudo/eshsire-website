@@ -8,6 +8,7 @@ export const blogSlugs = [
   "spc-flooring-container-loading-strategies-that-reduce-import-costs",
   "spc-flooring-factory-audit-checklist-for-importers",
   "spc-flooring-factory-price-bulk-container-orders",
+  "spc-flooring-quality-control-before-shipment",
   "spc-flooring-supply-hotel-project-africa",
   "the-real-cost-of-delayed-flooring-shipments",
   "what-is-spc-flooring-commercial-projects",

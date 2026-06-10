@@ -1,0 +1,62 @@
+{
+  "title": "WPC Wall Panel Interior Decoration Guide",
+  "slug": "preview-wall-demo",
+  "locale": "zh",
+  "imageType": "WALL_PANEL",
+  "imageCount": 5,
+  "images": [
+    "https://images.pexels.com/photos/9843472/pexels-photo-9843472.jpeg",
+    "https://images.pexels.com/photos/1029384/pexels-photo-1029384.jpeg",
+    "https://images.pexels.com/photos/4829192/pexels-photo-4829192.jpeg",
+    "https://images.pexels.com/photos/7382910/pexels-photo-7382910.jpeg",
+    "https://images.pexels.com/photos/8245871/pexels-photo-8245871.jpeg"
+  ],
+  "reasoning": [
+    {
+      "role": "banner",
+      "key": "livingRoomWallBanner",
+      "tags": [
+        "interior_wall",
+        "finished_project"
+      ],
+      "reason": "banner|supplier,wall"
+    },
+    {
+      "role": "section",
+      "key": "bedroomWallPanel",
+      "tags": [
+        "interior_wall",
+        "finished_project"
+      ],
+      "reason": "required_application"
+    },
+    {
+      "role": "section",
+      "key": "wallInstallDetail",
+      "tags": [
+        "installation_process",
+        "close_up_texture"
+      ],
+      "reason": "required_detail"
+    },
+    {
+      "role": "section",
+      "key": "kitchenWallPanel",
+      "tags": [
+        "interior_wall",
+        "finished_project"
+      ],
+      "reason": "semantic|score=2"
+    },
+    {
+      "role": "ending",
+      "key": "studyWallPanel",
+      "tags": [
+        "interior_wall",
+        "finished_project"
+      ],
+      "reason": "required_finished"
+    }
+  ],
+  "timestamp": "2026-06-06 13:56:57"
+}

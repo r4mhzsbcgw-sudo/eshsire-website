@@ -72,9 +72,9 @@ export function ImageGallery({
                   <Image
                     src={img.src}
                     alt={img.alt}
+                    title={img.alt}
                     fill
                     loading="lazy"
-                    unoptimized={img.src.includes("source.unsplash.com")}
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                     sizes="(max-width: 768px) 50vw, 25vw"
                   />
@@ -139,6 +139,7 @@ export function ImageGallery({
               <Image
                 src={images[activeIndex].src}
                 alt={images[activeIndex].alt}
+                title={images[activeIndex].alt}
                 fill
                 className="object-contain"
                 sizes="100vw"

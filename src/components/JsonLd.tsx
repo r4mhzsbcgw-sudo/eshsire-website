@@ -2,7 +2,6 @@ import { siteConfig, getAddress } from "@/lib/config";
 import type { Locale } from "@/i18n/locales";
 import { htmlLangMap } from "@/i18n/locales";
 import { getDictionary } from "@/i18n/get-dictionary";
-import { pageUrl } from "@/lib/seo";
 
 export async function JsonLd({ locale }: { locale: Locale }) {
   const dict = await getDictionary(locale);
@@ -40,16 +39,6 @@ export async function JsonLd({ locale }: { locale: Locale }) {
       description: dict.meta.siteDescription,
       inLanguage: htmlLangMap[locale],
       publisher: { "@id": orgId },
-    },
-    {
-      "@type": "WebPage",
-      "@id": `${pageUrl(locale, "")}#webpage`,
-      url: pageUrl(locale, ""),
-      name: dict.meta.siteTitle,
-      description: dict.meta.siteDescription,
-      isPartOf: { "@id": `${siteConfig.url}/#website` },
-      about: { "@id": orgId },
-      inLanguage: htmlLangMap[locale],
     },
   ];
 

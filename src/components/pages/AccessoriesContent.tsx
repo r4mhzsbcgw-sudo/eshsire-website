@@ -5,6 +5,7 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Button } from "@/components/ui/Button";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import { ProductFaqSection } from "@/components/seo/ProductFaq";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
@@ -37,6 +38,7 @@ export function AccessoriesContent() {
           </div>
         </div>
       </section>
+      <ProductFaqSection />
       <RelatedLinks excludePath="/accessories" />
       <ContactCTA />
     </>

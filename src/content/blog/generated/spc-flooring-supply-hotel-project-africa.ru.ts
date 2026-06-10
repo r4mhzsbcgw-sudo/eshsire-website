@@ -5,7 +5,7 @@ export const post: BlogPost = {
   slug: "spc-flooring-supply-hotel-project-africa",
   slot: "evening",
   title: "SPC Flooring Supply for Hotel Project in Africa — Factory Case Study: поставки SPC для отелей и коммерческих проектов",
-  metaTitle: "SPC Flooring Supply for Hotel Project in Africa —… | фабрика SPC напольных покрытий | BJFLOOR",
+  metaTitle: "SPC Flooring Supply for Hotel Project in Africa —… | фабрика SPC напольных покрытий | Eshsire Group",
   description: "SPC Flooring Supply for Hotel Project in Africa — Factory Case Study: поставки SPC для отелей и коммерческих проектов. B2B-руководство для дистрибьюторов: фабрика SPC напольных покрытий, цены фабрики, оптимизация контейнеров и контроль цепочки поставок из Китая.",
   date: "2026-06-05",
   readMinutes: 11,
@@ -13,7 +13,7 @@ export const post: BlogPost = {
   ogImage: "/images/blog/editorial/08-hotel-commercial-interior.jpg",
   blocks: [
     { type: "p", text: "SPC Flooring Supply for Hotel Project in Africa — Factory Case Study: поставки SPC для отелей и коммерческих проектов — для дистрибьюторов, оптовиков, подрядчиков и импортёров из Китая. Фокус фабрика SPC напольных покрытий: цены фабрики, контейнер, опт и прозрачность цепочки. Оценка производитель SPC Китай и оптовый поставщик напольных покрытий Китай защищает маржу." },
-    { type: "h2", text: "Преимущество BJFLOOR: прямые поставки" },
+    { type: "h2", text: "Преимущество Eshsire Group: прямые поставки" },
     imgBlock("/images/blog/editorial/09-office-commercial-space.jpg", "SPC Flooring Supply for Hotel Project in Africa — Factory Case Study: поставки SPC для отелей и коммерческих проектов. B2B-руководство для дистрибьюторов: фабрика SPC напольных покрытий — Modern office interior — commercial traffic and wear-layer planning", "Офисный коммерческий трафик — подберите износный слой до фиксации SKU"),
     { type: "p", text: "Eshsire Group — интегрированная фабрика 6000㎡ в Пекине. Выбирают нас за проверяемую фабрика SPC напольных покрытий и контейнерные программы в 30+ стран." },
     { type: "rich-p", segments: ["Смотрите ", { link: "мощности фабрики и линии в Китае", href: "/factory" }] },

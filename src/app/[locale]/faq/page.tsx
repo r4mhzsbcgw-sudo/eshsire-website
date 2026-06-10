@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { FaqContent } from "@/components/pages/FaqContent";
 import { getDictionary } from "@/i18n/get-dictionary";
-import { isLocale } from "@/i18n/locales";
+import { isLocale, type Locale } from "@/i18n/locales";
+import { BreadcrumbJsonLd, FaqJsonLd, WebPageJsonLd } from "@/components/seo/StructuredData";
 import { buildPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -20,6 +21,27 @@ export async function generateMetadata({
   });
 }
 
-export default function FaqPage() {
-  return <FaqContent />;
+export default async function FaqPage({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const { locale: localeParam } = params;
+  if (!isLocale(localeParam)) return null;
+  const locale = localeParam as Locale;
+  const dict = await getDictionary(locale);
+
+  return (
+    <>
+      <WebPageJsonLd
+        locale={locale}
+        path="/faq"
+        name={dict.meta.seoTitles.faq}
+        description={dict.meta.pageDesc.faq}
+      />
+      <BreadcrumbJsonLd locale={locale} path="/faq" />
+      <FaqJsonLd locale={locale} path="/faq" />
+      <FaqContent />
+    </>
+  );
 }

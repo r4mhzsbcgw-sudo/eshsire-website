@@ -3,12 +3,13 @@
 import Image from "next/image";
 import Link from "next/link";
 import { PageHero } from "@/components/ui/PageHero";
+import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
 import { getWhatsAppUrl } from "@/lib/config";
-import { projectImages } from "@/lib/images";
+import { getProjectImageSet, getProjectThumbnail } from "@/lib/project-images";
 import type { ProjectSlug } from "@/content/projects";
 
 interface ProjectDetailContentProps {
@@ -23,14 +24,17 @@ export function ProjectDetailContent({ slug }: ProjectDetailContentProps) {
 
   if (!project) return null;
 
-  const image = projectImages[index];
+  const imageSet = getProjectImageSet(slug);
+  const [banner, content1, content2, content3, ending] = imageSet.detailImages;
+  const galleryMeta = imageSet.meta.filter((m) => m.role !== "thumb");
 
   return (
     <>
       <PageHero
         title={project.title}
         subtitle={project.desc}
-        image={image}
+        image={banner}
+        unoptimized
         breadcrumbParent={{ label: p.title, href: `${localizedPath(locale, "/")}#projects` }}
         breadcrumbLabel={project.title}
       />
@@ -66,22 +70,90 @@ export function ProjectDetailContent({ slug }: ProjectDetailContentProps) {
             </FadeIn>
 
             <FadeIn delay={0.15}>
-              <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10">
+              <figure className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10">
                 <Image
-                  src={image}
-                  alt={project.title}
+                  src={content1}
+                  alt={galleryMeta.find((m) => m.role === "content-1")?.altEn ?? project.title}
                   fill
+                  unoptimized
                   className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                   quality={90}
                 />
-              </div>
+                {galleryMeta.find((m) => m.role === "content-1")?.altEn && (
+                  <figcaption className="absolute inset-x-0 bottom-0 bg-industrial-dark/80 px-4 py-2 text-xs text-industrial-mist">
+                    {galleryMeta.find((m) => m.role === "content-1")!.altEn}
+                  </figcaption>
+                )}
+              </figure>
             </FadeIn>
           </div>
         </div>
       </section>
 
       <section className="section-padding border-t border-white/10 bg-industrial-slate/20">
+        <div className="mx-auto max-w-7xl">
+          <FadeIn>
+            <SectionHeader
+              label={p.galleryLabel}
+              title={p.galleryTitle}
+              description={p.galleryDesc}
+              centered
+            />
+          </FadeIn>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2">
+            {[content2, content3].map((src, i) => {
+              const role = `content-${i + 2}` as const;
+              const meta = galleryMeta.find((m) => m.role === role);
+              return (
+                <FadeIn key={src} delay={i * 0.08}>
+                  <figure className="overflow-hidden rounded-xl border border-white/10">
+                    <div className="relative aspect-[4/3]">
+                      <Image
+                        src={src}
+                        alt={meta?.altEn ?? `${project.title} ${i + 1}`}
+                        fill
+                        className="object-cover"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        loading="lazy"
+                        unoptimized
+                      />
+                    </div>
+                    {meta?.altEn && (
+                      <figcaption className="border-t border-white/10 bg-industrial-dark/60 px-4 py-3 text-sm text-industrial-mist">
+                        {meta.altEn}
+                      </figcaption>
+                    )}
+                  </figure>
+                </FadeIn>
+              );
+            })}
+          </div>
+
+          <FadeIn delay={0.2} className="mt-10">
+            <figure className="overflow-hidden rounded-2xl border border-white/10">
+              <div className="relative aspect-[21/9]">
+                <Image
+                  src={ending}
+                  alt={galleryMeta.find((m) => m.role === "ending")?.altEn ?? `${project.title} completion`}
+                  fill
+                  className="object-cover"
+                  sizes="100vw"
+                  loading="lazy"
+                />
+              </div>
+              {galleryMeta.find((m) => m.role === "ending")?.altEn && (
+                <figcaption className="border-t border-white/10 bg-industrial-dark/60 px-6 py-4 text-center text-sm text-industrial-mist">
+                  {galleryMeta.find((m) => m.role === "ending")!.altEn}
+                </figcaption>
+              )}
+            </figure>
+          </FadeIn>
+        </div>
+      </section>
+
+      <section className="section-padding border-t border-white/10 bg-industrial-dark">
         <div className="mx-auto max-w-7xl">
           <FadeIn className="text-center">
             <h3 className="text-2xl font-bold tracking-tight text-white md:text-3xl">{p.ctaTitle}</h3>
@@ -106,34 +178,31 @@ export function ProjectDetailContent({ slug }: ProjectDetailContentProps) {
               {p.items
                 .filter((item) => item.slug !== slug)
                 .slice(0, 4)
-                .map((item) => {
-                  const itemIndex = p.items.findIndex((i) => i.slug === item.slug);
-                  const itemImage = projectImages[itemIndex];
-                  return (
-                    <Link
-                      key={item.slug}
-                      href={localizedPath(locale, `/projects/${item.slug}`)}
-                      className="group overflow-hidden rounded-xl glass-card-hover"
-                    >
-                      <div className="relative aspect-[4/3] overflow-hidden">
-                        <Image
-                          src={itemImage}
-                          alt={item.title}
-                          fill
-                          loading="lazy"
-                          className="object-cover transition-transform duration-700 group-hover:scale-110"
-                          sizes="(max-width: 640px) 50vw, 25vw"
-                        />
-                      </div>
-                      <div className="p-4">
-                        <p className="text-xs font-semibold uppercase tracking-wider text-accent">{item.tag}</p>
-                        <h4 className="mt-2 text-sm font-bold text-white group-hover:text-accent md:text-base">
-                          {item.title}
-                        </h4>
-                      </div>
-                    </Link>
-                  );
-                })}
+                .map((item) => (
+                  <Link
+                    key={item.slug}
+                    href={localizedPath(locale, `/projects/${item.slug}`)}
+                    className="group overflow-hidden rounded-xl glass-card-hover"
+                  >
+                    <div className="relative aspect-[4/3] overflow-hidden">
+                      <Image
+                        src={getProjectThumbnail(item.slug as ProjectSlug)}
+                        alt={item.title}
+                        fill
+                        loading="lazy"
+                        unoptimized
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                        sizes="(max-width: 640px) 50vw, 25vw"
+                      />
+                    </div>
+                    <div className="p-4">
+                      <p className="text-xs font-semibold uppercase tracking-wider text-accent">{item.tag}</p>
+                      <h4 className="mt-2 text-sm font-bold text-white group-hover:text-accent md:text-base">
+                        {item.title}
+                      </h4>
+                    </div>
+                  </Link>
+                ))}
             </div>
           </FadeIn>
         </div>

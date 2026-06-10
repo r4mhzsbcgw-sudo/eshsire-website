@@ -1,4 +1,4 @@
-﻿count 27
+count 27
 out C:\Users\11491\Projects\eshsire-b2b\product-list.json
 1 7" Plastic Set Square ABS material thickness:4.  2MM Inch 0.75
 2 6"/150mm   Vernier  Caliper Materials：ABS 0.85

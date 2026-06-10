@@ -81,6 +81,7 @@ function BlogBlockView({
             <Image
               src={block.src}
               alt={block.alt}
+              title={block.alt}
               fill
               loading={lazyImage ? "lazy" : undefined}
               className="object-cover"
@@ -200,6 +201,64 @@ function ArticleCta({
   );
 }
 
+const relatedBlogLinks = [
+  {
+    slug: "spc-flooring-supplier-manufacturer-china",
+    label: "SPC flooring supplier selection",
+  },
+  {
+    slug: "choose-reliable-spc-flooring-supplier-china-2026",
+    label: "Choosing a reliable China supplier",
+  },
+  {
+    slug: "7-mistakes-importing-spc-flooring-from-china",
+    label: "Common importing mistakes",
+  },
+  {
+    slug: "load-40hq-container-spc-flooring-export",
+    label: "40HQ container loading guide",
+  },
+];
+
+function BlogInternalLinks({ post, locale }: { post: BlogPost; locale: Locale }) {
+  const related = relatedBlogLinks.filter((item) => item.slug !== post.slug).slice(0, 2);
+
+  return (
+    <aside className="mt-12 border-t border-white/10 pt-8">
+      <h2 className="text-xl font-bold text-white">Related procurement resources</h2>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        <Link
+          href={localizedPath(locale, "/spc-flooring")}
+          className="glass-card-hover p-4 text-sm font-semibold text-accent"
+        >
+          SPC flooring specifications and OEM options
+        </Link>
+        <Link
+          href={localizedPath(locale, "/about")}
+          className="glass-card-hover p-4 text-sm font-semibold text-accent"
+        >
+          About Eshsire Group factory capability
+        </Link>
+        <Link
+          href={localizedPath(locale, "/contact")}
+          className="glass-card-hover p-4 text-sm font-semibold text-accent"
+        >
+          Contact Eshsire Group for samples and quotation
+        </Link>
+        {related.map((item) => (
+          <Link
+            key={item.slug}
+            href={localizedPath(locale, `/blog/${item.slug}`)}
+            className="glass-card-hover p-4 text-sm font-semibold text-accent"
+          >
+            {item.label}
+          </Link>
+        ))}
+      </div>
+    </aside>
+  );
+}
+
 export function BlogPostContent({ post }: { post: BlogPost }) {
   const { locale, dict } = useLocale();
   let imageIndex = 0;
@@ -222,6 +281,7 @@ export function BlogPostContent({ post }: { post: BlogPost }) {
             <Image
               src={post.heroImage}
               alt={post.title}
+              title={post.title}
               fill
               className="object-cover"
               priority
@@ -238,6 +298,7 @@ export function BlogPostContent({ post }: { post: BlogPost }) {
             const lazyImage = block.type === "img" ? imageIndex++ > 0 : false;
             return <BlogBlockView key={i} block={block} locale={locale} lazyImage={lazyImage} />;
           })}
+          <BlogInternalLinks post={post} locale={locale} />
         </div>
       </div>
     </article>

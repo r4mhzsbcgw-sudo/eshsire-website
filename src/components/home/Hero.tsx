@@ -76,6 +76,7 @@ export function Hero() {
                 <Image
                   src={slide.image}
                   alt={slide.alt}
+                  title={slide.alt}
                   fill
                   className="object-contain object-center"
                   sizes="(max-width: 768px) 100vw, 1280px"

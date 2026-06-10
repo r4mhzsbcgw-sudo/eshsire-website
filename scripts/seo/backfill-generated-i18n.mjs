@@ -107,7 +107,7 @@ function regenerateRegistry() {
     .map((f) => f.replace(".en.ts", ""))
     .sort();
 
-  const lines = [`/** AUTO-GENERATED — BJFLOOR V2 multi-locale */`, `import type { BlogPost } from "../types";`, ""];
+  const lines = [`/** AUTO-GENERATED 鈥?Eshsire Group V2 multi-locale */`, `import type { BlogPost } from "../types";`, ""];
 
   for (const locale of ALL_LOCALES) {
     const bases = enBases.filter((base) => existsSync(join(GENERATED_DIR, `${base}.${locale}.ts`)));
@@ -159,13 +159,13 @@ function main() {
       });
 
       if (!article.validation.pass) {
-        console.warn(`⚠ ${topic.slug} [${locale}]:`, article.validation.errors);
+        console.warn(`鈿?${topic.slug} [${locale}]:`, article.validation.errors);
         failed++;
       }
 
       writeFileSync(out, buildArticleFile(article, topic.slot, locale), "utf8");
       created++;
-      console.log(`✓ ${topic.slug} [${locale}] ~${article.wordCount} words`);
+      console.log(`鉁?${topic.slug} [${locale}] ~${article.wordCount} words`);
     }
   }
 

@@ -193,7 +193,7 @@ export type BlogProcurementLabels = {
 const procurementLabels: Record<Locale, BlogProcurementLabels> = {
   en: {
     title: "Factory Direct Pricing for Distributors & Contractors",
-    text: "Contact our export team for factory price list, 40HQ container quotation and bulk SPC flooring pricing. Reply within 24 hours.",
+    text: "Contact Eshsire Group for an SPC flooring quotation, OEM packaging support, daily production updates, and a weight-based container loading plan. Reply within 24 hours.",
     requestPriceList: "Request Factory Price List",
     containerQuotation: "Get Container Quotation",
     bulkOrderPricing: "Get Bulk Order Pricing",

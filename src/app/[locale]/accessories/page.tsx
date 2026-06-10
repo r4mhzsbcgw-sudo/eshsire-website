@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { AccessoriesContent } from "@/components/pages/AccessoriesContent";
+import { BreadcrumbJsonLd, FaqJsonLd, ProductJsonLd } from "@/components/seo/StructuredData";
 import { getDictionary } from "@/i18n/get-dictionary";
-import { isLocale } from "@/i18n/locales";
+import { isLocale, type Locale } from "@/i18n/locales";
+import { accessoriesImages } from "@/lib/images";
 import { buildPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -20,6 +22,29 @@ export async function generateMetadata({
   });
 }
 
-export default function AccessoriesPage() {
-  return <AccessoriesContent />;
+export default async function AccessoriesPage({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const { locale: localeParam } = params;
+  if (!isLocale(localeParam)) return null;
+  const locale = localeParam as Locale;
+  const dict = await getDictionary(locale);
+
+  return (
+    <>
+      <BreadcrumbJsonLd locale={locale} path="/accessories" />
+      <FaqJsonLd locale={locale} path="/accessories" />
+      <ProductJsonLd
+        locale={locale}
+        name={dict.accessories.title}
+        description={dict.accessories.description}
+        image={accessoriesImages.hero}
+        path="/accessories"
+        category="SPC flooring accessories"
+      />
+      <AccessoriesContent />
+    </>
+  );
 }

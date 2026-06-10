@@ -5,7 +5,7 @@ export const post: BlogPost = {
   slug: "what-is-spc-flooring-commercial-projects",
   slot: "morning",
   title: "What Is SPC Flooring and Why Contractors Choose It for Commercial Pro…: поставки SPC для отелей и коммерческих проектов",
-  metaTitle: "What Is SPC Flooring and Why Contractors Choose I… | фабрика SPC напольных покрытий | BJFLOOR",
+  metaTitle: "What Is SPC Flooring and Why Contractors Choose I… | фабрика SPC напольных покрытий | Eshsire Group",
   description: "What Is SPC Flooring and Why Contractors Choose It for Commercial Pro…: поставки SPC для отелей и коммерческих проектов. B2B-руководство для дистрибьюторов: фабрика SPC напольных покрытий, цены фабрики, оптимизация контейнеров и контроль цепочки поставок из Китая.",
   date: "2026-06-05",
   readMinutes: 11,
@@ -13,7 +13,7 @@ export const post: BlogPost = {
   ogImage: "/images/blog/editorial/09-office-commercial-space.jpg",
   blocks: [
     { type: "p", text: "What Is SPC Flooring and Why Contractors Choose It for Commercial Pro…: поставки SPC для отелей и коммерческих проектов — для дистрибьюторов, оптовиков, подрядчиков и импортёров из Китая. Фокус фабрика SPC напольных покрытий: цены фабрики, контейнер, опт и прозрачность цепочки. Оценка производитель SPC Китай и оптовый поставщик напольных покрытий Китай защищает маржу." },
-    { type: "h2", text: "Преимущество BJFLOOR: прямые поставки" },
+    { type: "h2", text: "Преимущество Eshsire Group: прямые поставки" },
     imgBlock("/images/blog/editorial/01-industrial-factory-floor.jpg", "SPC Flooring and Why Contractors Choose It for Commercial Pro…: поставки SPC для отелей и коммерческих проектов. B2B-руководство для дистрибьюторов: фабрика SPC напольных покрытий — Industrial factory floor with automated production machinery", "Промышленный цех — ориентир при аудите реальной производственной мощности"),
     { type: "p", text: "Eshsire Group — интегрированная фабрика 6000㎡ в Пекине. Выбирают нас за проверяемую фабрика SPC напольных покрытий и контейнерные программы в 30+ стран." },
     { type: "rich-p", segments: ["Смотрите ", { link: "мощности фабрики и линии в Китае", href: "/factory" }] },

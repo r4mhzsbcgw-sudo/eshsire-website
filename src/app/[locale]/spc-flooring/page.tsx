@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { SpcFlooringContent } from "@/components/pages/SpcFlooringContent";
-import { ProductJsonLd } from "@/components/seo/StructuredData";
+import { BreadcrumbJsonLd, FaqJsonLd, ProductJsonLd } from "@/components/seo/StructuredData";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { isLocale, type Locale } from "@/i18n/locales";
 import { spcFlooringImages } from "@/lib/images";
@@ -34,12 +34,15 @@ export default async function SpcFlooringPage({
 
   return (
     <>
+      <BreadcrumbJsonLd locale={locale} path="/spc-flooring" />
+      <FaqJsonLd locale={locale} path="/spc-flooring" />
       <ProductJsonLd
         locale={locale}
         name={dict.spcFlooring.productTitle}
         description={dict.spcFlooring.productDesc}
         image={spcFlooringImages.featured}
         path="/spc-flooring"
+        category="SPC flooring"
       />
       <SpcFlooringContent />
     </>

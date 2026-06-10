@@ -45,6 +45,7 @@ export function ProductCategories() {
                   <Image
                     src={cat.image}
                     alt={cat.title}
+                    title={cat.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
                     sizes="(max-width: 1280px) 33vw, 400px"

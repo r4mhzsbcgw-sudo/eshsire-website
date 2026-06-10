@@ -1,13 +1,12 @@
-import { headers } from "next/headers";
 import { getDictionary } from "@/i18n/get-dictionary";
 import type { Locale } from "@/i18n/locales";
 import { htmlLangMap } from "@/i18n/locales";
-import { stripLocale } from "@/i18n/navigation";
 import { pageUrl } from "@/lib/seo";
 import { siteConfig } from "@/lib/config";
 import type { BlogPost } from "@/content/blog/types";
 import { PROJECT_SLUGS } from "@/content/projects";
-import { projectImages } from "@/lib/images";
+import { getProjectThumbnail } from "@/lib/project-images";
+import { productFaqItems } from "@/components/seo/ProductFaq";
 
 const PATH_LABEL_KEYS: Record<
   string,
@@ -26,32 +25,40 @@ const PATH_LABEL_KEYS: Record<
   "/blog": "blog",
 };
 
-export async function BreadcrumbJsonLd({ locale }: { locale: Locale }) {
-  const pathname = headers().get("x-pathname") ?? `/${locale}`;
-  const path = stripLocale(pathname);
-  if (path === "/") return null;
+function labelFromSlug(slug: string): string {
+  return slug
+    .split("-")
+    .filter(Boolean)
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+}
 
-  const dict = await getDictionary(locale);
-  const labelKey = PATH_LABEL_KEYS[path];
-  if (!labelKey) return null;
+function absoluteUrl(value: string): string {
+  return value.startsWith("http") ? value : `${siteConfig.url}${value}`;
+}
 
+export async function WebPageJsonLd({
+  locale,
+  path,
+  name,
+  description,
+}: {
+  locale: Locale;
+  path: string;
+  name: string;
+  description: string;
+}) {
+  const page = pageUrl(locale, path);
   const schema = {
     "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: dict.meta.pages.home,
-        item: pageUrl(locale, ""),
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: dict.meta.pages[labelKey],
-        item: pageUrl(locale, path),
-      },
-    ],
+    "@type": "WebPage",
+    "@id": `${page}#webpage`,
+    url: page,
+    name,
+    description,
+    isPartOf: { "@id": `${siteConfig.url}/#website` },
+    about: { "@id": `${siteConfig.url}/#organization` },
+    inLanguage: htmlLangMap[locale],
   };
 
   return (
@@ -62,16 +69,76 @@ export async function BreadcrumbJsonLd({ locale }: { locale: Locale }) {
   );
 }
 
-export async function FaqJsonLd({ locale }: { locale: Locale }) {
-  const pathname = headers().get("x-pathname") ?? "";
-  if (!pathname.includes("/faq")) return null;
+export async function BreadcrumbJsonLd({ locale, path }: { locale: Locale; path: string }) {
+  if (path === "/") return null;
 
   const dict = await getDictionary(locale);
+  const labelKey = PATH_LABEL_KEYS[path];
+  const dynamicMatch = path.match(/^\/(blog|projects)\/([^/]+)$/);
+  if (!labelKey && !dynamicMatch) return null;
+
+  const itemListElement = [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: dict.meta.pages.home,
+      item: pageUrl(locale, ""),
+    },
+  ];
+
+  if (labelKey) {
+    itemListElement.push({
+      "@type": "ListItem",
+      position: 2,
+      name: dict.meta.pages[labelKey],
+      item: pageUrl(locale, path),
+    });
+  } else if (dynamicMatch) {
+    const section = dynamicMatch[1];
+    const slug = dynamicMatch[2];
+    const parentPath = `/${section}`;
+    itemListElement.push(
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: section === "blog" ? dict.meta.pages.blog : "Projects",
+        item: pageUrl(locale, parentPath),
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: labelFromSlug(slug),
+        item: pageUrl(locale, path),
+      }
+    );
+  }
+
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement,
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export async function FaqJsonLd({ locale, path }: { locale: Locale; path: string }) {
+  const productFaqPaths = ["/spc-flooring", "/wall-panels", "/accessories"];
+  const isProductFaq = productFaqPaths.includes(path);
+  if (path !== "/faq" && !isProductFaq) return null;
+
+  const dict = await getDictionary(locale);
+  const items = isProductFaq ? productFaqItems : dict.faq.items;
   const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     inLanguage: htmlLangMap[locale],
-    mainEntity: dict.faq.items.map((item) => ({
+    mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: {
@@ -95,15 +162,17 @@ export function ProductJsonLd({
   description,
   image,
   path,
+  category,
 }: {
   locale: Locale;
   name: string;
   description: string;
   image: string;
   path: string;
+  category: string;
 }) {
   const page = pageUrl(locale, path);
-  const imageUrl = image.startsWith("http") ? image : `${siteConfig.url}${image}`;
+  const imageUrl = absoluteUrl(image);
 
   const schema = {
     "@context": "https://schema.org",
@@ -111,6 +180,7 @@ export function ProductJsonLd({
     name,
     description,
     image: imageUrl,
+    category,
     inLanguage: htmlLangMap[locale],
     brand: {
       "@type": "Brand",
@@ -122,20 +192,6 @@ export function ProductJsonLd({
       url: siteConfig.url,
     },
     url: page,
-    offers: {
-      "@type": "AggregateOffer",
-      url: pageUrl(locale, "/contact"),
-      priceCurrency: "USD",
-      lowPrice: "3.00",
-      highPrice: "15.00",
-      offerCount: "1",
-      availability: "https://schema.org/InStock",
-      seller: {
-        "@type": "Organization",
-        name: siteConfig.name,
-        url: siteConfig.url,
-      },
-    },
   };
 
   return (
@@ -147,9 +203,7 @@ export function ProductJsonLd({
 }
 
 export function ArticleJsonLd({ locale, post }: { locale: Locale; post: BlogPost }) {
-  const imageUrl = post.heroImage.startsWith("http")
-    ? post.heroImage
-    : `${siteConfig.url}${post.heroImage}`;
+  const imageUrl = absoluteUrl(post.heroImage);
 
   const schema = {
     "@context": "https://schema.org",
@@ -182,10 +236,6 @@ export function ArticleJsonLd({ locale, post }: { locale: Locale; post: BlogPost
 }
 
 export async function ProjectsSectionJsonLd({ locale }: { locale: Locale }) {
-  const pathname = headers().get("x-pathname") ?? "";
-  const path = stripLocale(pathname);
-  if (path !== "/") return null;
-
   const dict = await getDictionary(locale);
   const items = dict.home.projects.items;
 
@@ -204,7 +254,7 @@ export async function ProjectsSectionJsonLd({ locale }: { locale: Locale }) {
         "@id": pageUrl(locale, `/projects/${project.slug}`),
         name: project.title,
         description: project.desc,
-        image: projectImages[i],
+        image: absoluteUrl(getProjectThumbnail(PROJECT_SLUGS[i])),
         url: pageUrl(locale, `/projects/${project.slug}`),
         about: project.tag,
         provider: {
@@ -245,6 +295,7 @@ export function ProjectJsonLd({
 
   const page = pageUrl(locale, `/projects/${slug}`);
   const images = gallery.length > 0 ? gallery : [image];
+  const imageUrls = images.map(absoluteUrl);
 
   const schema = {
     "@context": "https://schema.org",
@@ -252,7 +303,7 @@ export function ProjectJsonLd({
     "@id": page,
     name: title,
     description,
-    image: images,
+    image: imageUrls,
     url: page,
     inLanguage: htmlLangMap[locale],
     about: tag,

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { SpcSpecsContent } from "@/components/pages/SpcSpecsContent";
 import { getDictionary } from "@/i18n/get-dictionary";
-import { isLocale } from "@/i18n/locales";
+import { isLocale, type Locale } from "@/i18n/locales";
+import { BreadcrumbJsonLd, WebPageJsonLd } from "@/components/seo/StructuredData";
 import { buildPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -20,6 +21,26 @@ export async function generateMetadata({
   });
 }
 
-export default function SpcSpecsPage() {
-  return <SpcSpecsContent />;
+export default async function SpcSpecsPage({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const { locale: localeParam } = params;
+  if (!isLocale(localeParam)) return null;
+  const locale = localeParam as Locale;
+  const dict = await getDictionary(locale);
+
+  return (
+    <>
+      <WebPageJsonLd
+        locale={locale}
+        path="/spc-flooring/specs"
+        name={dict.meta.seoTitles.spcSpecs}
+        description={dict.meta.pageDesc.spcSpecs}
+      />
+      <BreadcrumbJsonLd locale={locale} path="/spc-flooring/specs" />
+      <SpcSpecsContent />
+    </>
+  );
 }

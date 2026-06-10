@@ -1,4 +1,4 @@
-/** AUTO-GENERATED — BJFLOOR V2 calendar + manual posts */
+/** AUTO-GENERATED — Eshsire Group V2 calendar + manual posts */
 export const blogSlugs = [
   "factory-pricing-vs-trading-company-pricing-what-importers-need-to-know",
   "how-flooring-distributors-can-increase-profit-margins-without-raising-prices",

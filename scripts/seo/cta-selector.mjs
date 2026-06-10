@@ -12,7 +12,7 @@ const CTA_BY_TYPE = {
     ru: { title: "Получить таблицу маржи", text: "Запросите модель цен фабрики и калькулятор маржи для SPC.", variant: "b2b-procurement" },
   },
   logistics: {
-    en: { title: "Get 40HQ Container Loading Plan", text: "Request a mixed-SKU container plan with sqm optimization and export documentation checklist.", variant: "b2b-procurement" },
+    en: { title: "Contact Eshsire Group", text: "Contact Eshsire Group to get an SPC flooring quotation, OEM packaging support, daily production updates, and a practical container loading plan based on weight, product mix, and shipment requirements.", variant: "b2b-procurement" },
     zh: { title: "获取 40HQ 整柜装柜方案", text: "索取混装 SKU 整柜方案、平方米优化与出口单证清单，24 小时内回复。", variant: "b2b-procurement" },
     es: { title: "Plan de carga contenedor 40HQ", text: "Solicite plan de contenedor mixto con optimización m² y checklist de exportación.", variant: "b2b-procurement" },
     de: { title: "40HQ-Beladeplan anfordern", text: "Fordern Sie Misch-SKU-Containerplan mit m²-Optimierung und Export-Checkliste an.", variant: "b2b-procurement" },

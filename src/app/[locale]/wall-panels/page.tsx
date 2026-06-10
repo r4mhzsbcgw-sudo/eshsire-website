@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { WallPanelsContent } from "@/components/pages/WallPanelsContent";
-import { ProductJsonLd } from "@/components/seo/StructuredData";
+import { BreadcrumbJsonLd, FaqJsonLd, ProductJsonLd } from "@/components/seo/StructuredData";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { isLocale, type Locale } from "@/i18n/locales";
 import { wallPanelImages } from "@/lib/images";
@@ -34,12 +34,15 @@ export default async function WallPanelsPage({
 
   return (
     <>
+      <BreadcrumbJsonLd locale={locale} path="/wall-panels" />
+      <FaqJsonLd locale={locale} path="/wall-panels" />
       <ProductJsonLd
         locale={locale}
         name={dict.wallPanels.title}
         description={dict.wallPanels.description}
         image={wallPanelImages.hero}
         path="/wall-panels"
+        category="Interior wall panels"
       />
       <WallPanelsContent />
     </>

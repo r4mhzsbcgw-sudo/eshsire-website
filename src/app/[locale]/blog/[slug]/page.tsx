@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { BlogPostContent } from "@/components/pages/BlogPostContent";
-import { ArticleJsonLd } from "@/components/seo/StructuredData";
+import { ArticleJsonLd, BreadcrumbJsonLd } from "@/components/seo/StructuredData";
 import { getBlogPost, getBlogPosts } from "@/content/blog";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { isLocale, locales, type Locale } from "@/i18n/locales";
+import { buildBlogMetaDescription, buildBlogMetaTitle } from "@/lib/blog-seo";
 import { buildPageMetadata } from "@/lib/seo";
 
 export function generateStaticParams() {
@@ -25,8 +26,8 @@ export async function generateMetadata({
   return buildPageMetadata({
     locale,
     path: `/blog/${slug}`,
-    title: post.metaTitle ?? `${post.title} | Eshsire Group`,
-    description: post.description,
+    title: buildBlogMetaTitle(post),
+    description: buildBlogMetaDescription(post),
     ogImage: post.ogImage,
   });
 }
@@ -45,6 +46,7 @@ export default async function BlogPostPage({
 
   return (
     <>
+      <BreadcrumbJsonLd locale={locale} path={`/blog/${slug}`} />
       <ArticleJsonLd locale={locale} post={post} />
       <BlogPostContent post={post} />
     </>

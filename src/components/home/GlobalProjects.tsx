@@ -6,7 +6,8 @@ import { FadeIn } from "@/components/motion/FadeIn";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
-import { projectImages } from "@/lib/images";
+import { getProjectImageSet, getProjectThumbnail } from "@/lib/project-images";
+import type { ProjectSlug } from "@/content/projects";
 
 const PRODUCT_LINKS = [
   { href: "/spc-flooring" as const, key: "spcFlooring" as const },
@@ -32,9 +33,11 @@ export function GlobalProjects() {
               >
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
-                    src={projectImages[i]}
+                    src={getProjectThumbnail(project.slug as ProjectSlug)}
                     alt={project.title}
+                    title={project.title}
                     fill
+                    unoptimized
                     loading={i < 2 ? undefined : "lazy"}
                     priority={i < 2}
                     className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -50,12 +53,11 @@ export function GlobalProjects() {
                   <h3 className="text-xs font-bold leading-snug text-white transition-colors group-hover:text-accent sm:text-sm md:text-base lg:text-lg">
                     {project.title}
                   </h3>
-                  <p className="mt-1.5 line-clamp-2 flex-1 text-[10px] leading-relaxed text-industrial-light sm:mt-2 sm:text-xs md:text-sm">
+                  <p className="mt-2 line-clamp-2 flex-1 text-[10px] leading-relaxed text-industrial-mist sm:text-xs md:text-sm">
                     {project.desc}
                   </p>
-                  <span className="mt-3 inline-flex items-center gap-1.5 text-[10px] font-semibold text-accent sm:mt-4 sm:text-xs md:text-sm">
-                    {dict.common.viewProject}
-                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  <span className="mt-3 text-[10px] font-semibold text-accent sm:text-xs md:text-sm">
+                    {dict.common.learnMore} →
                   </span>
                 </div>
               </Link>
@@ -63,19 +65,17 @@ export function GlobalProjects() {
           ))}
         </div>
 
-        <FadeIn delay={0.15} className="mt-10 text-center">
-          <p className="text-xs text-industrial-mist md:text-sm">{p.productLinksLabel}</p>
-          <div className="mt-3 flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-xs md:text-sm">
-            {PRODUCT_LINKS.map((link, idx) => (
-              <span key={link.href} className="inline-flex items-center gap-2">
-                {idx > 0 && <span className="text-industrial-mist" aria-hidden>|</span>}
-                <Link
-                  href={localizedPath(locale, link.href)}
-                  className="font-semibold text-accent hover:underline"
-                >
-                  {dict.nav[link.key]}
-                </Link>
-              </span>
+        <FadeIn delay={0.2} className="mt-12 text-center">
+          <p className="text-sm text-industrial-mist">{p.productLinksLabel}</p>
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-3">
+            {PRODUCT_LINKS.map(({ href, key }) => (
+              <Link
+                key={href}
+                href={localizedPath(locale, href)}
+                className="rounded-lg border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white transition-colors hover:border-accent/40 hover:text-accent"
+              >
+                {dict.nav[key]}
+              </Link>
             ))}
           </div>
         </FadeIn>
@@ -83,4 +83,3 @@ export function GlobalProjects() {
     </section>
   );
 }
-

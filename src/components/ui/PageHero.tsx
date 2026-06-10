@@ -9,6 +9,7 @@ interface PageHeroProps {
   title: string;
   subtitle: string;
   image: string;
+  unoptimized?: boolean;
   showBreadcrumbs?: boolean;
   breadcrumbParent?: { label: string; href: string };
   breadcrumbLabel?: string;
@@ -21,12 +22,13 @@ export function PageHero({
   showBreadcrumbs = true,
   breadcrumbParent,
   breadcrumbLabel,
+  unoptimized = false,
 }: PageHeroProps) {
   const { dict } = useLocale();
 
   return (
     <section className="relative flex min-h-[40vh] items-center overflow-hidden md:min-h-[50vh]">
-      <Image src={image} alt={title} fill className="object-cover" priority sizes="100vw" />
+      <Image src={image} alt={title} fill className="object-cover" priority sizes="100vw" unoptimized={unoptimized} />
       <div className="absolute inset-0 bg-gradient-to-r from-industrial-dark via-industrial-dark/90 to-industrial-slate/80" />
       <div className="absolute inset-0 bg-metal-texture" />
       <div className="relative mx-auto w-full max-w-7xl px-6 py-24 md:px-12 md:py-32 lg:px-16">

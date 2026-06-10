@@ -5,7 +5,7 @@ export const post: BlogPost = {
   slug: "spc-flooring-factory-price-bulk-container-orders",
   slot: "afternoon",
   title: "Why SPC Flooring Factory Price in China Is Lower for Bulk Container O…: загрузка контейнеров и экспортная логистика SPC",
-  metaTitle: "Why SPC Flooring Factory Price in China Is Lower … | фабрика SPC напольных покрытий | BJFLOOR",
+  metaTitle: "Why SPC Flooring Factory Price in China Is Lower … | фабрика SPC напольных покрытий | Eshsire Group",
   description: "Why SPC Flooring Factory Price in China Is Lower for Bulk Container O…: загрузка контейнеров и экспортная логистика SPC. B2B-руководство для дистрибьюторов: фабрика SPC напольных покрытий, цены фабрики, оптимизация контейнеров и контроль цепочки поставок из Китая.",
   date: "2026-06-05",
   readMinutes: 11,
@@ -13,7 +13,7 @@ export const post: BlogPost = {
   ogImage: "/images/blog/editorial/01-industrial-factory-floor.jpg",
   blocks: [
     { type: "p", text: "Why SPC Flooring Factory Price in China Is Lower for Bulk Container O…: загрузка контейнеров и экспортная логистика SPC — для дистрибьюторов, оптовиков, подрядчиков и импортёров из Китая. Фокус фабрика SPC напольных покрытий: цены фабрики, контейнер, опт и прозрачность цепочки. Оценка производитель SPC Китай и оптовый поставщик напольных покрытий Китай защищает маржу." },
-    { type: "h2", text: "Преимущество BJFLOOR: прямые поставки" },
+    { type: "h2", text: "Преимущество Eshsire Group: прямые поставки" },
     imgBlock("/images/blog/editorial/02-factory-machinery-operator.jpg", "SPC Flooring Factory Price in China Is Lower for Bulk Container O…: загрузка контейнеров и экспортная логистика SPC. B2B-руководство для дистрибьюторов: фабрика SPC напольных покрытий — Factory operator at industrial machinery on the production line", "Оператор на производственной линии — при визите на завод проверьте работу линий"),
     { type: "p", text: "Eshsire Group — интегрированная фабрика 6000㎡ в Пекине. Выбирают нас за проверяемую фабрика SPC напольных покрытий и контейнерные программы в 30+ стран." },
     { type: "rich-p", segments: ["Смотрите ", { link: "мощности фабрики и линии в Китае", href: "/factory" }] },

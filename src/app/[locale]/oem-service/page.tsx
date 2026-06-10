@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { OemContent } from "@/components/pages/OemContent";
 import { getDictionary } from "@/i18n/get-dictionary";
-import { isLocale } from "@/i18n/locales";
+import { isLocale, type Locale } from "@/i18n/locales";
+import { BreadcrumbJsonLd, WebPageJsonLd } from "@/components/seo/StructuredData";
 import { buildPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -20,6 +21,26 @@ export async function generateMetadata({
   });
 }
 
-export default function OemServicePage() {
-  return <OemContent />;
+export default async function OemPage({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const { locale: localeParam } = params;
+  if (!isLocale(localeParam)) return null;
+  const locale = localeParam as Locale;
+  const dict = await getDictionary(locale);
+
+  return (
+    <>
+      <WebPageJsonLd
+        locale={locale}
+        path="/oem-service"
+        name={dict.meta.seoTitles.oemService}
+        description={dict.meta.pageDesc.oemService}
+      />
+      <BreadcrumbJsonLd locale={locale} path="/oem-service" />
+      <OemContent />
+    </>
+  );
 }

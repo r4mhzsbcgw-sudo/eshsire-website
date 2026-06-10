@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Rebuild zh/es versions of the 3 manual blog posts to BJFLOOR standards.
+ * Rebuild zh/es versions of the 3 manual blog posts to Eshsire Group standards.
  * Reuses images from EN posts (no image-library reset).
  */
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
@@ -155,7 +155,7 @@ function main() {
 
       stats.rewritten++;
       stats.locales.push({ slug: entry.slug, locale, words: wordCount, file: outPath });
-      console.log(`✓ ${entry.slug} [${locale}] ~${wordCount} words`);
+      console.log(`鉁?${entry.slug} [${locale}] ~${wordCount} words`);
     }
   }
 

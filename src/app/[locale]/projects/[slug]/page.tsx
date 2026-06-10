@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ProjectDetailContent } from "@/components/pages/ProjectDetailContent";
-import { ProjectJsonLd } from "@/components/seo/StructuredData";
+import { BreadcrumbJsonLd, ProjectJsonLd } from "@/components/seo/StructuredData";
 import { getAllProjectSlugs, getProject, isProjectSlug } from "@/content/projects";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { isLocale, locales, type Locale } from "@/i18n/locales";
@@ -45,6 +45,7 @@ export default async function ProjectPage({
 
   return (
     <>
+      <BreadcrumbJsonLd locale={locale} path={`/projects/${slug}`} />
       <ProjectJsonLd
         locale={locale}
         slug={slug}

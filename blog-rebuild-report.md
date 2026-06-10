@@ -1,76 +1,22 @@
-# BJFLOOR Blog Rebuild Report
+# Blog V3 Rebuild
 
-Generated: 2026-06-06T03:11:59.267Z
+Rewritten: 16
+Container fixes: 0
+Images replaced: 16
 
-## Summary
-
-| Metric | Count |
-|--------|------:|
-| Scanned articles | 7 |
-| Rewritten articles | 7 |
-| Images replaced | 35 |
-| Duplicate images removed | 0 |
-| Internal links added (body + footer) | 35 |
-| Net keyword occurrences added | 0 |
-| Legacy zh/es generated files removed | 0 |
-
-## Standards applied
-
-- BJFLOOR 90-day SEO System (procurement / profit / supply chain focus)
-- Minimum ~1800 words per article
-- 5 unique images per article (banner + 3 sections + ending)
-- No duplicate images across rebuilt set (image-library.json reset)
-- Title preserved verbatim — content rewritten to match title intent
-- Primary + secondary keyword placement in title, meta, intro, body, conclusion
-- Internal links: /spc-flooring, /factory, /wall-panels, /contact
-- BJFLOOR / Eshsire factory advantage section in every article
-- Removed product-decoration / brochure-style copy
-
-## Per-article detail
-
-### what-is-spc-flooring-commercial-projects
-- Words: ~1898
-- Images: 5
-- Internal links: 5
-- Keyword hits: 37
-
-### spc-flooring-factory-price-bulk-container-orders
-- Words: ~1851
-- Images: 5
-- Internal links: 5
-- Keyword hits: 40
-
-### load-40hq-container-spc-flooring-export
-- Words: ~1825
-- Images: 5
-- Internal links: 5
-- Keyword hits: 37
-
-### spc-flooring-supply-hotel-project-africa
-- Words: ~1813
-- Images: 5
-- Internal links: 5
-- Keyword hits: 35
-
-### spc-flooring-supplier-manufacturer-china
-- Words: ~1849
-- Images: 5
-- Internal links: 5
-- Keyword hits: 38
-
-### choose-reliable-spc-flooring-supplier-china-2026
-- Words: ~1804
-- Images: 5
-- Internal links: 5
-- Keyword hits: 36
-
-### 7-mistakes-importing-spc-flooring-from-china
-- Words: ~1868
-- Images: 5
-- Internal links: 5
-- Keyword hits: 36
-
-
-## Daily auto-publish
-
-GitHub Actions schedule unchanged (09:00 / 14:00 / 19:00 CST). Calendar start: 2026-06-07.
+- **factory-pricing-vs-trading-company-pricing-what-importers-need-to-know**: SPC Flooring Factory vs Trading Company: What Importers Usually Find Too Late
+- **how-flooring-distributors-can-increase-profit-margins-without-raising-prices**: How Flooring Distributors Increase SPC Margins Without Raising Retail Prices
+- **how-successful-flooring-importers-reduce-sourcing-risks**: How Successful SPC Importers Reduce Sourcing Risk Before the Container Ships
+- **how-to-evaluate-an-spc-flooring-supplier-before-your-first-order**: How to Evaluate an SPC Flooring Supplier Before Your First Container Order
+- **load-40hq-container-spc-flooring-export**: SPC Flooring Container Loading: Why 20GP Is Often Enough for Heavy Flooring
+- **spc-flooring-container-loading-strategies-that-reduce-import-costs**: How to Mix SPC Flooring With Wall Panels and PVC Ceiling Panels in One Shipment
+- **spc-flooring-factory-audit-checklist-for-importers**: SPC Flooring Factory Audit: What Importers Must Verify Before Bulk Orders
+- **spc-flooring-factory-price-bulk-container-orders**: Why Cheap SPC Flooring Can Become Expensive After Shipment
+- **spc-flooring-quality-control-before-shipment**: SPC Flooring Quality Inspection: What Must Be Checked Before Container Loading
+- **spc-flooring-supply-hotel-project-africa**: What African Building Materials Distributors Should Know Before Importing SPC Flooring
+- **the-real-cost-of-delayed-flooring-shipments**: Why Daily Production Updates Matter More Than a Low Price
+- **what-is-spc-flooring-commercial-projects**: SPC Flooring Supplier Guide: What Commercial Project Importers Must Verify Before Ordering
+- **what-makes-a-reliable-spc-flooring-manufacturer**: What Makes a Reliable SPC Flooring Manufacturer — Beyond the Sample Room
+- **spc-flooring-supplier-manufacturer-china**: SPC Flooring Supplier in China: How Importers Avoid Costly Supplier Mistakes
+- **choose-reliable-spc-flooring-supplier-china-2026**: How to Choose an SPC Flooring Supplier in China Without Hidden Shipment Risk
+- **7-mistakes-importing-spc-flooring-from-china**: 7 SPC Flooring Import Mistakes That Destroy Distributor Margins

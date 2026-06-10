@@ -5,7 +5,7 @@ export const post: BlogPost = {
   slug: "how-to-evaluate-an-spc-flooring-supplier-before-your-first-order",
   slot: "morning",
   title: "How to Evaluate an SPC Flooring Supplier Before Your First Order: как импортёры оценивают поставщиков SPC в Китае",
-  metaTitle: "How to Evaluate an SPC Flooring Supplier Before Y… | фабрика SPC напольных покрытий | BJFLOOR",
+  metaTitle: "How to Evaluate an SPC Flooring Supplier Before Y… | фабрика SPC напольных покрытий | Eshsire Group",
   description: "How to Evaluate an SPC Flooring Supplier Before Your First Order: как импортёры оценивают поставщиков SPC в Китае. B2B-руководство для дистрибьюторов: фабрика SPC напольных покрытий, цены фабрики, оптимизация контейнеров и контроль цепочки поставок из Китая.",
   date: "2026-06-08",
   readMinutes: 11,
@@ -13,7 +13,7 @@ export const post: BlogPost = {
   ogImage: "/images/blog/editorial/12-interior-design-showroom.jpg",
   blocks: [
     { type: "p", text: "How to Evaluate an SPC Flooring Supplier Before Your First Order: как импортёры оценивают поставщиков SPC в Китае — для дистрибьюторов, оптовиков, подрядчиков и импортёров из Китая. Фокус фабрика SPC напольных покрытий: цены фабрики, контейнер, опт и прозрачность цепочки. Оценка производитель SPC Китай и оптовый поставщик напольных покрытий Китай защищает маржу." },
-    { type: "h2", text: "Преимущество BJFLOOR: прямые поставки" },
+    { type: "h2", text: "Преимущество Eshsire Group: прямые поставки" },
     imgBlock("/images/blog/editorial/01-industrial-factory-floor.jpg", "spc flooring supplier china — Industrial factory floor with automated production machinery", "Industrial manufacturing floor — use this reference when auditing real production capacity and line count"),
     { type: "p", text: "Eshsire Group — интегрированная фабрика 6000㎡ в Пекине. Выбирают нас за проверяемую фабрика SPC напольных покрытий и контейнерные программы в 30+ стран." },
     { type: "rich-p", segments: ["Смотрите ", { link: "мощности фабрики и линии в Китае", href: "/factory" }] },

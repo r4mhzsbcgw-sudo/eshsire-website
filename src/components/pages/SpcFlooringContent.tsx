@@ -8,6 +8,7 @@ import { ImageGallery } from "@/components/ui/ImageGallery";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Button } from "@/components/ui/Button";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import { ProductFaqSection } from "@/components/seo/ProductFaq";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
@@ -47,7 +48,7 @@ export function SpcFlooringContent() {
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="relative aspect-square overflow-hidden rounded-2xl border border-white/10">
-              <Image src={spcFlooringImages.featured} alt={d.productTitle} fill className="object-cover" sizes="50vw" />
+              <Image src={spcFlooringImages.featured} alt={d.productTitle} title={d.productTitle} fill className="object-cover" sizes="50vw" />
             </div>
           </FadeIn>
         </div>
@@ -73,6 +74,7 @@ export function SpcFlooringContent() {
                     <Image
                       src={applicationImages[i] ?? applicationImages[0]}
                       alt={title}
+                      title={title}
                       fill
                       className="object-cover transition-transform duration-500 group-hover:scale-105"
                       sizes="(max-width: 768px) 100vw, 400px"
@@ -88,6 +90,7 @@ export function SpcFlooringContent() {
           </div>
         </div>
       </section>
+      <ProductFaqSection />
       <RelatedLinks excludePath="/spc-flooring" />
       <ContactCTA />
     </>

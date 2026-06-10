@@ -1,6 +1,6 @@
 /**
- * SEO content calendar — BJFLOOR 90-day program.
- * Source of truth: content/bjfloor-90-day-calendar.json
+ * SEO content calendar 鈥?Eshsire Group 90-day program.
+ * Source of truth: content/Eshsire Group-90-day-calendar.json
  */
 export {
   contentCalendar,

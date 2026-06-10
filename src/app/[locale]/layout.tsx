@@ -4,7 +4,6 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { WhatsAppFloat } from "@/components/WhatsAppFloat";
 import { JsonLd } from "@/components/JsonLd";
-import { BreadcrumbJsonLd, FaqJsonLd } from "@/components/seo/StructuredData";
 import { LocaleProvider } from "@/context/LocaleContext";
 import { getDictionary } from "@/i18n/get-dictionary";
 import {
@@ -69,8 +68,6 @@ export default async function LocaleLayout({
       className={fontClass + (rtl ? " text-right" : "")}
     >
       <JsonLd locale={locale} />
-      <BreadcrumbJsonLd locale={locale} />
-      <FaqJsonLd locale={locale} />
       <LocaleProvider locale={locale} dict={dict}>
         <Header />
         <main>{children}</main>

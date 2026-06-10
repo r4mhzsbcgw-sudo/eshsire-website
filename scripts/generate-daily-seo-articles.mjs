@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * BJFLOOR V2 — Global Content Automation Publisher
- * Generates all 16 locales per calendar slot; validates; writes daily-report.md
+ * Eshsire Group V3 — Daily English blog publisher (1 article/day, strict validation).
  */
 import { writeFileSync, readFileSync, existsSync, readdirSync } from "node:fs";
 import { join } from "node:path";
+import { execSync } from "node:child_process";
 import {
   contentCalendar,
   getCalendarStartDate,
@@ -12,9 +12,10 @@ import {
 } from "./seo/content-calendar.mjs";
 import { generateArticle } from "./seo/generate-article.mjs";
 import { imageSelector } from "./seo/image-selector.mjs";
-import { ALL_LOCALES } from "./seo/locales.mjs";
 import { writeDailyReport } from "./seo/daily-report.mjs";
 import { countInternalLinks } from "./seo/internal-links-seo.mjs";
+import { classifyTopic } from "./seo/topic-classifier.mjs";
+import { resolvePrimaryKeyword, buildMetaDescription } from "./seo/blog-content-rules.mjs";
 
 const ROOT = process.cwd();
 const GENERATED_DIR = join(ROOT, "src/content/blog/generated");
@@ -22,7 +23,8 @@ const REGISTRY_PATH = join(GENERATED_DIR, "registry.ts");
 const SLUGS_PATH = join(ROOT, "src/content/blog/slugs.ts");
 const SITEMAP_SCRIPT = join(ROOT, "scripts/generate-sitemap.mjs");
 
-const slotArg = process.argv.find((a) => ["morning", "afternoon", "evening"].includes(a));
+/** Only morning slot — 1 EN article per day (no afternoon/evening batch). */
+const slotArg = process.argv.find((a) => a === "morning");
 const dayFlag = process.argv.indexOf("--day");
 const forceDay = dayFlag >= 0 ? Number(process.argv[dayFlag + 1]) : null;
 
@@ -115,7 +117,7 @@ function getPublishedSlugs() {
   return [...new Set([...generated, ...manual])];
 }
 
-function writeArticleAllLocales(meta, slot, date, reportStats) {
+function writeArticleEnOnly(meta, slot, date, reportStats) {
   const enPath = join(GENERATED_DIR, `${meta.slug}.en.ts`);
   if (existsSync(enPath)) {
     console.log(`Skip (exists): ${meta.slug}`);
@@ -123,88 +125,67 @@ function writeArticleAllLocales(meta, slot, date, reportStats) {
   }
 
   const publishedSlugs = getPublishedSlugs();
-  const images = imageSelector({ ...meta, slot }, "all");
-  let imagesAssigned = 5;
+  const topicType = classifyTopic(meta.title);
+  const pk = resolvePrimaryKeyword(meta);
+  const enriched = {
+    ...meta,
+    slot,
+    topicType,
+    primaryKeyword: pk,
+    description: buildMetaDescription(meta.title, pk),
+  };
 
-  for (const locale of ALL_LOCALES) {
-    const filePath = join(GENERATED_DIR, `${meta.slug}.${locale}.ts`);
-    const article = generateArticle(locale, { ...meta, slot }, {
-      publishedSlugs,
-      date,
-      images,
-    });
+  const images = imageSelector(enriched, "en");
+  const imagesAssigned = images.imageCount ?? 5;
 
-    if (!article.validation.pass) {
-      reportStats.validationFailures.push({
-        slug: meta.slug,
-        locale,
-        errors: article.validation.errors,
-      });
-      console.warn(`Validation warnings ${meta.slug} [${locale}]:`, article.validation.errors);
-    }
+  const article = generateArticle("en", enriched, {
+    publishedSlugs,
+    date,
+    images,
+    strict: true,
+  });
 
-    writeFileSync(filePath, buildArticleFile(article, slot, locale), "utf8");
-    reportStats.localeDistribution[locale] = (reportStats.localeDistribution[locale] ?? 0) + 1;
-    reportStats.internalLinksTotal += countInternalLinks(article.blocks);
-
-    const ctaType = article.blocks.find((b) => b.type === "cta")?.ctaType ?? "supplier";
-    reportStats.ctaTypes[ctaType] = (reportStats.ctaTypes[ctaType] ?? 0) + 1;
-
-    const text = article.blocks.map((b) => (b.type === "p" ? b.text : "")).join(" ");
-    const pkCount = (text.match(new RegExp(article.primaryKeyword, "gi")) || []).length;
-    reportStats.keywordCoverage.push({
+  if (!article.validation.pass) {
+    reportStats.validationFailures.push({
       slug: meta.slug,
-      locale,
-      pk: article.primaryKeyword,
-      pkCount,
-      skAvg: (article.secondaryKeywords ?? []).length,
+      locale: "en",
+      errors: [...article.validation.errors, ...article.validation.warnings],
     });
-
-    console.log(`  ✓ ${meta.slug} [${locale}] ~${article.wordCount} words`);
+    console.error(`PUBLISH BLOCKED — ${meta.slug} failed validateArticleStrict:`);
+    console.error(article.validation.errors.join("\n"));
+    if (article.validation.warnings.length) {
+      console.error("Warnings:", article.validation.warnings.join("\n"));
+    }
+    return "blocked";
   }
+
+  writeFileSync(enPath, buildArticleFile(article, slot, "en"), "utf8");
+  reportStats.localeDistribution.en = (reportStats.localeDistribution.en ?? 0) + 1;
+  reportStats.internalLinksTotal += countInternalLinks(article.blocks);
+
+  const ctaType = article.blocks.find((b) => b.type === "cta")?.ctaType ?? "supplier";
+  reportStats.ctaTypes[ctaType] = (reportStats.ctaTypes[ctaType] ?? 0) + 1;
+
+  const text = article.blocks.map((b) => (b.type === "p" ? b.text : "")).join(" ");
+  const pkCount = (text.match(new RegExp(article.primaryKeyword.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"), "gi")) || [])
+    .length;
+  reportStats.keywordCoverage.push({
+    slug: meta.slug,
+    locale: "en",
+    pk: article.primaryKeyword,
+    pkCount,
+    skAvg: (article.secondaryKeywords ?? []).length,
+  });
 
   reportStats.articlesPublished++;
   reportStats.slugs.push(meta.slug);
   reportStats.imagesUsed += imagesAssigned;
-  console.log(`Created: ${meta.slug} × ${ALL_LOCALES.length} locales (Day ${meta.day}, ${slot})`);
+  console.log(`Published EN: ${meta.slug} ~${article.wordCount} words (Day ${meta.day}, ${slot})`);
   return meta.slug;
 }
 
-function slugBase(filename, locale) {
-  return filename.replace(`.${locale}.ts`, "");
-}
-
 function regenerateRegistry() {
-  const enBases = readdirSync(GENERATED_DIR)
-    .filter((f) => f.endsWith(".en.ts"))
-    .map((f) => slugBase(f, "en"))
-    .sort();
-
-  const lines = [`/** AUTO-GENERATED — BJFLOOR V2 multi-locale */`, `import type { BlogPost } from "../types";`, ""];
-
-  for (const locale of ALL_LOCALES) {
-    const bases = enBases.filter((base) => existsSync(join(GENERATED_DIR, `${base}.${locale}.ts`)));
-    for (const base of bases) {
-      const safe = `${base.replace(/[^a-z0-9]/gi, "_")}_${locale}`;
-      lines.push(`import { post as ${safe} } from "./${base}.${locale}";`);
-    }
-  }
-
-  lines.push("", "export const generatedPostsByLocale: Record<string, BlogPost[]> = {");
-  for (const locale of ALL_LOCALES) {
-    const bases = enBases.filter((base) => existsSync(join(GENERATED_DIR, `${base}.${locale}.ts`)));
-    const arr = bases.map((base) => `${base.replace(/[^a-z0-9]/gi, "_")}_${locale}`).join(", ");
-    lines.push(`  ${locale}: [${arr}],`);
-  }
-  lines.push("};", "");
-
-  lines.push("/** @deprecated use generatedPostsByLocale */");
-  lines.push("export const generatedPostsEn = generatedPostsByLocale.en;");
-  lines.push("export const generatedPostsZh = generatedPostsByLocale.zh ?? [];");
-  lines.push("export const generatedPostsEs = generatedPostsByLocale.es ?? [];", "");
-
-  writeFileSync(REGISTRY_PATH, lines.join("\n"), "utf8");
-  console.log(`Registry: ${enBases.length} slugs × ${ALL_LOCALES.length} locales`);
+  execSync("node scripts/seo/regenerate-registry.mjs", { stdio: "inherit", cwd: ROOT });
 }
 
 function regenerateSlugs() {
@@ -225,7 +206,7 @@ function regenerateSlugs() {
   const all = [...new Set([...generated, ...legacy, ...manual])];
   writeFileSync(
     SLUGS_PATH,
-    `/** AUTO-GENERATED — BJFLOOR V2 calendar + manual posts */
+    `/** AUTO-GENERATED 鈥?Eshsire Group V2 calendar + manual posts */
 export const blogSlugs = ${JSON.stringify(all, null, 2)} as const;
 
 export function getAllBlogSlugs(): string[] {
@@ -266,7 +247,7 @@ function main() {
 
   const calendar = contentCalendar[day];
   const date = todayISO();
-  const slots = slotArg ? [slotArg] : ["morning", "afternoon", "evening"];
+  const slot = slotArg ?? "morning";
 
   const reportStats = {
     date,
@@ -280,19 +261,30 @@ function main() {
     slugs: [],
   };
 
-  console.log(`BJFLOOR V2 Day ${calendar.day}, date ${date}, slots: ${slots.join(", ")}`);
+  console.log(`Eshsire Group V3 Day ${calendar.day}, date ${date}, slot: ${slot} (EN only, strict)`);
 
-  for (const slot of slots) {
-    const meta = calendar[slot];
-    if (!meta) continue;
-    writeArticleAllLocales(meta, slot, date, reportStats);
+  const meta = calendar[slot];
+  let blocked = false;
+  if (meta) {
+    const result = writeArticleEnOnly(meta, slot, date, reportStats);
+    if (result === "blocked") blocked = true;
+  } else {
+    console.warn(`No calendar entry for slot: ${slot}`);
   }
 
-  regenerateRegistry();
-  regenerateSlugs();
-  updateSitemapBlogSlugs();
+  if (reportStats.articlesPublished > 0) {
+    regenerateRegistry();
+    regenerateSlugs();
+    updateSitemapBlogSlugs();
+  }
+
   writeDailyReport(reportStats);
   console.log(`Daily report: daily-report.md`);
+
+  if (blocked) {
+    process.exitCode = 1;
+    console.error("Publish aborted — article did not pass validateArticleStrict.");
+  }
 }
 
 main();

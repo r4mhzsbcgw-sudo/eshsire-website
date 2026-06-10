@@ -5,7 +5,7 @@ export const post: BlogPost = {
   slug: "load-40hq-container-spc-flooring-export",
   slot: "evening",
   title: "How We Load 40HQ Containers of SPC Flooring for Export Orders: загрузка контейнеров и экспортная логистика SPC",
-  metaTitle: "How We Load 40HQ Containers of SPC Flooring for E… | фабрика SPC напольных покрытий | BJFLOOR",
+  metaTitle: "How We Load 40HQ Containers of SPC Flooring for E… | фабрика SPC напольных покрытий | Eshsire Group",
   description: "How We Load 40HQ Containers of SPC Flooring for Export Orders: загрузка контейнеров и экспортная логистика SPC. B2B-руководство для дистрибьюторов: фабрика SPC напольных покрытий, цены фабрики, оптимизация контейнеров и контроль цепочки поставок из Китая.",
   date: "2026-06-05",
   readMinutes: 11,
@@ -13,7 +13,7 @@ export const post: BlogPost = {
   ogImage: "/images/blog/editorial/06-container-port-logistics.jpg",
   blocks: [
     { type: "p", text: "How We Load 40HQ Containers of SPC Flooring for Export Orders: загрузка контейнеров и экспортная логистика SPC — для дистрибьюторов, оптовиков, подрядчиков и импортёров из Китая. Фокус фабрика SPC напольных покрытий: цены фабрики, контейнер, опт и прозрачность цепочки. Оценка производитель SPC Китай и оптовый поставщик напольных покрытий Китай защищает маржу." },
-    { type: "h2", text: "Преимущество BJFLOOR: прямые поставки" },
+    { type: "h2", text: "Преимущество Eshsire Group: прямые поставки" },
     imgBlock("/images/blog/editorial/04-warehouse-pallet-racks.jpg", "SPC Flooring for Export Orders: загрузка контейнеров и экспортная логистика SPC. B2B-руководство для дистрибьюторов: фабрика SPC напольных покрытий — Warehouse pallet racks with stacked cartons ready for dispatch", "Склад с паллетными стеллажами — готовые коробки перед погрузкой 40HQ"),
     { type: "p", text: "Eshsire Group — интегрированная фабрика 6000㎡ в Пекине. Выбирают нас за проверяемую фабрика SPC напольных покрытий и контейнерные программы в 30+ стран." },
     { type: "rich-p", segments: ["Смотрите ", { link: "мощности фабрики и линии в Китае", href: "/factory" }] },

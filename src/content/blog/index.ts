@@ -1,27 +1,14 @@
 import { locales, type Locale } from "@/i18n/locales";
 import { getAllBlogSlugs as getBlogSlugs } from "./slugs";
 import { chooseReliableSupplierPostEn } from "./choose-reliable-supplier.en";
-import { chooseReliableSupplierPostZh } from "./choose-reliable-supplier.zh";
-import { chooseReliableSupplierPostEs } from "./choose-reliable-supplier.es";
 import { sevenMistakesPostEn } from "./seven-mistakes.en";
-import { sevenMistakesPostZh } from "./seven-mistakes.zh";
-import { sevenMistakesPostEs } from "./seven-mistakes.es";
 import { spcSupplierManufacturerPostEn } from "./spc-supplier-manufacturer.en";
-import { spcSupplierManufacturerPostZh } from "./spc-supplier-manufacturer.zh";
-import { spcSupplierManufacturerPostEs } from "./spc-supplier-manufacturer.es";
-import {
-  generatedPostsByLocale,
-  generatedPostsEn,
-  generatedPostsEs,
-  generatedPostsZh,
-} from "./generated/registry";
+import { generatedPostsEn } from "./generated/registry";
 import { localizeManualPost } from "./localize-manual-post";
 import type { BlogPost } from "./types";
 
 const manualNative = {
   en: [spcSupplierManufacturerPostEn, chooseReliableSupplierPostEn, sevenMistakesPostEn],
-  zh: [spcSupplierManufacturerPostZh, chooseReliableSupplierPostZh, sevenMistakesPostZh],
-  es: [spcSupplierManufacturerPostEs, chooseReliableSupplierPostEs, sevenMistakesPostEs],
 } as const;
 
 function sortByDateDesc(posts: BlogPost[]): BlogPost[] {
@@ -29,17 +16,12 @@ function sortByDateDesc(posts: BlogPost[]): BlogPost[] {
 }
 
 function resolveGeneratedForLocale(locale: Locale): BlogPost[] {
-  const posts = generatedPostsByLocale[locale];
-  if (posts?.length) return posts;
-  return [];
+  if (locale === "en") return [...generatedPostsEn];
+  return generatedPostsEn.map((post) => localizeManualPost(post, locale));
 }
 
 function resolveManualForLocale(locale: Locale): BlogPost[] {
-  if (locale === "en" || locale === "zh" || locale === "es") {
-    return [...manualNative[locale]];
-  }
-  const pack = manualNative[locale as keyof typeof manualNative];
-  if (pack) return [...pack];
+  if (locale === "en") return [...manualNative.en];
   return manualNative.en.map((post) => localizeManualPost(post, locale));
 }
 

@@ -1,10 +1,14 @@
 /**
- * Load BJFLOOR 90-day calendar → generator-ready entries.
+ * Load Eshsire Group 90-day calendar → generator-ready entries.
  */
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
+import {
+  resolvePrimaryKeyword,
+  buildMetaDescription,
+} from "./blog-content-rules.mjs";
 
-const CAL_PATH = join(process.cwd(), "content/bjfloor-90-day-calendar.json");
+const CAL_PATH = join(process.cwd(), "content/eshsire-90-day-calendar.json");
 
 export function titleToSlug(title) {
   return title
@@ -15,16 +19,10 @@ export function titleToSlug(title) {
 }
 
 function primaryKeyword(productTag, title) {
-  if (productTag === "vinyl") {
-    return title.toLowerCase().includes("lvt") ? "LVT flooring supplier" : "vinyl flooring wholesale";
-  }
-  if (productTag === "wall") return "wall panel supplier china";
-  if (title.toLowerCase().includes("container")) return "container flooring price";
-  if (title.toLowerCase().includes("factory")) return "spc flooring factory";
-  return "spc flooring supplier china";
+  return resolvePrimaryKeyword({ productTag, title });
 }
 
-function secondaryKeywords(productTag) {
+export function secondaryKeywords(productTag) {
   if (productTag === "vinyl") {
     return [
       "vinyl flooring wholesale",
@@ -50,12 +48,12 @@ function secondaryKeywords(productTag) {
 }
 
 function buildDescription(title, pk) {
-  return `${title}. B2B guide for flooring distributors and importers: ${pk}, factory direct pricing, container efficiency and supply chain control from China manufacturers.`;
+  return buildMetaDescription(title, pk);
 }
 
 function buildMetaTitle(title, pk) {
-  const short = title.length > 52 ? `${title.slice(0, 49)}…` : title;
-  return `${short} | ${pk} | BJFLOOR`;
+  const short = title.length > 52 ? title.slice(0, 49) + "..." : title;
+  return short + " | Eshsire Group";
 }
 
 export function slotEntry(dayData, slot) {
@@ -93,7 +91,7 @@ export function getCalendarStartDate() {
 }
 
 export function getDayIndexFromDate(date = new Date()) {
-  const start = new Date(`${getCalendarStartDate()}T00:00:00+08:00`);
+  const start = new Date(getCalendarStartDate() + "T00:00:00+08:00");
   const diff = Math.floor((date - start) / 86400000);
   return diff;
 }
@@ -101,4 +99,4 @@ export function getDayIndexFromDate(date = new Date()) {
 /** Legacy export for content-calendar.mjs */
 export const contentCalendar = loadCalendar();
 
-export { primaryKeyword, secondaryKeywords, buildDescription, buildMetaTitle };
+export { primaryKeyword, buildDescription, buildMetaTitle };

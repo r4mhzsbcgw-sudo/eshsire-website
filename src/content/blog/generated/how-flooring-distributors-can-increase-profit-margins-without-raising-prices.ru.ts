@@ -5,7 +5,7 @@ export const post: BlogPost = {
   slug: "how-flooring-distributors-can-increase-profit-margins-without-raising-prices",
   slot: "morning",
   title: "How Flooring Distributors Can Increase Profit Margins Without Raising…: маржа дистрибьютора и эффективные закупки SPC из Китая",
-  metaTitle: "How Flooring Distributors Can Increase Profit Mar… | фабрика SPC напольных покрытий | BJFLOOR",
+  metaTitle: "How Flooring Distributors Can Increase Profit Mar… | фабрика SPC напольных покрытий | Eshsire Group",
   description: "How Flooring Distributors Can Increase Profit Margins Without Raising…: маржа дистрибьютора и эффективные закупки SPC из Китая. B2B-руководство для дистрибьюторов: фабрика SPC напольных покрытий, цены фабрики, оптимизация контейнеров и контроль цепочки поставок из Китая.",
   date: "2026-06-07",
   readMinutes: 11,
@@ -13,7 +13,7 @@ export const post: BlogPost = {
   ogImage: "/images/blog/editorial/12-interior-design-showroom.jpg",
   blocks: [
     { type: "p", text: "How Flooring Distributors Can Increase Profit Margins Without Raising…: маржа дистрибьютора и эффективные закупки SPC из Китая — для дистрибьюторов, оптовиков, подрядчиков и импортёров из Китая. Фокус фабрика SPC напольных покрытий: цены фабрики, контейнер, опт и прозрачность цепочки. Оценка производитель SPC Китай и оптовый поставщик напольных покрытий Китай защищает маржу." },
-    { type: "h2", text: "Преимущество BJFLOOR: прямые поставки" },
+    { type: "h2", text: "Преимущество Eshsire Group: прямые поставки" },
     imgBlock("/images/blog/editorial/01-industrial-factory-floor.jpg", "spc flooring supplier china — Industrial factory floor with automated production machinery", "Industrial manufacturing floor — use this reference when auditing real production capacity and line count"),
     { type: "p", text: "Eshsire Group — интегрированная фабрика 6000㎡ в Пекине. Выбирают нас за проверяемую фабрика SPC напольных покрытий и контейнерные программы в 30+ стран." },
     { type: "rich-p", segments: ["Смотрите ", { link: "мощности фабрики и линии в Китае", href: "/factory" }] },

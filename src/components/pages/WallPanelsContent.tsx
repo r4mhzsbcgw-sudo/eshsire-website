@@ -7,6 +7,7 @@ import { ImageGallery } from "@/components/ui/ImageGallery";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Button } from "@/components/ui/Button";
 import { ContactCTA } from "@/components/home/ContactCTA";
+import { ProductFaqSection } from "@/components/seo/ProductFaq";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
@@ -35,6 +36,7 @@ export function WallPanelsContent() {
                     <Image
                       src={wallPanelImages.productLines[i]}
                       alt={p.name}
+                      title={p.name}
                       fill
                       className="object-cover"
                       sizes="33vw"
@@ -65,6 +67,7 @@ export function WallPanelsContent() {
         expandHint={dict.gallery.expandHint}
       />
 
+      <ProductFaqSection />
       <RelatedLinks excludePath="/wall-panels" />
       <ContactCTA />
     </>

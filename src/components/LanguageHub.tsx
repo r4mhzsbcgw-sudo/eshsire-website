@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { localeLabels, locales } from "@/i18n/locales";
+import { indexableLocales, localeLabels } from "@/i18n/locales";
 import { localizedPath } from "@/i18n/navigation";
 import { siteConfig } from "@/lib/config";
 
@@ -17,11 +17,10 @@ export function LanguageHub() {
           Choose your language / 选择语言
         </p>
         <ul className="mt-8 grid max-h-[60vh] grid-cols-2 gap-3 overflow-y-auto sm:grid-cols-3 md:grid-cols-4">
-          {locales.map((loc) => (
+          {indexableLocales.map((loc) => (
             <li key={loc}>
               <Link
                 href={localizedPath(loc, "/")}
-                hrefLang={loc}
                 className="glass-card-hover block px-4 py-4 text-sm font-semibold text-white transition-colors hover:text-accent"
               >
                 <span className="block">{localeLabels[loc].nativeName}</span>

@@ -1,7 +1,18 @@
 /**
- * BJFLOOR long-form B2B article builder — target 1800–3000 words.
- * Titles are fixed verbatim from calendar; body emphasizes profit, import, supply chain.
+ * Eshsire Group V3 long-form B2B article builder — pain hooks, 8-section structure, weight-based container logic.
  */
+import { insertSectionImages } from "./article-image-blocks.mjs";
+import {
+  pickHook,
+  resolvePrimaryKeyword,
+  CONTAINER_TRUTH,
+  STRUCTURE_H2,
+  ESHSIRE_DIFFERENTIATORS,
+  isLogisticsTopic,
+  isQualityTopic,
+  isFactoryTopic,
+} from "./blog-content-rules.mjs";
+
 function wordCount(text) {
   return text.split(/\s+/).filter(Boolean).length;
 }
@@ -38,372 +49,214 @@ function ul(items) {
   return { type: "ul", items };
 }
 
-function img(src, alt, caption) {
-  return { type: "img", src, alt, caption };
-}
-
 function richLink(text, link, href) {
-  return {
-    type: "rich-p",
-    segments: [text, { link, href }],
-  };
-}
-
-function expandParagraph(base, extra) {
-  return `${base} ${extra}`;
-}
-
-function sectionBlocks(heading, paragraphs) {
-  const blocks = [h2(heading)];
-  for (const para of paragraphs) {
-    blocks.push(p(para));
-  }
-  return blocks;
+  return { type: "rich-p", segments: [text, { link, href }] };
 }
 
 function buildSections(meta) {
-  const pk = meta.primaryKeyword;
-  const sk = meta.secondaryKeywords;
-  const t = meta.title;
-  const tag = meta.productTag;
+  const pk = meta.primaryKeyword ?? resolvePrimaryKeyword(meta);
+  const sk = meta.secondaryKeywords ?? [];
+  const t = meta.title ?? "";
+  const hook = pickHook({ ...meta, primaryKeyword: pk });
+  const logistics = isLogisticsTopic(meta);
+  const quality = isQualityTopic(meta);
+  const factory = isFactoryTopic(meta);
 
-  const intro = p(
-    `${t} — this article is written for flooring distributors, wholesalers, contractors and building material importers who buy from China. ` +
-      `Your primary sourcing lens is ${pk}: factory pricing logic, container shipment efficiency, bulk order procurement and supply chain visibility — not decoration trends. ` +
-      `When ${sk[0]} and ${sk[1]} are evaluated correctly, importers protect margins, reduce claims and shorten replenishment cycles.`
-  );
+  const problemBody = logistics
+    ? [
+        `Importers ordering ${pk} often receive volume-based advice that ignores weight limits. SPC flooring cartons are heavy — a full load can hit port limits before the container looks full.`,
+        `The real problem is not finding a factory quote. It is getting a supplier who calculates total gross weight, carton stacking, SKU mix, and destination weighbridge rules before production starts.`,
+        `When ${sk[0] ?? "SPC flooring manufacturer China"} partners treat every order as a 40HQ volume play, distributors absorb overweight fees, reworked packing lists, and delayed BL release.`,
+      ]
+    : quality
+      ? [
+          `Distributors lose margin when batch quality drifts after the approved sample. For ${pk}, the gap between sample room and production floor is where most claims start.`,
+          `Importers need documented QC checkpoints — dimensional tolerance, click-lock fit, wear layer verification, and carton drop tests — tied to each production batch, not a one-page brochure.`,
+          `Without ${sk[1] ?? "SPC flooring quality inspection"} discipline before loading, a low FOB price becomes an expensive reorder cycle within one retail season.`,
+        ]
+      : factory
+        ? [
+            `Many buyers discover too late that their "${pk}" contact is a trading desk, not the extrusion line. Factory identity, production capacity, and export documentation must align before deposit.`,
+            `Trading companies can quote faster, but they switch subcontractor factories between containers — color drift, QC inconsistency, and missing loading photos follow.`,
+            `Professional importers evaluate ${sk[0] ?? "SPC flooring factory direct"} partners on production visibility, not just price per sqm.`,
+          ]
+        : [
+            `Professional importers evaluating ${pk} face supplier noise — fast replies, glossy samples, and vague production timelines. The risk starts when deposit is paid and visibility stops.`,
+            `Distributors need partners who understand landed cost, MOQ structure, carton efficiency, and replenishment cadence — not showroom marketing.`,
+            `When ${sk[0] ?? "SPC flooring supplier in China"} cannot show weight-based loading plans, daily production updates, and pre-shipment QC evidence, import risk rises quickly.`,
+          ];
 
-  const sections = [
-    intro,
-    h2("BJFLOOR factory advantage: why importers switch to direct supply"),
-    p(
-      `BJFLOOR partner Eshsire Group operates a 6000㎡ integrated SPC flooring and wall panel factory in Beijing with in-house extrusion, lamination, QC and export documentation teams. ` +
-        `Distributors choose us when they need ${pk} with visible production — not broker repackaging — plus container programs to 30+ countries across Africa, Middle East, Europe and Southeast Asia.`
-    ),
-    richLink("Review ", "China flooring factory capability and production lines", "/factory"),
-    p(
-      `Factory-direct ${sk[0]} removes trader margin typically worth 8–15% on FOB quotes, while locked BOM references keep color stable for retail and project channels. ` +
-        `Weekly production photos, loading records and sqm-per-SKU packing lists are standard for repeat ${sk[2] || "bulk orders"} — the supply chain transparency professional importers require.`
-    ),
-    richLink("Explore ", "wholesale wall panel supply for mixed container programs", "/wall-panels"),
-    h2(`Why ${tag === "wall" ? "Wall Panel" : tag === "vinyl" ? "Vinyl Flooring" : "SPC Flooring"} Buyers Focus on Profit and Supply Chain`),
-    p(
-      expandParagraph(
-        `Successful importers treat flooring as a cash-flow product category. Landed cost per sqm, MOQ structure, production lead time and container utilization determine whether a distributor grows or stalls.`,
-        `A reliable ${pk} removes trader margin, stabilizes batch color and supports repeat ${sk[2] || "bulk orders"}.`
-      )
-    ),
-    p(
-      `Trading companies can quote quickly but often switch factories between containers. Factory-direct ${sk[0]} gives you production dates, QC photos, packing lists and loading records tied to one facility — critical when your retail customers or project clients penalize delays.`
-    ),
-    h3("What importers should document before placing orders"),
-    ul([
-      `Factory address, production line photos and ${pk} reference pricing`,
-      `Wear layer / thickness matrix and MOQ per SKU for ${sk[3] || "wholesale flooring price"}`,
-      `Container CBM plan: sqm per 40HQ, carton stacking and mixed-color feasibility`,
-      `QC checklist, pre-shipment inspection protocol and claim handling process`,
-      `Payment terms, production timeline and weekly status update format`,
-    ]),
+  const costBody = [
+    `Every week of production silence adds finance cost, warehouse gap risk, and lost retail sell-through. Distributors pay twice — once in holding cost, once in emergency air freight or LCL premiums.`,
+    `Claims on color mismatch, damaged click-lock, or short carton count typically run 3–8% of order value when QC is weak — erasing any FOB savings from a cheaper quote.`,
+    logistics
+      ? `Overweight containers trigger port penalties, reload fees, and insurance disputes. Freight cost per usable sqm rises when loading plans ignore weight limits.`
+      : `Margin erosion compounds when importers optimize FOB alone. Landed cost must include ocean freight, insurance, port charges, inland delivery, and expected claim allowance.`,
+    `Retail and project customers penalize late stock. Your customer does not care why the shipment was delayed — they only know your inventory did not arrive on time.`,
   ];
 
-  if (t.toLowerCase().includes("what is") || t.toLowerCase().includes("commercial")) {
-    sections.push(
-      ...sectionBlocks(
-        "SPC flooring for commercial projects — buyer economics, not decoration",
-        [
-          `Contractors and distributors select SPC for waterproof rigid core, fast click-lock installation and stable factory pricing — not because a showroom looks trendy. Commercial buyers model cost per sqm installed, callback risk and container replenishment cadence.`,
-          `Hotels, schools, offices and retail fit-outs need wear layer specs tied to traffic class. Quote ${pk} per thickness and mil rating; avoid single-price brochures that hide MOQ and carton efficiency differences.`,
-          `Project importers align SKU lists with container CBM before production — mixing too many colors in one PO increases changeover cost and delays loading.`,
-        ],
-        pk
-      )
-    );
-  }
+  const suppliersWrong = [
+    `Recommend 40HQ for every SPC-only order without calculating total weight, carton gross weight, and destination port limits.`,
+    `Push volume-based container advice without explaining that 20GP and 40HQ weight limits are often near 28 tonnes — so 40HQ is not automatically better for heavy SPC-only loads.`,
+    `Reply quickly before payment, then go quiet during production — no daily production updates, no visual production tracking, no loading photos.`,
+    `Quote single FOB price without MOQ matrix, wear layer options, OEM packaging specs, or mixed-loading scenarios with wall panels and PVC ceiling panels.`,
+    `Skip quality inspection before shipment — no batch QC checklist, no pre-loading sample sign-off, no seal and BL alignment.`,
+  ];
 
-  if (t.toLowerCase().includes("mistake") || t.toLowerCase().includes("avoid")) {
-    sections.push(
-      ...sectionBlocks(
-        "Costly procurement mistakes distributors must eliminate",
-        [
-          `Chasing lowest FOB without landed cost math — freight, claims and stock-outs erase savings within two quarters.`,
-          `Skipping factory verification visits or video audits — brokers disappear when color batches fail on the retail floor.`,
-          `Placing large first orders without pre-production sample lock on color, wear layer and carton marking.`,
-          `Ignoring production visibility between deposit and loading — silence usually means queue jumps, not smooth progress.`,
-        ],
-        pk
-      )
-    );
-  }
+  const professionalCalc = logistics
+    ? [
+        `Total gross weight per SKU and combined container weight against 20GP / 40HQ limits`,
+        `Carton size, pallet or non-pallet loading, and product thickness impact on stack height`,
+        `Product mix: SPC-only 20GP vs mixed loading with lighter wall panels, PVC ceiling panels, skirting, trims, underlayment, and accessories in 40HQ`,
+        `Destination port rules, weighbridge limits, overweight risk, and loading sequence`,
+        `Freight cost per usable product category — not vanity sqm claims that ignore weight caps`,
+      ]
+    : [
+        `Wear layer and thickness matrix mapped to traffic class, MOQ per SKU, and carton efficiency`,
+        `Production timeline with daily production updates and visual production tracking milestones`,
+        `OEM packaging dimensions, private label artwork lead time, and carton drop standard`,
+        `Pre-shipment quality inspection checklist and claim handling process`,
+        `Weight-based loading calculation when combining SPC with other building materials`,
+      ];
 
-  if (t.toLowerCase().includes("choose") || t.toLowerCase().includes("reliable") || t.toLowerCase().includes("evaluate")) {
-    sections.push(
-      ...sectionBlocks(
-        "How to evaluate a China SPC flooring supplier before first container",
-        [
-          `Confirm manufacturing address matches export documentation and loading photos — not a trading office downtown.`,
-          `Request three references in your destination region with repeat order history and claim rates.`,
-          `Review QC checklist: dimensional tolerance, click-lock fit, wear layer spot test and carton drop standard.`,
-          `Compare response quality on container CBM planning — serious factories calculate sqm per 40HQ before quoting FOB.`,
-        ],
-        pk
-      )
-    );
-  }
+  const eshsireBody = [
+    `Eshsire Group operates integrated SPC flooring and wall panel production with export teams serving importers across Africa, Middle East, Europe, and Southeast Asia.`,
+    `${ESHSIRE_DIFFERENTIATORS[0]} and ${ESHSIRE_DIFFERENTIATORS[1]} keep distributors informed from deposit to loading — not generic "in progress" emails.`,
+    `${ESHSIRE_DIFFERENTIATORS[2]} and ${ESHSIRE_DIFFERENTIATORS[3]} mean every shipment plan starts with weight tables, not volume guesses. For standard SPC-only orders, 20GP is usually enough. 40HQ becomes useful when SPC shares space with lighter interior materials.`,
+    `${ESHSIRE_DIFFERENTIATORS[4]} and ${ESHSIRE_DIFFERENTIATORS[5]} protect brand reputation before cartons leave the factory.`,
+    `${ESHSIRE_DIFFERENTIATORS[6]} helps building materials distributors reduce freight cost per category without overweight risk.`,
+    `${ESHSIRE_DIFFERENTIATORS[7]} and ${ESHSIRE_DIFFERENTIATORS[8]} come from documented QC, loading photos, and responsive export coordination.`,
+  ];
 
-  if (t.toLowerCase().includes("hotel") || t.toLowerCase().includes("africa") || t.toLowerCase().includes("case study")) {
-    sections.push(
-      ...sectionBlocks(
-        "Hotel and Africa project supply — container discipline",
-        [
-          `Hotel corridors and guest rooms need consistent wear layer and slip rating — specify before color selection to avoid rework at site.`,
-          `Africa-bound containers benefit from moisture-resistant cartons, corner protection and SKU labels in English/French when required by customs.`,
-          `OEM guestroom quantities often mix 3–5 colors in one 40HQ — factory staging by floor level speeds hotel installation.`,
-          `Document loading photos and sqm per SKU for project sign-off; hotel operators penalize suppliers who cannot prove batch consistency.`,
-        ],
-        pk
-      )
-    );
-  }
+  const checklist = [
+    `Confirm factory address matches export documentation and loading photos`,
+    `Request three reference importers in your destination region with repeat order history`,
+    `Lock pre-production sample on color, wear layer, thickness, and carton marking`,
+    `Get weight-based container loading plan — 20GP for standard SPC-only, 40HQ only for verified mixed loading`,
+    `Agree daily production updates format and QC hold escalation process`,
+    `Review loading photos, seal number, and draft BL before vessel departure`,
+    `Document landed cost model including freight, claims allowance, and warehouse carrying cost`,
+  ];
 
-  if (t.toLowerCase().includes("container") || t.toLowerCase().includes("loading") || t.toLowerCase().includes("logistics")) {
-    sections.push(
-      ...sectionBlocks(
-        "Container loading and logistics planning",
-        [
-          `A full 40HQ container typically carries 3,000–3,800 sqm depending on plank size and carton design. Planning SKU mix before production avoids half-empty containers and LCL premiums.`,
-          `Load sequence matters: heavier cartons on the floor, balanced weight distribution, corner protection and SKU labels facing the door reduce damage and speed warehouse put-away at destination.`,
-          `Photograph empty container, half load and sealed container with lock number. Align commercial invoice, packing list and BL draft to the same container ID before vessel departure.`,
-          `Distributors running monthly replenishment should lock carton dimensions and pallet patterns so ${sk[1]} stays predictable across quarters.`,
-        ],
-        pk
-      )
-    );
-  }
+  const faqItems = logistics
+    ? [
+        {
+          q: `Is 40HQ always better for ${pk}?`,
+          a: `No. SPC flooring is heavy, so loading is mainly limited by weight. For many standard orders, 20GP is already enough. 40HQ is more useful when SPC is combined with lighter products such as wall panels, PVC ceiling panels, or accessories.`,
+        },
+        {
+          q: `What should importers verify before container loading?`,
+          a: `Total weight against port limits, carton stacking plan, SKU mix, loading sequence, and pre-shipment quality inspection sign-off. Professional suppliers calculate these before recommending 20GP or 40HQ.`,
+        },
+        {
+          q: `Can SPC flooring and wall panels ship in one container?`,
+          a: `Yes — mixed loading is a core profit lever for building materials distributors. Weight-based loading calculation ensures SPC and lighter materials fill the container without overweight risk.`,
+        },
+      ]
+    : [
+        {
+          q: `How do importers verify a real ${pk}?`,
+          a: `Factory visit or video audit, production line photos, export record samples, and reference checks. Trading companies often cannot show consistent loading photos from one facility.`,
+        },
+        {
+          q: `What MOQ should distributors expect?`,
+          a: `MOQ varies by SKU, thickness, and wear layer. Serious factories publish MOQ matrix per color and support mixed-SKU programs with documented carton efficiency — not one blanket MOQ.`,
+        },
+        {
+          q: `Why do samples differ from full production?`,
+          a: `Sample rooms use controlled batches. Full production risk starts after deposit — daily production updates and quality inspection before shipment catch drift early.`,
+        },
+      ];
 
-  if (t.toLowerCase().includes("factory") || t.toLowerCase().includes("pricing") || t.toLowerCase().includes("manufacturer")) {
-    sections.push(
-      ...sectionBlocks(
-        "Factory pricing vs trading company quotes",
-        [
-          `Factory FOB price breaks down by thickness, wear layer mil rating, surface texture, order volume and OEM packaging — not a single retail number. Request itemized quotations per sqm with port and incoterm stated.`,
-          `Integrated ${pk} facilities control extrusion, lamination, profiling and packing in one location. That reduces middleman markup and improves batch consistency for ${sk[2] || "bulk spc flooring order"} programs.`,
-          `Compare quotes on landed cost: FOB price + local charges + ocean freight + destination fees + inspection + finance cost. A lower FOB from an unverified supplier often becomes expensive after delays and claims.`,
-          `Lock BOM references for repeat orders so color, embossing and core formula stay stable — essential for retail display consistency and project sign-off.`,
-        ],
-        pk
-      )
-    );
-  }
-
-  if (t.toLowerCase().includes("quality") || t.toLowerCase().includes("inspection") || t.toLowerCase().includes("audit")) {
-    sections.push(
-      ...sectionBlocks(
-        "Quality control before shipment",
-        [
-          `Inline QC during extrusion catches dimensional drift early. Pre-pack inspection verifies click-lock fit, surface defects, chamfer consistency and carton labels against the purchase order.`,
-          `Random sampling per batch: caliper thickness, wear layer spot check, acetone rub on print layer and drop-test cartons before palletizing.`,
-          `Third-party inspection is optional but recommended for first orders or new SKUs. Factory QC plus independent verification reduces dispute time when containers arrive.`,
-          `Release only approved pallets to the export staging area. Mixed staging without SKU separation causes loading errors and customer complaints.`,
-        ],
-        pk
-      )
-    );
-  }
-
-  if (t.toLowerCase().includes("distributor") || t.toLowerCase().includes("margin") || t.toLowerCase().includes("profit") || t.toLowerCase().includes("cash")) {
-    sections.push(
-      ...sectionBlocks(
-        "Distributor margin protection without raising retail prices",
-        [
-          `Margin improvement usually comes from landed cost reduction, not shelf price increases. Factory-direct ${pk}, optimized container fill and lower claim rates compound over four quarters.`,
-          `SKU rationalization helps: fewer slow movers, deeper stock on winners, quarterly container rhythm instead of emergency LCL air-freight fixes.`,
-          `Offer project clients and dealer networks transparent lead times backed by production updates — reliability becomes a sales tool that protects price integrity.`,
-          `Track gross margin per SKU including freight amortization, not FOB alone. Finance teams often discover "cheap" lines destroy cash after logistics and returns.`,
-        ],
-        pk
-      )
-    );
-  }
-
-  if (t.toLowerCase().includes("inventory") || t.toLowerCase().includes("warehouse")) {
-    sections.push(
-      ...sectionBlocks(
-        "Inventory and warehouse management for flooring importers",
-        [
-          `Flooring cartons are bulky — warehouse slotting by velocity class prevents picking bottlenecks. Fast SKUs near dispatch doors; project pallets grouped by job reference.`,
-          `Safety stock formulas should use container lead time in weeks, not days. Include production queue, ocean transit, customs and inland delivery.`,
-          `During market slowdowns, reduce new PO frequency but maintain container rhythm on core colors to preserve ${sk[0]} tiers.`,
-          `Cycle counts by sqm on hand vs ERP reconcile shrink from sample rooms and damaged cartons before they distort replenishment.`,
-        ],
-        pk
-      )
-    );
-  }
-
-  if (t.toLowerCase().includes("risk") || t.toLowerCase().includes("mistake") || t.toLowerCase().includes("avoid")) {
-    sections.push(
-      ...sectionBlocks(
-        "Procurement risk control checklist",
-        [
-          `Verify supplier is a manufacturer, not a broker repackaging others' cartons. Ask for same-day factory gate photos with order reference.`,
-          `Never skip pre-production sample sign-off on color and wear layer for new collections.`,
-          `Contract clauses: late production penalties, replacement policy for shipping damage, documentation timeline for BL and CO.`,
-          `Diversify only after baseline factory relationship works — dual sourcing without volume splits increases complexity and QC drift.`,
-        ],
-        pk
-      )
-    );
-  }
-
-  if (meta.phase >= 2 && tag === "vinyl") {
-    sections.push(
-      ...sectionBlocks(
-        "Vinyl / LVT wholesale supply considerations",
-        [
-          `Vinyl and LVT lines complement rigid SPC in many distributor catalogs. Separate MOQ and container plans — flexible LVT rolls and rigid planks rarely optimize the same CBM model.`,
-          `${sk[0]} from the same factory group can simplify QC standards and documentation for mixed containers when approved by the manufacturer.`,
-          `Commercial LVT projects may specify different wear layers than retail SPC — quote and produce separately to avoid margin erosion from spec mismatch.`,
-        ],
-        pk
-      )
-    );
-  }
-
-  if (meta.phase >= 2 && tag === "wall") {
-    sections.push(
-      ...sectionBlocks(
-        "Wall panel supply alongside flooring programs",
-        [
-          `Distributors adding ${sk[0] || "wall panel supplier china"} SKUs can combine wall panels and flooring in one container when dimensions allow — shared factory QC and one export documentation set.`,
-          `Interior wall panel factory output should be staged with similar pre-shipment inspection: surface finish, tongue-groove fit, carton strength and moisture protection.`,
-          `Project clients often bundle floor and wall packages — quote container programs holistically to win hotel, apartment and commercial fit-out tenders.`,
-        ],
-        pk
-      )
-    );
-  }
-
-  sections.push(
-    ...sectionBlocks(
-      "Importer economics: landed cost and container math",
-      [
-        `FOB price per sqm is only the starting point. Importers must model ocean freight, insurance, destination port charges, inland delivery, finance cost and expected claim rate before comparing ${sk[1]} quotations.`,
-        `A 40HQ container loading 3,500 sqm at optimized carton stacking can reduce per-unit freight by 15–25% versus LCL consolidation — that difference often exceeds a slightly higher FOB from a verified factory.`,
-        `Distributors who plan quarterly ${sk[2] || "bulk orders"} align production slots with factory capacity, avoiding peak-season queue jumps that add 10–20 days and disrupt retail promotions.`,
-        `Document every container: sqm shipped, SKU mix, claim count, days from PO to warehouse receipt. This dataset becomes your negotiation base for annual ${pk} supply agreements.`,
-      ],
-      pk
-    ),
-    ...sectionBlocks(
-      "Supplier communication and production visibility",
-      [
-        `Weekly production updates should include completed sqm, pending QC holds, carton labeling status and estimated loading window — not generic "in progress" emails.`,
-        `Importers who receive loading photos, seal numbers and draft BL before departure resolve customs issues faster and give sales teams accurate ETAs.`,
-        `When switching from a trading company to factory-direct ${sk[0]}, expect a 1–2 container learning curve on documentation and SKU mapping — savings appear from the third shipment onward.`,
-        `Multilingual export teams help Middle East, Africa and Latin America distributors align carton marks, certificates and project specifications without translation delays.`,
-      ],
-      pk
-    ),
-    ...sectionBlocks(
-      "Scaling procurement without increasing working capital stress",
-      [
-        `Rotate A/B/C SKUs: A-class items in every container, B-class every other cycle, C-class trial on MOQ-friendly mixed loads.`,
-        `Use factory warehouse staging when available to split one production run into two monthly containers — smoother cash outflow than single large PO.`,
-        `Retail and project channels have different margin structures; quote landed cost separately so contractor bids do not erode dealer program profitability.`,
-        `Annual volume commitments can unlock tiered ${sk[3] || "wholesale flooring price"} if backed by shipment history — factories prioritize partners with predictable container rhythm.`,
-      ],
-      pk
-    )
-  );
-
-  if (meta.phase >= 3) {
-    sections.push(
-      ...sectionBlocks(
-        "Case study patterns from global flooring distributors",
-        [
-          `First container: trial colors, strict QC, conservative SKU count. Repeat orders: locked BOM, mixed-color 40HQ, monthly production slot.`,
-          `Africa and Middle East distributors often prioritize waterproof rigid core for hotels and apartments — plan OEM cartons and English/French labels before production.`,
-          `Southeast Asia partners may reorder faster — maintain safety stock at factory warehouse for 7–10 day dispatch after PO confirmation when feasible.`,
-          `Document each shipment: loading photos, sqm per SKU, claim rate and reorder interval. This data supports supplier negotiations and internal credit approval.`,
-        ],
-        pk
-      )
-    );
-  }
-
-  sections.push(
-    h2("Implementation roadmap for your next order"),
+  const sections = [
+    p(hook),
     p(
-      `Step 1: Send target sqm, thickness/wear layer matrix and destination port to request ${pk} factory price list. ` +
-        `Step 2: Confirm container plan and production window. Step 3: Approve pre-production sample. Step 4: Receive weekly QC updates. Step 5: Review loading photos before BL release.`
+      logistics
+        ? `${CONTAINER_TRUTH} This guide focuses on ${pk} for flooring distributors, wholesalers, and building material importers sourcing from China.`
+        : `This guide focuses on ${pk} for flooring distributors, wholesalers, and building material importers sourcing from China — factory pricing logic, weight-based shipment planning, and supply chain control, not decoration trends.`
     ),
-    ul([
-      `Request ${sk[1]} quotation with mixed-SKU 40HQ scenario`,
-      `Align ${sk[2] || "bulk order"} MOQ with your warehouse capacity`,
-      `Schedule inspection 5–7 days before planned loading date`,
-      `Lock carton marking and pallet pattern for destination warehouse`,
-    ]),
-    h2("Conclusion: supplier that understands import economics"),
+    h2(STRUCTURE_H2.problem),
+    ...problemBody.map(p),
+    h2(STRUCTURE_H2.cost),
+    ...costBody.map(p),
+    h2(STRUCTURE_H2.suppliersWrong),
+    ...suppliersWrong.map(p),
+    h2(STRUCTURE_H2.professionalCalc),
+    ul(professionalCalc),
     p(
-      `${t} — the takeaway for professional buyers is simple: choose partners who speak ${pk}, ${sk[0]} and container economics fluently. ` +
-        `When factory pricing, production visibility and shipment discipline align, distributors improve margins without pushing retail prices up — and importers gain confidence to scale ${sk[3] || "flooring for contractor supply"} programs. ` +
-        `If your current supplier cannot show production, QC and loading evidence on every container, it may be time to request a parallel quotation from a China flooring factory.`
+      `Professional suppliers calculate total weight, carton size, pallet or non-pallet loading, product thickness, product mix, destination port rules, overweight risk, and loading sequence before recommending 20GP or 40HQ.`
     ),
-    richLink(
-      "Eshsire Group operates as a ",
-      "SPC flooring supplier and China flooring factory",
-      "/spc-flooring"
-    ),
-    richLink("Request ", "factory quotation and container pricing", "/contact"),
+    h2(STRUCTURE_H2.eshsire),
+    ...eshsireBody.map(p),
+    richLink("Review ", "SPC flooring factory capability and production lines", "/factory"),
+    richLink("Explore ", "wall panel and mixed container supply programs", "/wall-panels"),
+    richLink("Request ", "factory quotation and weight-based loading plan", "/contact"),
+    h2(STRUCTURE_H2.checklist),
+    ul(checklist),
+    h2(STRUCTURE_H2.faq),
+    ...faqItems.flatMap(({ q, a }) => [h3(q), p(a)]),
+    h2(STRUCTURE_H2.conclusion),
     p(
-      `Contact our export team for factory price list, 40HQ container quotation and ${sk[2] || "bulk spc flooring order"} pricing. We support distributors who need stable supply chain control — not marketing stories.`
-    )
-  );
+      `${t} — professional importers win on supply chain discipline, not lowest FOB alone. Choose partners who deliver ${pk}, daily production updates, weight-based loading calculation, and quality inspection before shipment. When factory pricing, production visibility, and container planning align, distributors improve margins and ${ESHSIRE_DIFFERENTIATORS[7].toLowerCase()}.`
+    ),
+    richLink("Eshsire Group operates as a ", "SPC flooring supplier and China flooring factory", "/spc-flooring"),
+  ];
+
+  if (t.toLowerCase().includes("mistake")) {
+    sections.splice(
+      4,
+      0,
+      p(
+        `The seven costliest mistakes — chasing lowest FOB without landed cost math, skipping factory verification, placing large first orders without sample lock, ignoring production visibility, accepting volume-based 40HQ advice for heavy SPC-only orders, weak carton marking, and no pre-shipment QC — destroy distributor margins within two quarters.`
+      )
+    );
+  }
+
+  if (t.toLowerCase().includes("africa") || t.toLowerCase().includes("hotel")) {
+    sections.splice(
+      4,
+      0,
+      p(
+        `Africa and hospitality distributors often combine waterproof SPC with wall panels and PVC ceiling panels. Mixed loading in one 40HQ — when weight allows — reduces freight cost per category versus separate LCL shipments. Plan OEM cartons and English/French labels before production.`
+      )
+    );
+  }
+
+  if (t.toLowerCase().includes("factory vs") || t.toLowerCase().includes("trading")) {
+    sections.splice(
+      4,
+      0,
+      p(
+        `Factory-direct ${pk} removes typical trader margin while locking BOM references for color stability. Trading companies may switch factories between containers — importers should demand loading photos, seal numbers, and production batch records from the same facility every shipment.`
+      )
+    );
+  }
 
   return sections;
 }
 
 export function buildLongFormBlocks(meta, images) {
-  const sections = buildSections(meta);
-  const blocks = [];
-  let imgIdx = 0;
-  const sectionImgs = images.sections;
-  let sectionCount = 0;
-
-  for (const block of sections) {
-    blocks.push(block);
-    if (block.type === "h2" && sectionCount < 3 && sectionImgs[sectionCount]) {
-      const url = sectionImgs[sectionCount];
-      const capIdx = sectionCount + 1;
-      blocks.push(
-        img(
-          url,
-          images.alts?.[capIdx] ?? `${meta.primaryKeyword} ${meta.title.slice(0, 40)} image ${sectionCount + 1}`,
-          images.captions?.[capIdx] ?? `BJFLOOR factory reference — ${meta.productTag} B2B supply`
-        )
-      );
-      sectionCount++;
-    }
-  }
-
-  blocks.push(
-    img(
-      images.ending,
-      images.alts?.[4] ?? `${meta.primaryKeyword} container export flooring China`,
-      images.captions?.[4] ?? "Export container loading — SPC flooring secured for ocean freight"
-    )
-  );
+  const enriched = { ...meta, primaryKeyword: resolvePrimaryKeyword(meta) };
+  const sections = buildSections(enriched);
+  let blocks = insertSectionImages(sections, images, enriched, {
+    imgCaption: `Eshsire Group — ${enriched.primaryKeyword} reference`,
+    imgEnding: "Export staging reference — SPC flooring supply chain",
+  });
 
   let wc = countBlocksWords(blocks);
   let pad = 0;
-  while (wc < 1800 && pad < 20) {
-    const kw = meta.secondaryKeywords[pad % meta.secondaryKeywords.length];
-    blocks.splice(blocks.length - 1, 0, p(
-      `Procurement deep-dive ${pad + 1}: professional buyers evaluating ${kw} alongside ${meta.primaryKeyword} should stress-test quotations with three scenarios — single-SKU full container, mixed-color 40HQ and emergency LCL top-up. ` +
-        `For each scenario, record production days, QC hold risk, freight per sqm and expected gross margin after claims allowance. ` +
-        `Distributors who run this analysis before signing annual deals avoid the common trap of optimizing FOB while ignoring logistics and inventory carrying cost. ` +
-        `Factory partners willing to share extrusion schedule, raw material lead times and loading calendar deserve priority when you scale ${meta.productTag === "vinyl" ? "vinyl flooring wholesale" : meta.productTag === "wall" ? "wall panel programs" : "SPC flooring import"} volume across multiple regions.`
-    ));
+  while (wc < 1800 && pad < 35) {
+    const kw = meta.secondaryKeywords?.[pad % (meta.secondaryKeywords?.length || 1)] ?? "SPC flooring wholesale supplier";
+    blocks.splice(
+      blocks.length - 1,
+      0,
+      p(
+        `Import planning note ${pad + 1}: when evaluating ${kw} alongside ${enriched.primaryKeyword}, model three shipment scenarios — standard 20GP SPC load, mixed loading with lighter wall or ceiling materials in 40HQ, and emergency LCL top-up. ` +
+          `For each scenario record production days, QC hold risk, total weight against port limits, freight per sqm, and gross margin after claims. ` +
+          `Distributors who run this analysis before annual supply agreements avoid optimizing FOB while ignoring weight limits and inventory carrying cost. ` +
+          `Partners offering daily production updates, visual production tracking, and weight-based loading calculation deserve priority when scaling import volume.`
+      )
+    );
     wc = countBlocksWords(blocks);
     pad++;
   }
@@ -412,8 +265,10 @@ export function buildLongFormBlocks(meta, images) {
 }
 
 export function buildArticleMeta(meta, images) {
+  const pk = resolvePrimaryKeyword(meta);
   return {
     ...meta,
+    primaryKeyword: pk,
     heroImage: images.banner,
     ogImage: images.banner,
   };

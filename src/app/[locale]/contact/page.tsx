@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { ContactContent } from "@/components/pages/ContactContent";
 import { getDictionary } from "@/i18n/get-dictionary";
-import { isLocale } from "@/i18n/locales";
+import { isLocale, type Locale } from "@/i18n/locales";
+import { BreadcrumbJsonLd, WebPageJsonLd } from "@/components/seo/StructuredData";
 import { buildPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -20,6 +21,26 @@ export async function generateMetadata({
   });
 }
 
-export default function ContactPage() {
-  return <ContactContent />;
+export default async function ContactPage({
+  params,
+}: {
+  params: { locale: string };
+}) {
+  const { locale: localeParam } = params;
+  if (!isLocale(localeParam)) return null;
+  const locale = localeParam as Locale;
+  const dict = await getDictionary(locale);
+
+  return (
+    <>
+      <WebPageJsonLd
+        locale={locale}
+        path="/contact"
+        name={dict.meta.seoTitles.contact}
+        description={dict.meta.pageDesc.contact}
+      />
+      <BreadcrumbJsonLd locale={locale} path="/contact" />
+      <ContactContent />
+    </>
+  );
 }

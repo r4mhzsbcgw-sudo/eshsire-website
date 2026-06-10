@@ -1,4 +1,4 @@
-# BJFLOOR Daily Content Report
+# Eshsire Group Daily Content Report
 
 Generated: 2026-06-09T18:33:01.225Z
 Date: 2026-06-09
@@ -71,6 +71,6 @@ None — all articles passed validation.
 
 ## System
 
-- Pipeline: BJFLOOR Global Content Automation V2
+- Pipeline: Eshsire Group Global Content Automation V2
 - `generateArticle(locale, topic)` — native locale generation, no EN fallback
 - Pre-publish: `validateArticle()`

@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Rematch all blog images to local BJFLOOR assets with theme-aligned captions.
+ * Rematch all blog images to local Eshsire Group assets with theme-aligned captions.
  */
 import { readFileSync, writeFileSync, readdirSync, statSync } from "node:fs";
 import { join } from "node:path";

@@ -27,7 +27,7 @@ export function writeDailyReport(stats) {
     .join("\n");
 
   const kwRows = keywordCoverage
-    .map((k) => `- **${k.slug}** [${k.locale}]: PK "${k.pk}" ×${k.pkCount}, SK avg ${k.skAvg}`)
+    .map((k) => `- **${k.slug}** [${k.locale}]: PK "${k.pk}" 脳${k.pkCount}, SK avg ${k.skAvg}`)
     .join("\n");
 
   const ctaRows = Object.entries(ctaTypes)
@@ -36,10 +36,10 @@ export function writeDailyReport(stats) {
 
   const failRows =
     validationFailures.length === 0
-      ? "None — all articles passed validation."
+      ? "None 鈥?all articles passed validation."
       : validationFailures.map((f) => `- \`${f.slug}\` [${f.locale}]: ${f.errors.join("; ")}`).join("\n");
 
-  const report = `# BJFLOOR Daily Content Report
+  const report = `# Eshsire Group Daily Content Report
 
 Generated: ${new Date().toISOString()}
 Date: ${date}
@@ -62,7 +62,7 @@ ${slugs.map((s) => `- ${s}`).join("\n") || "None"}
 
 | Locale | Files |
 |--------|------:|
-${localeRows || "| — | 0 |"}
+${localeRows || "| 鈥?| 0 |"}
 
 ## SEO keyword coverage
 
@@ -82,9 +82,10 @@ ${failRows}
 
 ## System
 
-- Pipeline: BJFLOOR Global Content Automation V2
-- \`generateArticle(locale, topic)\` — native locale generation, no EN fallback
-- Pre-publish: \`validateArticle()\`
+- Pipeline: Eshsire Group Global Content Automation V2
+- \`generateArticle(locale, topic)\` 鈥?native locale generation, no EN fallback
+- Pre-publish: \`validateArticleStrict()\` (EN only — hooks, images, container logic, CTA)
+- Locales: English only (no auto i18n until re-enabled)
 `;
 
   writeFileSync(REPORT_PATH, report, "utf8");

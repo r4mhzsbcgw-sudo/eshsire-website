@@ -27,11 +27,11 @@ function sectionBlocks(heading, paragraphs) {
 const LINKS = {
   zh: {
     factory: ["鏌ョ湅 ", "涓浗鍦版澘宸ュ巶鐢熶骇鑳藉姏涓庣敓浜х嚎", "/factory"],
-    wall: ["浜嗚В ", "澧欐澘鎵瑰彂渚涘簲涓庢贩瑁呮暣鏌滄柟妗?, "/wall-panels"],
+    wall: ["了解 ", "墙板批发供应与混装整柜方案", "/wall-panels"],
     spc: ["Eshsire Group 鏄笓涓氱殑 ", "SPC 鍦版澘渚涘簲鍟嗕笌涓浗鍦版澘宸ュ巶", "/spc-flooring"],
-    contact: ["", "绱㈠彇宸ュ巶鎶ヤ环涓庢暣鏌滀环鏍?, "/contact"],
-    imgCaption: "宸ュ巶涓庝緵搴旈摼鍙傝€?鈥?SPC B2B 杩涘彛",
-    imgEnding: "鍑哄彛瑁呮煖涓庨泦瑁呯鍙戣繍 鈥?鍦版澘缁忛攢鍟嗕緵搴?,
+    contact: ["", "索取工厂报价与整柜价格", "/contact"],
+    imgCaption: "工厂与供应链参考 — SPC B2B 进口",
+    imgEnding: "出口装柜与集装箱发运 — 地板经销商供应",
   },
   es: {
     factory: ["Consulte ", "capacidad de f谩brica y l铆neas de producci贸n en China", "/factory"],

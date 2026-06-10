@@ -1,0 +1,67 @@
+---
+description: Eshsire Group blog content rules — pain hooks, weight-based container logic, SEO, structure
+globs:
+  - scripts/seo/**
+  - scripts/generate-daily-seo-articles.mjs
+  - src/content/blog/**
+  - content/blog/**
+---
+
+# Eshsire Group Blog Content Rules (V3)
+
+## Container loading — SPC is heavy
+
+- SPC flooring loading is **weight-limited**, not volume-limited
+- **20GP is usually enough** for standard SPC-only orders (~28t limit, similar to 40HQ)
+- **40HQ is for mixed loading** with lighter materials: wall panels, PVC ceiling panels, accessories, skirting, trims, underlayment
+- Never write: "40HQ can load much more SPC flooring", "importers should choose 40HQ for large orders", "sqm per 40HQ" as default advice
+
+Canonical truth (use in logistics articles):
+
+> Because SPC flooring is a heavy product, container loading is mainly limited by weight, not volume. For many standard SPC flooring shipments, a 20GP container is already enough. A 40HQ container is more useful when SPC flooring is combined with lighter products such as wall panels, PVC ceiling panels, accessories, or other interior materials.
+
+## Opening hooks — required
+
+Every article must open with a pain hook from `scripts/seo/blog-content-rules.mjs` HOOKS — never generic intros like "SPC flooring is popular" or "Choosing a supplier is important".
+
+## Article structure — required H2s
+
+1. The Real Problem Importers Face
+2. Why This Problem Costs Money
+3. What Most Suppliers Do Wrong
+4. What a Professional Supplier Should Calculate
+5. How Eshsire Group Reduces This Risk (via eshsireParagraphs)
+6. Buying Checklist for Importers
+7. FAQ
+8. Conclusion
+
+## Eshsire differentiators — weave through body
+
+Daily Production Updates, Visual Production Tracking, Container Optimization, Weight-based Loading Calculation, OEM Packaging Support, Quality Inspection Before Shipment, Mixed Loading With Wall Panels / PVC Ceiling Panels / Accessories, Lower Import Risk, Fast Response
+
+## SEO
+
+- One primary keyword per article from PRIMARY_KEYWORD_POOL in `blog-content-rules.mjs`
+- Sharp, pain-driven titles — not "How to Choose SPC Flooring Supplier"
+
+## CTA
+
+> Contact Eshsire Group to get an SPC flooring quotation, OEM packaging support, daily production updates, and a practical container loading plan based on weight, product mix, and shipment requirements.
+
+## Publish frequency
+
+**1 English article per day** (morning slot only — no afternoon/evening batch).
+
+- **English only** — do not auto-generate i18n until re-enabled
+- Must pass **`validateArticleStrict()`** before writing — publish aborts on failure (no hooks, wrong images, container logic errors, weak CTA)
+- CI runs **`npm run build`** after each publish
+- Workflow: `.github/workflows/daily-seo-publish.yml` → `scripts/generate-daily-seo-articles.mjs morning`
+
+All checks must pass before publish:
+1. Professionalism 2. Container logic 3. SEO keyword 4. Hook 5. Image relevance 6. Internal links 7. CTA
+
+## Images
+
+Match topic: logistics → container/warehouse/cartons; QC → inspection/packaging; factory → production line; market → distributor stock/showroom. No duplicate images, living-room stock photos, or scenery.
+
+Implementation: `scripts/seo/article-builder.mjs`, `blog-content-rules.mjs`, `validate-article.mjs`

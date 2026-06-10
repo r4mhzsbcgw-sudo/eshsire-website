@@ -1613,6 +1613,58 @@
       "role": "ending",
       "reasoningTag": "required_finished",
       "timestamp": "2026-06-06T05:56:57.802Z"
+    },
+    {
+      "domain": "blog",
+      "imageUrl": "/images/blog/editorial/02-factory-machinery-operator.jpg",
+      "articleSlug": "spc-flooring-supplier-diversification-strategies",
+      "topic": "SPC Flooring Supplier Diversification Strategies",
+      "locale": "en",
+      "category": "factory",
+      "imageType": "EDITORIAL",
+      "theme": "productionLine",
+      "role": "banner",
+      "reasoningTag": "editorial_topic_match",
+      "timestamp": "2026-06-10T10:34:59.474Z"
+    },
+    {
+      "domain": "blog",
+      "imageUrl": "/images/blog/editorial/01-industrial-factory-floor.jpg",
+      "articleSlug": "spc-flooring-supplier-diversification-strategies",
+      "topic": "SPC Flooring Supplier Diversification Strategies",
+      "locale": "en",
+      "category": "factory",
+      "imageType": "EDITORIAL",
+      "theme": "factoryProduction",
+      "role": "section-1",
+      "reasoningTag": "editorial_topic_match",
+      "timestamp": "2026-06-10T10:34:59.474Z"
+    },
+    {
+      "domain": "blog",
+      "imageUrl": "/images/blog/editorial/03-production-quality-station.jpg",
+      "articleSlug": "spc-flooring-supplier-diversification-strategies",
+      "topic": "SPC Flooring Supplier Diversification Strategies",
+      "locale": "en",
+      "category": "factory",
+      "imageType": "EDITORIAL",
+      "theme": "qcInline",
+      "role": "section-2",
+      "reasoningTag": "editorial_topic_match",
+      "timestamp": "2026-06-10T10:34:59.474Z"
+    },
+    {
+      "domain": "blog",
+      "imageUrl": "/images/blog/editorial/04-warehouse-pallet-racks.jpg",
+      "articleSlug": "spc-flooring-supplier-diversification-strategies",
+      "topic": "SPC Flooring Supplier Diversification Strategies",
+      "locale": "en",
+      "category": "factory",
+      "imageType": "EDITORIAL",
+      "theme": "warehouseStock",
+      "role": "ending",
+      "reasoningTag": "editorial_topic_match",
+      "timestamp": "2026-06-10T10:34:59.474Z"
     }
   ]
 }

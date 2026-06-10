@@ -1,4 +1,4 @@
-/** AUTO-GENERATED — Eshsire Group V2 calendar + manual posts */
+/** AUTO-GENERATED 鈥?Eshsire Group V2 calendar + manual posts */
 export const blogSlugs = [
   "factory-pricing-vs-trading-company-pricing-what-importers-need-to-know",
   "how-flooring-distributors-can-increase-profit-margins-without-raising-prices",
@@ -9,6 +9,7 @@ export const blogSlugs = [
   "spc-flooring-factory-audit-checklist-for-importers",
   "spc-flooring-factory-price-bulk-container-orders",
   "spc-flooring-quality-control-before-shipment",
+  "spc-flooring-supplier-diversification-strategies",
   "spc-flooring-supply-hotel-project-africa",
   "the-real-cost-of-delayed-flooring-shipments",
   "what-is-spc-flooring-commercial-projects",

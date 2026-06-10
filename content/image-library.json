@@ -1097,6 +1097,42 @@
       "role": "ending",
       "publishedAt": "2026-06-06",
       "locale": "en"
+    },
+    {
+      "articleTitle": "SPC Flooring Supplier Diversification Strategies",
+      "imageUrl": "/images/blog/editorial/02-factory-machinery-operator.jpg",
+      "imageKeywords": "productionLine",
+      "imageType": "EDITORIAL",
+      "role": "banner",
+      "publishedAt": "2026-06-10",
+      "locale": "en"
+    },
+    {
+      "articleTitle": "SPC Flooring Supplier Diversification Strategies",
+      "imageUrl": "/images/blog/editorial/01-industrial-factory-floor.jpg",
+      "imageKeywords": "factoryProduction",
+      "imageType": "EDITORIAL",
+      "role": "section-1",
+      "publishedAt": "2026-06-10",
+      "locale": "en"
+    },
+    {
+      "articleTitle": "SPC Flooring Supplier Diversification Strategies",
+      "imageUrl": "/images/blog/editorial/03-production-quality-station.jpg",
+      "imageKeywords": "qcInline",
+      "imageType": "EDITORIAL",
+      "role": "section-2",
+      "publishedAt": "2026-06-10",
+      "locale": "en"
+    },
+    {
+      "articleTitle": "SPC Flooring Supplier Diversification Strategies",
+      "imageUrl": "/images/blog/editorial/04-warehouse-pallet-racks.jpg",
+      "imageKeywords": "warehouseStock",
+      "imageType": "EDITORIAL",
+      "role": "ending",
+      "publishedAt": "2026-06-10",
+      "locale": "en"
     }
   ],
   "poolCursor": {},

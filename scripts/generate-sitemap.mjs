@@ -42,14 +42,14 @@ const BLOG_SLUGS = [
   "7-mistakes-importing-spc-flooring-from-china"
 ];
 const PROJECT_SLUGS = [
-  "africa-distributor",
-  "middle-east-hotel",
-  "school-flooring",
-  "europe-apartment",
-  "commercial-office",
-  "southeast-asia-distributor",
-  "hospital-flooring",
-  "villa-wpc-wall-panel",
+  "sample-video-confirmation",
+  "specification-order-checklist",
+  "production-schedule-updates",
+  "production-process-video-updates",
+  "packaging-label-checking",
+  "pre-shipment-quality-confirmation",
+  "loading-photos-video-records",
+  "after-sales-reorder-follow-up",
 ];
 
 function latestIso(paths) {
@@ -125,7 +125,7 @@ for (const locale of LOCALES) {
   }
   for (const slug of PROJECT_SLUGS) {
     entries.push(
-      urlEntry(`${SITE_URL}/${locale}/projects/${slug}`, "monthly", "0.7", projectLastMod())
+      urlEntry(`${SITE_URL}/${locale}/cases/${slug}`, "monthly", "0.7", projectLastMod())
     );
   }
 }

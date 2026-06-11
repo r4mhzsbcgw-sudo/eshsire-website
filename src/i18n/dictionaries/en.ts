@@ -1,3 +1,5 @@
+import { projectCasesEn } from "@/content/projects/case-content";
+
 export const en = {
   meta: {
     siteTitle: "Eshsire Group | China SPC Flooring & Wall Panel Manufacturer",
@@ -226,125 +228,7 @@ export const en = {
         desc: "Skirting, profiles, underlayment & installation accessories.",
       },
     },
-    projects: {
-      label: "Global Projects",
-      title: "Global Projects & Success Stories",
-      description: "Trusted by Distributors, Contractors and Developers Worldwide",
-      detailLabel: "Project Overview",
-      galleryLabel: "Project Gallery",
-      galleryTitle: "Project Photos & Installation",
-      galleryDesc: "Browse all project images from our global flooring and wall panel case studies.",
-      relatedTitle: "More Success Stories",
-      productLinksLabel: "Explore our flooring & wall panel solutions",
-      ctaTitle: "Need a Reliable Flooring Supplier?",
-      ctaSubtitle: "Get free samples, OEM pricing and project support from our Beijing factory.",
-      items: [
-        {
-          slug: "africa-distributor",
-          title: "Africa Distributor Project",
-          tag: "Africa",
-          desc: "Supported flooring distributors with SPC flooring, OEM packaging and stable supply solutions.",
-          overview:
-            "Eshsire Group partnered with regional flooring distributors across Africa to deliver consistent SPC flooring supply, custom OEM packaging and long-term replenishment support for growing retail networks.",
-          highlights: [
-            "Custom OEM cartons and private-label branding for local markets",
-            "Stable monthly supply for mixed container orders",
-            "Waterproof SPC collections suited to tropical climates",
-          ],
-        },
-        {
-          slug: "middle-east-hotel",
-          title: "Middle East Hotel Project",
-          tag: "Middle East",
-          desc: "Supplied premium SPC flooring for hotel renovation projects with luxury appearance and durability.",
-          overview:
-            "We supplied premium rigid-core SPC flooring for hotel lobby, corridor and guest room renovations across the Middle East, balancing luxury visual appeal with heavy daily foot traffic performance.",
-          highlights: [
-            "Stone and wood-look finishes for upscale hospitality interiors",
-            "Commercial wear layer for high-traffic public areas",
-            "Fast-install click-lock system to reduce renovation downtime",
-          ],
-        },
-        {
-          slug: "school-flooring",
-          title: "School Flooring Project",
-          tag: "Education",
-          desc: "Delivered durable flooring for schools and educational facilities with high traffic resistance.",
-          overview:
-            "This education sector project required scratch-resistant, easy-to-maintain SPC flooring for classrooms, hallways and activity areas with continuous daily use by students and staff.",
-          highlights: [
-            "Anti-slip surface options for safety-critical areas",
-            "Low-maintenance waterproof flooring for easy cleaning",
-            "Durable rigid core for desks, chairs and rolling equipment",
-          ],
-        },
-        {
-          slug: "europe-apartment",
-          title: "Europe Apartment Project",
-          tag: "Residential",
-          desc: "Provided waterproof SPC flooring for apartment renovation projects with modern design.",
-          overview:
-            "We supported apartment renovation contractors in Europe with waterproof SPC flooring collections designed for kitchens, living areas and bedrooms in multi-unit residential buildings.",
-          highlights: [
-            "100% waterproof core for kitchens and wet areas",
-            "European-style colors and textures for modern apartments",
-            "Underlay-compatible systems for sound reduction",
-          ],
-        },
-        {
-          slug: "commercial-office",
-          title: "Commercial Office Project",
-          tag: "Office",
-          desc: "Installed commercial SPC flooring for modern office environments with heavy foot traffic.",
-          overview:
-            "Commercial-grade SPC flooring was supplied for open-plan offices, meeting rooms and reception areas where professional appearance and long-term durability are essential.",
-          highlights: [
-            "Commercial wear layer rated for office foot traffic",
-            "Modern wood and stone visuals for corporate interiors",
-            "Quick installation to minimize business disruption",
-          ],
-        },
-        {
-          slug: "southeast-asia-distributor",
-          title: "Southeast Asia Distributor Project",
-          tag: "Wholesale",
-          desc: "Supported distributors with OEM packaging and stable flooring supply solutions.",
-          overview:
-            "Regional distributors in Southeast Asia partnered with Eshsire for customized flooring collections, localized packaging and flexible OEM orders tailored to wholesale channel requirements.",
-          highlights: [
-            "Market-specific color collections and embossing options",
-            "OEM packaging, labels and marketing insert support",
-            "Flexible MOQ for trial and repeat container orders",
-          ],
-        },
-        {
-          slug: "hospital-flooring",
-          title: "Hospital Flooring Project",
-          tag: "Healthcare",
-          desc: "Supplied hygienic and waterproof SPC flooring for hospitals and medical facilities.",
-          overview:
-            "Healthcare facilities require hygienic, waterproof and easy-to-sanitize flooring. We supplied SPC solutions for corridors, waiting areas and administrative zones in hospital renovation projects.",
-          highlights: [
-            "Waterproof rigid core for spill and moisture resistance",
-            "Smooth surface for routine cleaning and maintenance",
-            "Stable performance in high-traffic medical environments",
-          ],
-        },
-        {
-          slug: "villa-wpc-wall-panel",
-          title: "Villa WPC Wall Panel Project",
-          tag: "Villa",
-          desc: "Delivered decorative WPC wall panels for luxury villa interior decoration projects.",
-          overview:
-            "For luxury villa interiors, Eshsire delivered decorative WPC wall panels combining modern aesthetics with moisture resistance for living rooms, feature walls and premium residential spaces.",
-          highlights: [
-            "Wood-grain and stone-effect WPC panel finishes",
-            "Lightweight decorative panels for fast interior upgrades",
-            "Moisture-resistant materials suited to villa environments",
-          ],
-        },
-      ],
-    },
+    projects: projectCasesEn,
     factory: {
       label: "Factory",
       title: "Manufacturing Strength You Can Trust",

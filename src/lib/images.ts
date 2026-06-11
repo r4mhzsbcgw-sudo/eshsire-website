@@ -175,7 +175,7 @@ export const homeImages = {
   localPaths: homeLocal,
 };
 
-/** @deprecated Use getProjectThumbnail / getProjectImageSet from @/lib/project-images */
+/** @deprecated Use getCaseImage from @/content/projects/case-images */
 export {
   projectImages,
   getProjectImageSet,

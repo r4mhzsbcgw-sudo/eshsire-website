@@ -5,7 +5,6 @@ import { pageUrl } from "@/lib/seo";
 import { siteConfig } from "@/lib/config";
 import type { BlogPost } from "@/content/blog/types";
 import { PROJECT_SLUGS } from "@/content/projects";
-import { getProjectThumbnail } from "@/lib/project-images";
 import { productFaqItems } from "@/components/seo/ProductFaq";
 
 const PATH_LABEL_KEYS: Record<
@@ -250,18 +249,12 @@ export async function ProjectsSectionJsonLd({ locale }: { locale: Locale }) {
       "@type": "ListItem",
       position: i + 1,
       item: {
-        "@type": "CreativeWork",
-        "@id": pageUrl(locale, `/projects/${project.slug}`),
+        "@type": "HowToStep",
+        "@id": pageUrl(locale, `/cases/${project.slug}`),
         name: project.title,
-        description: project.desc,
-        image: absoluteUrl(getProjectThumbnail(PROJECT_SLUGS[i])),
-        url: pageUrl(locale, `/projects/${project.slug}`),
-        about: project.tag,
-        provider: {
-          "@type": "Organization",
-          name: siteConfig.name,
-          url: siteConfig.url,
-        },
+        text: project.desc,
+        url: pageUrl(locale, `/cases/${project.slug}`),
+        position: i + 1,
       },
     })),
   };
@@ -279,39 +272,24 @@ export function ProjectJsonLd({
   slug,
   title,
   description,
-  image,
-  tag,
-  gallery,
 }: {
   locale: Locale;
   slug: string;
   title: string;
   description: string;
-  image: string;
-  tag: string;
-  gallery: readonly string[];
 }) {
   if (!PROJECT_SLUGS.includes(slug as (typeof PROJECT_SLUGS)[number])) return null;
 
-  const page = pageUrl(locale, `/projects/${slug}`);
-  const images = gallery.length > 0 ? gallery : [image];
-  const imageUrls = images.map(absoluteUrl);
+  const page = pageUrl(locale, `/cases/${slug}`);
 
   const schema = {
     "@context": "https://schema.org",
-    "@type": "CreativeWork",
+    "@type": "HowToStep",
     "@id": page,
     name: title,
-    description,
-    image: imageUrls,
+    text: description,
     url: page,
     inLanguage: htmlLangMap[locale],
-    about: tag,
-    creator: {
-      "@type": "Organization",
-      name: siteConfig.name,
-      url: siteConfig.url,
-    },
     provider: {
       "@type": "Organization",
       name: siteConfig.name,

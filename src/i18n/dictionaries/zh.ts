@@ -1,4 +1,5 @@
 import type { Dictionary } from "./en";
+import { projectCasesZh } from "@/content/projects/case-content";
 
 export const zh: Dictionary = {
   meta: {
@@ -222,125 +223,7 @@ export const zh: Dictionary = {
         desc: "踢脚线、收边条、地垫及安装辅材。",
       },
     },
-    projects: {
-      label: "全球项目",
-      title: "全球项目与成功案例",
-      description: "深受全球经销商、承包商与开发商信赖",
-      detailLabel: "项目概述",
-      galleryLabel: "项目图库",
-      galleryTitle: "项目实拍与安装案例",
-      galleryDesc: "浏览全球地板与墙板项目的全部案例图片。",
-      relatedTitle: "更多成功案例",
-      productLinksLabel: "探索我们的地板与墙板解决方案",
-      ctaTitle: "需要可靠的地板供应商？",
-      ctaSubtitle: "免费索取样品、OEM 报价及项目支持，北京工厂直供。",
-      items: [
-        {
-          slug: "africa-distributor",
-          title: "非洲经销商项目",
-          tag: "非洲",
-          desc: "为地板经销商提供 SPC 地板、OEM 包装及稳定供货方案。",
-          overview:
-            "Eshsire Group 与非洲地区地板经销商合作，提供稳定的 SPC 地板供货、定制 OEM 包装及长期补货支持，助力当地零售网络持续增长。",
-          highlights: [
-            "定制 OEM 外箱与贴牌包装，适配本地市场",
-            "混柜订单稳定月供，保障渠道库存",
-            "适合热带气候的防水 SPC 产品系列",
-          ],
-        },
-        {
-          slug: "middle-east-hotel",
-          title: "中东酒店项目",
-          tag: "中东",
-          desc: "为酒店翻新项目供应高端 SPC 地板，兼顾奢华外观与耐用性能。",
-          overview:
-            "我们为中东地区酒店大堂、走廊及客房翻新项目供应高端石塑 SPC 地板，兼顾奢华视觉效果与高人流耐用性能。",
-          highlights: [
-            "石纹与木纹饰面，提升酒店空间档次",
-            "商用耐磨层，适应公共区域高人流",
-            "锁扣快速安装，缩短翻新停工时间",
-          ],
-        },
-        {
-          slug: "school-flooring",
-          title: "学校地板项目",
-          tag: "教育",
-          desc: "为学校及教育机构提供适应高人流的耐用地板。",
-          overview:
-            "本项目面向教育场景，为教室、走廊及活动区域提供耐磨、易清洁的 SPC 地板，满足师生日常高频使用需求。",
-          highlights: [
-            "防滑表面处理，提升安全区域表现",
-            "防水易维护，便于日常清洁消毒",
-            "刚性基材耐桌椅拖拽与滚动设备",
-          ],
-        },
-        {
-          slug: "europe-apartment",
-          title: "欧洲公寓项目",
-          tag: "住宅",
-          desc: "为公寓翻新项目提供防水 SPC 地板，现代设计风格。",
-          overview:
-            "我们支持欧洲公寓翻新承包商，为厨房、客厅及卧室等多户住宅空间提供防水 SPC 地板系列。",
-          highlights: [
-            "100% 防水基材，适合厨房及潮湿区域",
-            "欧式花色纹理，匹配现代公寓审美",
-            "兼容地垫系统，有助于降噪缓冲",
-          ],
-        },
-        {
-          slug: "commercial-office",
-          title: "商业办公项目",
-          tag: "办公",
-          desc: "为现代办公环境安装商用 SPC 地板，适应高人流。",
-          overview:
-            "为开放式办公区、会议室及前台接待区供应商用级 SPC 地板，兼顾专业形象与长期耐用性。",
-          highlights: [
-            "商用耐磨层，适应办公高人流",
-            "现代木纹石纹，提升企业空间质感",
-            "快速安装，减少营业中断影响",
-          ],
-        },
-        {
-          slug: "southeast-asia-distributor",
-          title: "东南亚经销商项目",
-          tag: "批发",
-          desc: "为经销商提供 OEM 包装及稳定地板供货方案。",
-          overview:
-            "东南亚区域经销商与 Eshsire 合作，获取本地化包装、定制花色系列及灵活 OEM 订单，满足批发渠道需求。",
-          highlights: [
-            "针对市场的花色与压纹定制",
-            "OEM 包装、标签及宣传物料支持",
-            "试单与复购柜灵活 MOQ 安排",
-          ],
-        },
-        {
-          slug: "hospital-flooring",
-          title: "医院地板项目",
-          tag: "医疗",
-          desc: "为医院及医疗机构供应卫生、防水的 SPC 地板。",
-          overview:
-            "医疗场景需要卫生、防水且易消毒的地面材料。我们为医院走廊、候诊区及办公区域翻新项目供应 SPC 地板。",
-          highlights: [
-            "防水刚性核心，应对泼洒与潮湿",
-            "表面平整易清洁，便于日常维护",
-            "高人流医疗环境稳定耐用",
-          ],
-        },
-        {
-          slug: "villa-wpc-wall-panel",
-          title: "别墅 WPC 墙板项目",
-          tag: "别墅",
-          desc: "为高端别墅室内装饰项目提供装饰性 WPC 墙板。",
-          overview:
-            "针对高端别墅室内，Eshsire 提供装饰性 WPC 墙板，兼顾现代美学与防潮性能，适用于客厅、背景墙等空间。",
-          highlights: [
-            "木纹与石纹 WPC 墙板饰面可选",
-            "轻质装饰板，快速完成室内升级",
-            "防潮材料，适合别墅居住环境",
-          ],
-        },
-      ],
-    },
+    projects: projectCasesZh,
     factory: {
       label: "工厂",
       title: "值得信赖的制造实力",

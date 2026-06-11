@@ -1,154 +1,79 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { SupplyFlowIcon } from "@/components/cases/SupplyFlowIcon";
 import { PageHero } from "@/components/ui/PageHero";
-import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Button } from "@/components/ui/Button";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { useLocale } from "@/context/LocaleContext";
+import type { ProjectSlug } from "@/content/projects";
 import { localizedPath } from "@/i18n/navigation";
 import { getWhatsAppUrl } from "@/lib/config";
-import { getProjectImageSet, getProjectThumbnail } from "@/lib/project-images";
-import type { ProjectSlug } from "@/content/projects";
 
 interface ProjectDetailContentProps {
   slug: ProjectSlug;
 }
 
+function DetailRow({ label, value }: { label: string; value: string }) {
+  return (
+    <div className="border-b border-white/10 py-5 last:border-b-0">
+      <dt className="text-xs font-semibold uppercase tracking-wider text-accent">{label}</dt>
+      <dd className="mt-2 text-base leading-relaxed text-industrial-light">{value}</dd>
+    </div>
+  );
+}
+
 export function ProjectDetailContent({ slug }: ProjectDetailContentProps) {
   const { locale, dict } = useLocale();
   const p = dict.home.projects;
-  const index = p.items.findIndex((item) => item.slug === slug);
-  const project = index >= 0 ? p.items[index] : null;
+  const item = p.items.find((entry) => entry.slug === slug);
 
-  if (!project) return null;
-
-  const imageSet = getProjectImageSet(slug);
-  const [banner, content1, content2, content3, ending] = imageSet.detailImages;
-  const galleryMeta = imageSet.meta.filter((m) => m.role !== "thumb");
+  if (!item) return null;
 
   return (
     <>
       <PageHero
-        title={project.title}
-        subtitle={project.desc}
-        image={banner}
-        unoptimized
+        title={item.title}
+        subtitle={item.desc}
         breadcrumbParent={{ label: p.title, href: `${localizedPath(locale, "/")}#projects` }}
-        breadcrumbLabel={project.title}
+        breadcrumbLabel={item.title}
+        icon={<SupplyFlowIcon id={item.icon} className="h-14 w-14 text-accent" />}
+        step={item.step}
       />
 
       <section className="section-padding bg-industrial-dark">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid grid-cols-1 items-start gap-12 lg:grid-cols-2 lg:gap-16">
-            <FadeIn>
-              <span className="inline-flex rounded-md border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent">
-                {project.tag}
-              </span>
-              <p className="section-label mt-6">{p.detailLabel}</p>
-              <h2 className="section-heading">{project.title}</h2>
-              <p className="mt-6 text-base leading-relaxed text-industrial-light md:text-lg">
-                {project.overview}
-              </p>
-              <ul className="mt-8 space-y-3">
-                {project.highlights.map((item) => (
-                  <li key={item} className="flex items-start gap-3 text-sm text-industrial-light md:text-base">
-                    <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                <Button href={localizedPath(locale, "/contact")} variant="primary">
-                  {dict.common.getFreeSamples}
-                </Button>
-                <Button href={getWhatsAppUrl(locale)} variant="whatsapp" external>
-                  {dict.common.whatsappUs}
-                </Button>
-              </div>
-            </FadeIn>
-
-            <FadeIn delay={0.15}>
-              <figure className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10">
-                <Image
-                  src={content1}
-                  alt={galleryMeta.find((m) => m.role === "content-1")?.altEn ?? project.title}
-                  fill
-                  unoptimized
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
-                  quality={90}
-                />
-                {galleryMeta.find((m) => m.role === "content-1")?.altEn && (
-                  <figcaption className="absolute inset-x-0 bottom-0 bg-industrial-dark/80 px-4 py-2 text-xs text-industrial-mist">
-                    {galleryMeta.find((m) => m.role === "content-1")!.altEn}
-                  </figcaption>
-                )}
-              </figure>
-            </FadeIn>
-          </div>
-        </div>
-      </section>
-
-      <section className="section-padding border-t border-white/10 bg-industrial-slate/20">
-        <div className="mx-auto max-w-7xl">
+        <div className="mx-auto max-w-4xl">
           <FadeIn>
-            <SectionHeader
-              label={p.galleryLabel}
-              title={p.galleryTitle}
-              description={p.galleryDesc}
-              centered
-            />
-          </FadeIn>
+            <p className="text-xs font-semibold uppercase tracking-wider text-accent">{p.detailPageLabel}</p>
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {item.cardTags.map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded border border-accent/25 bg-accent/5 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wide text-accent"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <h1 className="section-heading mt-4">{item.title}</h1>
+            <p className="mt-4 text-base leading-relaxed text-industrial-mist">{item.desc}</p>
 
-          <div className="mt-12 grid gap-6 md:grid-cols-2">
-            {[content2, content3].map((src, i) => {
-              const role = `content-${i + 2}` as const;
-              const meta = galleryMeta.find((m) => m.role === role);
-              return (
-                <FadeIn key={src} delay={i * 0.08}>
-                  <figure className="overflow-hidden rounded-xl border border-white/10">
-                    <div className="relative aspect-[4/3]">
-                      <Image
-                        src={src}
-                        alt={meta?.altEn ?? `${project.title} ${i + 1}`}
-                        fill
-                        className="object-cover"
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        loading="lazy"
-                        unoptimized
-                      />
-                    </div>
-                    {meta?.altEn && (
-                      <figcaption className="border-t border-white/10 bg-industrial-dark/60 px-4 py-3 text-sm text-industrial-mist">
-                        {meta.altEn}
-                      </figcaption>
-                    )}
-                  </figure>
-                </FadeIn>
-              );
-            })}
-          </div>
+            <dl className="mt-10 rounded-2xl border border-white/10 bg-industrial-slate/30 px-6 md:px-8">
+              <DetailRow label={p.problemSolvedLabel} value={item.problemSolved} />
+              <DetailRow label={p.customerConcernsLabel} value={item.customerConcerns} />
+              <DetailRow label={p.ourCooperationLabel} value={item.ourCooperation} />
+              <DetailRow label={p.valueToCustomerLabel} value={item.valueToCustomer} />
+              <DetailRow label={p.suitableCustomersLabel} value={item.suitableCustomers} />
+            </dl>
 
-          <FadeIn delay={0.2} className="mt-10">
-            <figure className="overflow-hidden rounded-2xl border border-white/10">
-              <div className="relative aspect-[21/9]">
-                <Image
-                  src={ending}
-                  alt={galleryMeta.find((m) => m.role === "ending")?.altEn ?? `${project.title} completion`}
-                  fill
-                  className="object-cover"
-                  sizes="100vw"
-                  loading="lazy"
-                />
-              </div>
-              {galleryMeta.find((m) => m.role === "ending")?.altEn && (
-                <figcaption className="border-t border-white/10 bg-industrial-dark/60 px-6 py-4 text-center text-sm text-industrial-mist">
-                  {galleryMeta.find((m) => m.role === "ending")!.altEn}
-                </figcaption>
-              )}
-            </figure>
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <Button href={localizedPath(locale, "/contact")} variant="primary">
+                {dict.common.requestQuote}
+              </Button>
+              <Button href={getWhatsAppUrl(locale)} variant="whatsapp" external>
+                {dict.common.whatsappUs}
+              </Button>
+            </div>
           </FadeIn>
         </div>
       </section>
@@ -156,17 +81,14 @@ export function ProjectDetailContent({ slug }: ProjectDetailContentProps) {
       <section className="section-padding border-t border-white/10 bg-industrial-dark">
         <div className="mx-auto max-w-7xl">
           <FadeIn className="text-center">
-            <h3 className="text-2xl font-bold tracking-tight text-white md:text-3xl">{p.ctaTitle}</h3>
+            <h2 className="text-2xl font-bold tracking-tight text-white md:text-3xl">{p.ctaTitle}</h2>
             <p className="mt-3 text-base text-industrial-light md:text-lg">{p.ctaSubtitle}</p>
             <div className="mt-8 flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:items-center sm:gap-4">
               <Button href={localizedPath(locale, "/contact")} variant="primary" className="w-full sm:w-auto">
-                {dict.common.getFreeSamples}
+                {dict.common.requestQuote}
               </Button>
               <Button href={getWhatsAppUrl(locale)} variant="whatsapp" external className="w-full sm:w-auto">
                 {dict.common.whatsappUs}
-              </Button>
-              <Button href={localizedPath(locale, "/contact")} variant="secondary" className="w-full sm:w-auto">
-                {dict.common.requestQuote}
               </Button>
             </div>
           </FadeIn>
@@ -174,33 +96,28 @@ export function ProjectDetailContent({ slug }: ProjectDetailContentProps) {
           <FadeIn delay={0.1} className="mt-16">
             <p className="section-label text-center">{p.label}</p>
             <h3 className="mt-3 text-center text-2xl font-bold text-white md:text-3xl">{p.relatedTitle}</h3>
-            <div className="mt-10 grid grid-cols-2 gap-4 md:gap-6 lg:grid-cols-4 lg:gap-8">
+            <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
               {p.items
-                .filter((item) => item.slug !== slug)
+                .filter((related) => related.slug !== slug)
                 .slice(0, 4)
-                .map((item) => (
+                .map((related) => (
                   <Link
-                    key={item.slug}
-                    href={localizedPath(locale, `/projects/${item.slug}`)}
-                    className="group overflow-hidden rounded-xl glass-card-hover"
+                    key={related.slug}
+                    href={localizedPath(locale, `/cases/${related.slug}`)}
+                    className="group flex h-full flex-col rounded-xl border border-white/10 bg-white/5 p-4 transition-all duration-300 hover:border-accent/40 hover:bg-white/10"
                   >
-                    <div className="relative aspect-[4/3] overflow-hidden">
-                      <Image
-                        src={getProjectThumbnail(item.slug as ProjectSlug)}
-                        alt={item.title}
-                        fill
-                        loading="lazy"
-                        unoptimized
-                        className="object-cover transition-transform duration-700 group-hover:scale-110"
-                        sizes="(max-width: 640px) 50vw, 25vw"
-                      />
+                    <div className="flex items-center justify-between gap-2">
+                      <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-accent/30 bg-accent/10 text-accent">
+                        <SupplyFlowIcon id={related.icon} className="h-6 w-6" />
+                      </div>
+                      <span className="text-sm font-bold tabular-nums text-accent">
+                        {String(related.step).padStart(2, "0")}
+                      </span>
                     </div>
-                    <div className="p-4">
-                      <p className="text-xs font-semibold uppercase tracking-wider text-accent">{item.tag}</p>
-                      <h4 className="mt-2 text-sm font-bold text-white group-hover:text-accent md:text-base">
-                        {item.title}
-                      </h4>
-                    </div>
+                    <h4 className="mt-3 line-clamp-2 text-sm font-bold text-white group-hover:text-accent md:text-base">
+                      {related.title}
+                    </h4>
+                    <span className="mt-3 text-xs font-semibold text-accent">{p.viewFlowDetails} →</span>
                   </Link>
                 ))}
             </div>

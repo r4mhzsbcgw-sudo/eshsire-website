@@ -1,19 +1,32 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { SupplyFlowIcon } from "@/components/cases/SupplyFlowIcon";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
-import { getProjectImageSet, getProjectThumbnail } from "@/lib/project-images";
-import type { ProjectSlug } from "@/content/projects";
 
 const PRODUCT_LINKS = [
   { href: "/spc-flooring" as const, key: "spcFlooring" as const },
   { href: "/wall-panels" as const, key: "wallPanels" as const },
   { href: "/oem-service" as const, key: "oemService" as const },
 ] as const;
+
+function CardTagPills({ tags }: { tags: [string, string, string] }) {
+  return (
+    <div className="mt-3 flex flex-wrap gap-1.5">
+      {tags.map((tag) => (
+        <span
+          key={tag}
+          className="rounded border border-accent/25 bg-accent/5 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-accent/90"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  );
+}
 
 export function GlobalProjects() {
   const { locale, dict } = useLocale();
@@ -24,42 +37,50 @@ export function GlobalProjects() {
       <div className="mx-auto max-w-7xl">
         <SectionHeader label={p.label} title={p.title} description={p.description} centered titleId="projects-heading" />
 
-        <div className="mt-16 grid grid-cols-2 gap-3 sm:gap-4 md:gap-6 lg:grid-cols-4 lg:gap-8">
-          {p.items.map((project, i) => (
-            <FadeIn key={project.slug} delay={i * 0.06}>
-              <Link
-                href={localizedPath(locale, `/projects/${project.slug}`)}
-                className="group flex h-full flex-col overflow-hidden rounded-xl glass-card-hover shadow-glass transition-shadow duration-300 hover:shadow-industrial"
+        <FadeIn delay={0.05} className="mt-8 text-center">
+          <p className="mx-auto max-w-3xl text-base font-medium text-white md:text-lg">{p.emphasisLine}</p>
+          <div className="mt-5 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+            {p.highlightTags.map((tag) => (
+              <span
+                key={tag}
+                className="inline-flex items-center gap-1.5 rounded-full border border-accent/30 bg-accent/10 px-3 py-1.5 text-xs font-semibold text-accent sm:text-sm"
               >
-                <div className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={getProjectThumbnail(project.slug as ProjectSlug)}
-                    alt={project.title}
-                    title={project.title}
-                    fill
-                    unoptimized
-                    loading={i < 2 ? undefined : "lazy"}
-                    priority={i < 2}
-                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    sizes="(max-width: 640px) 50vw, (max-width: 1024px) 50vw, 25vw"
-                    quality={85}
-                  />
-                  <span className="absolute left-2 top-2 z-10 rounded-md border border-accent/30 bg-industrial-dark/85 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wider text-accent backdrop-blur-sm sm:left-3 sm:top-3 sm:px-2.5 sm:py-1 sm:text-[10px]">
-                    {project.tag}
-                  </span>
-                  <div className="absolute inset-0 bg-gradient-to-t from-industrial-dark/80 via-transparent to-transparent" />
-                </div>
-                <div className="flex flex-1 flex-col p-3 md:p-5">
-                  <h3 className="text-xs font-bold leading-snug text-white transition-colors group-hover:text-accent sm:text-sm md:text-base lg:text-lg">
-                    {project.title}
-                  </h3>
-                  <p className="mt-2 line-clamp-2 flex-1 text-[10px] leading-relaxed text-industrial-mist sm:text-xs md:text-sm">
-                    {project.desc}
-                  </p>
-                  <span className="mt-3 text-[10px] font-semibold text-accent sm:text-xs md:text-sm">
-                    {dict.common.learnMore} →
+                <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
+                {tag}
+              </span>
+            ))}
+          </div>
+        </FadeIn>
+
+        <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8">
+          {p.items.map((item, i) => (
+            <FadeIn key={item.slug} delay={i * 0.06}>
+              <Link
+                href={localizedPath(locale, `/cases/${item.slug}`)}
+                className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-white/10 bg-white/5 p-5 shadow-glass transition-all duration-300 hover:border-accent/40 hover:bg-white/10 hover:shadow-industrial md:p-6"
+              >
+                <div
+                  className="pointer-events-none absolute inset-x-0 top-0 h-1 bg-gradient-to-r from-transparent via-accent/60 to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                  aria-hidden
+                />
+                <div className="flex items-start justify-between gap-3">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-accent/30 bg-gradient-to-br from-accent/15 to-accent/5 text-accent shadow-[0_0_20px_rgba(234,88,12,0.08)] transition-all group-hover:border-accent/50 group-hover:shadow-[0_0_24px_rgba(234,88,12,0.15)]">
+                    <SupplyFlowIcon id={item.icon} className="h-7 w-7" />
+                  </div>
+                  <span className="text-lg font-bold tabular-nums tracking-tight text-accent md:text-xl">
+                    {String(item.step).padStart(2, "0")}
                   </span>
                 </div>
+                <h3 className="mt-4 text-sm font-bold leading-snug text-white transition-colors group-hover:text-accent md:text-base lg:text-lg">
+                  {item.title}
+                </h3>
+                <CardTagPills tags={item.cardTags} />
+                <p className="mt-3 line-clamp-4 flex-1 text-xs leading-relaxed text-industrial-mist sm:text-sm">
+                  {item.desc}
+                </p>
+                <span className="mt-4 inline-flex items-center text-xs font-semibold text-accent sm:text-sm">
+                  {p.viewFlowDetails} →
+                </span>
               </Link>
             </FadeIn>
           ))}

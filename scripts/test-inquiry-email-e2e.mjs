@@ -7,7 +7,7 @@
  *   node scripts/test-inquiry-email-e2e.mjs
  *
  * With email (Preview / local .env.local):
- *   RESEND_API_KEY=re_xxx INQUIRY_NOTIFICATION_TO=jason@eshsiregroup.com node scripts/test-inquiry-email-e2e.mjs
+ *   RESEND_API_KEY=re_xxx INQUIRY_FROM_EMAIL="Eshsire Website <website@notify.eshsire.com>" INQUIRY_NOTIFICATION_TO=jason@eshsiregroup.com node scripts/test-inquiry-email-e2e.mjs
  *
  * With webhook fallback test:
  *   INQUIRY_WEBHOOK_URL=https://httpbin.org/post node scripts/test-inquiry-email-e2e.mjs --webhook-only

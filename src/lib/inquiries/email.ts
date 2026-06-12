@@ -13,10 +13,9 @@ function adminTo(): string {
   return process.env.INQUIRY_NOTIFICATION_TO?.trim() || "jason@eshsiregroup.com";
 }
 
-function fromAddress(): string {
-  return (
-    process.env.INQUIRY_FROM_EMAIL?.trim() || "Eshsire Website <website@notify.eshsiregroup.com>"
-  );
+function fromAddress(): string | null {
+  const from = process.env.INQUIRY_FROM_EMAIL?.trim();
+  return from || null;
 }
 
 function whatsappDigits(raw: string): string {
@@ -115,9 +114,14 @@ export async function sendAdminInquiryEmail(lead: StoredInquiryLead): Promise<Em
     return { ok: false, error: "missing_resend_api_key" };
   }
 
+  const from = fromAddress();
+  if (!from) {
+    return { ok: false, error: "missing_inquiry_from_email" };
+  }
+
   try {
     const { error } = await resend.emails.send({
-      from: fromAddress(),
+      from,
       to: [adminTo()],
       replyTo: lead.email,
       subject: adminSubject(lead),
@@ -144,12 +148,17 @@ export async function sendCustomerConfirmationEmail(lead: StoredInquiryLead): Pr
     return { ok: false, error: "missing_resend_api_key" };
   }
 
+  const from = fromAddress();
+  if (!from) {
+    return { ok: false, error: "missing_inquiry_from_email" };
+  }
+
   const loc = confirmLocale(lead.locale);
   const copy = CUSTOMER_CONFIRM[loc];
 
   try {
     const { error } = await resend.emails.send({
-      from: fromAddress(),
+      from,
       to: [lead.email],
       replyTo: adminTo(),
       subject: copy.subject,
@@ -171,5 +180,5 @@ export async function sendCustomerConfirmationEmail(lead: StoredInquiryLead): Pr
 }
 
 export function isEmailConfigured(): boolean {
-  return Boolean(process.env.RESEND_API_KEY?.trim());
+  return Boolean(process.env.RESEND_API_KEY?.trim() && process.env.INQUIRY_FROM_EMAIL?.trim());
 }

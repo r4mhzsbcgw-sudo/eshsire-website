@@ -22,7 +22,7 @@
 |--------|------|-------------|
 | `RESEND_API_KEY` | 是 | Resend 控制台 API Key（仅 Preview，勿提交仓库） |
 | `INQUIRY_NOTIFICATION_TO` | 是 | `jason@eshsiregroup.com` |
-| `INQUIRY_FROM_EMAIL` | 是 | `Eshsire Website <website@notify.eshsiregroup.com>` |
+| `INQUIRY_FROM_EMAIL` | 是 | `Eshsire Website <website@notify.eshsire.com>` |
 | `INQUIRY_WEBHOOK_URL` | 否 | Google Sheet / Apps Script URL（可选） |
 | `NEXT_PUBLIC_WHATSAPP_NUMBER` | 是 | 例如 `8615313057097`（用于失败时 WhatsApp 按钮） |
 

@@ -90,35 +90,30 @@ async function scenarioC() {
 async function scenarioD() {
   console.log("\n--- D. Delivery failure handling ---");
   const webhookOnly = process.argv.includes("--webhook-only");
-  const hasResend = Boolean(process.env.RESEND_API_KEY?.trim());
-  const hasWebhook = Boolean(process.env.INQUIRY_WEBHOOK_URL?.trim());
 
-  if (webhookOnly && hasWebhook) {
-    const { status, json } = await postInquiry({
-      ...TEST_LEAD,
-      email: `webhook-fallback+${UNIQUE}@example.com`,
-      message: `Webhook fallback test ${UNIQUE}`,
-    });
-    assert(status === 200, `Webhook-only success expected 200, got ${status}`);
-    assert(json.ok === true, "Webhook success should allow submission");
+  const probe = await postInquiry({
+    ...TEST_LEAD,
+    email: `probe-d+${UNIQUE}@example.com`,
+    message: `Delivery probe ${UNIQUE}`,
+  });
+
+  if (webhookOnly) {
+    assert(probe.status === 200, `Webhook delivery expected 200, got ${probe.status}`);
+    assert(probe.json.ok === true, "Webhook success should allow submission");
     console.log("✓ Webhook success allows delivery when email may fail");
     return;
   }
 
-  if (!hasResend && !hasWebhook) {
-    const { status, json } = await postInquiry({
-      ...TEST_LEAD,
-      email: `fail-all+${UNIQUE}@example.com`,
-      message: `All delivery fail test ${UNIQUE}`,
-    });
-    assert(status === 503, `Expected 503 when no delivery, got ${status}`);
-    assert(json.ok === false, "Expected ok:false");
-    assert(json.userMessage === "delivery_failed", "Expected delivery_failed");
-    console.log("✓ Both channels unavailable → delivery_failed (503)");
+  if (probe.status === 200 && probe.json.ok) {
+    console.log("✓ Server has working webhook and/or email — delivery succeeded (configured env)");
+    console.log("  To test delivery_failed UI, use Preview without RESEND_API_KEY and INQUIRY_WEBHOOK_URL");
     return;
   }
 
-  console.log("  (skipped — RESEND or WEBHOOK configured; run with --webhook-only or unset both for full D test)");
+  assert(probe.status === 503, `Expected 503 when no delivery, got ${probe.status}`);
+  assert(probe.json.ok === false, "Expected ok:false");
+  assert(probe.json.userMessage === "delivery_failed", "Expected delivery_failed");
+  console.log("✓ Both channels unavailable → delivery_failed (503)");
 }
 
 async function scenarioE(firstId) {

@@ -1,5 +1,5 @@
 import { appendInquiryLead, markInquiryWebhookFailed, markInquiryWebhookSynced } from "./store";
-import { sendAdminInquiryEmail, sendCustomerConfirmationEmail } from "./email";
+import { sendAdminInquiryEmail, sendCustomerConfirmationEmail, logCustomerEmailResult } from "./email";
 import { syncInquiryLead } from "./sync";
 import { buildNextFollowUpDate, type InquiryLeadPayload, type StoredInquiryLead } from "./types";
 import { isDuplicateSubmission } from "./guard";
@@ -62,9 +62,8 @@ export async function processInquirySubmission(payload: InquiryLeadPayload): Pro
     return { ok: false, reason: "delivery_failed" };
   }
 
-  void sendCustomerConfirmationEmail(lead).then((r) => {
-    if (!r.ok) console.warn(`[inquiries] customer confirm skipped: id=${lead.id}`);
-  });
+  const customerResult = await sendCustomerConfirmationEmail(lead);
+  logCustomerEmailResult(lead.id, lead.email, lead.locale, customerResult);
 
   return {
     ok: true,

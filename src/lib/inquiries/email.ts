@@ -1,7 +1,9 @@
 import { Resend } from "resend";
 import type { StoredInquiryLead } from "./types";
 
-export type EmailSendResult = { ok: true } | { ok: false; error: string };
+export type EmailSendResult =
+  | { ok: true; messageId?: string }
+  | { ok: false; error: string; errorCode?: string };
 
 function getResendClient(): Resend | null {
   const apiKey = process.env.RESEND_API_KEY?.trim();
@@ -104,8 +106,36 @@ const CUSTOMER_CONFIRM = {
 } as const;
 
 function confirmLocale(locale: string): keyof typeof CUSTOMER_CONFIRM {
-  if (locale === "zh" || locale === "es") return locale;
+  const base = locale.trim().toLowerCase().split("-")[0];
+  if (base === "zh" || base === "es") return base;
   return "en";
+}
+
+function redactEmail(email: string): string {
+  const at = email.indexOf("@");
+  if (at <= 1) return "redacted";
+  return `${email[0]}***${email.slice(at)}`;
+}
+
+export function logCustomerEmailResult(
+  inquiryId: string,
+  customerEmail: string,
+  locale: string,
+  result: EmailSendResult
+): void {
+  const loc = confirmLocale(locale);
+  const to = redactEmail(customerEmail);
+
+  if (result.ok) {
+    console.info(
+      `[inquiries] customerEmailSent id=${inquiryId} customerEmailAttempted=true customerEmailSent=true messageId=${result.messageId ?? "unknown"} to=${to} locale=${loc}`
+    );
+    return;
+  }
+
+  console.warn(
+    `[inquiries] customerEmailFailed id=${inquiryId} customerEmailAttempted=true customerEmailSent=false errorCode=${result.errorCode ?? "unknown"} error=${result.error.slice(0, 200)} to=${to} locale=${loc}`
+  );
 }
 
 export async function sendAdminInquiryEmail(lead: StoredInquiryLead): Promise<EmailSendResult> {
@@ -120,7 +150,7 @@ export async function sendAdminInquiryEmail(lead: StoredInquiryLead): Promise<Em
   }
 
   try {
-    const { error } = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from,
       to: [adminTo()],
       replyTo: lead.email,
@@ -130,11 +160,11 @@ export async function sendAdminInquiryEmail(lead: StoredInquiryLead): Promise<Em
 
     if (error) {
       console.error(`[inquiries] admin email failed: id=${lead.id} code=${error.name}`);
-      return { ok: false, error: error.message || "send_failed" };
+      return { ok: false, error: error.message || "send_failed", errorCode: error.name };
     }
 
-    console.info(`[inquiries] admin email sent: id=${lead.id} to=redacted`);
-    return { ok: true };
+    console.info(`[inquiries] admin email sent: id=${lead.id} to=redacted messageId=${data?.id ?? "unknown"}`);
+    return { ok: true, messageId: data?.id };
   } catch (err) {
     const message = err instanceof Error ? err.message : "unknown";
     console.error(`[inquiries] admin email error: id=${lead.id} message=${message.slice(0, 120)}`);
@@ -145,19 +175,23 @@ export async function sendAdminInquiryEmail(lead: StoredInquiryLead): Promise<Em
 export async function sendCustomerConfirmationEmail(lead: StoredInquiryLead): Promise<EmailSendResult> {
   const resend = getResendClient();
   if (!resend) {
-    return { ok: false, error: "missing_resend_api_key" };
+    return { ok: false, error: "missing_resend_api_key", errorCode: "missing_resend_api_key" };
   }
 
   const from = fromAddress();
   if (!from) {
-    return { ok: false, error: "missing_inquiry_from_email" };
+    return { ok: false, error: "missing_inquiry_from_email", errorCode: "missing_inquiry_from_email" };
   }
 
   const loc = confirmLocale(lead.locale);
   const copy = CUSTOMER_CONFIRM[loc];
 
+  console.info(
+    `[inquiries] customerEmailAttempted id=${lead.id} customerEmailAttempted=true locale=${loc} to=${redactEmail(lead.email)}`
+  );
+
   try {
-    const { error } = await resend.emails.send({
+    const { data, error } = await resend.emails.send({
       from,
       to: [lead.email],
       replyTo: adminTo(),
@@ -166,16 +200,14 @@ export async function sendCustomerConfirmationEmail(lead: StoredInquiryLead): Pr
     });
 
     if (error) {
-      console.warn(`[inquiries] customer confirm failed: id=${lead.id} code=${error.name}`);
-      return { ok: false, error: error.message || "send_failed" };
+      return { ok: false, error: error.message || "send_failed", errorCode: error.name };
     }
 
-    console.info(`[inquiries] customer confirm sent: id=${lead.id}`);
-    return { ok: true };
+    return { ok: true, messageId: data?.id };
   } catch (err) {
     const message = err instanceof Error ? err.message : "unknown";
-    console.warn(`[inquiries] customer confirm error: id=${lead.id} message=${message.slice(0, 120)}`);
-    return { ok: false, error: message };
+    const errorCode = err instanceof Error && "name" in err ? String(err.name) : "exception";
+    return { ok: false, error: message, errorCode };
   }
 }
 

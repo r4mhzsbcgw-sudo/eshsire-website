@@ -1,7 +1,8 @@
 # Eshsire 官网 Preview 人工验收清单
 
 **分支:** `release/seo-inquiry-finalization`  
-**Commit:** `f6db796`（含 `3cc06c2` 主发布提交）  
+**Commit:** `f78a026`（含 `76f428b` 域名修正）  
+**Preview URL:** https://eshsire-website-pwso58cjy-eshsire.vercel.app  
 **Production:** 未发布 — 需您明确回复「批准发布 Production」后才可上线
 
 ---
@@ -10,9 +11,9 @@
 
 1. 打开 [Vercel Dashboard](https://vercel.com/dashboard) → 项目 **eshsire-website**（或对应项目名）
 2. 找到分支 `release/seo-inquiry-finalization` 的最新 **Preview** 部署
-3. 将下方 `{PREVIEW}` 替换为该部署域名（例如 `https://eshsire-website-xxx.vercel.app`）
+3. 将下方 `{PREVIEW}` 替换为：**https://eshsire-website-pwso58cjy-eshsire.vercel.app**（或 Dashboard 中该 commit 的最新 Preview 域名）
 
-> Vercel CLI 在本环境未完成 OAuth 登录，Preview 由 Git push 触发自动构建。若未出现部署，请在 Dashboard 手动 Redeploy 该分支。
+> 若 Preview 启用了 **Vercel Deployment Protection**，需登录 Vercel 或在浏览器中打开后再测试询盘与邮件。
 
 ---
 

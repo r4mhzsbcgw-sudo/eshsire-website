@@ -290,6 +290,12 @@ export const en = {
       description:
         "Contact Jason and our team for catalog, samples and OEM quotation. Response within 24 hours.",
     },
+    quoteSection: {
+      label: "Get a Quote",
+      title: "Request Factory Pricing with Visual Follow-up",
+      description:
+        "Share your product, quantity, and target market. Our follow-up team responds within 24 hours and explains how we document your order with photos and videos.",
+    },
   },
   spcFlooring: {
     heroSubtitle:
@@ -410,6 +416,54 @@ export const en = {
     sendInquiry: "Send Your Inquiry",
     formDesc:
       "Fill out the form or contact {name} directly via WhatsApp for fastest response.",
+    quoteForm: {
+      label: "Get a Quote",
+      title: "Request Factory Pricing",
+      subtitle:
+        "Our follow-up team will review your inquiry and explain how we share order progress with photos and videos.",
+      name: "Name *",
+      email: "Email *",
+      whatsapp: "WhatsApp *",
+      country: "Country *",
+      selectProduct: "Product Interest *",
+      products: {
+        "spc-flooring": "SPC Flooring",
+        "wall-panels": "Wall Panels",
+        "uv-panels": "UV Marble Panels",
+        "accessories": "Accessories",
+        "mixed-container": "Mixed Container Load",
+        oem: "OEM / Private Label",
+      },
+      quantity: "Quantity (sqm or containers) *",
+      targetPrice: "Target Price (optional)",
+      selectCustomerType: "Customer Type *",
+      customerTypes: {
+        distributor: "Distributor",
+        wholesaler: "Wholesaler",
+        contractor: "Contractor",
+        "oem-brand": "OEM Brand",
+        retailer: "Retailer",
+        other: "Other",
+      },
+      messagePlaceholder: "Project details, specifications, destination market, timeline... *",
+      submit: "Submit Quote Request",
+      submitting: "Submitting...",
+      successLabel: "Submitted",
+      successTitle: "Thank you — we received your inquiry",
+      successMessage:
+        "Our follow-up team will contact you within 24 hours. We will also explain how we share sample, production, packaging, and loading updates for your order.",
+      fallbackSuccessTitle: "Thank you",
+      fallbackSuccessMessage: "Your inquiry has been submitted. Our team will contact you soon.",
+      validationErrorTitle: "Please check your form",
+      validationErrorMessage: "Some fields are missing or invalid. Please review and try again.",
+      deliveryFailedTitle: "Could not deliver your inquiry",
+      deliveryFailedMessage:
+        "Your inquiry could not be delivered at the moment. Please contact us directly by WhatsApp or email.",
+      contactWhatsApp: "Chat on WhatsApp",
+      contactEmail: "Email us",
+      submitAnother: "Submit another inquiry",
+      privacyNote: "Your information is used only to respond to your inquiry and follow up on your order.",
+    },
     form: {
       name: "Your Name *",
       company: "Company *",

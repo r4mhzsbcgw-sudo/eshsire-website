@@ -2,6 +2,9 @@
 /**
  * Writes a static public/sitemap.xml for reliable Google Search Console fetching.
  * Run automatically before build via npm prebuild.
+ *
+ * Only includes indexable URLs: 200-capable routes with published blog content.
+ * Excludes /cases/* (noindex flow pages) and unpublished blog slugs.
  */
 import { existsSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
@@ -32,25 +35,32 @@ const BLOG_SLUGS = [
   "spc-flooring-factory-audit-checklist-for-importers",
   "spc-flooring-factory-price-bulk-container-orders",
   "spc-flooring-quality-control-before-shipment",
-  "spc-flooring-supplier-diversification-strategies",
   "spc-flooring-supply-hotel-project-africa",
   "the-real-cost-of-delayed-flooring-shipments",
   "what-is-spc-flooring-commercial-projects",
   "what-makes-a-reliable-spc-flooring-manufacturer",
   "spc-flooring-supplier-manufacturer-china",
   "choose-reliable-spc-flooring-supplier-china-2026",
-  "7-mistakes-importing-spc-flooring-from-china"
+  "7-mistakes-importing-spc-flooring-from-china",
 ];
-const PROJECT_SLUGS = [
-  "sample-video-confirmation",
-  "specification-order-checklist",
-  "production-schedule-updates",
-  "production-process-video-updates",
-  "packaging-label-checking",
-  "pre-shipment-quality-confirmation",
-  "loading-photos-video-records",
-  "after-sales-reorder-follow-up",
-];
+
+/** Manual posts: sitemap slug → source file (without locale suffix) */
+const MANUAL_BLOG_SOURCES = {
+  "spc-flooring-supplier-manufacturer-china": "spc-supplier-manufacturer.en.ts",
+  "choose-reliable-spc-flooring-supplier-china-2026": "choose-reliable-supplier.en.ts",
+  "7-mistakes-importing-spc-flooring-from-china": "seven-mistakes.en.ts",
+};
+
+function blogSlugIsPublished(slug) {
+  const generated = join(process.cwd(), "src", "content", "blog", "generated", `${slug}.en.ts`);
+  if (existsSync(generated)) return true;
+  const manual = MANUAL_BLOG_SOURCES[slug];
+  if (manual && existsSync(join(process.cwd(), "src", "content", "blog", manual))) return true;
+  return false;
+}
+
+const PUBLISHED_BLOG_SLUGS = BLOG_SLUGS.filter(blogSlugIsPublished);
+const SKIPPED_BLOG_SLUGS = BLOG_SLUGS.filter((slug) => !blogSlugIsPublished(slug));
 
 function latestIso(paths) {
   const times = paths
@@ -81,14 +91,8 @@ function blogLastMod(slug) {
     join(process.cwd(), "src", "content", "blog", "generated", `${slug}.en.ts`),
     join(process.cwd(), "src", "content", "blog", "generated", `${slug}.zh.ts`),
     join(process.cwd(), "src", "content", "blog", "generated", `${slug}.es.ts`),
+    join(process.cwd(), "src", "content", "blog", MANUAL_BLOG_SOURCES[slug] ?? ""),
     join(process.cwd(), "src", "lib", "blog-seo.ts"),
-  ]);
-}
-
-function projectLastMod() {
-  return latestIso([
-    join(process.cwd(), "src", "content", "projects", "index.ts"),
-    join(process.cwd(), "src", "lib", "project-images.ts"),
   ]);
 }
 
@@ -118,14 +122,9 @@ for (const locale of LOCALES) {
     const priority = route === "" ? "1" : route === "/blog" ? "0.7" : "0.8";
     entries.push(urlEntry(`${SITE_URL}/${locale}${route}`, changeFreq, priority, routeLastMod(route)));
   }
-  for (const slug of BLOG_SLUGS) {
+  for (const slug of PUBLISHED_BLOG_SLUGS) {
     entries.push(
       urlEntry(`${SITE_URL}/${locale}/blog/${slug}`, "monthly", "0.7", blogLastMod(slug))
-    );
-  }
-  for (const slug of PROJECT_SLUGS) {
-    entries.push(
-      urlEntry(`${SITE_URL}/${locale}/cases/${slug}`, "monthly", "0.7", projectLastMod())
     );
   }
 }
@@ -139,3 +138,6 @@ ${entries.join("\n")}
 const outPath = join(process.cwd(), "public", "sitemap.xml");
 writeFileSync(outPath, xml, "utf8");
 console.log(`Wrote ${entries.length} URLs to public/sitemap.xml`);
+if (SKIPPED_BLOG_SLUGS.length) {
+  console.warn(`Skipped unpublished blog slugs: ${SKIPPED_BLOG_SLUGS.join(", ")}`);
+}

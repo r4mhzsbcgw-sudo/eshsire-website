@@ -8,4 +8,6 @@
 npm-debug.log*
 *.tsbuildinfo
 next-env.d.ts
+/data/inquiries/leads.json
+/data/inquiries/*.json
 codex-dev-*.log

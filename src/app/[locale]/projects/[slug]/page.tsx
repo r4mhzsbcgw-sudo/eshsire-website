@@ -1,4 +1,4 @@
-import { redirect, notFound } from "next/navigation";
+import { permanentRedirect, notFound } from "next/navigation";
 import { LEGACY_PROJECT_SLUG_REDIRECTS, resolveCaseSlug } from "@/content/projects/slugs";
 import { isLocale, locales } from "@/i18n/locales";
 
@@ -19,5 +19,5 @@ export default function LegacyProjectRedirect({
   if (!isLocale(locale)) notFound();
   const target = resolveCaseSlug(slug);
   if (!target) notFound();
-  redirect(`/${locale}/cases/${target}`);
+  permanentRedirect(`/${locale}/cases/${target}`);
 }

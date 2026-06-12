@@ -1,7 +1,7 @@
 "use client";
 
 import { PageHero } from "@/components/ui/PageHero";
-import { InquiryForm } from "@/components/InquiryForm";
+import { QuoteRequestForm } from "@/components/forms/QuoteRequestForm";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Button } from "@/components/ui/Button";
 import { useLocale } from "@/context/LocaleContext";
@@ -55,7 +55,7 @@ export function ContactContent() {
             </Button>
           </FadeIn>
           <FadeIn delay={0.15}>
-            <InquiryForm />
+            <QuoteRequestForm sourcePage="contact-page" id="quote-form" />
           </FadeIn>
         </div>
       </section>

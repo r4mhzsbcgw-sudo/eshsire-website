@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { notFound, redirect } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import { ProjectDetailContent } from "@/components/pages/ProjectDetailContent";
 import { BreadcrumbJsonLd, ProjectJsonLd } from "@/components/seo/StructuredData";
 import { getAllProjectSlugs, getProject, isProjectSlug } from "@/content/projects";
@@ -28,13 +28,16 @@ export async function generateMetadata({
   const project = getProject(resolved, locale as Locale);
   if (!project) return {};
   const dict = getDictionarySync(locale as Locale);
-  return buildPageMetadata({
-    locale,
-    path: `/cases/${resolved}`,
-    title: `${project.title} — ${dict.home.projects.detailPageLabel} | Eshsire Group`,
-    description: project.metaDescription,
-    ogImage: CASE_OG_IMAGE,
-  });
+  return {
+    ...buildPageMetadata({
+      locale,
+      path: `/cases/${resolved}`,
+      title: `${project.title} — ${dict.home.projects.detailPageLabel} | Eshsire Group`,
+      description: project.metaDescription,
+      ogImage: CASE_OG_IMAGE,
+    }),
+    robots: { index: false, follow: true },
+  };
 }
 
 export default async function CasePage({
@@ -47,7 +50,7 @@ export default async function CasePage({
   const locale = localeParam as Locale;
   const resolved = resolveCaseSlug(slug);
   if (!resolved) notFound();
-  if (resolved !== slug) redirect(`/${locale}/cases/${resolved}`);
+  if (resolved !== slug) permanentRedirect(`/${locale}/cases/${resolved}`);
   const project = getProject(resolved, locale);
   if (!project) notFound();
   await getDictionary(locale);

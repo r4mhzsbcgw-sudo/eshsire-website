@@ -22,11 +22,14 @@ export type ProductInterest = (typeof PRODUCT_INTERESTS)[number];
 
 export type InquiryLeadPayload = {
   name: string;
+  company: string;
   email: string;
   whatsapp: string;
   country: string;
   productInterest: ProductInterest;
   quantity: string;
+  targetPort: string;
+  oemNeeded: string;
   targetPrice: string;
   customerType: CustomerType;
   message: string;
@@ -46,11 +49,14 @@ export type StoredInquiryLead = InquiryLeadPayload & {
 export type InquiryWebhookPayload = {
   createdAt: string;
   name: string;
+  company: string;
   email: string;
   whatsapp: string;
   country: string;
   productInterest: ProductInterest;
   quantity: string;
+  targetPort: string;
+  oemNeeded: string;
   targetPrice: string;
   customerType: CustomerType;
   message: string;
@@ -71,11 +77,14 @@ export function toWebhookPayload(lead: StoredInquiryLead): InquiryWebhookPayload
   return {
     createdAt: lead.createdAt,
     name: lead.name,
+    company: lead.company,
     email: lead.email,
     whatsapp: lead.whatsapp,
     country: lead.country,
     productInterest: lead.productInterest,
     quantity: lead.quantity,
+    targetPort: lead.targetPort,
+    oemNeeded: lead.oemNeeded,
     targetPrice: lead.targetPrice,
     customerType: lead.customerType,
     message: lead.message,

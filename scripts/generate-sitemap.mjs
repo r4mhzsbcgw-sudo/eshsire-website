@@ -10,7 +10,8 @@ import { existsSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const SITE_URL = "https://www.eshsire.com";
-const LOCALES = ["en", "zh", "es"];
+const LOCALES = ["zh", "en", "es", "fr", "ar", "ru"];
+const BLOG_LOCALES = ["zh", "en", "es"];
 const ROUTES = [
   "",
   "/spc-flooring",
@@ -24,8 +25,23 @@ const ROUTES = [
   "/faq",
   "/certifications",
   "/blog",
+  "/spc-flooring-oem-manufacturer",
+  "/spc-flooring-for-distributors",
+  "/spc-flooring-container-loading",
+  "/wall-panel-supplier-china",
+  "/mixed-container-spc-flooring-wall-panels",
+  "/applications/private-label-spc-flooring-supply",
+  "/applications/hospitality-commercial-flooring",
+  "/applications/education-high-traffic-flooring",
+  "/applications/residential-renovation-supply",
+  "/applications/office-retail-flooring-supply",
+  "/applications/mixed-container-spc-wall-panels",
+  "/applications/easy-maintenance-public-spaces",
+  "/applications/interior-wall-panel-solutions",
 ];
 const BLOG_SLUGS = [
+  "spc-flooring-thickness-guide-for-distributors",
+  "4mm-vs-5mm-vs-6mm-spc-flooring",
   "factory-pricing-vs-trading-company-pricing-what-importers-need-to-know",
   "how-flooring-distributors-can-increase-profit-margins-without-raising-prices",
   "how-successful-flooring-importers-reduce-sourcing-risks",
@@ -46,12 +62,40 @@ const BLOG_SLUGS = [
 
 /** Manual posts: sitemap slug → source file (without locale suffix) */
 const MANUAL_BLOG_SOURCES = {
+  "spc-flooring-thickness-guide-for-distributors": "approved-sprint-1.ts",
+  "4mm-vs-5mm-vs-6mm-spc-flooring": "approved-sprint-1.ts",
   "spc-flooring-supplier-manufacturer-china": "spc-supplier-manufacturer.en.ts",
   "choose-reliable-spc-flooring-supplier-china-2026": "choose-reliable-supplier.en.ts",
   "7-mistakes-importing-spc-flooring-from-china": "seven-mistakes.en.ts",
 };
 
+const MANUAL_APPROVED_BLOGS = {
+  "spc-flooring-thickness-guide-for-distributors": {
+    status: "published",
+    approvedForPublish: true,
+    publishDate: "2026-07-22",
+    hasApprovedBody: true,
+  },
+  "4mm-vs-5mm-vs-6mm-spc-flooring": {
+    status: "scheduled",
+    approvedForPublish: true,
+    publishDate: "2026-07-23",
+    hasApprovedBody: true,
+  },
+};
+
+function beijingToday() {
+  return new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString().slice(0, 10);
+}
+
 function blogSlugIsPublished(slug) {
+  const manualApproval = MANUAL_APPROVED_BLOGS[slug];
+  if (manualApproval) {
+    if (!manualApproval.hasApprovedBody) return false;
+    if (manualApproval.publishDate > beijingToday()) return false;
+    if (manualApproval.status === "published") return true;
+    return manualApproval.status === "scheduled" && manualApproval.approvedForPublish === true;
+  }
   const generated = join(process.cwd(), "src", "content", "blog", "generated", `${slug}.en.ts`);
   if (existsSync(generated)) return true;
   const manual = MANUAL_BLOG_SOURCES[slug];
@@ -80,6 +124,8 @@ function routeLastMod(route) {
     join(process.cwd(), "src", "i18n", "dictionaries", "en.ts"),
     join(process.cwd(), "src", "i18n", "dictionaries", "zh.ts"),
     join(process.cwd(), "src", "i18n", "dictionaries", "es.ts"),
+    join(process.cwd(), "src", "i18n", "packs", "europe.ts"),
+    join(process.cwd(), "src", "i18n", "packs", "mideast.ts"),
   ]);
 }
 
@@ -118,10 +164,12 @@ const entries = [];
 
 for (const locale of LOCALES) {
   for (const route of ROUTES) {
+    if (route === "/blog" && !BLOG_LOCALES.includes(locale)) continue;
     const changeFreq = route === "" || route === "/blog" ? "weekly" : "monthly";
     const priority = route === "" ? "1" : route === "/blog" ? "0.7" : "0.8";
     entries.push(urlEntry(`${SITE_URL}/${locale}${route}`, changeFreq, priority, routeLastMod(route)));
   }
+  if (!BLOG_LOCALES.includes(locale)) continue;
   for (const slug of PUBLISHED_BLOG_SLUGS) {
     entries.push(
       urlEntry(`${SITE_URL}/${locale}/blog/${slug}`, "monthly", "0.7", blogLastMod(slug))

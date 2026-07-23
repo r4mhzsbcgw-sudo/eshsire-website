@@ -222,29 +222,31 @@ const relatedBlogLinks = [
 
 function BlogInternalLinks({ post, locale }: { post: BlogPost; locale: Locale }) {
   const related = relatedBlogLinks.filter((item) => item.slug !== post.slug).slice(0, 2);
+  const productLinks = post.internalLinks?.length
+    ? post.internalLinks.map((href) => ({ href: href.replace(/^\/(en|zh|es)/, ""), label: href }))
+    : [
+        { href: "/spc-flooring", label: "SPC flooring specifications and OEM options" },
+        { href: "/about", label: "About Eshsire Group factory capability" },
+        { href: "/contact", label: "Contact Eshsire Group for samples and quotation" },
+      ];
 
   return (
     <aside className="mt-12 border-t border-white/10 pt-8">
-      <h2 className="text-xl font-bold text-white">Related procurement resources</h2>
+      <h2 className="text-xl font-bold text-white">Related product links</h2>
       <div className="mt-4 grid gap-3 sm:grid-cols-2">
-        <Link
-          href={localizedPath(locale, "/spc-flooring")}
-          className="glass-card-hover p-4 text-sm font-semibold text-accent"
-        >
-          SPC flooring specifications and OEM options
-        </Link>
-        <Link
-          href={localizedPath(locale, "/about")}
-          className="glass-card-hover p-4 text-sm font-semibold text-accent"
-        >
-          About Eshsire Group factory capability
-        </Link>
-        <Link
-          href={localizedPath(locale, "/contact")}
-          className="glass-card-hover p-4 text-sm font-semibold text-accent"
-        >
-          Contact Eshsire Group for samples and quotation
-        </Link>
+        {productLinks.map((item) => (
+          <Link
+            key={item.href}
+            href={localizedPath(locale, item.href)}
+            className="glass-card-hover p-4 text-sm font-semibold text-accent"
+          >
+            {item.label}
+          </Link>
+        ))}
+      </div>
+
+      <h2 className="mt-8 text-xl font-bold text-white">Related articles</h2>
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
         {related.map((item) => (
           <Link
             key={item.slug}
@@ -262,6 +264,7 @@ function BlogInternalLinks({ post, locale }: { post: BlogPost; locale: Locale })
 export function BlogPostContent({ post }: { post: BlogPost }) {
   const { locale, dict } = useLocale();
   let imageIndex = 0;
+  const toc = post.blocks.filter((block): block is Extract<BlogBlock, { type: "h2" }> => block.type === "h2");
 
   return (
     <article className="section-padding">
@@ -272,22 +275,40 @@ export function BlogPostContent({ post }: { post: BlogPost }) {
             {post.title}
           </h1>
           <p className="mt-4 text-sm text-industrial-mist">
-            {post.date} · {post.readMinutes} {dict.blog.readTimeUnit}
+            {post.date} | {post.author ?? "Eshsire Group"} | {post.readMinutes} {dict.blog.readTimeUnit}
           </p>
+          {post.productCategory && (
+            <span className="mt-4 inline-flex rounded border border-accent/30 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-accent">
+              {post.productCategory}
+            </span>
+          )}
         </FadeIn>
 
         {!post.hideTopHero && (
           <div className="relative mt-8 aspect-[16/9] overflow-hidden rounded-xl border border-white/10">
             <Image
               src={post.heroImage}
-              alt={post.title}
-              title={post.title}
+              alt={post.imageAlt ?? post.title}
+              title={post.imageAlt ?? post.title}
               fill
               className="object-cover"
               priority
               sizes="(max-width: 768px) 100vw, 800px"
             />
           </div>
+        )}
+
+        {toc.length > 0 && (
+          <nav className="mt-8 rounded-xl border border-white/10 bg-white/5 p-5" aria-label="Table of contents">
+            <h2 className="text-sm font-bold uppercase tracking-wider text-white">Table of contents</h2>
+            <ol className="mt-3 space-y-2">
+              {toc.map((item) => (
+                <li key={item.text} className="text-sm text-industrial-light">
+                  {item.text}
+                </li>
+              ))}
+            </ol>
+          </nav>
         )}
 
         <div className="prose-invert mt-8">

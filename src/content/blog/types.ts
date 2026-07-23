@@ -8,6 +8,7 @@ export type BlogBlock =
   | { type: "cta"; title?: string; text?: string; variant?: "default" | "factory-quote" | "b2b-procurement" };
 
 export type ArticleSlot = "morning" | "afternoon" | "evening";
+export type BlogStatus = "draft" | "scheduled" | "published";
 
 export type BlogPost = {
   slug: string;
@@ -15,6 +16,17 @@ export type BlogPost = {
   metaTitle?: string;
   description: string;
   date: string;
+  publishDate?: string;
+  approvedForPublish?: boolean;
+  isPlaceholder?: boolean;
+  language?: string;
+  author?: string;
+  productCategory?: string;
+  targetKeyword?: string;
+  imageAlt?: string;
+  internalLinks?: string[];
+  ctaType?: string;
+  status?: BlogStatus;
   readMinutes: number;
   heroImage: string;
   ogImage: string;

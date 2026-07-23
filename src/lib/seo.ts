@@ -81,9 +81,14 @@ export function buildPageMetadata({
   const suffix = normalizePath(path);
   const url = pageUrl(locale, suffix);
   const image = absoluteImageUrl(ogImage ?? PAGE_OG_IMAGES[suffix] ?? PAGE_OG_IMAGES[""]);
-  const pageTitle = TITLE_OVERRIDES[suffix] ?? title.replace(/Eshsire Group/g, siteConfig.name);
+  const pageTitle =
+    locale === "en"
+      ? TITLE_OVERRIDES[suffix] ?? title.replace(/Eshsire Group/g, siteConfig.name)
+      : title.replace(/Eshsire Group/g, siteConfig.name);
   const pageDescription =
-    DESCRIPTION_OVERRIDES[suffix] ?? description.replace(/Eshsire Group/g, siteConfig.name);
+    locale === "en"
+      ? DESCRIPTION_OVERRIDES[suffix] ?? description.replace(/Eshsire Group/g, siteConfig.name)
+      : description.replace(/Eshsire Group/g, siteConfig.name);
 
   return {
     title: { absolute: pageTitle },

@@ -35,17 +35,20 @@ function adminSubject(lead: StoredInquiryLead): string {
 function adminHtml(lead: StoredInquiryLead): string {
   const wa = whatsappDigits(lead.whatsapp);
   const waLink = wa ? `https://wa.me/${wa}` : "#";
-  const mailto = `mailto:${encodeURIComponent(lead.email)}`;
+  const mailto = lead.email ? `mailto:${encodeURIComponent(lead.email)}` : "#";
   const rows = [
     ["Submitted at", lead.createdAt],
     ["Inquiry ID", lead.id],
     ["Name", lead.name],
+    ["Company", lead.company || "—"],
     ["Country", lead.country],
-    ["Email", lead.email],
-    ["WhatsApp", lead.whatsapp],
+    ["Email", lead.email || "—"],
+    ["WhatsApp", lead.whatsapp || "—"],
     ["Customer type", lead.customerType],
     ["Product interest", productLabel(lead)],
-    ["Quantity", lead.quantity],
+    ["Quantity", lead.quantity || "—"],
+    ["Target port / delivery", lead.targetPort || "—"],
+    ["OEM / private label", lead.oemNeeded || "—"],
     ["Target price", lead.targetPrice || "—"],
     ["Message", lead.message],
     ["Locale", lead.locale],
@@ -153,7 +156,7 @@ export async function sendAdminInquiryEmail(lead: StoredInquiryLead): Promise<Em
     const { data, error } = await resend.emails.send({
       from,
       to: [adminTo()],
-      replyTo: lead.email,
+      ...(lead.email ? { replyTo: lead.email } : {}),
       subject: adminSubject(lead),
       html: adminHtml(lead),
     });
@@ -173,6 +176,9 @@ export async function sendAdminInquiryEmail(lead: StoredInquiryLead): Promise<Em
 }
 
 export async function sendCustomerConfirmationEmail(lead: StoredInquiryLead): Promise<EmailSendResult> {
+  if (!lead.email) {
+    return { ok: false, error: "no_customer_email", errorCode: "no_customer_email" };
+  }
   const resend = getResendClient();
   if (!resend) {
     return { ok: false, error: "missing_resend_api_key", errorCode: "missing_resend_api_key" };

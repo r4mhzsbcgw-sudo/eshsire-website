@@ -7,12 +7,14 @@ import { SectionHeader } from "@/components/ui/SectionHeader";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { useLocale } from "@/context/LocaleContext";
+import { getFactoryPageStats } from "@/config/companyFacts";
 import { factoryPageImages } from "@/lib/images";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 
 export function FactoryContent() {
-  const { dict } = useLocale();
+  const { locale, dict } = useLocale();
   const d = dict.factoryPage;
+  const stats = getFactoryPageStats(locale);
 
   return (
     <>
@@ -20,7 +22,7 @@ export function FactoryContent() {
       <section className="section-padding">
         <div className="mx-auto max-w-7xl">
           <div className="grid-desktop-4 gap-6">
-            {d.stats.map((s, i) => (
+            {stats.map((s, i) => (
               <FadeIn key={s.label} delay={i * 0.1}>
                 <div className="glass-card p-8 text-center">
                   <p className="text-4xl font-bold text-accent">{s.value}</p>

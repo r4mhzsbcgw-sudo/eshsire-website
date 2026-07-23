@@ -52,6 +52,35 @@ export function GlobalProjects() {
           </div>
         </FadeIn>
 
+        <FadeIn delay={0.08} className="mt-10 rounded-2xl border border-white/10 bg-industrial-dark/60 p-6 md:p-8">
+          <h3 className="text-center text-lg font-bold text-white md:text-xl">{p.differentiatorTitle}</h3>
+          <ul className="mt-6 grid grid-cols-1 gap-3 md:grid-cols-2 lg:gap-4">
+            {p.differentiatorPoints.map((point) => (
+              <li key={point} className="flex gap-3 text-sm leading-relaxed text-industrial-light md:text-base">
+                <span className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-accent" aria-hidden />
+                {point}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
+            {p.visibilityStages.map((stage, i) => (
+              <div key={stage} className="flex items-center gap-2">
+                <span className="rounded-lg border border-accent/30 bg-accent/10 px-3 py-1.5 text-xs font-bold uppercase tracking-wide text-accent">
+                  {stage}
+                </span>
+                {i < p.visibilityStages.length - 1 && (
+                  <span className="hidden text-accent/50 sm:inline" aria-hidden>
+                    →
+                  </span>
+                )}
+              </div>
+            ))}
+          </div>
+          <p className="mt-4 text-center text-xs text-industrial-mist sm:text-sm">
+            {locale === "zh" ? "每个节点均可提供图片或视频记录" : "Photo & video records available at each stage"}
+          </p>
+        </FadeIn>
+
         <div className="mt-14 grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-4 lg:gap-8">
           {p.items.map((item, i) => (
             <FadeIn key={item.slug} delay={i * 0.06}>
@@ -85,6 +114,16 @@ export function GlobalProjects() {
             </FadeIn>
           ))}
         </div>
+
+        <FadeIn delay={0.15} className="mt-12 text-center">
+          <p className="text-sm text-industrial-mist">{p.quoteCtaHint}</p>
+          <Link
+            href={`${localizedPath(locale, "/")}#get-quote`}
+            className="mt-4 inline-flex items-center justify-center rounded-lg bg-accent px-8 py-3 text-sm font-bold uppercase tracking-wider text-industrial-dark transition-colors hover:bg-accent-hover"
+          >
+            {p.quoteCtaLabel} →
+          </Link>
+        </FadeIn>
 
         <FadeIn delay={0.2} className="mt-12 text-center">
           <p className="text-sm text-industrial-mist">{p.productLinksLabel}</p>

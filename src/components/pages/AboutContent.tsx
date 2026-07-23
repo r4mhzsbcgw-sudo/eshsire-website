@@ -7,11 +7,14 @@ import { FadeIn } from "@/components/motion/FadeIn";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { useLocale } from "@/context/LocaleContext";
+import { getAboutStats } from "@/config/companyFacts";
 import { aboutImages } from "@/lib/images";
 
 export function AboutContent() {
   const { locale, dict } = useLocale();
   const d = dict.about;
+  const stats = getAboutStats(locale);
+
   const aboutDetails =
     locale === "zh"
       ? {
@@ -21,12 +24,6 @@ export function AboutContent() {
             "Eshsire Group 专注 SPC 地板、墙板、格栅、PU 石材及室内装饰材料，服务经销商、工程承包商、建材品牌与跨境采购客户。我们将稳定生产、严格品控、灵活 OEM/ODM 和出口交付能力整合在同一套流程中，让客户可以更快完成选品、打样、下单和补货。",
           body2:
             "团队位于北京，配套生产、仓储、包装与装柜协同能力。无论是试单、小批量混柜，还是长期贴牌供货，我们都以清晰沟通、准时交付和可复购品质作为合作基础。",
-          stats: [
-            { value: "20+", label: "年建材与装饰材料经验" },
-            { value: "6000㎡", label: "生产与仓储基地" },
-            { value: "30+", label: "出口国家和地区" },
-            { value: "OEM/ODM", label: "品牌定制支持" },
-          ],
           strengthsTitle: "我们能为客户解决什么",
           strengths: [
             {
@@ -49,41 +46,65 @@ export function AboutContent() {
           processTitle: "合作流程",
           process: ["需求确认", "样品与报价", "包装方案", "批量生产", "质检装柜", "持续补货"],
         }
-      : {
-          eyebrow: "About ESHSIRE GROUP",
-          title: "An integrated manufacturing partner from materials to export delivery",
-          body:
-            "Eshsire Group focuses on SPC flooring, wall panels, grille panels, PU stone and interior decorative materials for distributors, contractors, building-material brands and cross-border sourcing teams.",
-          body2:
-            "Based in Beijing, we combine production, warehousing, packaging and container-loading coordination into a practical B2B workflow for trial orders, mixed containers and long-term private-label supply.",
-          stats: [
-            { value: "20+", label: "Years in building materials" },
-            { value: "6000㎡", label: "Production and warehouse base" },
-            { value: "30+", label: "Export markets served" },
-            { value: "OEM/ODM", label: "Private-label support" },
-          ],
-          strengthsTitle: "What we help customers solve",
-          strengths: [
-            {
-              title: "Product sourcing",
-              desc: "SPC flooring, wall panels, UV marble panels, grille panels and accessories for distribution and projects.",
-            },
-            {
-              title: "Private label",
-              desc: "Colors, textures, specifications, packaging, labels and sales materials tailored to your market.",
-            },
-            {
-              title: "Quality control",
-              desc: "Multi-stage inspection from raw materials and surface finishing to packing and shipment.",
-            },
-            {
-              title: "Export coordination",
-              desc: "Sample, quotation, loading, documentation and logistics support for smoother overseas purchasing.",
-            },
-          ],
-          processTitle: "Cooperation Workflow",
-          process: ["Requirements", "Samples & Quote", "Packaging", "Production", "QC & Loading", "Reorders"],
-        };
+      : locale === "es"
+        ? {
+            eyebrow: "Sobre ESHSIRE GROUP",
+            title: "Socio manufacturero integrado desde materiales hasta exportación",
+            body:
+              "Eshsire Group se enfoca en suelos SPC, paneles murales, rejillas, piedra PU y materiales decorativos interiores para distribuidores, contratistas, marcas de materiales de construcción y equipos de compras internacionales.",
+            body2:
+              "Con base en Pekín, combinamos producción, almacenamiento, embalaje y coordinación de carga en un flujo B2B práctico para pedidos de prueba, contenedores mixtos y suministro a largo plazo con marca privada.",
+            strengthsTitle: "Qué ayudamos a resolver",
+            strengths: [
+              {
+                title: "Abastecimiento de productos",
+                desc: "Suelos SPC, paneles murales, mármol UV, rejillas y accesorios para distribución y proyectos.",
+              },
+              {
+                title: "Marca privada",
+                desc: "Colores, texturas, especificaciones, embalaje, etiquetas y materiales de venta adaptados a su mercado.",
+              },
+              {
+                title: "Control de calidad",
+                desc: "Inspección en varias etapas desde materias primas y acabados hasta embalaje y envío.",
+              },
+              {
+                title: "Coordinación de exportación",
+                desc: "Soporte de muestras, cotización, carga, documentación y logística para compras en el extranjero.",
+              },
+            ],
+            processTitle: "Flujo de cooperación",
+            process: ["Requisitos", "Muestras y cotización", "Embalaje", "Producción", "QC y carga", "Reórdenes"],
+          }
+        : {
+            eyebrow: "About ESHSIRE GROUP",
+            title: "An integrated manufacturing partner from materials to export delivery",
+            body:
+              "Eshsire Group focuses on SPC flooring, wall panels, grille panels, PU stone and interior decorative materials for distributors, contractors, building-material brands and cross-border sourcing teams.",
+            body2:
+              "Based in Beijing, we combine production, warehousing, packaging and container-loading coordination into a practical B2B workflow for trial orders, mixed containers and long-term private-label supply.",
+            strengthsTitle: "What we help customers solve",
+            strengths: [
+              {
+                title: "Product sourcing",
+                desc: "SPC flooring, wall panels, UV marble panels, grille panels and accessories for distribution and projects.",
+              },
+              {
+                title: "Private label",
+                desc: "Colors, textures, specifications, packaging, labels and sales materials tailored to your market.",
+              },
+              {
+                title: "Quality control",
+                desc: "Multi-stage inspection from raw materials and surface finishing to packing and shipment.",
+              },
+              {
+                title: "Export coordination",
+                desc: "Sample, quotation, loading, documentation and logistics support for smoother overseas purchasing.",
+              },
+            ],
+            processTitle: "Cooperation Workflow",
+            process: ["Requirements", "Samples & Quote", "Packaging", "Production", "QC & Loading", "Reorders"],
+          };
 
   return (
     <>
@@ -108,7 +129,7 @@ export function AboutContent() {
             </FadeIn>
 
             <div className="grid grid-cols-2 gap-4">
-              {aboutDetails.stats.map((item, i) => (
+              {stats.map((item, i) => (
                 <FadeIn key={item.label} delay={i * 0.05}>
                   <div className="border border-white/10 bg-white/[0.04] p-6">
                     <p className="text-3xl font-bold text-accent">{item.value}</p>

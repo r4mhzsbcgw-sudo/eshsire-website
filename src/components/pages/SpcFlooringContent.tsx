@@ -90,7 +90,7 @@ export function SpcFlooringContent() {
           </div>
         </div>
       </section>
-      <ProductFaqSection />
+      <ProductFaqSection faq={dict.spcFlooring.faq} />
       <RelatedLinks excludePath="/spc-flooring" />
       <ContactCTA />
     </>

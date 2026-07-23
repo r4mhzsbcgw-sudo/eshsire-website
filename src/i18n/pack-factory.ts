@@ -15,6 +15,8 @@ export function createLocalePack(input: {
   gallery: typeof en.gallery;
   companyIntro: typeof en.companyIntro;
   whatsapp: Partial<typeof en.whatsapp> & { defaultMessage: string };
+  hero?: Partial<typeof en.home.hero>;
+  applications?: Partial<typeof en.home.applications>;
   products: {
     label: string;
     title: string;
@@ -68,6 +70,10 @@ export function createLocalePack(input: {
     whatsapp: { ...en.whatsapp, ...input.whatsapp },
     home: {
       ...en.home,
+      ...(input.hero ? { hero: { ...en.home.hero, ...input.hero } } : {}),
+      ...(input.applications
+        ? { applications: { ...en.home.applications, ...input.applications } }
+        : {}),
       products: input.products,
       factory: { ...en.home.factory, ...input.factory },
       why: input.why,

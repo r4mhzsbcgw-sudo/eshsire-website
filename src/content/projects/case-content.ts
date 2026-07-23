@@ -23,6 +23,11 @@ export type SupplyFlowSection = {
   description: string;
   emphasisLine: string;
   highlightTags: [string, string, string, string];
+  differentiatorTitle: string;
+  differentiatorPoints: string[];
+  visibilityStages: [string, string, string, string, string];
+  quoteCtaLabel: string;
+  quoteCtaHint: string;
   viewFlowDetails: string;
   detailPageLabel: string;
   problemSolvedLabel: string;
@@ -38,17 +43,28 @@ export type SupplyFlowSection = {
 };
 
 export const projectCasesEn: SupplyFlowSection = {
-  label: "Visual Production Follow-up",
+  label: "Visual Order Follow-up System",
   title: "Visual Production Follow-up, So Customers Can See Every Step",
   description:
-    "From sample confirmation, production scheduling, process videos, packaging checks to container loading, we update order progress with photos and videos to reduce uncertainty in overseas purchasing and take responsibility until the end.",
-  emphasisLine: "Not waiting blindly after payment — customers can continuously see their order progress.",
+    "Most factories take your payment and go quiet. We assign a follow-up team that shares photos and videos at every key stage — samples, production, packaging, QC, and loading — so overseas buyers see real progress instead of waiting for vague messages.",
+  emphasisLine: "Not waiting blindly after payment — customers continuously see their order progress.",
   highlightTags: [
     "Key-stage video updates",
     "Proactive production progress updates",
     "Packaging & loading photo records",
     "After-sales and reorder follow-up",
   ],
+  differentiatorTitle: "Why overseas buyers work with our follow-up system",
+  differentiatorPoints: [
+    "After payment, you don't wait in the dark — our team proactively sends photo and video updates.",
+    "See samples, production, packaging, quality checks, and container loading at every critical stage.",
+    "A dedicated order follow-up team tracks each export order — not just a salesperson's verbal promise.",
+    "You don't need to chase us every day — we push progress before you have to ask.",
+    "We take responsibility from sample to shipment and reorder — not a one-time transaction.",
+  ],
+  visibilityStages: ["Sample", "Production", "Packaging", "QC", "Loading"],
+  quoteCtaLabel: "Get a Quote",
+  quoteCtaHint: "Tell us your product and quantity — our team responds within 24 hours with follow-up support.",
   viewFlowDetails: "View Follow-up Details",
   detailPageLabel: "Visual Follow-up Details",
   problemSolvedLabel: "What This Step Solves",
@@ -58,9 +74,9 @@ export const projectCasesEn: SupplyFlowSection = {
   suitableCustomersLabel: "Suitable Customers",
   relatedTitle: "More Visual Follow-up Steps",
   productLinksLabel: "Explore SPC flooring, wall panels & OEM services",
-  ctaTitle: "Want a Supplier That Shows Progress, Not Just Promises?",
+  ctaTitle: "Ready for a Factory That Shows Progress — Not Just Promises?",
   ctaSubtitle:
-    "Contact Eshsire Group for sample videos, production updates, packaging records, loading photos, and dedicated order follow-up from our China factory team.",
+    "Submit your inquiry and our follow-up team will share how we document your order with photos and videos from sample to shipment.",
   items: [
     {
       slug: "sample-video-confirmation",
@@ -226,12 +242,23 @@ export const projectCasesEn: SupplyFlowSection = {
 };
 
 export const projectCasesZh: SupplyFlowSection = {
-  label: "可视化生产跟单",
+  label: "可视化订单跟单体系",
   title: "可视化生产跟单，让客户看得见每一步",
   description:
-    "从样品确认、生产排期、过程视频、包装检查到装柜发货，我们用图片和视频同步订单进度，减少海外采购的不确定性，真正做到接了订单就负责到底。",
+    "很多工厂收款后就很少同步进度。我们安排专属跟单团队，在样品、生产、包装、质检、装柜等关键节点用图片和视频主动更新，让海外客户看见真实进度，而不是反复追问和空等消息。",
   emphasisLine: "不是付款后等待消息，而是让客户持续看到订单进度。",
   highlightTags: ["关键节点视频更新", "生产进度主动同步", "包装与装柜照片记录", "售后与复购持续跟进"],
+  differentiatorTitle: "为什么海外客户选择我们的跟单方式",
+  differentiatorPoints: [
+    "付款后不用盲等消息，跟单团队会主动发送图片和视频进度。",
+    "样品、生产、包装、质检、装柜等关键节点，客户都能看得见。",
+    "每个出口订单有专属跟单团队跟进，不只是销售口头承诺。",
+    "客户不必每天催进度，我们会在关键节点主动同步。",
+    "从样品到出货、复购都负责到底，不是只做一次性交易。",
+  ],
+  visibilityStages: ["样品", "生产", "包装", "质检", "装柜"],
+  quoteCtaLabel: "获取报价",
+  quoteCtaHint: "告诉我们产品和数量，跟单团队 24 小时内回复并说明后续进度同步方式。",
   viewFlowDetails: "查看跟单细节",
   detailPageLabel: "可视化跟单说明",
   problemSolvedLabel: "这个环节解决什么问题",
@@ -242,8 +269,7 @@ export const projectCasesZh: SupplyFlowSection = {
   relatedTitle: "更多可视化跟单环节",
   productLinksLabel: "了解 SPC 地板、墙板与 OEM 服务",
   ctaTitle: "想要看得见进度的工厂，而不只是口头承诺？",
-  ctaSubtitle:
-    "联系 Eshsire Group，获取样品视频、生产进度同步、包装检查记录、装柜照片与专属跟单团队支持。",
+  ctaSubtitle: "提交询价后，我们的跟单团队会说明如何从样品到装柜，用图片和视频同步您的订单进度。",
   items: [
     {
       slug: "sample-video-confirmation",

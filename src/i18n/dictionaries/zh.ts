@@ -3,9 +3,9 @@ import { projectCasesZh } from "@/content/projects/case-content";
 
 export const zh: Dictionary = {
   meta: {
-    siteTitle: "Eshsire Group | 中国 SPC 地板与墙板制造商",
+    siteTitle: "中国 SPC 地板与墙板制造商 | 30年制造经验 | Eshsire Group",
     siteDescription:
-      "Eshsire Group — 北京 30 年 SPC 地板与墙板 OEM 制造商，防水防火，出口 30+ 国家。联系 Jason 获取目录与报价。",
+      "Eshsire Group 专注 SPC 地板、室内墙板及配件制造，提供 OEM/ODM、质量检验、生产进度可视化、混装规划和全球出口交付支持。",
     pages: {
       home: "首页",
       spcFlooring: "SPC 地板",
@@ -127,7 +127,7 @@ export const zh: Dictionary = {
     photoAlt: "图片",
   },
   companyIntro: {
-    tagline: "ESHSIRE GROUP | 30+ 年专业制造经验",
+    tagline: "ESHSIRE GROUP | 30年专业制造经验",
     viewMore: "了解更多",
     title: "我们的优势",
     description:
@@ -150,61 +150,26 @@ export const zh: Dictionary = {
   home: {
     hero: {
       label: "Eshsire Group · 中国北京",
-      title: "中国 SPC 地板制造商",
-      subtitle: "OEM 与 ODM 服务 | 防水 | 防火 | 出口 30+ 国家",
-      yearsExperience: "年制造经验",
-      factoryArea: "工厂面积",
-      exportCountries: "出口国家",
-      oemSupport: "OEM 与 ODM",
-      carousel: {
-        prev: "上一张",
-        next: "下一张",
-        slide: "第",
-        slides: [
-          {
-            years: "30 年",
-            title: "严以律己，就是对客户负责",
-            subtitle: "持续创新，稳定品质，尽最大努力满足客户需求",
-          },
-          {
-            titleLine1: "SPC 地板与 WPC 墙板",
-            titleAccent: "制造商",
-            subtitle: "助力全球经销商与承包商更快增长",
-            features: [
-              "出口 30+ 国家",
-              "OEM 与贴牌定制服务",
-              "每日生产进度更新",
-              "严格质量检验",
-            ],
-            ctaSamples: "免费索取样品",
-            ctaQuote: "索取报价",
-            stats: [
-              { value: "30+", label: "年制造经验" },
-              { value: "6000㎡", label: "生产基地" },
-              { value: "30+", label: "出口国家" },
-              { value: "100,000+", label: "服务客户" },
-            ],
-          },
-          {
-            title: "强大的制造实力",
-            subtitle: "您长期成功路上的可靠伙伴",
-            stats: [
-              { value: "30+", label: "年制造经验", desc: "专注地板与墙板制造超过 30 年。" },
-              { value: "6000㎡", label: "生产基地", desc: "现代化工厂，先进生产线与设备。" },
-              { value: "30+", label: "出口国家", desc: "产品出口全球 30 多个国家和地区。" },
-              { value: "100,000+", label: "服务客户", desc: "深受全球经销商、承包商与工程采购信赖。" },
-            ],
-            whyTitle: "全球买家为何选择我们",
-            whySubtitle: "提供专业制造、严格品控与可靠服务，助力您的业务增长。",
-            whyItems: [
-              { title: "生产进度实时更新", desc: "全程提供生产照片与视频。" },
-              { title: "严格质量检验", desc: "从原料到成品多环节检验。" },
-              { title: "OEM 与贴牌服务", desc: "定制设计、品牌、包装与标签。" },
-              { title: "可靠准时交付", desc: "装柜发货与物流跟踪全程协同。" },
-            ],
-          },
-        ],
-      },
+      title: "中国 SPC 地板与墙板制造商",
+      subtitle:
+        "30年制造经验｜OEM/ODM｜质量检验｜混装与全球出口支持",
+      trustPoints: [
+        "SPC 地板与墙板生产",
+        "OEM / 自有品牌包装",
+        "生产与质检进度同步",
+        "装柜与混装出口支持",
+      ],
+      ctaCatalog: "获取产品目录",
+      ctaQuote: "获取工厂报价",
+    },
+    applications: {
+      label: "供货场景",
+      title: "全球供货场景与项目应用",
+      description:
+        "从经销商贴牌、工程选材到混装出口，我们以同一套可追溯的生产、质检与交付流程支持全球采购。",
+      exploreSolution: "查看方案",
+      disclaimer:
+        "页面内容展示典型产品应用与供货流程。真实客户项目仅在获得授权后公开展示。",
     },
     products: {
       label: "产品",
@@ -238,8 +203,8 @@ export const zh: Dictionary = {
       items: [
         { title: "工程级品质", desc: "批量订单品质稳定，适配大型项目" },
         { title: "低 MOQ 灵活起订", desc: "支持试单 / 混批，降低库存压力" },
-        { title: "全认证合规", desc: "CE/Floorscore 等齐全，欧美市场无忧" },
-        { title: "成本优化方案", desc: "工厂直供价，帮你提升利润空间" },
+        { title: "产品资料支持", desc: "可根据确认后的产品规格提供对应产品资料。" },
+        { title: "工厂成本控制", desc: "制造与供应链协同，帮助客户提升价格稳定性与订单效率。" },
         { title: "专业技术支持", desc: "工程样品 / 施工方案，全程技术对接" },
         { title: "全球稳定交付", desc: "成熟物流网络，准时交付不延误" },
       ],
@@ -289,6 +254,19 @@ export const zh: Dictionary = {
     galleryLabel: "产品图库",
     galleryTitle: "SPC 地板图册",
     galleryDesc: "联系我们获得上千种可定制专属颜色",
+    faq: {
+      label: "常见问题",
+      title: "SPC 地板采购决策问答",
+      description: "面向经销商、进口商和工程采购客户的 SPC 地板规格选择问题。",
+      items: [
+        { q: "经销商应选择 4mm、5mm 还是 6mm？", a: "4mm 适合价格敏感和入门市场，5mm 适合常规批发与零售，6mm 更适合高端渠道和工程项目。" },
+        { q: "家用和商用市场应选择什么耐磨层？", a: "家用市场可按日常使用选择常规耐磨层；商用或高人流项目应在报价前确认更高耐磨要求。" },
+        { q: "SPC 地板可以做自有品牌包装吗？", a: "可以。确认花色、规格和数量后，可支持 OEM 外箱、标签、条码、样板及包装细节。" },
+        { q: "样品和大货之间如何控制色差？", a: "我们会确认样品参考、生产批次信息和质检节点，方便客户对照已确认样品与大货。" },
+        { q: "SPC 地板能否与墙板或 PVC 吊顶板一起出货？", a: "可以。混柜可将较重的 SPC 地板与较轻的墙板、吊顶板和配件组合，提高集装箱利用率。" },
+        { q: "如何索取样品和报价？", a: "请告知 Jason 目标厚度、耐磨层、花色偏好、数量和目的市场，我们会准备样品与报价方案。" },
+      ],
+    },
   },
   wallPanels: {
     heroSubtitle: "适用于住宅与商业项目的 SPC、UV 大理石及装饰墙板。",
@@ -297,21 +275,54 @@ export const zh: Dictionary = {
     description: "全系列墙板系统，支持全球品牌 OEM 定制。",
     items: [
       { name: "SPC 墙板", desc: "防水刚性室内墙板，木纹/石纹饰面。" },
-      { name: "UV 大理石板", desc: "高光大理石效果，适用于高端商业空间。" },
+      { name: "WPC 墙板", desc: "木纹质感 WPC 室内墙板，适用于住宅与商业装饰。" },
       { name: "装饰墙板", desc: "格栅、WPC 及声学板，打造现代室内。" },
     ],
     galleryLabel: "产品图库",
     galleryTitle: "墙板图册",
-    galleryDesc: "室内装饰、UV 大理石效果及商业空间应用案例。",
+    galleryDesc: "室内装饰、UV 大理石效果及商业空间墙板应用。",
+    faq: {
+      label: "常见问题",
+      title: "室内墙板常见问题",
+      description: "经销商与工程客户向中国采购墙板时最常咨询的问题。",
+      items: [
+        {
+          q: "你们提供哪些室内墙板？",
+          a: "我们供应 SPC 墙板、WPC 墙板、UV 大理石效果板、格栅板及装饰墙板，并支持 OEM 定制。",
+        },
+        {
+          q: "墙板是否防水？",
+          a: "SPC 与 WPC 墙板具备防潮性能，适用于多种室内场景。请与团队确认项目环境与安装方式。",
+        },
+        {
+          q: "能否同时订购 WPC、SPC 和装饰墙板？",
+          a: "可以。我们支持多系列混批，并可协调颜色、配件与包装方案。",
+        },
+        {
+          q: "有哪些规格和厚度？",
+          a: "尺寸与厚度因系列而异。请告知项目需求，我们将确认可用规格与起订量。",
+        },
+        {
+          q: "能否提供 OEM 包装和标签？",
+          a: "可以。支持自有品牌外箱、产品标签、条码与说明书，详见 OEM 服务页面。",
+        },
+        {
+          q: "墙板安装需要哪些配件？",
+          a: "常见配件包括收边条、阴阳角、卡扣或胶粘系统，具体取决于墙板类型，我们可配套推荐。",
+        },
+        {
+          q: "墙板能否与 SPC 地板混装在一个集装箱？",
+          a: "可以。我们协助规划地板、墙板、吊顶板与配件混装，提高利用率并控制重货装载风险。",
+        },
+        {
+          q: "如何索取样品和报价？",
+          a: "通过询盘表单或 WhatsApp 告知墙板类型、数量、目的市场及 OEM 需求，团队 24 小时内回复。",
+        },
+      ],
+    },
   },
   factoryPage: {
     heroSubtitle: "先进生产基地，专业产线、严格质检与丰富出口经验。",
-    stats: [
-      { value: "30+", label: "年制造经验" },
-      { value: "6000㎡", label: "工厂面积" },
-      { value: "30+", label: "出口国家" },
-      { value: "24/7", label: "产能保障" },
-    ],
     capabilitiesLabel: "能力",
     capabilitiesTitle: "从生产到装柜",
     capabilitiesDesc:
@@ -372,8 +383,9 @@ export const zh: Dictionary = {
       title: "提交工厂报价需求",
       subtitle: "跟单团队会审核您的需求，并说明后续如何用图片和视频同步订单进度。",
       name: "姓名 *",
-      email: "邮箱 *",
-      whatsapp: "WhatsApp *",
+      company: "公司名称",
+      email: "邮箱",
+      whatsapp: "WhatsApp",
       country: "国家 *",
       selectProduct: "产品需求 *",
       products: {
@@ -384,7 +396,10 @@ export const zh: Dictionary = {
         "mixed-container": "混装整柜",
         oem: "OEM / 自有品牌",
       },
-      quantity: "数量（㎡ 或柜数）*",
+      quantity: "数量 / 预估数量",
+      targetPort: "目的港或交付国家",
+      oemNeeded: "是否需要 OEM / 自有品牌？",
+      oemOptions: { yes: "是", no: "否", unsure: "暂不确定" },
       targetPrice: "目标价格（选填）",
       selectCustomerType: "客户类型 *",
       customerTypes: {
@@ -395,7 +410,8 @@ export const zh: Dictionary = {
         retailer: "零售商",
         other: "其他",
       },
-      messagePlaceholder: "项目详情、规格、目标市场、交期要求... *",
+      contactHint: "邮箱或 WhatsApp 至少填写一项。",
+      messagePlaceholder: "项目详情、规格、交期要求...",
       submit: "提交报价需求",
       submitting: "提交中...",
       successLabel: "已提交",
@@ -432,8 +448,7 @@ export const zh: Dictionary = {
     },
   },
   footer: {
-    tagline:
-      "中国专业 SPC 地板与墙板制造商，30+ 年为全球 B2B 客户提供 OEM 与 ODM 服务。",
+    tagline: "中国专业 SPC 地板与墙板制造商，30 年制造经验，为全球 B2B 客户提供 OEM 与 ODM 服务。",
     copyright: "版权所有",
     seoLine: "SPC 地板制造商 | 墙板 OEM | 中国出口",
   },
@@ -454,6 +469,18 @@ export const zh: Dictionary = {
       { title: "地垫", desc: "IXPE / EVA 静音防潮垫，提升脚感与防潮性能。" },
       { title: "楼梯口条", desc: "商用工程楼梯收边与踏步型材。" },
     ],
+    faq: {
+      label: "常见问题",
+      title: "配件采购问题",
+      description: "关于踢脚线、收边条、型材和混装出货的常见采购问题。",
+      items: [
+        { q: "SPC 地板通常会搭配哪些配件？", a: "常见配件包括踢脚线、过渡条、高低差收边、楼梯口条、地垫和收口型材。" },
+        { q: "踢脚线、收边条和型材可以与地板花色匹配吗？", a: "可以。我们可根据地板系列和目标市场定位推荐同色或协调色配件。" },
+        { q: "墙板阴阳角和边缘需要哪些配件？", a: "墙板项目可能需要阴角、阳角、顶线、边线或匹配型材，具体取决于墙板类型。" },
+        { q: "配件可以与其他产品同柜出货吗？", a: "可以。配件可与地板、墙板或吊顶板一起规划出货，提高订单效率。" },
+        { q: "配件可以做 OEM 包装吗？", a: "可以。确认规格和数量后，可支持 OEM 标签、外箱和条码。" },
+      ],
+    },
   },
   faq: {
     heroSubtitle: "经销商与工程客户关于中国 SPC 地板 OEM 的常见问题。",
@@ -469,10 +496,18 @@ export const zh: Dictionary = {
     ],
   },
   certifications: {
-    heroSubtitle: "面向全球出口的 SPC 地板国际质量标准与检测文件。",
+    heroSubtitle: "面向全球出口的 SPC 地板与墙板质量检测能力与文件支持。",
     label: "资质认证",
-    title: "质量标准与合规",
-    description: "Eshsire Group 建立质量管理体系与第三方检测，支持出口欧洲、中东、东南亚等市场。",
+    title: "质量标准与检测",
+    description:
+      "我们执行工厂质检流程，并可为确认订单安排第三方检测。证书文件将按市场要求在与您确认后提供。",
+    viewFile: "查看文件",
+    requestDocs: "索取文件",
+    noFileNote: "本页暂无公开证书文件 — 请联系我们索取与订单相关的检测报告。",
+    scopeLabel: "适用范围",
+    productsLabel: "对应产品",
+    issuerLabel: "发证 / 检测机构",
+    validityLabel: "日期 / 有效期",
     items: [
       { title: "ISO 质量管理", desc: "标准化生产与全流程质检体系。" },
       { title: "CE 合规", desc: "SPC 地板符合欧洲市场要求，可提供合规文件。" },

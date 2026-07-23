@@ -11,12 +11,22 @@ function localeFromPathname(pathname: string): Locale | null {
   return segment && isLocale(segment) ? segment : null;
 }
 
-function withSeoHeaders(request: NextRequest, response: NextResponse) {
+function withSeoHeaders(request: NextRequest, response?: NextResponse) {
   const { pathname } = request.nextUrl;
   const locale = localeFromPathname(pathname) ?? "en";
-  response.headers.set("x-locale", locale);
-  response.headers.set("x-pathname", pathname);
-  return response;
+  const requestHeaders = new Headers(request.headers);
+  requestHeaders.set("x-locale", locale);
+  requestHeaders.set("x-pathname", pathname);
+  const nextResponse =
+    response ??
+    NextResponse.next({
+      request: {
+        headers: requestHeaders,
+      },
+    });
+  nextResponse.headers.set("x-locale", locale);
+  nextResponse.headers.set("x-pathname", pathname);
+  return nextResponse;
 }
 
 export function middleware(request: NextRequest) {
@@ -27,11 +37,11 @@ export function middleware(request: NextRequest) {
     pathname.startsWith("/api") ||
     pathname.includes(".")
   ) {
-    return withSeoHeaders(request, NextResponse.next());
+    return withSeoHeaders(request);
   }
 
   if (pathname === "/") {
-    return withSeoHeaders(request, NextResponse.next());
+    return withSeoHeaders(request);
   }
 
   const pathnameHasLocale = locales.some(
@@ -39,7 +49,7 @@ export function middleware(request: NextRequest) {
   );
 
   if (pathnameHasLocale) {
-    return withSeoHeaders(request, NextResponse.next());
+    return withSeoHeaders(request);
   }
 
   const acceptLang = request.headers.get("accept-language") ?? "";

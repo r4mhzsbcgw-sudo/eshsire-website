@@ -1,7 +1,7 @@
 import { Inter, Noto_Sans_SC } from "next/font/google";
 import type { Metadata, Viewport } from "next";
 import { headers } from "next/headers";
-import { htmlLangMap, isLocale } from "@/i18n/locales";
+import { htmlLangMap, isLocale, isRtlLocale } from "@/i18n/locales";
 import { GoogleAnalytics } from "@/components/GoogleAnalytics";
 import "./globals.css";
 
@@ -36,9 +36,10 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   const localeHeader = headers().get("x-locale") ?? "en";
   const lang = isLocale(localeHeader) ? htmlLangMap[localeHeader] : "en";
+  const dir = isLocale(localeHeader) && isRtlLocale(localeHeader) ? "rtl" : "ltr";
 
   return (
-    <html lang={lang} suppressHydrationWarning>
+    <html lang={lang} dir={dir} suppressHydrationWarning>
       <body className={`${inter.variable} ${notoSansSC.variable} font-sans`}>
         <GoogleAnalytics />
         {children}

@@ -2,9 +2,9 @@ import { projectCasesEn } from "@/content/projects/case-content";
 
 export const en = {
   meta: {
-    siteTitle: "Eshsire Group | China SPC Flooring & Wall Panel Manufacturer",
+    siteTitle: "SPC Flooring & Wall Panel Manufacturer in China | OEM/ODM | Eshsire Group",
     siteDescription:
-      "Eshsire Group — 30 years SPC flooring & wall panel OEM manufacturer from Beijing, China. Waterproof, fire resistant. Export to 30+ countries.",
+      "Eshsire Group manufactures SPC flooring and interior wall panels for global distributors, importers and project buyers. OEM/ODM, quality inspection, production updates, mixed-container planning and export support.",
     pages: {
       home: "Home",
       spcFlooring: "SPC Flooring",
@@ -128,7 +128,7 @@ export const en = {
     photoAlt: "Photo",
   },
   companyIntro: {
-    tagline: "ESHSIRE GROUP | 30+ YEARS MANUFACTURING EXCELLENCE",
+    tagline: "ESHSIRE GROUP | 30 YEARS MANUFACTURING EXCELLENCE",
     viewMore: "View More",
     title: "Our Advantages",
     description:
@@ -151,64 +151,26 @@ export const en = {
   home: {
     hero: {
       label: "Eshsire Group · Beijing, China",
-      title: "China SPC Flooring Manufacturer",
+      title: "SPC Flooring & Wall Panel Manufacturer in China",
       subtitle:
-        "OEM & ODM Service | Waterproof | Fire Resistant | Export To 30+ Countries",
-      yearsExperience: "Years Experience",
-      factoryArea: "Factory Area",
-      exportCountries: "Export Countries",
-      oemSupport: "& ODM Support",
-      carousel: {
-        prev: "Previous slide",
-        next: "Next slide",
-        slide: "Slide",
-        slides: [
-          {
-            years: "30 Years",
-            title: "Higher demands on oneself are responsible for customers",
-            subtitle:
-              "Continuous innovation, stable quality, do our best to meet customer needs",
-          },
-          {
-            titleLine1: "SPC FLOORING & WPC WALL PANEL",
-            titleAccent: "MANUFACTURER",
-            subtitle: "Helping Global Distributors & Contractors Grow Faster",
-            features: [
-              "Exported to 30+ Countries",
-              "OEM & Private Label Service",
-              "Daily Production Updates",
-              "Strict Quality Inspection",
-            ],
-            ctaSamples: "Get Free Samples",
-            ctaQuote: "Request a Quote",
-            stats: [
-              { value: "30+", label: "Years Experience" },
-              { value: "6000m²", label: "Production Facility" },
-              { value: "30+", label: "Export Countries" },
-              { value: "100,000+", label: "Customers Served" },
-            ],
-          },
-          {
-            title: "Strong Manufacturing Capability",
-            subtitle: "Your Reliable Partner for Long-term Success",
-            stats: [
-              { value: "30+", label: "Years Experience", desc: "Focused on flooring & wall panel manufacturing for over 30 years." },
-              { value: "6000m²", label: "Production Facility", desc: "Modern factory with advanced production lines and equipment." },
-              { value: "30+", label: "Export Countries", desc: "Products exported to more than 30 countries and regions worldwide." },
-              { value: "100,000+", label: "Customers Served", desc: "Trusted by global distributors, contractors and project buyers." },
-            ],
-            whyTitle: "Why Global Buyers Choose Us",
-            whySubtitle:
-              "We provide professional manufacturing, strict quality control and reliable services to help you grow your business.",
-            whyItems: [
-              { title: "Production Progress Updates", desc: "Real-time photos and videos during the entire production." },
-              { title: "Strict Quality Inspection", desc: "Multiple inspections from raw materials to finished products." },
-              { title: "OEM & Private Label Service", desc: "Custom designs, branding, packaging and labels." },
-              { title: "Reliable Delivery", desc: "On-time delivery with container loading and shipment tracking." },
-            ],
-          },
-        ],
-      },
+        "30 Years of Manufacturing Experience | OEM/ODM | Quality Inspection | Mixed Container & Global Export Support",
+      trustPoints: [
+        "SPC Flooring & Wall Panel Production",
+        "OEM / Private Label Packaging",
+        "Production & Quality Check Updates",
+        "Container Loading & Mixed Shipment Support",
+      ],
+      ctaCatalog: "Get Catalog",
+      ctaQuote: "Request Factory Quote",
+    },
+    applications: {
+      label: "Supply Scenarios",
+      title: "Global Supply Scenarios & Project Applications",
+      description:
+        "From private-label distribution to project supply and mixed-container delivery, we support global buyers with traceable production, inspection and export workflows.",
+      exploreSolution: "Explore Solution",
+      disclaimer:
+        "This section presents typical product applications and supply workflows. Customer-specific project details are shared only with authorization.",
     },
     products: {
       label: "Products",
@@ -256,8 +218,8 @@ export const en = {
       items: [
         { title: "Commercial Grade Quality", desc: "Consistent quality for large-scale projects" },
         { title: "Low MOQ & Flexible Orders", desc: "Trial & mixed orders available, low inventory risk" },
-        { title: "Full Certifications", desc: "CE/Floorscore compliant, ready for global markets" },
-        { title: "Factory Direct Pricing", desc: "Direct factory supply to boost your profit margin" },
+        { title: "Product Documentation Support", desc: "Relevant product documentation can be provided based on confirmed specifications." },
+        { title: "Factory-Based Cost Control", desc: "Manufacturing and supply-chain coordination help improve pricing stability and order efficiency." },
         { title: "Expert Technical Support", desc: "Samples & installation guidance for your projects" },
         { title: "Reliable Global Delivery", desc: "On-time delivery to 30+ countries worldwide" },
       ],
@@ -321,6 +283,37 @@ export const en = {
     galleryTitle: "SPC Flooring Collection",
     galleryDesc:
       "Contact us for thousands of customizable exclusive colors.",
+    faq: {
+      label: "FAQ",
+      title: "SPC Flooring Procurement Questions",
+      description: "Decision-focused questions for distributors, importers and project buyers choosing SPC flooring specifications.",
+      items: [
+        {
+          q: "What thickness should distributors choose: 4mm, 5mm or 6mm?",
+          a: "4mm is often used for entry-level and price-sensitive markets, 5mm is a balanced wholesale choice, and 6mm fits premium retail or project supply where product feel matters.",
+        },
+        {
+          q: "What wear layer is suitable for residential and commercial markets?",
+          a: "Residential programs usually focus on standard daily-use wear layers, while commercial or high-traffic projects should confirm stronger wear resistance before quotation.",
+        },
+        {
+          q: "Can SPC flooring be packed with private labels?",
+          a: "Yes. We support OEM cartons, labels, barcodes, sample boards and packing details after color, specification and order quantity are confirmed.",
+        },
+        {
+          q: "How do you control color consistency between samples and bulk orders?",
+          a: "We confirm sample references, production batch details and inspection checkpoints so buyers can compare approved samples with mass production.",
+        },
+        {
+          q: "Can SPC flooring be shipped together with wall panels or PVC ceiling panels?",
+          a: "Yes. Mixed-container planning can combine heavy SPC flooring with lighter wall panels, ceiling panels and accessories to improve utilization.",
+        },
+        {
+          q: "How do I get a sample and quotation?",
+          a: "Send Jason your target thickness, wear layer, color preference, quantity and destination market, and we will prepare sample and quotation options.",
+        },
+      ],
+    },
   },
   wallPanels: {
     heroSubtitle:
@@ -335,8 +328,8 @@ export const en = {
         desc: "Waterproof rigid panels for interior walls with wood/stone textures.",
       },
       {
-        name: "UV Marble Panels",
-        desc: "High-gloss marble-effect panels for luxury commercial spaces.",
+        name: "WPC Wall Panels",
+        desc: "Moisture-resistant WPC wall panels with wood-look surfaces for interior decoration.",
       },
       {
         name: "Decorative Panels",
@@ -346,17 +339,50 @@ export const en = {
     galleryLabel: "Product Gallery",
     galleryTitle: "Wall Panel Collection",
     galleryDesc:
-      "Interior finishes, UV marble effects and decorative installations for commercial projects.",
+      "Interior finishes, UV marble effects and decorative wall panel options for commercial projects.",
+    faq: {
+      label: "FAQ",
+      title: "Interior Wall Panel Questions",
+      description: "Common questions from distributors and project buyers about wall panel supply from China.",
+      items: [
+        {
+          q: "What types of interior wall panels do you offer?",
+          a: "We supply SPC wall panels, WPC panels, UV marble-effect panels, grille panels and decorative interior options with OEM customization.",
+        },
+        {
+          q: "Are wall panels waterproof?",
+          a: "SPC and WPC wall panels offer moisture-resistant performance suitable for many interior applications. Confirm your project environment and installation method with our team.",
+        },
+        {
+          q: "Can I order WPC, SPC and decorative wall panels together?",
+          a: "Yes. We support mixed product lines for distributors and project buyers, including coordinated colors, accessories and packaging.",
+        },
+        {
+          q: "What sizes and thicknesses are available?",
+          a: "Panel dimensions and thickness vary by series. Share your project requirements and we will confirm available specifications and MOQ.",
+        },
+        {
+          q: "Can you provide OEM packaging and labels?",
+          a: "Yes. Private-label cartons, product labels, barcodes and insert cards are available through our OEM workflow.",
+        },
+        {
+          q: "What accessories are needed for wall panel installation?",
+          a: "Typical accessories include profiles, corners, clips or adhesive systems depending on panel type. We can match accessories to your panel selection.",
+        },
+        {
+          q: "Can wall panels be mixed with SPC flooring in one container?",
+          a: "Yes. We help plan mixed-container loads of flooring, wall panels, ceiling panels and accessories to improve utilization and manage weight distribution.",
+        },
+        {
+          q: "How do I request samples and quotation?",
+          a: "Contact us via the inquiry form or WhatsApp with panel type, quantity, destination market and any OEM requirements. Our team responds within 24 hours.",
+        },
+      ],
+    },
   },
   factoryPage: {
     heroSubtitle:
       "Advanced production facility with professional lines, strict QC and global export experience.",
-    stats: [
-      { value: "30+", label: "Years Manufacturing" },
-      { value: "6000㎡", label: "Factory Area" },
-      { value: "30+", label: "Export Countries" },
-      { value: "24/7", label: "Production Capacity" },
-    ],
     capabilitiesLabel: "Capabilities",
     capabilitiesTitle: "From Production To Container",
     capabilitiesDesc:
@@ -422,8 +448,9 @@ export const en = {
       subtitle:
         "Our follow-up team will review your inquiry and explain how we share order progress with photos and videos.",
       name: "Name *",
-      email: "Email *",
-      whatsapp: "WhatsApp *",
+      company: "Company",
+      email: "Email",
+      whatsapp: "WhatsApp",
       country: "Country *",
       selectProduct: "Product Interest *",
       products: {
@@ -434,7 +461,10 @@ export const en = {
         "mixed-container": "Mixed Container Load",
         oem: "OEM / Private Label",
       },
-      quantity: "Quantity (sqm or containers) *",
+      quantity: "Quantity / Estimated Quantity",
+      targetPort: "Target Port or Delivery Country",
+      oemNeeded: "OEM / Private Label Needed?",
+      oemOptions: { yes: "Yes", no: "No", unsure: "Not sure yet" },
       targetPrice: "Target Price (optional)",
       selectCustomerType: "Customer Type *",
       customerTypes: {
@@ -445,7 +475,8 @@ export const en = {
         retailer: "Retailer",
         other: "Other",
       },
-      messagePlaceholder: "Project details, specifications, destination market, timeline... *",
+      contactHint: "Email or WhatsApp required — fill at least one.",
+      messagePlaceholder: "Project details, specifications, timeline...",
       submit: "Submit Quote Request",
       submitting: "Submitting...",
       successLabel: "Submitted",
@@ -484,7 +515,7 @@ export const en = {
   },
   footer: {
     tagline:
-      "Professional SPC flooring & wall panel manufacturer from China. OEM & ODM for global B2B partners since 30+ years.",
+      "Professional SPC flooring & wall panel manufacturer from China. OEM & ODM for global B2B partners with 30 years manufacturing experience.",
     copyright: "All rights reserved.",
     seoLine: "SPC Flooring Manufacturer | Wall Panel OEM | China Export",
   },
@@ -507,6 +538,33 @@ export const en = {
       { title: "Underlayment", desc: "IXPE and EVA underlay for sound reduction and moisture protection." },
       { title: "Stair Noses & Profiles", desc: "Stair treads and edge profiles for commercial installations." },
     ],
+    faq: {
+      label: "FAQ",
+      title: "Accessory Ordering Questions",
+      description: "Common purchasing questions about trims, skirting, profiles and mixed shipments.",
+      items: [
+        {
+          q: "Which accessories are commonly ordered with SPC flooring?",
+          a: "Common accessories include skirting boards, transition profiles, reducers, stair noses, underlayment and finishing trims.",
+        },
+        {
+          q: "Can skirting, trims and profiles be matched with flooring colors?",
+          a: "Yes. We can recommend matched or coordinated colors based on the flooring collection and target market positioning.",
+        },
+        {
+          q: "What accessories are needed for wall panel corners and edges?",
+          a: "Wall panel projects may need inside corners, outside corners, top lines, edge trims or matched profiles depending on the panel type.",
+        },
+        {
+          q: "Can accessories be mixed in the same shipment?",
+          a: "Yes. Accessories can be planned with flooring, wall panels or ceiling panels in one shipment to improve order efficiency.",
+        },
+        {
+          q: "Can you provide OEM packaging for accessories?",
+          a: "Yes. OEM labels, cartons and barcode support are available after specifications and quantities are confirmed.",
+        },
+      ],
+    },
   },
   faq: {
     heroSubtitle: "Common questions from distributors and project buyers about SPC flooring OEM from China.",
@@ -540,11 +598,18 @@ export const en = {
     ],
   },
   certifications: {
-    heroSubtitle: "International quality standards and test documentation for global SPC flooring export.",
+    heroSubtitle: "Quality testing capabilities and documentation support for global SPC flooring and wall panel export.",
     label: "Certifications",
-    title: "Quality Standards & Compliance",
+    title: "Quality Standards & Testing",
     description:
-      "Eshsire Group maintains quality systems and third-party testing to support export to Europe, Middle East, Southeast Asia and other markets.",
+      "We maintain factory QC procedures and can arrange third-party testing for confirmed export orders. Certificate files are shared when available for your market requirements.",
+    viewFile: "View file",
+    requestDocs: "Request documentation",
+    noFileNote: "No public certificate file on this page — contact us for test reports relevant to your order.",
+    scopeLabel: "Scope",
+    productsLabel: "Products",
+    issuerLabel: "Issuer / Lab",
+    validityLabel: "Date / Validity",
     items: [
       { title: "ISO Quality Management", desc: "Standardized production and QC procedures across all flooring lines." },
       { title: "CE Compliance", desc: "SPC flooring tested for European market requirements and documentation support." },

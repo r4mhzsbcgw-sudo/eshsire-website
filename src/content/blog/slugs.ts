@@ -1,5 +1,7 @@
 /** AUTO-GENERATED 鈥?Eshsire Group V2 calendar + manual posts */
 export const blogSlugs = [
+  "spc-flooring-thickness-guide-for-distributors",
+  "4mm-vs-5mm-vs-6mm-spc-flooring",
   "factory-pricing-vs-trading-company-pricing-what-importers-need-to-know",
   "how-flooring-distributors-can-increase-profit-margins-without-raising-prices",
   "how-successful-flooring-importers-reduce-sourcing-risks",

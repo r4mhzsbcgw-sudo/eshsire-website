@@ -6,9 +6,9 @@ export const es: Dictionary = {
   ...en,
   meta: {
     ...en.meta,
-    siteTitle: "Eshsire Group | Fabricante de Suelos SPC y Paneles Murales en China",
+    siteTitle: "Fabricante de Suelos SPC y Paneles Murales en China | OEM/ODM | Eshsire Group",
     siteDescription:
-      "Eshsire Group — 30 años de fabricación OEM de suelos SPC y paneles murales en Pekín, China. Impermeable, resistente al fuego. Exportación a más de 30 países.",
+      "Eshsire Group fabrica suelos SPC y paneles murales interiores para distribuidores, importadores y compradores de proyectos. OEM/ODM, inspección de calidad, seguimiento de producción, planificación de contenedores mixtos y soporte de exportación.",
     pages: {
       ...en.meta.pages,
       home: "Inicio",
@@ -114,7 +114,7 @@ export const es: Dictionary = {
     photoAlt: "Foto",
   },
   companyIntro: {
-    tagline: "ESHSIRE GROUP | MÁS DE 30 AÑOS DE EXCELENCIA MANUFACTURERA",
+    tagline: "ESHSIRE GROUP | 30 AÑOS DE EXCELENCIA MANUFACTURERA",
     viewMore: "Ver más",
     title: "Nuestras ventajas",
     description:
@@ -137,58 +137,27 @@ export const es: Dictionary = {
   home: {
     ...en.home,
     hero: {
-      ...en.home.hero,
-      carousel: {
-        prev: "Anterior",
-        next: "Siguiente",
-        slide: "Diapositiva",
-        slides: [
-          {
-            years: "30 Años",
-            title: "Exigencias más altas hacia uno mismo son responsabilidad hacia el cliente",
-            subtitle:
-              "Innovación continua, calidad estable, hacemos lo mejor para satisfacer las necesidades del cliente",
-          },
-          {
-            titleLine1: "SUELOS SPC Y PANELES MURALES WPC",
-            titleAccent: "FABRICANTE",
-            subtitle: "Ayudamos a distribuidores y contratistas globales a crecer más rápido",
-            features: [
-              "Exportación a más de 30 países",
-              "Servicio OEM y marca privada",
-              "Actualizaciones diarias de producción",
-              "Inspección estricta de calidad",
-            ],
-            ctaSamples: "Muestras gratis",
-            ctaQuote: "Solicitar cotización",
-            stats: [
-              { value: "30+", label: "Años de experiencia" },
-              { value: "6000m²", label: "Planta de producción" },
-              { value: "30+", label: "Países de exportación" },
-              { value: "100,000+", label: "Clientes atendidos" },
-            ],
-          },
-          {
-            title: "Fuerte capacidad manufacturera",
-            subtitle: "Su socio confiable para el éxito a largo plazo",
-            stats: [
-              { value: "30+", label: "Años de experiencia", desc: "Enfocados en suelos y paneles murales por más de 30 años." },
-              { value: "6000m²", label: "Planta de producción", desc: "Fábrica moderna con líneas avanzadas y equipos." },
-              { value: "30+", label: "Países de exportación", desc: "Productos exportados a más de 30 países y regiones." },
-              { value: "100,000+", label: "Clientes atendidos", desc: "Con la confianza de distribuidores y contratistas globales." },
-            ],
-            whyTitle: "Por qué nos eligen compradores globales",
-            whySubtitle:
-              "Fabricación profesional, control de calidad estricto y servicios confiables para hacer crecer su negocio.",
-            whyItems: [
-              { title: "Actualizaciones de producción", desc: "Fotos y videos en tiempo real durante toda la producción." },
-              { title: "Inspección estricta de calidad", desc: "Múltiples inspecciones desde materias primas hasta producto terminado." },
-              { title: "Servicio OEM y marca privada", desc: "Diseños, branding, embalaje y etiquetas personalizados." },
-              { title: "Entrega confiable", desc: "Entrega puntual con carga de contenedores y seguimiento." },
-            ],
-          },
-        ],
-      },
+      label: "Eshsire Group · Pekín, China",
+      title: "Fabricante de Suelos SPC y Paneles Murales en China",
+      subtitle:
+        "30 años de experiencia en fabricación | OEM/ODM | Inspección de calidad | Carga mixta y soporte de exportación global",
+      trustPoints: [
+        "Producción de pisos SPC y paneles de pared",
+        "Empaque OEM / marca privada",
+        "Actualizaciones de producción e inspección",
+        "Carga de contenedor y envío mixto",
+      ],
+      ctaCatalog: "Obtener catálogo",
+      ctaQuote: "Solicitar cotización de fábrica",
+    },
+    applications: {
+      label: "Escenarios de suministro",
+      title: "Escenarios de Suministro Global y Aplicaciones de Proyecto",
+      description:
+        "Desde distribución con marca privada hasta suministro de proyectos y entrega en contenedor mixto, apoyamos a compradores globales con flujos de producción, inspección y exportación trazables.",
+      exploreSolution: "Ver solución",
+      disclaimer:
+        "Esta sección presenta aplicaciones típicas de producto y flujos de suministro. Los detalles de proyectos de clientes se comparten solo con autorización.",
     },
     products: {
       label: "Productos",
@@ -237,8 +206,8 @@ export const es: Dictionary = {
       items: [
         { title: "Calidad comercial", desc: "Calidad constante para proyectos a gran escala" },
         { title: "MOQ bajo y pedidos flexibles", desc: "Pedidos de prueba y mixtos, bajo riesgo de inventario" },
-        { title: "Certificaciones completas", desc: "CE/Floorscore, listo para mercados globales" },
-        { title: "Precio directo de fábrica", desc: "Suministro directo para mejorar su margen" },
+        { title: "Soporte de documentación", desc: "La documentación relevante puede proporcionarse según las especificaciones confirmadas." },
+        { title: "Control de costos de fábrica", desc: "La fabricación y coordinación de suministro ayudan a mejorar estabilidad de precio y eficiencia." },
         { title: "Soporte técnico experto", desc: "Muestras y guía de instalación para sus proyectos" },
         { title: "Entrega global fiable", desc: "Entrega puntual a más de 30 países" },
       ],
@@ -281,13 +250,53 @@ export const es: Dictionary = {
       "Nuestros suelos SPC combinan tecnología de núcleo piedra-plástico con capas de desgaste de calidad europea para alto tráfico.",
     galleryTitle: "Colección de suelos SPC",
     galleryDesc: "Contáctenos para miles de colores exclusivos personalizables.",
+    faq: {
+      label: "FAQ",
+      title: "Preguntas de compra sobre suelos SPC",
+      description: "Preguntas clave para distribuidores, importadores y compradores de proyectos al elegir especificaciones SPC.",
+      items: [
+        { q: "¿Qué espesor deben elegir los distribuidores: 4mm, 5mm o 6mm?", a: "4mm suele servir para mercados sensibles al precio, 5mm es una opción equilibrada de venta mayorista y 6mm encaja en canales premium o proyectos." },
+        { q: "¿Qué capa de desgaste es adecuada para mercados residenciales y comerciales?", a: "Los programas residenciales pueden usar capas para uso diario normal; espacios comerciales o de alto tráfico deben confirmar mayor resistencia antes de cotizar." },
+        { q: "¿Se puede empacar el suelo SPC con marca privada?", a: "Sí. Apoyamos cajas OEM, etiquetas, códigos de barras, muestrarios y detalles de empaque tras confirmar especificación y cantidad." },
+        { q: "¿Cómo controlan la consistencia de color entre muestras y pedidos?", a: "Confirmamos muestras de referencia, datos de lote e hitos de inspección para comparar la muestra aprobada con la producción masiva." },
+        { q: "¿Se puede enviar SPC junto con paneles murales o cielorrasos PVC?", a: "Sí. La planificación de contenedor mixto combina SPC pesado con paneles, cielorrasos y accesorios más ligeros para mejorar utilización." },
+        { q: "¿Cómo solicito una muestra y cotización?", a: "Envíe a Jason el espesor, capa de desgaste, color, cantidad y mercado destino para preparar opciones de muestra y cotización." },
+      ],
+    },
   },
   wallPanels: {
     ...en.wallPanels,
     heroSubtitle:
       "Paneles SPC, mármol UV y decorativos para proyectos residenciales y comerciales.",
     title: "Soluciones de pared interior",
+    items: [
+      {
+        name: "Paneles SPC",
+        desc: "Paneles rígidos impermeables para paredes interiores con texturas madera o piedra.",
+      },
+      {
+        name: "Paneles WPC",
+        desc: "Paneles WPC resistentes a la humedad con acabado madera para decoración interior.",
+      },
+      {
+        name: "Paneles decorativos",
+        desc: "Opciones acanaladas, WPC y acústicas para interiores modernos.",
+      },
+    ],
     galleryTitle: "Colección de paneles murales",
+    faq: {
+      label: "FAQ",
+      title: "Preguntas sobre paneles interiores",
+      description: "Preguntas comunes de distribuidores y compradores de proyectos sobre suministro de paneles desde China.",
+      items: [
+        { q: "¿Qué tipos de paneles de pared ofrecen?", a: "Suministramos paneles SPC, WPC, tipo listón y decorativos con opciones de color, perfiles y accesorios compatibles." },
+        { q: "¿Qué espesores y tamaños están disponibles?", a: "Las dimensiones y espesores dependen de la serie. Comparta los requisitos del proyecto para confirmar especificaciones y MOQ." },
+        { q: "¿Cuál es la diferencia entre junta plana y micro-ranura?", a: "La junta plana ofrece una superficie más continua; la micro-ranura resalta las líneas entre paneles para un efecto decorativo." },
+        { q: "¿Qué accesorios se necesitan para instalar paneles?", a: "Los proyectos pueden requerir esquinas interiores, exteriores, perfiles superiores, remates o clips según el tipo de panel." },
+        { q: "¿Se pueden mezclar paneles con suelos SPC en un contenedor?", a: "Sí. Ayudamos a planificar contenedores mixtos con suelos SPC, paneles, cielorrasos PVC y accesorios." },
+        { q: "¿Cómo solicito un catálogo de colores y cotización?", a: "Contacte a Jason con el tipo de panel, cantidad, mercado destino y requisitos OEM para preparar catálogo y cotización." },
+      ],
+    },
   },
   factoryPage: {
     ...en.factoryPage,
@@ -381,4 +390,31 @@ export const es: Dictionary = {
     "Paneles mármol UV",
     "Materiales decorativos interiores",
   ],
+  accessories: {
+    ...en.accessories,
+    heroSubtitle:
+      "Complete proyectos de suelos SPC y paneles con rodapiés, perfiles y accesorios de instalación compatibles.",
+    label: "Accesorios",
+    title: "Accesorios de instalación y acabado",
+    description:
+      "Suministramos rodapiés, perfiles de transición, base, narices de escalera y accesorios para proyectos globales.",
+    items: [
+      { title: "Rodapiés", desc: "Rodapiés PVC y MDF combinados con colores y texturas SPC." },
+      { title: "Perfiles de transición", desc: "Molduras T, reductores y remates para puertas y cambios de nivel." },
+      { title: "Base acústica", desc: "IXPE y EVA para reducción de sonido y protección contra humedad." },
+      { title: "Narices de escalera", desc: "Perfiles de borde y peldaño para instalaciones comerciales." },
+    ],
+    faq: {
+      label: "FAQ",
+      title: "Preguntas sobre accesorios",
+      description: "Preguntas comunes sobre perfiles, rodapiés, acabados y envíos mixtos.",
+      items: [
+        { q: "¿Qué accesorios se piden normalmente con suelos SPC?", a: "Rodapiés, perfiles de transición, reductores, narices de escalera, base acústica y remates de acabado." },
+        { q: "¿Rodapiés, perfiles y acabados pueden combinarse con los colores del suelo?", a: "Sí. Podemos recomendar colores iguales o coordinados según la colección de suelo y el mercado objetivo." },
+        { q: "¿Qué accesorios se necesitan para esquinas y bordes de paneles murales?", a: "Los proyectos de paneles pueden necesitar esquinas interiores, exteriores, líneas superiores, remates o perfiles compatibles." },
+        { q: "¿Los accesorios pueden mezclarse en el mismo envío?", a: "Sí. Pueden planificarse con suelos, paneles murales o cielorrasos en un mismo envío para mejorar eficiencia." },
+        { q: "¿Pueden ofrecer empaque OEM para accesorios?", a: "Sí. Etiquetas, cajas y códigos de barras OEM están disponibles tras confirmar especificaciones y cantidades." },
+      ],
+    },
+  },
 };

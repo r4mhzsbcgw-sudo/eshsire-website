@@ -18,18 +18,26 @@ export function ProductCategories() {
       desc: p.spc.desc,
       href: "/spc-flooring",
       image: homeImages.spcFlooring,
+      alt: p.spc.title,
     },
     {
       title: p.wall.title,
       desc: p.wall.desc,
       href: "/wall-panels",
       image: homeImages.wallPanels,
+      alt: p.wall.title,
     },
     {
       title: p.accessories.title,
       desc: p.accessories.desc,
       href: "/accessories",
       image: homeImages.accessories,
+      alt:
+        locale === "zh"
+          ? "SPC 地板与墙板配件展示"
+          : locale === "es"
+            ? "Accesorios para pisos SPC y paneles de pared"
+            : "SPC flooring and wall panel accessories display",
     },
   ];
 
@@ -44,7 +52,7 @@ export function ProductCategories() {
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
                     src={cat.image}
-                    alt={cat.title}
+                    alt={cat.alt}
                     title={cat.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"

@@ -7,7 +7,7 @@ import { ImageGallery } from "@/components/ui/ImageGallery";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { Button } from "@/components/ui/Button";
 import { ContactCTA } from "@/components/home/ContactCTA";
-import { ProductFaqSection } from "@/components/seo/ProductFaq";
+import { WallPanelFaqSection } from "@/components/seo/WallPanelFaq";
 import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
@@ -16,6 +16,15 @@ import { wallPanelImages } from "@/lib/images";
 export function WallPanelsContent() {
   const { locale, dict } = useLocale();
   const d = dict.wallPanels;
+  const productLineAlts = d.items.map((item, i) =>
+    i === 1
+      ? locale === "zh"
+        ? "WPC 墙板产品实拍"
+        : locale === "es"
+          ? "Muestra de paneles WPC"
+          : "WPC wall panel product display"
+      : item.name,
+  );
 
   const galleryItems = wallPanelImages.gallery.map((src, i) => ({
     src,
@@ -35,7 +44,7 @@ export function WallPanelsContent() {
                   <div className="relative aspect-[4/3]">
                     <Image
                       src={wallPanelImages.productLines[i]}
-                      alt={p.name}
+                      alt={productLineAlts[i]}
                       title={p.name}
                       fill
                       className="object-cover"
@@ -67,7 +76,7 @@ export function WallPanelsContent() {
         expandHint={dict.gallery.expandHint}
       />
 
-      <ProductFaqSection />
+      <WallPanelFaqSection faq={dict.wallPanels.faq} />
       <RelatedLinks excludePath="/wall-panels" />
       <ContactCTA />
     </>

@@ -209,6 +209,24 @@ export const frPack = createLocalePack({
     chatLabel: "Chat WhatsApp",
     contactJason: "WhatsApp Jason",
   },
+  hero: {
+    title: "Fabricant de sols SPC et de panneaux muraux en Chine",
+    subtitle:
+      "30 ans d’expérience en fabrication | OEM/ODM | Contrôle qualité | Chargements mixtes et support export mondial",
+    trustPoints: [
+      "Production de sols SPC et de panneaux muraux",
+      "Emballage OEM / marque privée",
+      "Suivi de production et de contrôle qualité",
+      "Support pour chargements de conteneurs mixtes",
+    ],
+    ctaCatalog: "Obtenir le catalogue",
+    ctaQuote: "Demander un devis usine",
+  },
+  applications: {
+    title: "Scénarios d’approvisionnement et applications de projet",
+    description:
+      "De la marque privée à l’approvisionnement de projets et aux chargements mixtes, nous accompagnons les acheteurs mondiaux avec un processus traçable de production, d’inspection et d’exportation.",
+  },
   products: {
     label: "Produits",
     title: "Solutions professionnelles sol SPC & panneaux muraux",
@@ -248,8 +266,8 @@ export const frPack = createLocalePack({
     description: "Lignes SPC et panneaux avancées avec contrôle qualité strict.",
   },
   cta: {
-    title: "Vous cherchez un fournisseur SPC fiable ?",
-    description: "Contactez Jason pour catalogue, échantillons et devis OEM. Réponse sous 24 h.",
+    title: "Besoin d’un fournisseur fiable de sols et panneaux muraux ?",
+    description: "Contactez Jason pour obtenir un catalogue, des échantillons ou un devis.",
   },
   footer: {
     tagline: "Fabricant professionnel sol SPC et panneaux muraux en Chine. OEM & ODM pour partenaires B2B mondiaux.",
@@ -620,6 +638,24 @@ export const ruPack = createLocalePack({
     chatLabel: "Чат WhatsApp",
     contactJason: "WhatsApp Jason",
   },
+  hero: {
+    title: "Производитель SPC-полов и стеновых панелей в Китае",
+    subtitle:
+      "30 лет производственного опыта | OEM/ODM | Контроль качества | Смешанная загрузка и экспортная поддержка",
+    trustPoints: [
+      "Производство SPC-полов и стеновых панелей",
+      "OEM-упаковка и private label",
+      "Обновления по производству и контролю качества",
+      "Поддержка загрузки контейнеров и смешанных поставок",
+    ],
+    ctaCatalog: "Получить каталог",
+    ctaQuote: "Запросить заводскую цену",
+  },
+  applications: {
+    title: "Сценарии поставок и проектные применения",
+    description:
+      "От private label до проектных поставок и смешанной загрузки контейнера — мы поддерживаем покупателей прозрачным процессом производства, проверки и экспорта.",
+  },
   products: {
     label: "Продукция",
     title: "Профессиональные решения SPC пол и стеновые панели",
@@ -659,8 +695,8 @@ export const ruPack = createLocalePack({
     description: "Современные линии SPC и панелей со строгим контролем качества.",
   },
   cta: {
-    title: "Ищете надёжного поставщика SPC пола?",
-    description: "Свяжитесь с Jason для каталога, образцов и OEM цены. Ответ за 24 часа.",
+    title: "Нужен надежный поставщик полов и стеновых панелей?",
+    description: "Свяжитесь с Jason, чтобы получить каталог, образцы или цену.",
   },
   footer: {
     tagline: "Профессиональный производитель SPC пола и панелей из Китая. OEM и ODM для B2B партнёров.",

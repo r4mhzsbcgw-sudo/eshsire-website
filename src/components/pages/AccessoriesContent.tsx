@@ -38,7 +38,7 @@ export function AccessoriesContent() {
           </div>
         </div>
       </section>
-      <ProductFaqSection />
+      <ProductFaqSection faq={dict.accessories.faq} />
       <RelatedLinks excludePath="/accessories" />
       <ContactCTA />
     </>

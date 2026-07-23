@@ -20,12 +20,12 @@ export function LanguageSwitcher() {
           const next = e.target.value as Locale;
           router.push(switchLocalePath(pathname, next));
         }}
-        className="max-w-[7.5rem] cursor-pointer appearance-none rounded border border-white/20 bg-white/10 py-1.5 pl-2 pr-7 text-xs font-semibold text-white backdrop-blur-sm focus:border-accent focus:outline-none"
+        className="max-w-[9.5rem] cursor-pointer appearance-none rounded border border-white/20 bg-white/10 py-1.5 pl-2 pr-7 text-xs font-semibold text-white backdrop-blur-sm focus:border-accent focus:outline-none"
         aria-label="Select language"
       >
         {indexableLocales.map((loc) => (
           <option key={loc} value={loc} className="bg-industrial-dark text-white">
-            {localeLabels[loc].short} — {localeLabels[loc].nativeName}
+            {localeLabels[loc].short} - {localeLabels[loc].nativeName}
           </option>
         ))}
       </select>
@@ -33,7 +33,7 @@ export function LanguageSwitcher() {
         className="pointer-events-none absolute right-2 top-1/2 -translate-y-1/2 text-[10px] text-industrial-light"
         aria-hidden
       >
-        ▾
+        v
       </span>
     </label>
   );

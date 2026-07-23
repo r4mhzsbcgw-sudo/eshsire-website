@@ -1,0 +1,22 @@
+name: Daily Approved Blog Publish
+
+on:
+  schedule:
+    # Beijing time 09:00 = UTC 01:00.
+    - cron: "0 1 * * *"
+  workflow_dispatch:
+
+jobs:
+  trigger-production-rebuild:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check Vercel deploy hook secret
+        run: |
+          if [ -z "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}" ]; then
+            echo "::error::Missing VERCEL_DEPLOY_HOOK_URL. Add a Vercel Deploy Hook URL as this repository secret so scheduled approved blog posts can become visible after their publishDate."
+            exit 1
+          fi
+
+      - name: Trigger Vercel production rebuild
+        run: |
+          curl --fail --show-error --silent --request POST "${{ secrets.VERCEL_DEPLOY_HOOK_URL }}"

@@ -17,12 +17,14 @@
     "seo:rematch:images": "node scripts/seo/rematch-blog-images.mjs",
     "seo:download:editorial": "node scripts/seo/download-blog-editorial-images.mjs",
     "seo:download:blog-v2": "node scripts/download-blog-v2-images.mjs",
+    "projects:prepare-images": "node scripts/prepare-project-application-images.mjs",
     "projects:replace-images": "node scripts/replace-project-images.mjs",
     "projects:replace-wall-panel-images": "node scripts/replace-project-images.mjs --slug=villa-wpc-wall-panel",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "framer-motion": "^11.15.0",

@@ -8,10 +8,13 @@ import {
 
 export const FIELD_LIMITS = {
   name: 120,
+  company: 200,
   email: 254,
   whatsapp: 32,
   country: 100,
   quantity: 120,
+  targetPort: 120,
+  oemNeeded: 32,
   targetPrice: 80,
   message: 5000,
   sourcePage: 120,
@@ -43,10 +46,7 @@ export function validateInquiryPayload(body: unknown): ValidationResult {
 
   if (
     !isNonEmptyString(data.name) ||
-    !isNonEmptyString(data.email) ||
-    !isNonEmptyString(data.whatsapp) ||
     !isNonEmptyString(data.country) ||
-    !isNonEmptyString(data.quantity) ||
     !isNonEmptyString(data.message) ||
     !PRODUCT_INTERESTS.includes(productInterest) ||
     !CUSTOMER_TYPES.includes(customerType)
@@ -55,24 +55,43 @@ export function validateInquiryPayload(body: unknown): ValidationResult {
   }
 
   const name = data.name.trim();
-  const email = data.email.trim().toLowerCase();
-  const whatsapp = data.whatsapp.trim();
+  const company = isNonEmptyString(data.company) ? data.company.trim() : "";
+  const email = isNonEmptyString(data.email) ? data.email.trim().toLowerCase() : "";
+  const whatsapp = isNonEmptyString(data.whatsapp) ? data.whatsapp.trim() : "";
   const country = data.country.trim();
-  const quantity = data.quantity.trim();
+  const quantity = isNonEmptyString(data.quantity) ? data.quantity.trim() : "";
+  const targetPort = isNonEmptyString(data.targetPort) ? data.targetPort.trim() : "";
+  const oemNeeded = isNonEmptyString(data.oemNeeded) ? data.oemNeeded.trim() : "";
   const targetPrice = isNonEmptyString(data.targetPrice) ? data.targetPrice.trim() : "";
   const message = data.message.trim();
 
+  if (!email && !whatsapp) {
+    return { ok: false, reason: "contact_required" };
+  }
+
   if (!withinLimit(name, FIELD_LIMITS.name)) return { ok: false, reason: "name_too_long" };
-  if (!withinLimit(email, FIELD_LIMITS.email) || !EMAIL_RE.test(email)) {
+  if (company && !withinLimit(company, FIELD_LIMITS.company)) return { ok: false, reason: "company_too_long" };
+
+  if (email && (!withinLimit(email, FIELD_LIMITS.email) || !EMAIL_RE.test(email))) {
     return { ok: false, reason: "invalid_email" };
   }
-  if (!withinLimit(whatsapp, FIELD_LIMITS.whatsapp) || !WHATSAPP_RE.test(whatsapp)) {
-    return { ok: false, reason: "invalid_whatsapp" };
+
+  if (whatsapp) {
+    if (!withinLimit(whatsapp, FIELD_LIMITS.whatsapp) || !WHATSAPP_RE.test(whatsapp)) {
+      return { ok: false, reason: "invalid_whatsapp" };
+    }
+    const digitCount = whatsapp.replace(/\D/g, "").length;
+    if (digitCount < 8) return { ok: false, reason: "invalid_whatsapp" };
   }
-  const digitCount = whatsapp.replace(/\D/g, "").length;
-  if (digitCount < 8) return { ok: false, reason: "invalid_whatsapp" };
+
   if (!withinLimit(country, FIELD_LIMITS.country)) return { ok: false, reason: "country_too_long" };
-  if (!withinLimit(quantity, FIELD_LIMITS.quantity)) return { ok: false, reason: "quantity_too_long" };
+  if (quantity && !withinLimit(quantity, FIELD_LIMITS.quantity)) return { ok: false, reason: "quantity_too_long" };
+  if (targetPort && !withinLimit(targetPort, FIELD_LIMITS.targetPort)) {
+    return { ok: false, reason: "target_port_too_long" };
+  }
+  if (oemNeeded && !withinLimit(oemNeeded, FIELD_LIMITS.oemNeeded)) {
+    return { ok: false, reason: "oem_needed_too_long" };
+  }
   if (targetPrice && !withinLimit(targetPrice, FIELD_LIMITS.targetPrice)) {
     return { ok: false, reason: "target_price_too_long" };
   }
@@ -93,11 +112,14 @@ export function validateInquiryPayload(body: unknown): ValidationResult {
     ok: true,
     payload: {
       name,
+      company,
       email,
       whatsapp,
       country,
       productInterest,
       quantity,
+      targetPort,
+      oemNeeded,
       targetPrice,
       customerType,
       message,

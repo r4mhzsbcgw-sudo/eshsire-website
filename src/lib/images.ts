@@ -1,7 +1,9 @@
 /**
- * Site images 閳?set USE_LOCAL_IMAGES = true after adding files under public/images/
+ * Site images — all paths resolved via src/content/media/media-library.ts
  * See public/images/README.md
  */
+import { getMediaSrc, gallerySrcFromMediaIds } from "@/content/media";
+
 export const USE_LOCAL_IMAGES = true;
 
 function localPath(...parts: string[]) {
@@ -14,165 +16,59 @@ function galleryLocal(folder: string, count: number) {
   );
 }
 
-// 閳ユ柡鈧柡鈧?Home 閳ユ柡鈧柡鈧?
-const homeLocal = {
-  hero: localPath("home", "hero.jpg"),
-  heroVideo: localPath("home", "hero.mp4"),
-  heroBanner: localPath("home", "hero-banner.jpg"),
-  spcFlooring: localPath("home", "spc-flooring.jpg"),
-  wallPanels: localPath("home", "wall-panels.jpg"),
-  accessories: localPath("home", "accessories.jpg"),
-  factoryVideoBg: localPath("home", "factory-video-bg.jpg"),
-  factoryStrength: [
-    localPath("home", "factory", "01-production.jpg"),
-    localPath("home", "factory", "02-quality.jpg"),
-    localPath("home", "factory", "03-warehouse.jpg"),
-    localPath("home", "factory", "04-loading.jpg"),
-    localPath("home", "factory", "05-oem.jpg"),
-    localPath("home", "factory", "06-export.jpg"),
-  ],
-} as const;
-
-const homeRemote = {
-  hero: "/images/home/factory/01-production.jpg",
-  heroVideo: null as string | null,
-  spcFlooring:
-    "/images/home/factory/01-production.jpg",
-  wallPanels:
-    "/images/home/factory/01-production.jpg",
-  accessories:
-    "/images/home/factory/01-production.jpg",
-} as const;
-
-// 閳ユ柡鈧柡鈧?About / company 閳ユ柡鈧柡鈧?
-const aboutRemote = {
-  hero: "/images/home/factory/01-production.jpg",
-  story: "/images/home/factory/01-production.jpg",
-  gallery: [
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-  ],
-};
-
-// 閳ユ柡鈧柡鈧?SPC Flooring 閳ユ柡鈧柡鈧?
-const spcRemote = {
-  hero: "/images/home/factory/01-production.jpg",
-  featured: "/images/home/factory/01-production.jpg",
-  gallery: [
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-  ],
-  applications: [
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-  ],
-};
-
-// 閳ユ柡鈧柡鈧?Wall Panels 閳ユ柡鈧柡鈧?
-const wallRemote = {
-  hero: "/images/home/factory/01-production.jpg",
-  gallery: [
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-  ],
-  /** One image per product line card (3 items) */
-  productLines: [
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-    "/images/home/factory/01-production.jpg",
-  ],
-};
-
-type HomeSharedKey = keyof typeof homeLocal & keyof typeof homeRemote;
-type HomeStringKey = {
-  [K in HomeSharedKey]:
-    (typeof homeLocal)[K] extends string
-      ? (typeof homeRemote)[K] extends string
-        ? K
-        : never
-      : never;
-}[HomeSharedKey];
-
-function pickHome<K extends HomeStringKey>(key: K): string {
-  return USE_LOCAL_IMAGES ? homeLocal[key] : homeRemote[key];
-}
-
-/** Homepage hero carousel */
+/** Homepage hero carousel — media-library ids */
 export const homeCarouselSlides = [
   {
-    image: "/images/home/carousel/slide-01.jpg",
+    image: getMediaSrc("carousel-factory-01"),
     altEn: "Eshsire factory building and 30 years manufacturing",
-    altZh: "Eshsire Group factory building and 30 years manufacturing strength",
+    altZh: "Eshsire Group 工厂厂房与 30 年制造实力",
   },
   {
-    image: "/images/home/carousel/slide-02.jpg",
+    image: getMediaSrc("carousel-products-02"),
     altEn: "SPC flooring and WPC wall panel manufacturer",
-    altZh: "SPC flooring and WPC wall panel manufacturer",
+    altZh: "SPC 地板与 WPC 墙板制造商",
   },
   {
-    image: "/images/home/carousel/slide-03.jpg",
+    image: getMediaSrc("carousel-export-03"),
     altEn: "Manufacturing capability and global buyer services",
-    altZh: "Manufacturing capability and global buyer services",
+    altZh: "制造能力与全球客户服务",
   },
+] as const;
+
+const FACTORY_STRENGTH_IDS = [
+  "factory-production-line",
+  "factory-quality-station",
+  "factory-warehouse",
+  "factory-container-loading",
+  "factory-oem-packaging",
+  "factory-export-docs",
 ] as const;
 
 export const homeImages = {
   get hero() {
-    return pickHome("hero");
+    return getMediaSrc("home-hero-factory");
   },
   get heroVideo() {
-    return USE_LOCAL_IMAGES ? homeLocal.heroVideo : homeRemote.heroVideo;
+    return getMediaSrc("factory-hero-video");
   },
   get heroBanner() {
-    return USE_LOCAL_IMAGES ? homeLocal.heroBanner : homeRemote.hero;
+    return getMediaSrc("home-hero-banner");
   },
   get spcFlooring() {
-    return pickHome("spcFlooring");
+    return getMediaSrc("home-spc-category");
   },
   get wallPanels() {
-    return pickHome("wallPanels");
+    return getMediaSrc("home-wall-category");
   },
   get accessories() {
-    return pickHome("accessories");
+    return "/images/home/accessories/spc-accessories-grid.png";
   },
   get factoryVideoBg() {
-    return USE_LOCAL_IMAGES ? homeLocal.factoryVideoBg : homeRemote.hero;
+    return getMediaSrc("factory-video-bg");
   },
   get factoryStrength() {
-    return USE_LOCAL_IMAGES
-      ? homeLocal.factoryStrength
-      : [
-          "/images/home/factory/01-production.jpg",
-          "/images/home/factory/01-production.jpg",
-          "/images/home/factory/01-production.jpg",
-          "/images/home/factory/01-production.jpg",
-          "/images/home/factory/01-production.jpg",
-          "/images/home/factory/01-production.jpg",
-        ];
+    return gallerySrcFromMediaIds([...FACTORY_STRENGTH_IDS]);
   },
-  localPaths: homeLocal,
 };
 
 /** @deprecated Use getCaseImage from @/content/projects/case-images */
@@ -185,95 +81,81 @@ export {
 
 export const aboutImages = {
   get hero() {
-    return USE_LOCAL_IMAGES ? localPath("about", "hero.jpg") : aboutRemote.hero;
+    return getMediaSrc("about-hero");
   },
   get story() {
-    return USE_LOCAL_IMAGES ? localPath("about", "gallery", "02.jpg") : aboutRemote.story;
+    return getMediaSrc("factory-production-line");
   },
   get gallery() {
-    return USE_LOCAL_IMAGES
-      ? galleryLocal("about/gallery", 6)
-      : aboutRemote.gallery.slice(0, 6);
+    return gallerySrcFromMediaIds([
+      "factory-production-line",
+      "factory-quality-station",
+      "factory-warehouse",
+      "factory-container-loading",
+      "factory-oem-packaging",
+      "factory-export-docs",
+    ]);
   },
 };
 
 export const spcFlooringImages = {
   get hero() {
-    return USE_LOCAL_IMAGES ? localPath("products", "spc", "featured.jpg") : spcRemote.hero;
+    return localPath("products", "spc", "featured.jpg");
   },
   get featured() {
-    return USE_LOCAL_IMAGES ? localPath("products", "spc", "featured.jpg") : spcRemote.featured;
+    return localPath("products", "spc", "featured.jpg");
   },
   get gallery() {
-    return USE_LOCAL_IMAGES
-      ? galleryLocal("products/spc/gallery", 8)
-      : spcRemote.gallery;
+    return galleryLocal("products/spc/gallery", 8);
   },
   get applications() {
-    if (USE_LOCAL_IMAGES) {
-      return [
-        localPath("blog", "7-mistakes", "05.jpg"),
-        localPath("blog", "7-mistakes", "03.jpg"),
-        localPath("blog", "7-mistakes", "01.jpg"),
-        localPath("blog", "7-mistakes", "02.jpg"),
-        localPath("blog", "7-mistakes", "06.jpg"),
-        localPath("blog", "7-mistakes", "04.jpg"),
-      ];
-    }
-    return spcRemote.applications;
+    return [
+      localPath("blog", "7-mistakes", "05.jpg"),
+      localPath("blog", "7-mistakes", "03.jpg"),
+      localPath("blog", "7-mistakes", "01.jpg"),
+      localPath("blog", "7-mistakes", "02.jpg"),
+      localPath("blog", "7-mistakes", "06.jpg"),
+      localPath("blog", "7-mistakes", "04.jpg"),
+    ];
   },
 };
 
 export const factoryPageImages = {
   get hero() {
-    return USE_LOCAL_IMAGES
-      ? localPath("home", "factory", "01-production.jpg")
-      : "/images/home/factory/01-production.jpg";
+    return getMediaSrc("factory-production-line");
   },
 };
 
 export const oemImages = {
   get hero() {
-    return USE_LOCAL_IMAGES
-      ? localPath("home", "factory", "05-oem.jpg")
-      : "/images/home/factory/01-production.jpg";
+    return getMediaSrc("factory-oem-packaging");
   },
 };
 
 export const contactImages = {
   get hero() {
-    return USE_LOCAL_IMAGES
-      ? localPath("home", "spc-flooring.jpg")
-      : "/images/home/factory/01-production.jpg";
+    return getMediaSrc("home-spc-category");
   },
 };
 
 export const accessoriesImages = {
   get hero() {
-    return USE_LOCAL_IMAGES
-      ? localPath("home", "accessories.jpg")
-      : homeRemote.accessories;
+    return getMediaSrc("home-accessories-category");
   },
 };
 
 export const wallPanelImages = {
   get hero() {
-    return USE_LOCAL_IMAGES
-      ? localPath("products", "wall-panels", "hero.jpg")
-      : wallRemote.hero;
+    return localPath("products", "wall-panels", "hero.jpg");
   },
   get gallery() {
-    return USE_LOCAL_IMAGES
-      ? galleryLocal("products/wall-panels/gallery", 8)
-      : wallRemote.gallery;
+    return galleryLocal("products/wall-panels/gallery", 8);
   },
   get productLines() {
-    return USE_LOCAL_IMAGES
-      ? [
-          localPath("products", "wall-panels", "line-uv.jpg"),
-          localPath("products", "wall-panels", "line-decor.jpg"),
-          localPath("products", "wall-panels", "line-spc.jpg"),
-        ]
-      : wallRemote.productLines;
+    return [
+      localPath("products", "wall-panels", "line-spc.jpg"),
+      "/images/home/wall-panels/wpc-wall-panel-stack.png",
+      localPath("products", "wall-panels", "line-decor.jpg"),
+    ];
   },
 };

@@ -5,7 +5,10 @@ import { pageUrl } from "@/lib/seo";
 import { siteConfig } from "@/lib/config";
 import type { BlogPost } from "@/content/blog/types";
 import { PROJECT_SLUGS } from "@/content/projects";
-import { productFaqItems } from "@/components/seo/ProductFaq";
+import {
+  localizeProjectApplication,
+  type ProjectApplication,
+} from "@/config/projectApplications";
 
 const PATH_LABEL_KEYS: Record<
   string,
@@ -132,12 +135,91 @@ export async function FaqJsonLd({ locale, path }: { locale: Locale; path: string
   if (path !== "/faq" && !isProductFaq) return null;
 
   const dict = await getDictionary(locale);
-  const items = isProductFaq ? productFaqItems : dict.faq.items;
+  const items =
+    path === "/wall-panels"
+      ? dict.wallPanels.faq.items
+      : path === "/accessories"
+        ? dict.accessories.faq.items
+      : isProductFaq
+        ? dict.spcFlooring.faq.items
+        : dict.faq.items;
   const schema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     inLanguage: htmlLangMap[locale],
     mainEntity: items.map((item) => ({
+      "@type": "Question",
+      name: item.q,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.a,
+      },
+    })),
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export function ApplicationBreadcrumbJsonLd({
+  locale,
+  application,
+}: {
+  locale: Locale;
+  application: ProjectApplication;
+}) {
+  const localized = localizeProjectApplication(application, locale);
+  const path = `/applications/${application.slug}`;
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: locale === "zh" ? "首页" : locale === "es" ? "Inicio" : "Home",
+        item: pageUrl(locale, ""),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: locale === "zh" ? "应用方案" : locale === "es" ? "Aplicaciones" : "Applications",
+        item: `${pageUrl(locale, "")}#supply-scenarios`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: localized.title,
+        item: pageUrl(locale, path),
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+export function ApplicationFaqJsonLd({
+  locale,
+  application,
+}: {
+  locale: Locale;
+  application: ProjectApplication;
+}) {
+  const localized = localizeProjectApplication(application, locale);
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: htmlLangMap[locale],
+    mainEntity: localized.faq.map((item) => ({
       "@type": "Question",
       name: item.q,
       acceptedAnswer: {
@@ -215,7 +297,7 @@ export function ArticleJsonLd({ locale, post }: { locale: Locale; post: BlogPost
     inLanguage: htmlLangMap[locale],
     author: {
       "@type": "Organization",
-      name: siteConfig.name,
+      name: post.author ?? siteConfig.name,
       url: siteConfig.url,
     },
     publisher: {
@@ -234,9 +316,19 @@ export function ArticleJsonLd({ locale, post }: { locale: Locale; post: BlogPost
   );
 }
 
-export async function ProjectsSectionJsonLd({ locale }: { locale: Locale }) {
+export async function ProductionTrackingJsonLd({ locale }: { locale: Locale }) {
   const dict = await getDictionary(locale);
   const items = dict.home.projects.items;
+  const stepPaths = [
+    "/oem-service",
+    "/oem-service",
+    "/factory",
+    "/factory",
+    "/oem-service",
+    "/factory",
+    "/contact",
+    "/contact",
+  ] as const;
 
   const schema = {
     "@context": "https://schema.org",
@@ -250,10 +342,10 @@ export async function ProjectsSectionJsonLd({ locale }: { locale: Locale }) {
       position: i + 1,
       item: {
         "@type": "HowToStep",
-        "@id": pageUrl(locale, `/cases/${project.slug}`),
+        "@id": pageUrl(locale, stepPaths[i] ?? "/contact"),
         name: project.title,
         text: project.desc,
-        url: pageUrl(locale, `/cases/${project.slug}`),
+        url: pageUrl(locale, stepPaths[i] ?? "/contact"),
         position: i + 1,
       },
     })),
@@ -266,6 +358,9 @@ export async function ProjectsSectionJsonLd({ locale }: { locale: Locale }) {
     />
   );
 }
+
+/** @deprecated Use ProductionTrackingJsonLd */
+export const ProjectsSectionJsonLd = ProductionTrackingJsonLd;
 
 export function ProjectJsonLd({
   locale,

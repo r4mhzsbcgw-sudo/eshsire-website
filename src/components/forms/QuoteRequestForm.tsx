@@ -1,8 +1,10 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { useLocale } from "@/context/LocaleContext";
 import { siteConfig } from "@/lib/config";
+import { trackEvent } from "@/lib/analytics";
 import { CUSTOMER_TYPES, PRODUCT_INTERESTS } from "@/lib/inquiries/types";
 
 type QuoteRequestFormProps = {
@@ -25,6 +27,7 @@ export function QuoteRequestForm({
   compact = false,
 }: QuoteRequestFormProps) {
   const { locale, dict } = useLocale();
+  const pathname = usePathname();
   const f = dict.contact.quoteForm;
   const [status, setStatus] = useState<FormOutcome>("idle");
 
@@ -34,13 +37,25 @@ export function QuoteRequestForm({
 
     const form = e.currentTarget;
     const data = new FormData(form);
+    const email = String(data.get("email") ?? "").trim();
+    const whatsapp = String(data.get("whatsapp") ?? "").trim();
+
+    if (!email && !whatsapp) {
+      setStatus("validation_error");
+      return;
+    }
+
+    const productInterest = String(data.get("productInterest") ?? "");
     const payload = {
       name: data.get("name"),
+      company: data.get("company"),
       email: data.get("email"),
       whatsapp: data.get("whatsapp"),
       country: data.get("country"),
       productInterest: data.get("productInterest"),
       quantity: data.get("quantity"),
+      targetPort: data.get("targetPort"),
+      oemNeeded: data.get("oemNeeded"),
       targetPrice: data.get("targetPrice"),
       customerType: data.get("customerType"),
       message: data.get("message"),
@@ -67,6 +82,19 @@ export function QuoteRequestForm({
         setStatus("delivery_failed");
         return;
       }
+
+      trackEvent("generate_lead", {
+        page_path: pathname,
+        language: locale,
+        cta_location: compact ? "quote_form_compact" : "quote_form",
+        product_interest: productInterest,
+      });
+      trackEvent("request_quote", {
+        page_path: pathname,
+        language: locale,
+        cta_location: compact ? "quote_form_compact" : "quote_form",
+        product_interest: productInterest,
+      });
 
       setStatus("success");
       form.reset();
@@ -160,21 +188,10 @@ export function QuoteRequestForm({
 
       <div className={`grid grid-cols-1 gap-4 sm:grid-cols-2 ${compact ? "mt-0" : "mt-6"}`}>
         <input name="name" required placeholder={f.name} className={inputClass} autoComplete="name" />
-        <input name="email" type="email" required placeholder={f.email} className={inputClass} autoComplete="email" />
-        <input name="whatsapp" required placeholder={f.whatsapp} className={inputClass} autoComplete="tel" />
+        <input name="company" placeholder={f.company} className={inputClass} autoComplete="organization" />
+        <input name="email" type="email" placeholder={f.email} className={inputClass} autoComplete="email" />
+        <input name="whatsapp" placeholder={f.whatsapp} className={inputClass} autoComplete="tel" />
         <input name="country" required placeholder={f.country} className={inputClass} autoComplete="country-name" />
-        <select name="productInterest" required className={selectClass} defaultValue="">
-          <option value="" disabled className="bg-industrial-dark">
-            {f.selectProduct}
-          </option>
-          {PRODUCT_INTERESTS.map((key) => (
-            <option key={key} value={key} className="bg-industrial-dark">
-              {f.products[key]}
-            </option>
-          ))}
-        </select>
-        <input name="quantity" required placeholder={f.quantity} className={inputClass} />
-        <input name="targetPrice" placeholder={f.targetPrice} className={inputClass} />
         <select name="customerType" required className={selectClass} defaultValue="">
           <option value="" disabled className="bg-industrial-dark">
             {f.selectCustomerType}
@@ -185,7 +202,35 @@ export function QuoteRequestForm({
             </option>
           ))}
         </select>
+        <select name="productInterest" required className={selectClass} defaultValue="">
+          <option value="" disabled className="bg-industrial-dark">
+            {f.selectProduct}
+          </option>
+          {PRODUCT_INTERESTS.map((key) => (
+            <option key={key} value={key} className="bg-industrial-dark">
+              {f.products[key]}
+            </option>
+          ))}
+        </select>
+        <input name="quantity" placeholder={f.quantity} className={inputClass} />
+        <input name="targetPort" placeholder={f.targetPort} className={inputClass} />
+        <select name="oemNeeded" className={selectClass} defaultValue="">
+          <option value="" className="bg-industrial-dark">
+            {f.oemNeeded}
+          </option>
+          <option value="yes" className="bg-industrial-dark">
+            {f.oemOptions.yes}
+          </option>
+          <option value="no" className="bg-industrial-dark">
+            {f.oemOptions.no}
+          </option>
+          <option value="unsure" className="bg-industrial-dark">
+            {f.oemOptions.unsure}
+          </option>
+        </select>
+        <input name="targetPrice" placeholder={f.targetPrice} className={inputClass} />
       </div>
+      <p className="mt-3 text-xs text-industrial-mist">{f.contactHint}</p>
       <textarea
         name="message"
         required

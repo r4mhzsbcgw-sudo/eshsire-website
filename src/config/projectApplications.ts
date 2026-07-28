@@ -328,6 +328,9 @@ export function appLocale(locale: Locale | string): ApplicationLocale {
 }
 
 export function getApplicationPath(locale: Locale | string, slug: string): string {
+  if (slug === "mixed-container-spc-wall-panels") {
+    return `/${locale}/mixed-container-spc-flooring-wall-panels`;
+  }
   return `/${locale}/applications/${slug}`;
 }
 

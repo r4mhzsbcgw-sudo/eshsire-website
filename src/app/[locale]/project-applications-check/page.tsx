@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { PROJECT_APPLICATIONS, localizeApplication } from "@/content/project-applications";
+import { getApplicationPath } from "@/config/projectApplications";
 import { isLocale, type Locale } from "@/i18n/locales";
-import { localizedPath } from "@/i18n/navigation";
 
 export const metadata: Metadata = {
   title: "Internal — Project Application Images",
@@ -28,7 +28,7 @@ export default function ProjectApplicationsCheckPage({
               <p className="text-xs font-semibold text-amber-700">Card {i + 1}</p>
               <h2 className="mt-1 font-bold">{loc.title}</h2>
               <p className="text-xs text-neutral-500">
-                {localizedPath(locale, `/applications/${card.slug}`)}
+                {getApplicationPath(locale, card.slug)}
               </p>
               <div className="relative mt-3 aspect-[16/10] overflow-hidden rounded border">
                 <Image src={card.cardImage} alt={loc.alt} fill className="object-cover" sizes="400px" />

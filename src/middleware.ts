@@ -6,6 +6,24 @@ import {
   type Locale,
 } from "@/i18n/locales";
 
+const MIXED_CONTAINER_REDIRECT_LOCALES = new Set([
+  "zh",
+  "en",
+  "es",
+  "fr",
+  "ar",
+  "ru",
+]);
+
+function mixedContainerRedirect(pathname: string): string | null {
+  const match = pathname.match(
+    /^\/([^/]+)\/applications\/mixed-container-spc-wall-panels$/
+  );
+  const locale = match?.[1];
+  if (!locale || !MIXED_CONTAINER_REDIRECT_LOCALES.has(locale)) return null;
+  return `/${locale}/mixed-container-spc-flooring-wall-panels`;
+}
+
 function localeFromPathname(pathname: string): Locale | null {
   const segment = pathname.split("/")[1];
   return segment && isLocale(segment) ? segment : null;
@@ -42,6 +60,13 @@ export function middleware(request: NextRequest) {
 
   if (pathname === "/") {
     return withSeoHeaders(request);
+  }
+
+  const mixedContainerDestination = mixedContainerRedirect(pathname);
+  if (mixedContainerDestination) {
+    const url = request.nextUrl.clone();
+    url.pathname = mixedContainerDestination;
+    return withSeoHeaders(request, NextResponse.redirect(url, 301));
   }
 
   const pathnameHasLocale = locales.some(

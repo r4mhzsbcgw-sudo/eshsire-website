@@ -5,7 +5,7 @@ import Link from "next/link";
 import { FadeIn } from "@/components/motion/FadeIn";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { useLocale } from "@/context/LocaleContext";
-import { localizedPath } from "@/i18n/navigation";
+import { getApplicationPath } from "@/config/projectApplications";
 import { PROJECT_APPLICATIONS, localizeApplication } from "@/content/project-applications";
 
 export function ProjectApplications() {
@@ -33,7 +33,7 @@ export function ProjectApplications() {
             return (
               <FadeIn key={card.id} delay={i * 0.04}>
                 <Link
-                  href={localizedPath(locale, `/applications/${card.slug}`)}
+                  href={getApplicationPath(locale, card.slug)}
                   className="group flex h-full flex-col overflow-hidden rounded-lg border border-white/10 bg-white/5 shadow-glass transition-all duration-300 hover:border-accent/40 hover:shadow-industrial"
                 >
                   <div className="relative aspect-[16/10] overflow-hidden">

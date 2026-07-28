@@ -35,7 +35,6 @@ const ROUTES = [
   "/applications/education-high-traffic-flooring",
   "/applications/residential-renovation-supply",
   "/applications/office-retail-flooring-supply",
-  "/applications/mixed-container-spc-wall-panels",
   "/applications/easy-maintenance-public-spaces",
   "/applications/interior-wall-panel-solutions",
 ];

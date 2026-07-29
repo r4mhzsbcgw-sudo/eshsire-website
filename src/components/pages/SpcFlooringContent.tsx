@@ -17,7 +17,11 @@ import { spcFlooringImages } from "@/lib/images";
 export function SpcFlooringContent() {
   const { locale, dict } = useLocale();
   const d = dict.spcFlooring;
+  const isEnglish = locale === "en";
   const applicationImages = spcFlooringImages.applications;
+  const productDescription = isEnglish
+    ? "Eshsire is an SPC flooring manufacturer in China serving importers, distributors and project buyers. As a wholesale SPC flooring supplier, we provide waterproof SPC flooring in 4mm, 5mm and 6mm options with OEM packaging, factory quality inspection and export support."
+    : d.productDesc;
 
   const galleryItems = spcFlooringImages.gallery.map((src, i) => ({
     src,
@@ -30,7 +34,7 @@ export function SpcFlooringContent() {
       <section className="section-padding">
         <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <FadeIn>
-            <SectionHeader label={d.productLabel} title={d.productTitle} description={d.productDesc} />
+            <SectionHeader label={d.productLabel} title={d.productTitle} description={productDescription} />
             <ul className="mt-8 grid grid-cols-2 gap-3">
               {d.specs.map((s) => (
                 <li key={s} className="flex items-center gap-2 text-sm text-industrial-light">
@@ -45,6 +49,22 @@ export function SpcFlooringContent() {
             <Link href={localizedPath(locale, "/spc-flooring/specs")} className="mt-4 inline-block text-sm font-semibold text-accent hover:underline">
               {dict.meta.pages.spcSpecs} →
             </Link>
+            {isEnglish ? (
+              <nav aria-label="SPC flooring buyer resources" className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-sm">
+                <Link href="/en/spc-flooring/specs" className="font-semibold text-accent hover:underline">
+                  SPC flooring specs
+                </Link>
+                <Link href="/en/blog/spc-flooring-wear-layer-guide" className="font-semibold text-accent hover:underline">
+                  SPC wear layer guide
+                </Link>
+                <Link href="/en/contact" className="font-semibold text-accent hover:underline">
+                  Contact our SPC flooring factory
+                </Link>
+                <Link href="/en/oem-service" className="font-semibold text-accent hover:underline">
+                  OEM packaging service
+                </Link>
+              </nav>
+            ) : null}
           </FadeIn>
           <FadeIn delay={0.2}>
             <div className="relative aspect-square overflow-hidden rounded-2xl border border-white/10">

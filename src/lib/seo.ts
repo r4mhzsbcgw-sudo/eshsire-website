@@ -42,23 +42,23 @@ export const PAGE_OG_IMAGES: Record<string, string> = {
 
 const TITLE_OVERRIDES: Record<string, string> = {
   "": "Eshsire Group | SPC Flooring Manufacturer in China",
-  "/spc-flooring": "SPC Flooring Manufacturer in China | Eshsire Group",
+  "/spc-flooring": "SPC Flooring Manufacturer in China | Wholesale SPC Flooring Supplier",
   "/wall-panels": "SPC Wall Panels | Eshsire Group",
   "/accessories": "SPC Flooring Accessories | Eshsire Group",
-  "/spc-flooring/specs": "SPC Flooring Specifications | Eshsire Group",
+  "/spc-flooring/specs": "SPC Flooring Specs Guide | Thickness, Wear Layer, IXPE Padding",
 };
 
 const DESCRIPTION_OVERRIDES: Record<string, string> = {
   "":
     "Eshsire Group manufactures SPC flooring and wall panels in China for distributors, importers, contractors, and OEM private label projects.",
   "/spc-flooring":
-    "Source waterproof SPC flooring from a China manufacturer with OEM branding, quality control, container loading support, and export documentation.",
+    "SPC flooring manufacturer in China for importers, distributors and project buyers. Compare 4mm, 5mm and 6mm waterproof SPC flooring with OEM packaging, quality inspection and export support.",
   "/wall-panels":
     "Explore SPC wall panels, UV marble panels, and decorative interior panels for distributors, contractors, and OEM projects worldwide.",
   "/accessories":
     "Order SPC flooring accessories including skirting boards, profiles, underlayment, and matching trims for commercial and residential projects.",
   "/spc-flooring/specs":
-    "Review SPC flooring thickness, wear layer, plank sizes, click-lock options, MOQ, lead time, certifications, and container order details.",
+    "Review SPC flooring specifications including thickness, wear layer, 1220 x 184mm plank size and optional IXPE padding for wholesale and project buyers.",
 };
 
 function absoluteImageUrl(imagePath: string): string {

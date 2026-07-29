@@ -71,6 +71,57 @@ export async function WebPageJsonLd({
   );
 }
 
+export function CollectionPageJsonLd({
+  locale,
+  path,
+  name,
+  description,
+  items,
+}: {
+  locale: Locale;
+  path: string;
+  name: string;
+  description: string;
+  items: string[];
+}) {
+  const page = pageUrl(locale, path);
+  const schema = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "@id": `${page}#webpage`,
+        url: page,
+        name,
+        description,
+        isPartOf: { "@id": `${siteConfig.url}/#website` },
+        about: { "@id": `${siteConfig.url}/#organization` },
+        inLanguage: htmlLangMap[locale],
+        mainEntity: { "@id": `${page}#itemlist` },
+      },
+      {
+        "@type": "ItemList",
+        "@id": `${page}#itemlist`,
+        name: `${name} options`,
+        numberOfItems: items.length,
+        itemListElement: items.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item,
+          url: page,
+        })),
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
 export async function BreadcrumbJsonLd({ locale, path }: { locale: Locale; path: string }) {
   if (path === "/") return null;
 

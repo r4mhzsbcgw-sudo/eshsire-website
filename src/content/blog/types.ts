@@ -10,6 +10,29 @@ export type BlogBlock =
 export type ArticleSlot = "morning" | "afternoon" | "evening";
 export type BlogStatus = "draft" | "scheduled" | "published";
 
+export type BlogQueueEntry = {
+  dayNumber: number;
+  locale: "en";
+  title: string;
+  slug: string;
+  metaTitle: string;
+  metaDescription: string;
+  targetKeyword: string;
+  secondaryKeywords: string[];
+  publishDate: string;
+  status: BlogStatus;
+  approvedForPublish: boolean;
+  excerpt: string;
+  category: string;
+  tags: string[];
+  relatedProducts: string[];
+  internalLinks: Array<string | { label: string; href: string }>;
+  body: string;
+  faq: Array<{ question: string; answer: string }>;
+  cta: { label?: string; title?: string; text?: string; href: string };
+  isPlaceholder: boolean;
+};
+
 export type BlogPost = {
   slug: string;
   title: string;

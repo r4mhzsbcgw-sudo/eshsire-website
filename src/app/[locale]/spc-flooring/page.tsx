@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { SpcFlooringContent } from "@/components/pages/SpcFlooringContent";
-import { BreadcrumbJsonLd, FaqJsonLd, ProductJsonLd } from "@/components/seo/StructuredData";
+import {
+  BreadcrumbJsonLd,
+  CollectionPageJsonLd,
+  FaqJsonLd,
+  ProductJsonLd,
+} from "@/components/seo/StructuredData";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { isLocale, type Locale } from "@/i18n/locales";
 import { spcFlooringImages } from "@/lib/images";
@@ -36,14 +41,30 @@ export default async function SpcFlooringPage({
     <>
       <BreadcrumbJsonLd locale={locale} path="/spc-flooring" />
       <FaqJsonLd locale={locale} path="/spc-flooring" />
-      <ProductJsonLd
-        locale={locale}
-        name={dict.spcFlooring.productTitle}
-        description={dict.spcFlooring.productDesc}
-        image={spcFlooringImages.featured}
-        path="/spc-flooring"
-        category="SPC flooring"
-      />
+      {locale === "en" ? (
+        <CollectionPageJsonLd
+          locale={locale}
+          path="/spc-flooring"
+          name="SPC Flooring Manufacturer in China"
+          description="Eshsire supplies SPC flooring for importers, distributors and project buyers."
+          items={[
+            "4mm SPC Flooring",
+            "5mm SPC Flooring",
+            "6mm SPC Flooring",
+            "SPC Flooring with IXPE Padding",
+            "OEM SPC Flooring",
+          ]}
+        />
+      ) : (
+        <ProductJsonLd
+          locale={locale}
+          name={dict.spcFlooring.productTitle}
+          description={dict.spcFlooring.productDesc}
+          image={spcFlooringImages.featured}
+          path="/spc-flooring"
+          category="SPC flooring"
+        />
+      )}
       <SpcFlooringContent />
     </>
   );

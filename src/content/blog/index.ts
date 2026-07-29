@@ -6,6 +6,7 @@ import { spcSupplierManufacturerPostEn } from "./spc-supplier-manufacturer.en";
 import { generatedPostsEn } from "./generated/registry";
 import { localizeManualPost } from "./localize-manual-post";
 import { sprint1ApprovedBlogPosts } from "./approved-sprint-1";
+import { getPublishableQueuePosts } from "./queue";
 import type { BlogPost } from "./types";
 
 const manualNative = {
@@ -65,8 +66,11 @@ function resolveManualForLocale(locale: Locale): BlogPost[] {
 }
 
 function buildPostsForLocale(locale: Locale): BlogPost[] {
+  const queuePosts = locale === "en" ? getPublishableQueuePosts() : [];
   return sortByDateDesc(
-    [...resolveGeneratedForLocale(locale), ...resolveManualForLocale(locale)].filter((post) => isBlogPostVisible(post))
+    [...resolveGeneratedForLocale(locale), ...resolveManualForLocale(locale), ...queuePosts].filter((post) =>
+      isBlogPostVisible(post)
+    )
   );
 }
 

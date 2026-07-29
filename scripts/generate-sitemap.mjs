@@ -6,12 +6,14 @@
  * Only includes indexable URLs: 200-capable routes with published blog content.
  * Excludes /cases/* (noindex flow pages) and unpublished blog slugs.
  */
-import { existsSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, statSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 
 const SITE_URL = "https://www.eshsire.com";
 const LOCALES = ["zh", "en", "es", "fr", "ar", "ru"];
 const BLOG_LOCALES = ["zh", "en", "es"];
+const BLOG_QUEUE_PATH = join(process.cwd(), "content", "blog", "blogQueue.en.json");
+const MINIMUM_COMPLETE_BODY_CHARACTERS = 1000;
 const ROUTES = [
   "",
   "/spc-flooring",
@@ -105,6 +107,19 @@ function blogSlugIsPublished(slug) {
 const PUBLISHED_BLOG_SLUGS = BLOG_SLUGS.filter(blogSlugIsPublished);
 const SKIPPED_BLOG_SLUGS = BLOG_SLUGS.filter((slug) => !blogSlugIsPublished(slug));
 
+function queueEntryIsPublished(entry) {
+  if (entry.locale !== "en") return false;
+  if (entry.status !== "scheduled" && entry.status !== "published") return false;
+  if (entry.approvedForPublish !== true) return false;
+  if (entry.publishDate > beijingToday()) return false;
+  if (entry.isPlaceholder) return false;
+  if (typeof entry.body !== "string" || !entry.body.trim()) return false;
+  return entry.body.replace(/\s+/g, " ").trim().length >= MINIMUM_COMPLETE_BODY_CHARACTERS;
+}
+
+const queueConfig = JSON.parse(readFileSync(BLOG_QUEUE_PATH, "utf8"));
+const PUBLISHED_QUEUE_ENTRIES = queueConfig.entries.filter(queueEntryIsPublished);
+
 function latestIso(paths) {
   const times = paths
     .filter((path) => existsSync(path))
@@ -174,6 +189,12 @@ for (const locale of LOCALES) {
       urlEntry(`${SITE_URL}/${locale}/blog/${slug}`, "monthly", "0.7", blogLastMod(slug))
     );
   }
+}
+
+for (const entry of PUBLISHED_QUEUE_ENTRIES) {
+  entries.push(
+    urlEntry(`${SITE_URL}/en/blog/${entry.slug}`, "monthly", "0.7", latestIso([BLOG_QUEUE_PATH]))
+  );
 }
 
 const xml = `<?xml version="1.0" encoding="UTF-8"?>

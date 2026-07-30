@@ -5,6 +5,7 @@ import {
   locales,
   type Locale,
 } from "@/i18n/locales";
+import { shouldRedirectToPublishedEnglishQueuePost } from "@/content/blog/queue-redirects";
 
 const MIXED_CONTAINER_REDIRECT_LOCALES = new Set([
   "zh",
@@ -14,6 +15,23 @@ const MIXED_CONTAINER_REDIRECT_LOCALES = new Set([
   "ar",
   "ru",
 ]);
+
+const ENGLISH_BLOG_FALLBACK_LOCALES = new Set(["zh", "es", "fr", "ar", "ru"]);
+
+function englishBlogFallbackRedirect(pathname: string): string | null {
+  const match = pathname.match(/^\/([^/]+)\/blog\/([^/]+)\/?$/);
+  const locale = match?.[1];
+  const slug = match?.[2];
+  if (
+    !locale ||
+    !slug ||
+    !ENGLISH_BLOG_FALLBACK_LOCALES.has(locale) ||
+    !shouldRedirectToPublishedEnglishQueuePost(slug)
+  ) {
+    return null;
+  }
+  return `/en/blog/${slug}`;
+}
 
 function mixedContainerRedirect(pathname: string): string | null {
   const match = pathname.match(
@@ -66,6 +84,13 @@ export function middleware(request: NextRequest) {
   if (mixedContainerDestination) {
     const url = request.nextUrl.clone();
     url.pathname = mixedContainerDestination;
+    return withSeoHeaders(request, NextResponse.redirect(url, 301));
+  }
+
+  const englishBlogDestination = englishBlogFallbackRedirect(pathname);
+  if (englishBlogDestination) {
+    const url = request.nextUrl.clone();
+    url.pathname = englishBlogDestination;
     return withSeoHeaders(request, NextResponse.redirect(url, 301));
   }
 

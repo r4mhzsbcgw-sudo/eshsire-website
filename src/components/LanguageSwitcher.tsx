@@ -5,6 +5,15 @@ import { usePathname, useRouter } from "next/navigation";
 import { switchLocalePath } from "@/i18n/navigation";
 import { indexableLocales, localeLabels, type Locale } from "@/i18n/locales";
 import { useLocale } from "@/context/LocaleContext";
+import { shouldRedirectToPublishedEnglishQueuePost } from "@/content/blog/queue-redirects";
+
+function languageTarget(pathname: string, locale: Locale): string {
+  const match = pathname.match(/^\/en\/blog\/([^/]+)\/?$/);
+  if (match && shouldRedirectToPublishedEnglishQueuePost(match[1])) {
+    return pathname;
+  }
+  return switchLocalePath(pathname, locale);
+}
 
 export function LanguageSwitcher() {
   const pathname = usePathname();
@@ -18,7 +27,7 @@ export function LanguageSwitcher() {
         value={locale}
         onChange={(e) => {
           const next = e.target.value as Locale;
-          router.push(switchLocalePath(pathname, next));
+          router.push(languageTarget(pathname, next));
         }}
         className="max-w-[9.5rem] cursor-pointer appearance-none rounded border border-white/20 bg-white/10 py-1.5 pl-2 pr-7 text-xs font-semibold text-white backdrop-blur-sm focus:border-accent focus:outline-none"
         aria-label="Select language"
@@ -48,7 +57,7 @@ export function LanguageLinks({ className = "" }: { className?: string }) {
       {indexableLocales.map((loc) => (
         <li key={loc}>
           <Link
-            href={switchLocalePath(pathname, loc)}
+            href={languageTarget(pathname, loc)}
             className={
               locale === loc
                 ? "text-sm font-semibold text-accent"

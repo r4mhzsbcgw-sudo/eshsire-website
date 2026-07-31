@@ -1,32 +1,23 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
-import Image from "next/image";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { useLocale } from "@/context/LocaleContext";
-import { localizedPath } from "@/i18n/navigation";
 import { homeCarouselSlides } from "@/lib/images";
-import { trackEvent } from "@/lib/analytics";
 
 const INTERVAL_MS = 6000;
-const POSTER_SLIDE_SIZE = {
-  width: 1024,
-  height: 546,
-};
+const SWIPE_THRESHOLD_PX = 40;
 
 export function Hero() {
-  const { locale, dict } = useLocale();
-  const pathname = usePathname();
-  const hero = dict.home.hero;
+  const { locale } = useLocale();
   const [index, setIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const touchStartX = useRef<number | null>(null);
   const slides = homeCarouselSlides.map((slide) => ({
     image: slide.image,
+    fallback: slide.fallback,
     alt: locale === "zh" ? slide.altZh : slide.altEn,
   }));
-  const isMarketingSlide = index === 0;
-  const isPosterSlide = !isMarketingSlide;
 
   const goTo = useCallback(
     (nextIndex: number) => setIndex((nextIndex + slides.length) % slides.length),
@@ -36,141 +27,98 @@ export function Hero() {
   const prev = useCallback(() => goTo(index - 1), [goTo, index]);
 
   useEffect(() => {
+    if (isPaused) return;
     const timer = window.setInterval(next, INTERVAL_MS);
     return () => window.clearInterval(timer);
-  }, [next]);
+  }, [isPaused, next]);
 
-  function onCatalogClick() {
-    trackEvent("catalog_request", {
-      page_path: pathname,
-      language: locale,
-      cta_location: "hero",
-    });
+  function handleTouchStart(event: React.TouchEvent<HTMLElement>) {
+    touchStartX.current = event.touches[0]?.clientX ?? null;
+    setIsPaused(true);
   }
 
-  function onQuoteClick() {
-    trackEvent("request_quote", {
-      page_path: pathname,
-      language: locale,
-      cta_location: "hero",
-    });
+  function handleTouchEnd(event: React.TouchEvent<HTMLElement>) {
+    const startX = touchStartX.current;
+    const endX = event.changedTouches[0]?.clientX;
+    touchStartX.current = null;
+    setIsPaused(false);
+    if (startX === null || endX === undefined) return;
+    const distance = endX - startX;
+    if (Math.abs(distance) < SWIPE_THRESHOLD_PX) return;
+    if (distance < 0) next();
+    else prev();
   }
 
   return (
-    <section className="relative w-full overflow-hidden bg-industrial-dark pt-20">
-      <div className="relative mx-auto w-full max-w-7xl px-4 md:px-8">
-        <div
-          className={`relative overflow-hidden rounded-lg border border-white/10 bg-industrial-dark ${
-            isPosterSlide ? "aspect-[1024/546]" : "min-h-[320px] md:min-h-[420px]"
-          }`}
-        >
+    <section
+      className="relative w-full overflow-hidden bg-white pt-20"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onBlur={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      aria-roledescription="carousel"
+      aria-label="ESHSIRE company and product overview"
+    >
+      <div className="relative mx-auto w-full max-w-7xl px-2 sm:px-4 md:px-8">
+        <div className="relative aspect-[1672/941] w-full overflow-hidden rounded-lg bg-white">
           <AnimatePresence mode="wait">
-            <motion.div
+            <motion.picture
               key={slides[index].image}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
-              className={
-                isPosterSlide
-                  ? "relative flex h-full w-full items-center justify-center"
-                  : "absolute inset-0"
-              }
+              transition={{ duration: 0.45 }}
+              className="absolute inset-0 block h-full w-full bg-white"
             >
-              {isPosterSlide ? (
-                <Image
-                  src={slides[index].image}
-                  alt={slides[index].alt}
-                  width={POSTER_SLIDE_SIZE.width}
-                  height={POSTER_SLIDE_SIZE.height}
-                  className="h-auto w-full object-contain object-center"
-                  sizes="(max-width: 768px) 100vw, 1280px"
-                />
-              ) : (
-                <Image
-                  src={slides[index].image}
-                  alt={slides[index].alt}
-                  fill
-                  className="object-cover object-center"
-                  sizes="(max-width: 768px) 100vw, 1280px"
-                  priority
-                />
-              )}
-            </motion.div>
+              <source srcSet={slides[index].image} type="image/webp" />
+              {/* Supplied artwork is already optimized; PNG is the WebP fallback. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={slides[index].fallback}
+                alt={slides[index].alt}
+                width={1672}
+                height={941}
+                className="h-full w-full select-none object-contain object-center"
+                loading={index === 0 ? "eager" : "lazy"}
+                fetchPriority={index === 0 ? "high" : "auto"}
+                decoding={index === 0 ? "sync" : "async"}
+                draggable={false}
+              />
+            </motion.picture>
           </AnimatePresence>
-          <div
-            className={
-              isMarketingSlide
-                ? "absolute inset-0 bg-gradient-to-r from-industrial-dark/95 via-industrial-dark/75 to-industrial-dark/40"
-                : "absolute inset-0 bg-gradient-to-t from-industrial-dark/25 via-transparent to-industrial-dark/10"
-            }
-          />
 
           <button
             type="button"
             onClick={prev}
-            className="absolute left-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-industrial-dark/55 text-white backdrop-blur-sm transition-colors hover:border-accent hover:text-accent"
-            aria-label={locale === "zh" ? "上一屏" : locale === "es" ? "Diapositiva anterior" : "Previous slide"}
+            className="absolute left-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-slate-300 bg-white/90 text-lg font-bold text-blue-900 shadow-md transition-colors hover:border-blue-700 hover:bg-white sm:left-3 sm:h-10 sm:w-10"
+            aria-label="Previous slide"
           >
             {"<"}
           </button>
           <button
             type="button"
             onClick={next}
-            className="absolute right-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-white/25 bg-industrial-dark/55 text-white backdrop-blur-sm transition-colors hover:border-accent hover:text-accent"
-            aria-label={locale === "zh" ? "下一屏" : locale === "es" ? "Siguiente diapositiva" : "Next slide"}
+            className="absolute right-2 top-1/2 z-20 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-slate-300 bg-white/90 text-lg font-bold text-blue-900 shadow-md transition-colors hover:border-blue-700 hover:bg-white sm:right-3 sm:h-10 sm:w-10"
+            aria-label="Next slide"
           >
             {">"}
           </button>
 
-          {isMarketingSlide ? (
-            <div className="relative z-10 flex h-full flex-col justify-center px-6 py-10 md:px-12 md:py-14">
-              <p className="text-xs font-semibold uppercase tracking-[0.2em] text-accent md:text-sm">
-                {hero.label}
-              </p>
-              <h1 className="mt-4 max-w-3xl text-2xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">
-                {hero.title}
-              </h1>
-              <p className="mt-4 max-w-2xl text-sm leading-relaxed text-industrial-light md:text-base lg:text-lg">
-                {hero.subtitle}
-              </p>
-              <ul className="mt-6 grid max-w-2xl gap-2 sm:grid-cols-2">
-                {hero.trustPoints.map((point) => (
-                  <li key={point} className="flex items-start gap-2 text-xs text-industrial-light md:text-sm">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent" aria-hidden />
-                    {point}
-                  </li>
-                ))}
-              </ul>
-              <div className="mt-8 flex flex-wrap gap-3">
-                <Link
-                  href={localizedPath(locale, "/contact")}
-                  onClick={onCatalogClick}
-                  className="inline-flex items-center justify-center rounded-lg bg-accent px-6 py-3 text-sm font-bold uppercase tracking-wider text-industrial-dark transition-colors hover:bg-accent-hover"
-                >
-                  {hero.ctaCatalog}
-                </Link>
-                <Link
-                  href={`${localizedPath(locale, "/")}#get-quote`}
-                  onClick={onQuoteClick}
-                  className="inline-flex items-center justify-center rounded-lg border border-white/30 bg-white/10 px-6 py-3 text-sm font-bold uppercase tracking-wider text-white backdrop-blur-sm transition-colors hover:border-accent hover:text-accent"
-                >
-                  {hero.ctaQuote}
-                </Link>
-              </div>
-            </div>
-          ) : null}
-
-          <div className="absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 gap-2">
+          <div className="absolute bottom-2 left-1/2 z-20 flex -translate-x-1/2 gap-2 rounded-full bg-white/85 px-3 py-2 shadow-sm sm:bottom-3">
             {slides.map((_, slideIndex) => (
               <button
                 key={slideIndex}
                 type="button"
                 onClick={() => goTo(slideIndex)}
                 className={`h-2 rounded-full transition-all ${
-                  slideIndex === index ? "w-8 bg-accent" : "w-2 bg-white/55 hover:bg-white"
+                  slideIndex === index
+                    ? "w-8 bg-blue-800"
+                    : "w-2 bg-slate-400 hover:bg-blue-600"
                 }`}
-                aria-label={`${locale === "zh" ? "第" : locale === "es" ? "Diapositiva" : "Slide"} ${slideIndex + 1}`}
+                aria-label={`Slide ${slideIndex + 1}`}
+                aria-current={slideIndex === index}
               />
             ))}
           </div>

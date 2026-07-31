@@ -19,19 +19,28 @@ function galleryLocal(folder: string, count: number) {
 /** Homepage hero carousel — media-library ids */
 export const homeCarouselSlides = [
   {
-    image: getMediaSrc("carousel-factory-01"),
-    altEn: "Eshsire factory building and 30 years manufacturing",
-    altZh: "Eshsire Group 工厂厂房与 30 年制造实力",
+    image: getMediaSrc("homepage-hero-01-factory"),
+    fallback: "/images/home/carousel/homepage-hero-01-factory.png",
+    altEn: "ESHSIRE professional manufacturer and production base in Linyi, Shandong",
+    altZh: "ESHSIRE 山东临沂生产基地与专业制造能力",
   },
   {
-    image: getMediaSrc("carousel-products-02"),
-    altEn: "SPC flooring and WPC wall panel manufacturer",
-    altZh: "SPC 地板与 WPC 墙板制造商",
+    image: getMediaSrc("homepage-hero-02-production-qc"),
+    fallback: "/images/home/carousel/homepage-hero-02-production-qc.png",
+    altEn: "ESHSIRE advanced production and strict quality control",
+    altZh: "ESHSIRE 先进生产与严格品质管控",
   },
   {
-    image: getMediaSrc("carousel-export-03"),
-    altEn: "Manufacturing capability and global buyer services",
-    altZh: "制造能力与全球客户服务",
+    image: getMediaSrc("homepage-hero-03-products"),
+    fallback: "/images/home/carousel/homepage-hero-03-products.png",
+    altEn: "ESHSIRE SPC flooring, integrated wall panels and PVC ceiling product range",
+    altZh: "ESHSIRE SPC地板、集成墙板和PVC天花板产品范围",
+  },
+  {
+    image: getMediaSrc("homepage-hero-04-global-service"),
+    fallback: "/images/home/carousel/homepage-hero-04-global-service.png",
+    altEn: "ESHSIRE flexible supply and global export service",
+    altZh: "ESHSIRE 灵活供应与全球出口服务",
   },
 ] as const;
 

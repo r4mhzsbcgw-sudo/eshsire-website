@@ -7,11 +7,20 @@ import { generatedPostsEn } from "./generated/registry";
 import { localizeManualPost } from "./localize-manual-post";
 import { sprint1ApprovedBlogPosts } from "./approved-sprint-1";
 import { getPublishableQueuePosts } from "./queue";
+import { applyBlogImageAssignment } from "./image-plan";
 import type { BlogPost } from "./types";
 
 const manualNative = {
   en: [
-    ...sprint1ApprovedBlogPosts,
+    ...sprint1ApprovedBlogPosts.map((post) => {
+      if (post.slug === "spc-flooring-thickness-guide-for-distributors") {
+        return applyBlogImageAssignment(post, 1);
+      }
+      if (post.slug === "4mm-vs-5mm-vs-6mm-spc-flooring") {
+        return applyBlogImageAssignment(post, 2);
+      }
+      return post;
+    }),
     spcSupplierManufacturerPostEn,
     chooseReliableSupplierPostEn,
     sevenMistakesPostEn,

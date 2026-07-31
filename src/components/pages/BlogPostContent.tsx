@@ -49,11 +49,9 @@ function RichParagraph({
 function BlogBlockView({
   block,
   locale,
-  lazyImage,
 }: {
   block: BlogBlock;
   locale: Locale;
-  lazyImage: boolean;
 }) {
   switch (block.type) {
     case "p":
@@ -83,7 +81,7 @@ function BlogBlockView({
               alt={block.alt}
               title={block.alt}
               fill
-              loading={lazyImage ? "lazy" : undefined}
+              loading="lazy"
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 800px"
             />
@@ -263,7 +261,6 @@ function BlogInternalLinks({ post, locale }: { post: BlogPost; locale: Locale })
 
 export function BlogPostContent({ post }: { post: BlogPost }) {
   const { locale, dict } = useLocale();
-  let imageIndex = 0;
   const toc = post.blocks.filter((block): block is Extract<BlogBlock, { type: "h2" }> => block.type === "h2");
 
   return (
@@ -316,8 +313,7 @@ export function BlogPostContent({ post }: { post: BlogPost }) {
             if (block.type === "cta") {
               return <ArticleCta key={i} block={block} locale={locale} dict={dict} />;
             }
-            const lazyImage = block.type === "img" ? imageIndex++ > 0 : false;
-            return <BlogBlockView key={i} block={block} locale={locale} lazyImage={lazyImage} />;
+            return <BlogBlockView key={i} block={block} locale={locale} />;
           })}
           <BlogInternalLinks post={post} locale={locale} />
         </div>

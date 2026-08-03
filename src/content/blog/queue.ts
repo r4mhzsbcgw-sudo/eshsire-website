@@ -1,8 +1,8 @@
 import queueData from "../../../content/blog/blogQueue.en.json";
+import { applyBlogImageAssignment } from "./image-plan";
 import type { BlogBlock, BlogPost, BlogQueueEntry } from "./types";
 
 const MINIMUM_COMPLETE_BODY_CHARACTERS = 1000;
-const DEFAULT_QUEUE_IMAGE = "/images/blog/spc-flooring-thickness-guide-cover.webp";
 
 const queueEntries = queueData.entries as BlogQueueEntry[];
 
@@ -95,7 +95,7 @@ function queueEntryToBlogPost(entry: BlogQueueEntry): BlogPost {
   }
 
   const wordCount = entry.body.trim().split(/\s+/).length;
-  return {
+  return applyBlogImageAssignment({
     slug: entry.slug,
     title: entry.title,
     metaTitle: entry.metaTitle,
@@ -114,10 +114,10 @@ function queueEntryToBlogPost(entry: BlogQueueEntry): BlogPost {
     ctaType: ctaTitle,
     status: entry.status,
     readMinutes: Math.max(1, Math.ceil(wordCount / 200)),
-    heroImage: DEFAULT_QUEUE_IMAGE,
-    ogImage: DEFAULT_QUEUE_IMAGE,
+    heroImage: "",
+    ogImage: "",
     blocks,
-  };
+  }, entry.dayNumber);
 }
 
 export function getPublishableQueuePosts(today = beijingToday()): BlogPost[] {

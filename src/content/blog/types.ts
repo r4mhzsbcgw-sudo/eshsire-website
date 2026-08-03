@@ -31,6 +31,13 @@ export type BlogQueueEntry = {
   faq: Array<{ question: string; answer: string }>;
   cta: { label?: string; title?: string; text?: string; href: string };
   isPlaceholder: boolean;
+  featuredImage?: { src: string; alt: string; caption: string };
+  inlineImages?: Array<{
+    src: string;
+    alt: string;
+    caption: string;
+    position: "after-introduction" | "before-final-recommendation";
+  }>;
 };
 
 export type BlogPost = {

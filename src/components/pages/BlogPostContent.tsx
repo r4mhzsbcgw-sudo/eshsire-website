@@ -72,6 +72,29 @@ function BlogBlockView({
           ))}
         </ul>
       );
+    case "table":
+      return (
+        <div className="mt-6 w-full overflow-x-auto rounded-xl border border-white/10">
+          <table className="min-w-full border-collapse text-left text-sm">
+            <thead className="bg-white/10 text-white">
+              <tr>
+                {block.headers.map((header, index) => (
+                  <th key={`${header}-${index}`} className="whitespace-nowrap px-4 py-3 font-semibold">{header}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {block.rows.map((row, rowIndex) => (
+                <tr key={rowIndex} className="border-t border-white/10">
+                  {block.headers.map((_, cellIndex) => (
+                    <td key={cellIndex} className="px-4 py-3 align-top text-industrial-light">{row[cellIndex] ?? ""}</td>
+                  ))}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      );
     case "img":
       return (
         <figure className="mt-8 overflow-hidden rounded-xl border border-white/10">

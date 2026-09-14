@@ -1,4 +1,4 @@
-import type { BlogBlock, BlogPost } from "./types";
+import type { BlogBlock, BlogPost, BlogPublishSlot } from "./types";
 
 export type BlogImage = {
   src: string;
@@ -100,8 +100,15 @@ function poolForDay(dayNumber: number): ImageAsset[] {
   return inquiryConversion;
 }
 
-export function getBlogImageAssignment(dayNumber: number): BlogImageAssignment {
-  const pool = poolForDay(dayNumber);
+const flooringTrack = [...spcProduct, ...factoryQuality, ...logistics, ...oemDistributor, ...commercialProjects];
+const wallPanelTrack = [...wallPanels, ...installationAccessories, ...factoryQuality, ...logistics];
+
+export function getBlogImageAssignment(dayNumber: number, publishSlot?: BlogPublishSlot): BlogImageAssignment {
+  const pool = publishSlot === "flooring"
+    ? flooringTrack
+    : publishSlot === "wall-panel"
+      ? wallPanelTrack
+      : poolForDay(dayNumber);
   const featuredIndex = (dayNumber - 1) % pool.length;
   return {
     featuredImage: pool[featuredIndex],
@@ -125,8 +132,8 @@ function insertInlineImages(blocks: BlogBlock[], images: [BlogImage, BlogImage])
   return result;
 }
 
-export function applyBlogImageAssignment(post: BlogPost, dayNumber: number): BlogPost {
-  const assignment = getBlogImageAssignment(dayNumber);
+export function applyBlogImageAssignment(post: BlogPost, dayNumber: number, publishSlot?: BlogPublishSlot): BlogPost {
+  const assignment = getBlogImageAssignment(dayNumber, publishSlot);
   return {
     ...post,
     heroImage: assignment.featuredImage.src,
@@ -145,4 +152,6 @@ export const blogImageAuditPools = {
   installationAccessories,
   commercialProjects,
   inquiryConversion,
+  flooringTrack,
+  wallPanelTrack,
 } as const;

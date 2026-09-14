@@ -102,6 +102,8 @@ function queueEntryToBlogPost(entry: BlogQueueEntry): BlogPost {
     description: entry.metaDescription || entry.excerpt,
     date: entry.publishDate,
     publishDate: entry.publishDate,
+    publishGroupDate: entry.publishGroupDate,
+    publishSlot: entry.publishSlot,
     approvedForPublish: entry.approvedForPublish,
     isPlaceholder: false,
     language: "en",

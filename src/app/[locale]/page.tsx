@@ -11,6 +11,7 @@ import { FactoryVideo } from "@/components/home/FactoryVideo";
 import { QuoteRequestSection } from "@/components/home/QuoteRequestSection";
 import { ContactCTA } from "@/components/home/ContactCTA";
 import { ProductionTrackingJsonLd } from "@/components/seo/StructuredData";
+import { EnglishHomeConversionBar } from "@/components/pages/EnglishConversionBlocks";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { isLocale, type Locale } from "@/i18n/locales";
 import { buildPageMetadata } from "@/lib/seo";
@@ -38,6 +39,7 @@ export default function HomePage({ params }: { params: { locale: string } }) {
     <>
       <ProductionTrackingJsonLd locale={locale} />
       <Hero />
+      <EnglishHomeConversionBar />
       <FactoryStatsBar />
       <ProductCategories />
       <ProjectApplications />

@@ -12,6 +12,7 @@ import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
 import { wallPanelImages } from "@/lib/images";
+import { EnglishWallPanelConversionSection } from "./EnglishConversionBlocks";
 
 export function WallPanelsContent() {
   const { locale, dict } = useLocale();
@@ -75,6 +76,7 @@ export function WallPanelsContent() {
         closeLabel={dict.gallery.close}
         expandHint={dict.gallery.expandHint}
       />
+      <EnglishWallPanelConversionSection />
 
       <WallPanelFaqSection faq={dict.wallPanels.faq} />
       <RelatedLinks excludePath="/wall-panels" />

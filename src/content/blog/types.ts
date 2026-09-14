@@ -9,6 +9,7 @@ export type BlogBlock =
 
 export type ArticleSlot = "morning" | "afternoon" | "evening";
 export type BlogStatus = "draft" | "scheduled" | "published";
+export type BlogPublishSlot = "flooring" | "wall-panel";
 
 export type BlogQueueEntry = {
   dayNumber: number;
@@ -20,6 +21,8 @@ export type BlogQueueEntry = {
   targetKeyword: string;
   secondaryKeywords: string[];
   publishDate: string;
+  publishGroupDate?: string;
+  publishSlot?: BlogPublishSlot;
   status: BlogStatus;
   approvedForPublish: boolean;
   excerpt: string;
@@ -57,6 +60,8 @@ export type BlogPost = {
   internalLinks?: string[];
   ctaType?: string;
   status?: BlogStatus;
+  publishGroupDate?: string;
+  publishSlot?: BlogPublishSlot;
   readMinutes: number;
   heroImage: string;
   ogImage: string;

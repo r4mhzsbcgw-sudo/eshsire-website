@@ -121,6 +121,11 @@ function queueEntryToBlogPost(entry: BlogQueueEntry): BlogPost {
     publishDate: entry.publishDate,
     publishGroupDate: entry.publishGroupDate,
     publishSlot: entry.publishSlot,
+    contentType: entry.contentType,
+    contentAngle: entry.contentAngle,
+    primaryTopic: entry.primaryTopic,
+    imageTopic: entry.imageTopic,
+    applicationScenario: entry.applicationScenario,
     approvedForPublish: entry.approvedForPublish,
     isPlaceholder: false,
     language: "en",
@@ -136,7 +141,10 @@ function queueEntryToBlogPost(entry: BlogQueueEntry): BlogPost {
     heroImage: "",
     ogImage: "",
     blocks,
-  }, entry.dayNumber, entry.publishSlot);
+  }, entry.dayNumber, entry.publishSlot, entry.imageTopic, entry.featuredImage ? {
+    featuredImage: entry.featuredImage,
+    inlineImages: (entry.inlineImages || []).map(({ src, alt, caption }) => ({ src, alt, caption })),
+  } : undefined);
 }
 
 export function getPublishableQueuePosts(today = beijingToday()): BlogPost[] {

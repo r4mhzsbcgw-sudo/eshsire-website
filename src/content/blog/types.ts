@@ -11,6 +11,16 @@ export type BlogBlock =
 export type ArticleSlot = "morning" | "afternoon" | "evening";
 export type BlogStatus = "draft" | "scheduled" | "published";
 export type BlogPublishSlot = "flooring" | "wall-panel";
+export type BlogContentType =
+  | "buyer-guide"
+  | "product-introduction"
+  | "product-comparison"
+  | "application-scenario"
+  | "factory-qc"
+  | "oem-distributor"
+  | "packaging-logistics"
+  | "installation-accessories"
+  | "decision-support";
 
 export type BlogQueueEntry = {
   dayNumber: number;
@@ -24,6 +34,11 @@ export type BlogQueueEntry = {
   publishDate: string;
   publishGroupDate?: string;
   publishSlot?: BlogPublishSlot;
+  contentType?: BlogContentType;
+  contentAngle?: string;
+  primaryTopic?: string;
+  imageTopic?: string;
+  applicationScenario?: string;
   status: BlogStatus;
   approvedForPublish: boolean;
   excerpt: string;
@@ -63,6 +78,11 @@ export type BlogPost = {
   status?: BlogStatus;
   publishGroupDate?: string;
   publishSlot?: BlogPublishSlot;
+  contentType?: BlogContentType;
+  contentAngle?: string;
+  primaryTopic?: string;
+  imageTopic?: string;
+  applicationScenario?: string;
   readMinutes: number;
   heroImage: string;
   ogImage: string;

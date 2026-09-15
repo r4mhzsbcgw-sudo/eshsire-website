@@ -20,7 +20,10 @@ export type BlogContentType =
   | "oem-distributor"
   | "packaging-logistics"
   | "installation-accessories"
-  | "decision-support";
+  | "decision-support"
+  | "company-capability"
+  | "factory-story"
+  | "product-spotlight";
 
 export type BlogQueueEntry = {
   dayNumber: number;

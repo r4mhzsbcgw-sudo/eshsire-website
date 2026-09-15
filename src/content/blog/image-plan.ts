@@ -1,4 +1,5 @@
 import type { BlogBlock, BlogPost, BlogPublishSlot } from "./types";
+import vettedAssets from "../../../content/blog/blogImageAssets.en.json";
 
 export type BlogImage = { src: string; alt: string; caption: string };
 export type BlogImageAssignment = { featuredImage: BlogImage; inlineImages: BlogImage[] };
@@ -16,7 +17,7 @@ const factory = "/images/content-library/factory-process/";
 
 // Visually verified first-party/local product material only. Stock-photo folders,
 // Unsplash/Pexels case images, placeholders and generic room/landscape images are excluded.
-const topicPools: Record<ImageTopic, BlogImage[]> = {
+const legacyTopicPools: Record<ImageTopic, BlogImage[]> = {
   "flooring-product": [
     image(`${spc}spc-flooring-spc-img-0001-cfa4054a.webp`, "SPC flooring planks and stocked product samples", "Real plank and stock imagery keeps the article centered on SPC flooring."),
     image(`${spc}spc-flooring-spc-img-0008-fa3f70c0.webp`, "SPC flooring plank construction close-up", "A direct product close-up supports specification and buying discussions."),
@@ -88,6 +89,19 @@ const topicPools: Record<ImageTopic, BlogImage[]> = {
     image(`${wall}wall-panels-1784365198-db95352e.webp`, "Wall panel range for residential and commercial interiors", "A visible range helps project buyers coordinate choices."),
   ],
 };
+
+// Future queue entries carry explicit assignments. For older posts or a missing
+// assignment, the fallback now draws from the larger audited local catalog.
+const topicPools: Record<ImageTopic, BlogImage[]> = Object.fromEntries(
+  Object.entries(legacyTopicPools).map(([topic, fallback]) => {
+    const [prefix, tag] = topic.split("-");
+    const track = prefix === "wall" ? "wall" : "flooring";
+    const expanded = vettedAssets
+      .filter((asset) => (asset.track === track || asset.track === "shared") && asset.tags.includes(tag))
+      .map((asset) => image(asset.src, asset.alt, asset.caption));
+    return [topic, expanded.length >= 3 ? expanded : fallback];
+  }),
+) as Record<ImageTopic, BlogImage[]>;
 
 function hash(value: string): number {
   let result = 2166136261;

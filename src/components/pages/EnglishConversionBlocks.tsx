@@ -65,12 +65,12 @@ export function EnglishSpcConversionSection() {
 }
 
 const panelTypes = [
-  ["SPC wall panels", "Rigid decorative finish for interior projects"],
-  ["WPC wall panels", "Decorative and fluted profiles for feature walls"],
+  ["Bamboo-wood fiber integrated wall panels", "Interior panel profiles and decorative finishes for wholesale and renovation"],
+  ["WPC wall panels", "Wood-look and decorative profiles for feature walls"],
   ["PVC wall panels", "Practical interior wall covering options"],
-  ["UV marble panels", "Large-format stone and marble visual direction"],
   ["Decorative / fluted panels", "Feature-wall profiles for retail and hospitality"],
   ["PVC ceiling panels", "Ceiling supply that can be combined with wall-panel orders"],
+  ["Trims, corners and installation accessories", "Matching profiles, clips and fixing-system options"],
 ];
 
 export function EnglishWallPanelConversionSection() {

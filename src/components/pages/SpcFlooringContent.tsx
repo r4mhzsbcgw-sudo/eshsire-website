@@ -13,6 +13,7 @@ import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
 import { spcFlooringImages } from "@/lib/images";
+import { EnglishSpcConversionSection } from "./EnglishConversionBlocks";
 
 export function SpcFlooringContent() {
   const { locale, dict } = useLocale();
@@ -82,6 +83,7 @@ export function SpcFlooringContent() {
         closeLabel={dict.gallery.close}
         expandHint={dict.gallery.expandHint}
       />
+      <EnglishSpcConversionSection />
 
       <section className="section-padding bg-industrial-slate/30">
         <div className="mx-auto max-w-7xl">

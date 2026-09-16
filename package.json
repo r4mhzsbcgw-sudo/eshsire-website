@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "prebuild": "node scripts/generate-sitemap.mjs",
+    "prebuild": "node scripts/check-blog-inventory.mjs && node scripts/generate-sitemap.mjs",
     "seo:publish": "node scripts/generate-daily-seo-articles.mjs",
     "seo:publish:morning": "node scripts/generate-daily-seo-articles.mjs morning",
     "seo:publish:afternoon": "node scripts/generate-daily-seo-articles.mjs afternoon",

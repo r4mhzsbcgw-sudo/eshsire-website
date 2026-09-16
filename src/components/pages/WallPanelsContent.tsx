@@ -12,10 +12,12 @@ import { RelatedLinks } from "@/components/ui/RelatedLinks";
 import { useLocale } from "@/context/LocaleContext";
 import { localizedPath } from "@/i18n/navigation";
 import { wallPanelImages } from "@/lib/images";
+import { EnglishWallPanelConversionSection } from "./EnglishConversionBlocks";
 
 export function WallPanelsContent() {
   const { locale, dict } = useLocale();
   const d = dict.wallPanels;
+  const productImages = wallPanelImages.productLines;
   const productLineAlts = d.items.map((item, i) =>
     i === 1
       ? locale === "zh"
@@ -41,16 +43,16 @@ export function WallPanelsContent() {
             {d.items.map((p, i) => (
               <FadeIn key={p.name} delay={i * 0.1}>
                 <div className="glass-card-hover overflow-hidden">
-                  <div className="relative aspect-[4/3]">
+                  {productImages[i] && <div className="relative aspect-[4/3]">
                     <Image
-                      src={wallPanelImages.productLines[i]}
+                      src={productImages[i]}
                       alt={productLineAlts[i]}
                       title={p.name}
                       fill
                       className="object-cover"
                       sizes="33vw"
                     />
-                  </div>
+                  </div>}
                   <div className="p-6">
                     <h3 className="text-lg font-bold">{p.name}</h3>
                     <p className="mt-2 text-sm text-industrial-light">{p.desc}</p>
@@ -75,6 +77,7 @@ export function WallPanelsContent() {
         closeLabel={dict.gallery.close}
         expandHint={dict.gallery.expandHint}
       />
+      <EnglishWallPanelConversionSection />
 
       <WallPanelFaqSection faq={dict.wallPanels.faq} />
       <RelatedLinks excludePath="/wall-panels" />

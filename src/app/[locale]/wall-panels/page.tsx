@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { WallPanelsContent } from "@/components/pages/WallPanelsContent";
-import { BreadcrumbJsonLd, FaqJsonLd, ProductJsonLd } from "@/components/seo/StructuredData";
+import { BreadcrumbJsonLd, CollectionPageJsonLd, FaqJsonLd } from "@/components/seo/StructuredData";
 import { getDictionary } from "@/i18n/get-dictionary";
 import { isLocale, type Locale } from "@/i18n/locales";
-import { wallPanelImages } from "@/lib/images";
 import { buildPageMetadata } from "@/lib/seo";
 
 export async function generateMetadata({
@@ -36,13 +35,12 @@ export default async function WallPanelsPage({
     <>
       <BreadcrumbJsonLd locale={locale} path="/wall-panels" />
       <FaqJsonLd locale={locale} path="/wall-panels" />
-      <ProductJsonLd
+      <CollectionPageJsonLd
         locale={locale}
         name={dict.wallPanels.title}
         description={dict.wallPanels.description}
-        image={wallPanelImages.hero}
         path="/wall-panels"
-        category="Interior wall panels"
+        items={dict.wallPanels.items.map((item) => item.name)}
       />
       <WallPanelsContent />
     </>

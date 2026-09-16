@@ -43,7 +43,7 @@ export const PAGE_OG_IMAGES: Record<string, string> = {
 const TITLE_OVERRIDES: Record<string, string> = {
   "": "Eshsire Group | SPC Flooring Manufacturer in China",
   "/spc-flooring": "SPC Flooring Manufacturer in China | Wholesale SPC Flooring Supplier",
-  "/wall-panels": "SPC Wall Panels | Eshsire Group",
+  "/wall-panels": "WPC & Bamboo-Wood Fiber Wall Panels Manufacturer in China | Eshsire Group",
   "/accessories": "SPC Flooring Accessories | Eshsire Group",
   "/spc-flooring/specs": "SPC Flooring Specs Guide | Thickness, Wear Layer, IXPE Padding",
 };
@@ -54,7 +54,7 @@ const DESCRIPTION_OVERRIDES: Record<string, string> = {
   "/spc-flooring":
     "SPC flooring manufacturer in China for importers, distributors and project buyers. Compare 4mm, 5mm and 6mm waterproof SPC flooring with OEM packaging, quality inspection and export support.",
   "/wall-panels":
-    "Explore SPC wall panels, UV marble panels, and decorative interior panels for distributors, contractors, and OEM projects worldwide.",
+    "Eshsire supplies WPC and bamboo-wood fiber integrated wall panels from China for distributors, contractors and interior projects, with PVC, fluted and ceiling panels plus matching accessories.",
   "/accessories":
     "Order SPC flooring accessories including skirting boards, profiles, underlayment, and matching trims for commercial and residential projects.",
   "/spc-flooring/specs":

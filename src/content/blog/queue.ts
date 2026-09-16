@@ -35,6 +35,7 @@ function markdownBodyToBlocks(body: string): BlogBlock[] {
   const blocks: BlogBlock[] = [];
   const paragraph: string[] = [];
   let listItems: string[] = [];
+  let tableRows: string[][] = [];
 
   const flushParagraph = () => {
     const text = paragraph.join(" ").trim();
@@ -45,14 +46,31 @@ function markdownBodyToBlocks(body: string): BlogBlock[] {
     if (listItems.length) blocks.push({ type: "ul", items: listItems });
     listItems = [];
   };
+  const flushTable = () => {
+    if (tableRows.length >= 2) {
+      blocks.push({ type: "table", headers: tableRows[0], rows: tableRows.slice(1) });
+    }
+    tableRows = [];
+  };
 
   for (const rawLine of body.split(/\r?\n/)) {
     const line = rawLine.trim();
+    // The detail page already renders the article title as its H1.
+    if (line.startsWith("# ")) continue;
     if (!line) {
       flushParagraph();
       flushList();
+      flushTable();
       continue;
     }
+    if (/^\|.*\|$/.test(line)) {
+      flushParagraph();
+      flushList();
+      const cells = line.slice(1, -1).split("|").map((cell) => cell.trim());
+      if (!cells.every((cell) => /^:?-{3,}:?$/.test(cell))) tableRows.push(cells);
+      continue;
+    }
+    flushTable();
     if (line.startsWith("### ")) {
       flushParagraph();
       flushList();
@@ -76,6 +94,7 @@ function markdownBodyToBlocks(body: string): BlogBlock[] {
 
   flushParagraph();
   flushList();
+  flushTable();
   return blocks;
 }
 
@@ -102,6 +121,13 @@ function queueEntryToBlogPost(entry: BlogQueueEntry): BlogPost {
     description: entry.metaDescription || entry.excerpt,
     date: entry.publishDate,
     publishDate: entry.publishDate,
+    publishGroupDate: entry.publishGroupDate,
+    publishSlot: entry.publishSlot,
+    contentType: entry.contentType,
+    contentAngle: entry.contentAngle,
+    primaryTopic: entry.primaryTopic,
+    imageTopic: entry.imageTopic,
+    applicationScenario: entry.applicationScenario,
     approvedForPublish: entry.approvedForPublish,
     isPlaceholder: false,
     language: "en",
@@ -117,7 +143,10 @@ function queueEntryToBlogPost(entry: BlogQueueEntry): BlogPost {
     heroImage: "",
     ogImage: "",
     blocks,
-  }, entry.dayNumber);
+  }, entry.dayNumber, entry.publishSlot, entry.imageTopic, entry.featuredImage ? {
+    featuredImage: entry.featuredImage,
+    inlineImages: (entry.inlineImages || []).map(({ src, alt, caption }) => ({ src, alt, caption })),
+  } : undefined);
 }
 
 export function getPublishableQueuePosts(today = beijingToday()): BlogPost[] {

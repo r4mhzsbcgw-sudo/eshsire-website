@@ -1,148 +1,150 @@
-import type { BlogBlock, BlogPost } from "./types";
+import type { BlogBlock, BlogPost, BlogPublishSlot } from "./types";
+import vettedAssets from "../../../content/blog/blogImageAssets.en.json";
 
-export type BlogImage = {
-  src: string;
-  alt: string;
-  caption: string;
+export type BlogImage = { src: string; alt: string; caption: string };
+export type BlogImageAssignment = { featuredImage: BlogImage; inlineImages: BlogImage[] };
+
+type ImageTopic =
+  | "flooring-product" | "flooring-specs" | "flooring-waterproof" | "flooring-colors"
+  | "flooring-packaging" | "flooring-factory" | "flooring-application"
+  | "wall-product" | "wall-specs" | "wall-colors" | "wall-installation"
+  | "wall-packaging" | "wall-factory" | "wall-application";
+
+const image = (src: string, alt: string, caption: string): BlogImage => ({ src, alt, caption });
+const spc = "/images/content-library/spc-flooring/";
+const wall = "/images/content-library/wall-panels/";
+const factory = "/images/content-library/factory-process/";
+
+// Visually verified first-party/local product material only. Stock-photo folders,
+// Unsplash/Pexels case images, placeholders and generic room/landscape images are excluded.
+const legacyTopicPools: Record<ImageTopic, BlogImage[]> = {
+  "flooring-product": [
+    image(`${spc}spc-flooring-spc-img-0001-cfa4054a.webp`, "SPC flooring planks and stocked product samples", "Real plank and stock imagery keeps the article centered on SPC flooring."),
+    image(`${spc}spc-flooring-spc-img-0008-fa3f70c0.webp`, "SPC flooring plank construction close-up", "A direct product close-up supports specification and buying discussions."),
+    image(`${spc}spc-flooring-spc-img-0004-9fe36363.webp`, "SPC flooring plank stacks in factory stock", "Stocked planks are relevant to wholesale availability and repeat supply."),
+  ],
+  "flooring-specs": [
+    image(`${spc}spc-flooring-spc-img-0008-fa3f70c0.webp`, "SPC flooring plank edges and surface details", "A close product view supports thickness, edge and construction checks."),
+    image(`${spc}spc-flooring-spc-img-0003-45880da4.webp`, "SPC click joint and waterproof surface detail", "The click profile and surface are practical checkpoints during sample approval."),
+    image(`${spc}spc-flooring-1784365386-164b5409.webp`, "Wood-look SPC flooring plank samples", "Physical plank samples make finish and joint comparisons more reliable."),
+  ],
+  "flooring-waterproof": [
+    image(`${spc}spc-flooring-spc-img-0015-0e1e727c.webp`, "Water droplets on an SPC flooring sample", "A real SPC sample illustrates the waterproof product category."),
+    image(`${spc}spc-flooring-spc-img-0003-45880da4.webp`, "Waterproof SPC flooring click profile", "Surface and click-joint details should be reviewed together for wet-area projects."),
+    image(`${spc}spc-flooring-spc-img-0020-305a7e0b.webp`, "Installed wood-look SPC flooring surface", "An installed surface helps buyers judge joint appearance and presentation."),
+  ],
+  "flooring-colors": [
+    image(`${spc}spc-flooring-1784365288-44b80770.webp`, "SPC flooring color collection", "A focused color collection helps distributors build a practical local range."),
+    image(`${spc}spc-flooring-1784365396-09a3d114.webp`, "SPC flooring sample fan in multiple colors", "Sample fans are useful for color, surface and range planning."),
+    image(`${spc}spc-flooring-spc-img-0022-03ce6ad0.webp`, "SPC flooring colors displayed in warehouse stock", "Stock and sample views help buyers compare color families."),
+  ],
+  "flooring-packaging": [
+    image(`${spc}spc-flooring-1784365352-b3e7bc91.webp`, "SPC flooring pallets cartons and export loading", "Export packaging links carton protection, pallets and container loading."),
+    image(`${spc}spc-flooring-spc-img-0016-068e1f87.webp`, "SPC flooring cartons stacked on a pallet", "Carton and pallet details should be approved with the product specification."),
+    image(`${spc}spc-flooring-spc-img-0026-2bbf77d7.webp`, "Private-label SPC flooring cartons prepared for shipment", "Packaging supports distributor presentation and transport protection."),
+  ],
+  "flooring-factory": [
+    image(`${spc}spc-flooring-1784365346-1c110a30.webp`, "SPC flooring thickness inspection with a caliper", "Measured sample checks are more useful than unsupported quality claims."),
+    image(`${factory}factory-process-05-factory-00bf4033.webp`, "Flooring and wall panel production equipment", "Controlled production stages support repeatable orders."),
+    image(`${factory}factory-process-05-factory-8170cff5.webp`, "Factory production warehouse and container loading", "Factory, storage and loading records give buyers practical order visibility."),
+  ],
+  "flooring-application": [
+    image(`${spc}spc-flooring-1784365326-9bdcd6e6.webp`, "SPC flooring colors shown in interior applications", "Visible flooring applications connect color choices with project use."),
+    image(`${spc}spc-flooring-1784365403-e56b267b.webp`, "Installed SPC flooring with visible wood-grain surface", "A clear installed surface is relevant for residential and commercial selection."),
+    image(`${spc}spc-flooring-spc-img-0020-305a7e0b.webp`, "SPC flooring installation and joint appearance", "Installed-plank details help project buyers assess the finish."),
+  ],
+  "wall-product": [
+    image(`${wall}wall-panels-1784364697-9478eb4f.webp`, "Decorative wall panel samples with visible cross-sections", "Real panel samples keep the product type and construction visible."),
+    image(`${wall}wall-panels-1784364893-5c70c8fb.webp`, "Integrated wall panel profile stack", "A clean profile view supports product introduction and buyer evaluation."),
+    image(`${wall}wall-panels-1784364901-fe703735.webp`, "Wall panel surface and edge profile samples", "Surface and edge views support decorative panel comparisons."),
+  ],
+  "wall-specs": [
+    image(`${wall}wall-panels-1784365160-4f671650.webp`, "Bamboo-wood fiber wall panel profiles and hollow sections", "Visible wall-panel sections help buyers compare construction and thickness."),
+    image(`${wall}wall-panels-1784365172-5f0d2db3.webp`, "Wall panel cross-section checked in the factory", "A factory sample view makes profile and thickness discussions concrete."),
+    image(`${wall}wall-panels-1784365198-db95352e.webp`, "Wall panel colors and cross-sections", "Multiple real profiles support width, finish and construction comparisons."),
+  ],
+  "wall-colors": [
+    image(`${wall}wall-panels-1784365198-db95352e.webp`, "Wall panel finish colors and profiles", "Color and profile samples help buyers build a sellable collection."),
+    image(`${wall}wall-panels-1784364614-b40903fc.webp`, "Wall panel samples in several decorative finishes", "Physical samples are the right reference for catalog selection."),
+    image(`${wall}wall-panels-1784364697-9478eb4f.webp`, "Marble-look wall panel samples", "Finish samples should be reviewed with construction details."),
+  ],
+  "wall-installation": [
+    image(`${wall}wall-panels-1784364730-156d6088.webp`, "Wall panel clip and installation connection detail", "The clip detail directly supports installation and accessory planning."),
+    image(`${wall}wall-panels-1784364374-8e7869af.webp`, "Wall panel edge profile held for inspection", "Edge construction affects joining, cutting and trim selection."),
+    image(`${wall}wall-panels-1784364619-2e44150a.webp`, "Stacked wall panel profiles for accessory matching", "Profile checks help contractors plan trims and finishing details."),
+  ],
+  "wall-packaging": [
+    image(`${wall}wall-panels-1784364737-976961c9.webp`, "Wall panel cartons prepared in a warehouse", "Carton protection and counting are essential for long packages."),
+    image(`${wall}wall-panels-1784365193-8295a941.webp`, "Wall panel packages loaded into an export container", "A real loading image supports container and handling discussions."),
+    image(`${wall}wall-panels-1784365254-0872e459.webp`, "Finished wall panel stacks ready for packing", "Stack condition should be checked before shipment release."),
+  ],
+  "wall-factory": [
+    image(`${wall}wall-panels-1784365088-75a38b85.webp`, "Wall panel production line with finished material", "A real production line is relevant to capacity and QC topics."),
+    image(`${factory}factory-process-05-factory-00bf4033.webp`, "Building-material production machinery", "Documented process stages give buyers manufacturing visibility."),
+    image(`${wall}wall-panels-1784365172-5f0d2db3.webp`, "Wall panel profile inspection in the factory", "Profile inspection connects factory control with the finished product."),
+  ],
+  "wall-application": [
+    image(`${wall}wall-panels-1784364901-fe703735.webp`, "Decorative wall panel samples for project selection", "Project choices should start from real surfaces and profiles."),
+    image(`${wall}wall-panels-1784365160-4f671650.webp`, "Wood-look integrated wall panel profiles", "Product-visible imagery supports renovation planning."),
+    image(`${wall}wall-panels-1784365198-db95352e.webp`, "Wall panel range for residential and commercial interiors", "A visible range helps project buyers coordinate choices."),
+  ],
 };
 
-export type BlogImageAssignment = {
-  featuredImage: BlogImage;
-  inlineImages: [BlogImage, BlogImage];
-};
+// Future queue entries carry explicit assignments. For older posts or a missing
+// assignment, the fallback now draws from the larger audited local catalog.
+const topicPools: Record<ImageTopic, BlogImage[]> = Object.fromEntries(
+  Object.entries(legacyTopicPools).map(([topic, fallback]) => {
+    const [prefix, tag] = topic.split("-");
+    const track = prefix === "wall" ? "wall" : "flooring";
+    const expanded = vettedAssets
+      .filter((asset) => (asset.track === track || asset.track === "shared") && asset.tags.includes(tag))
+      .map((asset) => image(asset.src, asset.alt, asset.caption));
+    return [topic, expanded.length >= 3 ? expanded : fallback];
+  }),
+) as Record<ImageTopic, BlogImage[]>;
 
-type ImageAsset = BlogImage;
-
-const spcProduct: ImageAsset[] = [
-  { src: "/images/blog/spc-flooring-thickness-guide-cover.webp", alt: "SPC flooring plank samples in different thicknesses", caption: "SPC plank samples help buyers compare thickness, finish and edge quality." },
-  { src: "/images/blog/spc-flooring-thickness-comparison-day2.webp", alt: "4mm 5mm and 6mm SPC flooring thickness comparison", caption: "Side-by-side samples make specification differences easier to confirm before ordering." },
-  { src: "/images/blog/floor/spc-plank-showcase.jpg", alt: "SPC flooring plank collection for wholesale selection", caption: "A coordinated plank range gives distributors options for different market positions." },
-  { src: "/images/blog/floor/floor-texture-closeup.jpg", alt: "Close view of SPC flooring surface texture", caption: "Surface texture and color should be checked under consistent lighting before approval." },
-  { src: "/images/products/spc/gallery/01.jpg", alt: "SPC flooring product sample for importer review", caption: "Physical samples allow buyers to review the finish, locking profile and overall construction." },
-  { src: "/images/products/spc/gallery/03.jpg", alt: "Wood look SPC flooring color sample", caption: "Wood-look SPC designs can be selected to match local retail and project demand." },
-  { src: "/images/products/spc/gallery/05.jpg", alt: "SPC flooring plank detail and surface finish", caption: "Product details should be confirmed together with thickness and wear-layer requirements." },
-  { src: "/images/products/spc/gallery/07.jpg", alt: "SPC flooring sample set for specification selection", caption: "A structured sample set supports clearer comparison before a trial or container order." },
-];
-
-const factoryQuality: ImageAsset[] = [
-  { src: "/images/home/factory/01-production.jpg", alt: "SPC flooring production equipment in the factory", caption: "Stable production control is essential for consistent dimensions and repeat orders." },
-  { src: "/images/home/factory/02-quality.jpg", alt: "Quality inspection during flooring production", caption: "Inspection during production helps identify specification or surface issues early." },
-  { src: "/images/home/quality/01.jpg", alt: "SPC flooring quality control check", caption: "Quality checks should follow the approved sample and purchase specification." },
-  { src: "/images/home/quality/03.jpg", alt: "Factory inspection of finished building materials", caption: "Finished products should be checked before packing and shipment release." },
-  { src: "/images/blog/editorial/02-factory-machinery-operator.jpg", alt: "Production operator working with factory machinery", caption: "Experienced operators and documented settings support repeatable manufacturing." },
-  { src: "/images/blog/editorial/03-production-quality-station.jpg", alt: "Production quality control station", caption: "A defined quality station gives buyers a clearer inspection checkpoint." },
-  { src: "/images/content-library/factory-process/factory-process-05-factory-00bf4033.webp", alt: "Factory production process for flooring and wall panels", caption: "Factory capability should be evaluated through equipment, process control and records." },
-];
-
-const logistics: ImageAsset[] = [
-  { src: "/images/cases/scenario-container-loading-export.jpg", alt: "Export container loading for flooring orders", caption: "A practical loading plan protects cartons and uses container space efficiently." },
-  { src: "/images/cases/scenario-mixed-container-solution.jpg", alt: "Mixed container solution for flooring and wall panels", caption: "Mixed loading requires weight balance, carton protection and a clear unloading sequence." },
-  { src: "/images/cases/scenario-warehouse-order-preparation.jpg", alt: "Warehouse order preparation before export", caption: "Warehouse preparation helps verify quantities, labels and loading readiness." },
-  { src: "/images/home/factory/03-warehouse.jpg", alt: "Finished product warehouse for export orders", caption: "Organized storage reduces handling mistakes before container loading." },
-  { src: "/images/home/factory/04-loading.jpg", alt: "Building materials prepared for container loading", caption: "Packing and loading should be planned together for safer international transport." },
-  { src: "/images/blog/editorial/06-container-port-logistics.jpg", alt: "Container logistics for international flooring shipments", caption: "Import cost planning should include the route, container choice and destination charges." },
-  { src: "/images/blog/editorial/04-warehouse-pallet-racks.jpg", alt: "Palletized products stored in a warehouse", caption: "Pallet and carton planning supports safer handling through the supply chain." },
-];
-
-const oemDistributor: ImageAsset[] = [
-  { src: "/images/applications/private-label-spc-flooring-supply/private-label-spc-packaging-hero.webp", alt: "Private label SPC flooring packaging for distributors", caption: "Private-label orders require approved artwork, labels and carton specifications." },
-  { src: "/images/project-applications/private-label-spc-packaging-card.webp", alt: "OEM SPC flooring cartons prepared for distribution", caption: "OEM cartons should balance brand presentation with export packing strength." },
-  { src: "/images/cases/scenario-oem-packaging-labeling.jpg", alt: "OEM packaging and product labeling process", caption: "Label details should be checked before mass printing and final packing." },
-  { src: "/images/cases/scenario-sample-color-selection.jpg", alt: "SPC flooring sample and color selection", caption: "A focused color range is easier for distributors to present and replenish." },
-  { src: "/images/home/factory/05-oem.jpg", alt: "OEM product preparation for private label orders", caption: "OEM support connects product specifications, packaging and repeat-order control." },
-  { src: "/images/blog/floor/spc-plank-showcase.jpg", alt: "SPC flooring collection for distributor product lines", caption: "A balanced collection can cover entry, mainstream and project-focused price levels." },
-];
-
-const wallPanels: ImageAsset[] = [
-  { src: "/images/products/wall-panels/hero.jpg", alt: "Wall panel product range for wholesale buyers", caption: "Wall panel selection should consider material, size, finish and installation method." },
-  { src: "/images/products/wall-panels/gallery/01.jpg", alt: "Decorative wall panel surface and profile", caption: "Buyers should review both the decorative face and the panel profile." },
-  { src: "/images/products/wall-panels/gallery/03.jpg", alt: "Wall panel color and finish sample", caption: "Color samples help confirm how a finish works with the intended interior." },
-  { src: "/images/blog/wall-panel/living-room-wall-panel.jpg", alt: "Wall panels installed in a living room interior", caption: "Installed references show the scale, joint lines and overall visual effect." },
-  { src: "/images/blog/wall-panel/bedroom-wall-panel.jpg", alt: "Decorative wall panels in a bedroom project", caption: "Residential applications often prioritize coordinated color and easy maintenance." },
-  { src: "/images/project-applications/wall-panels.webp", alt: "Wall panel application for interior projects", caption: "Project selection should connect panel performance with the installation environment." },
-];
-
-const installationAccessories: ImageAsset[] = [
-  { src: "/images/cases/scenario-wall-panel-accessories.jpg", alt: "Wall panel trims corners and installation accessories", caption: "Matching trims and corners give wall panel installations a cleaner finish." },
-  { src: "/images/home/accessories/spc-accessories-grid.png", alt: "Flooring and wall panel accessory range", caption: "Accessory quantities should be estimated alongside the main products." },
-  { src: "/images/blog/wall-panel/wall-install-detail.jpg", alt: "Wall panel installation detail", caption: "Installation details should be confirmed before finalizing panel and trim quantities." },
-  { src: "/images/products/wall-panels/line-decor.jpg", alt: "Decorative wall panel profile for installation planning", caption: "Panel profiles affect joint treatment, finishing and accessory selection." },
-  { src: "/images/products/wall-panels/line-spc.jpg", alt: "SPC wall panel construction and edge profile", caption: "Edge structure and panel thickness influence the recommended installation method." },
-  { src: "/images/home/wall-panels/wpc-wall-panel-stack.png", alt: "Stacked WPC wall panels for project supply", caption: "Panel bundles should be protected and counted before project delivery." },
-];
-
-const commercialProjects: ImageAsset[] = [
-  { src: "/images/blog/floor/hotel-lobby-finished.jpg", alt: "Finished SPC flooring in a hotel lobby", caption: "Hotel flooring needs a practical balance of appearance, durability and maintenance." },
-  { src: "/images/blog/floor/office-commercial-floor.jpg", alt: "SPC flooring in an office and commercial interior", caption: "Commercial areas require specifications matched to traffic and cleaning routines." },
-  { src: "/images/blog/floor/school-corridor-floor.jpg", alt: "SPC flooring in a school corridor", caption: "High-traffic public areas benefit from durable surfaces and straightforward maintenance." },
-  { src: "/images/blog/floor/apartment-living-floor.jpg", alt: "SPC flooring in an apartment living space", caption: "Apartment projects often prioritize waterproof performance and efficient installation." },
-  { src: "/images/project-applications/hospitality-commercial.webp", alt: "Hospitality and commercial flooring application", caption: "Application requirements should guide thickness, wear layer and surface selection." },
-  { src: "/images/project-applications/office-retail.webp", alt: "Flooring and wall panels in an office retail project", caption: "Coordinated materials can simplify sourcing for multi-area commercial projects." },
-  { src: "/images/projects/school-flooring/content-2.jpg", alt: "Flooring application in an education project", caption: "Education projects need durable materials suited to frequent daily use." },
-];
-
-const inquiryConversion: ImageAsset[] = [
-  ...oemDistributor,
-  { src: "/images/cases/scenario-spc-flooring-details.jpg", alt: "SPC flooring product details for quotation review", caption: "Clear product details make quotations easier to compare on the same basis." },
-  { src: "/images/home/factory/06-export.jpg", alt: "Export service for flooring and wall panel buyers", caption: "A useful inquiry includes the product, specification, quantity and destination." },
-];
-
-function poolForDay(dayNumber: number): ImageAsset[] {
-  if (dayNumber <= 12) return spcProduct;
-  if (dayNumber <= 22) return factoryQuality;
-  if (dayNumber <= 32) return logistics;
-  if (dayNumber <= 42) return oemDistributor;
-  if (dayNumber <= 52) return wallPanels;
-  if (dayNumber <= 62) return installationAccessories;
-  if (dayNumber <= 72) return commercialProjects;
-  if (dayNumber <= 82) return logistics;
-  if (dayNumber <= 92) return factoryQuality;
-  return inquiryConversion;
+function hash(value: string): number {
+  let result = 2166136261;
+  for (const char of value) result = Math.imul(result ^ char.charCodeAt(0), 16777619);
+  return result >>> 0;
 }
 
-export function getBlogImageAssignment(dayNumber: number): BlogImageAssignment {
-  const pool = poolForDay(dayNumber);
-  const featuredIndex = (dayNumber - 1) % pool.length;
-  return {
-    featuredImage: pool[featuredIndex],
-    inlineImages: [pool[(featuredIndex + 2) % pool.length], pool[(featuredIndex + 4) % pool.length]],
-  };
+function inferTopic(post: BlogPost, slot?: BlogPublishSlot): ImageTopic {
+  const text = `${post.title} ${post.targetKeyword || ""} ${post.productCategory || ""}`.toLowerCase();
+  const prefix = slot === "wall-panel" || /wall panel|wpc|bamboo|pvc ceiling|fluted/.test(text) ? "wall" : "flooring";
+  if (/pack|pallet|carton|container|load|logistic|shipping|moq|private label|oem|distributor/.test(text)) return `${prefix}-packaging` as ImageTopic;
+  if (/factory|production|quality|qc|inspection|test|claim|tolerance/.test(text)) return `${prefix}-factory` as ImageTopic;
+  if (prefix === "wall" && /install|trim|corner|accessor|clip|skirting|end cap/.test(text)) return "wall-installation";
+  if (prefix === "flooring" && /water|bath|kitchen|moisture/.test(text)) return "flooring-waterproof";
+  if (/color|surface|eir|finish|wood look|marble/.test(text)) return `${prefix}-colors` as ImageTopic;
+  if (/thick|wear layer|size|\bspecs?\b|specification|edge|bevel|profile|width|\b\d+(?:\.\d+)?\s*mm\b|\bvs\b|compare/.test(text)) return `${prefix}-specs` as ImageTopic;
+  if (/hotel|office|retail|school|apartment|residential|commercial|renovation|project/.test(text)) return `${prefix}-application` as ImageTopic;
+  return `${prefix}-product` as ImageTopic;
 }
 
-function insertInlineImages(blocks: BlogBlock[], images: [BlogImage, BlogImage]): BlogBlock[] {
-  const existing = blocks.filter((block) => block.type === "img").length;
-  if (existing >= 2) return blocks;
+export function getBlogImageAssignment(post: BlogPost, day: number, slot?: BlogPublishSlot, imageTopic?: string, explicit?: BlogImageAssignment): BlogImageAssignment {
+  if (explicit?.featuredImage && explicit.inlineImages.length) return explicit;
+  const topic = imageTopic && imageTopic in topicPools ? imageTopic as ImageTopic : inferTopic(post, slot);
+  const pool = topicPools[topic];
+  const start = imageTopic ? hash(`${post.slug}:${day}`) % pool.length : Math.max(0, day - 1) % pool.length;
+  return { featuredImage: pool[start], inlineImages: [pool[(start + 1) % pool.length], pool[(start + 2) % pool.length]] };
+}
 
+function insertInlineImages(blocks: BlogBlock[], images: BlogImage[]): BlogBlock[] {
+  const needed = Math.max(0, Math.min(2, images.length) - blocks.filter((block) => block.type === "img").length);
+  if (!needed) return blocks;
   const result = [...blocks];
-  const firstIndex = Math.min(3, result.length);
-  result.splice(firstIndex, 0, { type: "img", ...images[0] });
-
-  const finalHeading = result.findIndex(
-    (block, index) => index > firstIndex && block.type === "h2" && /final|recommend|need help/i.test(block.text)
-  );
-  const secondIndex = finalHeading >= 0 ? finalHeading : Math.max(firstIndex + 2, Math.floor(result.length * 0.68));
-  result.splice(secondIndex, 0, { type: "img", ...images[1] });
+  const first = Math.min(3, result.length);
+  result.splice(first, 0, { type: "img", ...images[0] });
+  if (needed === 1) return result;
+  const final = result.findIndex((block, index) => index > first && block.type === "h2" && /final|conclusion|recommend|need help/i.test(block.text));
+  result.splice(final >= 0 ? final : Math.max(first + 2, Math.floor(result.length * 0.68)), 0, { type: "img", ...images[1] });
   return result;
 }
 
-export function applyBlogImageAssignment(post: BlogPost, dayNumber: number): BlogPost {
-  const assignment = getBlogImageAssignment(dayNumber);
-  return {
-    ...post,
-    heroImage: assignment.featuredImage.src,
-    ogImage: assignment.featuredImage.src,
-    imageAlt: assignment.featuredImage.alt,
-    blocks: insertInlineImages(post.blocks, assignment.inlineImages),
-  };
+export function applyBlogImageAssignment(post: BlogPost, day: number, slot?: BlogPublishSlot, imageTopic?: string, explicit?: BlogImageAssignment): BlogPost {
+  const assignment = getBlogImageAssignment(post, day, slot, imageTopic, explicit);
+  return { ...post, heroImage: assignment.featuredImage.src, ogImage: assignment.featuredImage.src, imageAlt: assignment.featuredImage.alt, blocks: insertInlineImages(post.blocks, assignment.inlineImages) };
 }
 
-export const blogImageAuditPools = {
-  spcProduct,
-  factoryQuality,
-  logistics,
-  oemDistributor,
-  wallPanels,
-  installationAccessories,
-  commercialProjects,
-  inquiryConversion,
-} as const;
+export const blogImageAuditPools = topicPools;

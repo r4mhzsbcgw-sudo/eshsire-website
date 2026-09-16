@@ -82,19 +82,19 @@ export const landingPages: Record<LandingPageSlug, LandingPageContent> = {
   },
   "wall-panel-supplier-china": {
     slug: "wall-panel-supplier-china",
-    title: "Wall Panel Supplier in China",
-    description: "Interior wall panel supply for distributors, builders and project buyers.",
+    title: "WPC & Bamboo-Wood Fiber Wall Panel Supplier in China",
+    description: "WPC and bamboo-wood fiber integrated wall-panel supply for distributors, builders and project buyers.",
     image: "/images/content-library/wall-panels/wall-panels-1784364374-8e7869af.webp",
     sections: [
       { title: "Buyer pain points", items: ["Different panel systems need matching accessories", "Colors and profiles must fit project style", "Mixed shipment planning is often required"] },
-      { title: "Product options", items: ["SPC wall panels", "WPC and grille panels", "Decorative profiles and accessories"] },
+      { title: "Product options", items: ["Bamboo-wood fiber integrated wall panels", "WPC wall panels", "PVC and decorative wall panels", "PVC ceiling panels and accessories"] },
       { title: "Eshsire solution", items: ["Panel specification support", "Accessory matching", "Export packing and shipment coordination"] },
       { title: "Quality control workflow", items: commonWorkflow },
       { title: "OEM / Packaging support", items: ["Private-label packaging", "Color catalog support", "Profile and accessory matching"] },
       { title: "Container or shipment planning", items: ["Wall panels with accessories", "Mixed load with SPC flooring", "Packing and handling checks"] },
     ],
     faq: [
-      { q: "What wall panel types are available?", a: "SPC, WPC, grille and decorative wall panel options can be discussed by project need." },
+      { q: "What wall panel types are available?", a: "Bamboo-wood fiber integrated, WPC, PVC and decorative panel options can be discussed by project need, with ceiling panels and matching accessories." },
       { q: "Can wall panels ship with SPC flooring?", a: "Yes, mixed-container planning is available when loading details are confirmed." },
     ],
     cta: "Get Wall Panel Color Catalog",

@@ -4,11 +4,26 @@ export type BlogBlock =
   | { type: "h2"; text: string }
   | { type: "h3"; text: string }
   | { type: "ul"; items: string[] }
+  | { type: "table"; headers: string[]; rows: string[][] }
   | { type: "img"; src: string; alt: string; caption?: string }
   | { type: "cta"; title?: string; text?: string; variant?: "default" | "factory-quote" | "b2b-procurement" };
 
 export type ArticleSlot = "morning" | "afternoon" | "evening";
 export type BlogStatus = "draft" | "scheduled" | "published";
+export type BlogPublishSlot = "flooring" | "wall-panel";
+export type BlogContentType =
+  | "buyer-guide"
+  | "product-introduction"
+  | "product-comparison"
+  | "application-scenario"
+  | "factory-qc"
+  | "oem-distributor"
+  | "packaging-logistics"
+  | "installation-accessories"
+  | "decision-support"
+  | "company-capability"
+  | "factory-story"
+  | "product-spotlight";
 
 export type BlogQueueEntry = {
   dayNumber: number;
@@ -20,6 +35,13 @@ export type BlogQueueEntry = {
   targetKeyword: string;
   secondaryKeywords: string[];
   publishDate: string;
+  publishGroupDate?: string;
+  publishSlot?: BlogPublishSlot;
+  contentType?: BlogContentType;
+  contentAngle?: string;
+  primaryTopic?: string;
+  imageTopic?: string;
+  applicationScenario?: string;
   status: BlogStatus;
   approvedForPublish: boolean;
   excerpt: string;
@@ -57,6 +79,13 @@ export type BlogPost = {
   internalLinks?: string[];
   ctaType?: string;
   status?: BlogStatus;
+  publishGroupDate?: string;
+  publishSlot?: BlogPublishSlot;
+  contentType?: BlogContentType;
+  contentAngle?: string;
+  primaryTopic?: string;
+  imageTopic?: string;
+  applicationScenario?: string;
   readMinutes: number;
   heroImage: string;
   ogImage: string;

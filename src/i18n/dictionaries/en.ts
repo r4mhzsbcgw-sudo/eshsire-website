@@ -21,7 +21,7 @@ export const en = {
     },
     seoTitles: {
       spcFlooring: "SPC Flooring Manufacturer China | OEM Wholesale | Eshsire Group",
-      wallPanels: "SPC Wall Panel Supplier China | UV Marble Panels | Eshsire Group",
+      wallPanels: "WPC & Bamboo-Wood Fiber Wall Panels Manufacturer in China | Eshsire Group",
       factory: "SPC Flooring Factory Beijing 6000㎡ | Production & QC | Eshsire Group",
       oemService: "SPC Flooring OEM ODM | Custom Packaging & Private Label | Eshsire Group",
       about: "About Eshsire Group | 30 Years SPC Flooring Manufacturer China",
@@ -34,7 +34,7 @@ export const en = {
     },
     headings: {
       spcFlooring: "Commercial SPC Flooring — OEM Wholesale from China",
-      wallPanels: "SPC & Decorative Wall Panels for Global Projects",
+      wallPanels: "WPC & Bamboo-Wood Fiber Wall Panels Manufacturer in China",
       factory: "Our SPC Flooring Manufacturing Facility",
       oemService: "OEM & ODM Manufacturing Services",
       about: "About Eshsire Group",
@@ -49,7 +49,7 @@ export const en = {
       spcFlooring:
         "Wholesale waterproof SPC flooring from Beijing factory. Click-lock, CE certified, low MOQ OEM. Request catalog via WhatsApp — reply within 24 hours.",
       wallPanels:
-        "SPC wall panels, UV marble panels and decorative interior materials from China. Factory direct pricing for distributors worldwide.",
+        "WPC and bamboo-wood fiber integrated wall panels from China for distributors, contractors and interior projects, with PVC, decorative and ceiling panels plus matching accessories.",
       factory:
         "Tour our 6000㎡ Beijing SPC flooring factory — production lines, QC lab, warehouse and container loading. Trusted export partner since 30+ years.",
       oemService:
@@ -317,29 +317,41 @@ export const en = {
   },
   wallPanels: {
     heroSubtitle:
-      "SPC, UV marble and decorative interior panels for residential and commercial projects.",
+      "WPC and bamboo-wood fiber integrated wall panels for distributors, contractors and interior projects.",
     label: "Products",
-    title: "Interior Wall Solutions",
+    title: "WPC & Bamboo-Wood Fiber Wall Panel Supply",
     description:
-      "Complete range of wall panel systems with OEM customization for global brands.",
+      "Eshsire supplies WPC wall panels and bamboo-wood fiber integrated wall panels for distributors, contractors and interior projects, with PVC wall panels, decorative panels, ceiling panels and matching accessories available for coordinated supply.",
     items: [
       {
-        name: "SPC Wall Panels",
-        desc: "Waterproof rigid panels for interior walls with wood/stone textures.",
+        name: "Bamboo-Wood Fiber Integrated Wall Panels",
+        desc: "Integrated interior panels with visible profile and decorative finish options for wholesale and renovation projects.",
       },
       {
         name: "WPC Wall Panels",
-        desc: "Moisture-resistant WPC wall panels with wood-look surfaces for interior decoration.",
+        desc: "WPC wall-panel profiles and wood-look finishes for feature walls and coordinated interior supply.",
       },
       {
-        name: "Decorative Panels",
-        desc: "Fluted, WPC and acoustic panel options for modern interiors.",
+        name: "PVC Wall Panels",
+        desc: "Practical PVC interior panel options selected by finish, profile and installation requirements.",
+      },
+      {
+        name: "Decorative / Fluted Wall Panels",
+        desc: "Decorative and fluted profiles for hospitality, retail and residential feature-wall designs.",
+      },
+      {
+        name: "PVC Ceiling Panels",
+        desc: "Ceiling panels that can be planned with wall panels and accessories in one coordinated order.",
+      },
+      {
+        name: "Trims, Corners & Installation Accessories",
+        desc: "Matching profiles, clips, corners and finishing accessories for a complete panel system.",
       },
     ],
     galleryLabel: "Product Gallery",
     galleryTitle: "Wall Panel Collection",
     galleryDesc:
-      "Interior finishes, UV marble effects and decorative wall panel options for commercial projects.",
+      "Real wall-panel profiles, surfaces and finishes for distributors and commercial interior projects.",
     faq: {
       label: "FAQ",
       title: "Interior Wall Panel Questions",
@@ -347,15 +359,15 @@ export const en = {
       items: [
         {
           q: "What types of interior wall panels do you offer?",
-          a: "We supply SPC wall panels, WPC panels, UV marble-effect panels, grille panels and decorative interior options with OEM customization.",
+          a: "Our main wall-panel lines are bamboo-wood fiber integrated and WPC panels. PVC, decorative and fluted wall panels, PVC ceiling panels and matching accessories can be planned with them.",
         },
         {
           q: "Are wall panels waterproof?",
-          a: "SPC and WPC wall panels offer moisture-resistant performance suitable for many interior applications. Confirm your project environment and installation method with our team.",
+          a: "Water-resistance depends on the panel series and installation system. Confirm the room environment, surface, profile and fixing method with our team before specifying a panel.",
         },
         {
-          q: "Can I order WPC, SPC and decorative wall panels together?",
-          a: "Yes. We support mixed product lines for distributors and project buyers, including coordinated colors, accessories and packaging.",
+          q: "Can I order bamboo-wood fiber, WPC and PVC panels together?",
+          a: "Yes. Compatible wall-panel lines, ceiling panels and accessories can be planned together after specifications, quantities and packing are confirmed.",
         },
         {
           q: "What sizes and thicknesses are available?",
@@ -503,7 +515,7 @@ export const en = {
       selectProduct: "Select product",
       products: {
         spc: "SPC Flooring",
-        wall: "SPC Wall Panels",
+        wall: "WPC / Bamboo-Wood Fiber Wall Panels",
         uv: "UV Marble Panels",
         oem: "OEM Project",
       },
@@ -521,9 +533,9 @@ export const en = {
   },
   productList: [
     "SPC Flooring",
-    "SPC Wall Panels",
-    "UV Marble Panels",
-    "Interior Decorative Materials",
+    "Bamboo-Wood Fiber Wall Panels",
+    "WPC Wall Panels",
+    "Wall Panel Accessories",
   ],
   accessories: {
     heroSubtitle:

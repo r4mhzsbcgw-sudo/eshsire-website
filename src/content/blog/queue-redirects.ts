@@ -1,4 +1,7 @@
-const ENGLISH_BLOG_QUEUE = [
+import queueData from "../../../content/blog/blogQueue.en.json";
+import type { BlogQueueEntry } from "./types";
+
+export const LEGACY_ENGLISH_BLOG_QUEUE = [
   { slug: "spc-flooring-wear-layer-guide", publishDate: "2026-07-29" },
   { slug: "4mm-spc-flooring-wholesale-orders", publishDate: "2026-07-30" },
   { slug: "5mm-spc-flooring-for-distributors", publishDate: "2026-07-31" },
@@ -101,8 +104,10 @@ const ENGLISH_BLOG_QUEUE = [
   { slug: "contact-china-spc-flooring-wall-panel-manufacturer", publishDate: "2026-11-05" },
 ] as const;
 
+const currentQueue = queueData.entries as BlogQueueEntry[];
+
 const englishBlogQueueBySlug = new Map(
-  ENGLISH_BLOG_QUEUE.map((entry) => [entry.slug, entry.publishDate])
+  currentQueue.map((entry) => [entry.slug, entry])
 );
 
 function beijingToday(): string {
@@ -113,10 +118,15 @@ export function isPublishedEnglishQueueSlug(
   slug: string,
   today = beijingToday()
 ): boolean {
-  const publishDate = englishBlogQueueBySlug.get(
-    slug as (typeof ENGLISH_BLOG_QUEUE)[number]["slug"]
+  const entry = englishBlogQueueBySlug.get(slug);
+  return Boolean(
+    entry &&
+      entry.publishDate <= today &&
+      entry.approvedForPublish === true &&
+      (entry.status === "scheduled" || entry.status === "published") &&
+      entry.isPlaceholder === false &&
+      entry.body.trim().length >= 1000
   );
-  return publishDate !== undefined && publishDate <= today;
 }
 
 export function shouldRedirectToPublishedEnglishQueuePost(

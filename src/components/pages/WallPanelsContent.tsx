@@ -17,15 +17,7 @@ import { EnglishWallPanelConversionSection } from "./EnglishConversionBlocks";
 export function WallPanelsContent() {
   const { locale, dict } = useLocale();
   const d = dict.wallPanels;
-  const englishProductImages = [
-    "/images/content-library/wall-panels/wall-panels-1784365160-4f671650.webp",
-    "/images/content-library/wall-panels/wall-panels-1784364374-8e7869af.webp",
-    "/images/content-library/wall-panels/wall-panels-1784364602-0fe702ee.webp",
-    "/images/content-library/wall-panels/wall-panels-1784364697-9478eb4f.webp",
-    "/images/content-library/wall-panels/wall-panels-1784365225-145af4c0.webp",
-    "/images/content-library/wall-panels/wall-panels-1784364730-156d6088.webp",
-  ];
-  const productImages = locale === "en" ? englishProductImages : wallPanelImages.productLines;
+  const productImages = wallPanelImages.productLines;
   const productLineAlts = d.items.map((item, i) =>
     i === 1
       ? locale === "zh"
@@ -43,7 +35,7 @@ export function WallPanelsContent() {
 
   return (
     <>
-      <PageHero title={dict.meta.headings.wallPanels} subtitle={d.heroSubtitle} image={locale === "en" ? englishProductImages[0] : wallPanelImages.hero} />
+      <PageHero title={dict.meta.headings.wallPanels} subtitle={d.heroSubtitle} image={wallPanelImages.hero} />
       <section className="section-padding">
         <div className="mx-auto max-w-7xl">
           <SectionHeader label={d.label} title={d.title} description={d.description} centered />
@@ -51,16 +43,16 @@ export function WallPanelsContent() {
             {d.items.map((p, i) => (
               <FadeIn key={p.name} delay={i * 0.1}>
                 <div className="glass-card-hover overflow-hidden">
-                  <div className="relative aspect-[4/3]">
+                  {productImages[i] && <div className="relative aspect-[4/3]">
                     <Image
-                      src={productImages[i] ?? productImages[0]}
+                      src={productImages[i]}
                       alt={productLineAlts[i]}
                       title={p.name}
                       fill
                       className="object-cover"
                       sizes="33vw"
                     />
-                  </div>
+                  </div>}
                   <div className="p-6">
                     <h3 className="text-lg font-bold">{p.name}</h3>
                     <p className="mt-2 text-sm text-industrial-light">{p.desc}</p>

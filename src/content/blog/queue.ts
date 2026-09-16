@@ -55,6 +55,8 @@ function markdownBodyToBlocks(body: string): BlogBlock[] {
 
   for (const rawLine of body.split(/\r?\n/)) {
     const line = rawLine.trim();
+    // The detail page already renders the article title as its H1.
+    if (line.startsWith("# ")) continue;
     if (!line) {
       flushParagraph();
       flushList();

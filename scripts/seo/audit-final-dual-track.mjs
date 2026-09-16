@@ -46,7 +46,8 @@ for(const track of ["flooring","wall-panel"]){
   for(let i=0;i<sequence.length;i++) for(let j=i+1;j<sequence.length && j<i+14;j++) if(sequence[i].featuredImage.src===sequence[j].featuredImage.src) featuredWithin14++;
 }
 const urls=[...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match)=>match[1]);
-const futureUrls=posts.filter((post)=>post.publishDate>"2026-09-15").filter((post)=>urls.some((url)=>url.endsWith(`/en/blog/${post.slug}`)));
+const today=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Shanghai',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date());
+const futureUrls=posts.filter((post)=>post.publishDate>today).filter((post)=>urls.some((url)=>url.endsWith(`/en/blog/${post.slug}`)));
 const results={
   posts:posts.length,days:Object.keys(perDay).length,pairingAndSameDayTypeCollisions:collisions,
   totalImagePlacements:[...imageUses.values()].reduce((a,b)=>a+b,0),uniqueImagesUsed:imageUses.size,uniqueFeaturedImages:featuredUses.size,uniqueFlooringImages:flooringImages.size,uniqueWallPanelImages:wallImages.size,

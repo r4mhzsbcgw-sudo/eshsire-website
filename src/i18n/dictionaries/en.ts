@@ -324,16 +324,16 @@ export const en = {
       "Eshsire supplies WPC wall panels and bamboo-wood fiber integrated wall panels for distributors, contractors and interior projects, with PVC wall panels, decorative panels, ceiling panels and matching accessories available for coordinated supply.",
     items: [
       {
-        name: "Bamboo-Wood Fiber Integrated Wall Panels",
-        desc: "Integrated interior panels with visible profile and decorative finish options for wholesale and renovation projects.",
+        name: "SPC Wall Panels",
+        desc: "SPC wall panels with decorative surface options for interior wall finishes and coordinated project supply.",
       },
       {
         name: "WPC Wall Panels",
         desc: "WPC wall-panel profiles and wood-look finishes for feature walls and coordinated interior supply.",
       },
       {
-        name: "PVC Wall Panels",
-        desc: "Practical PVC interior panel options selected by finish, profile and installation requirements.",
+        name: "PVC Ceiling Panels",
+        desc: "PVC ceiling panels in flat, grooved and wave profiles for coordinated interior finishes.",
       },
       {
         name: "Decorative / Fluted Wall Panels",
